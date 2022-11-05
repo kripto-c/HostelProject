@@ -10,6 +10,4 @@ server.use("/", routes)
 server.use(express.json());
 server.use(morgan("dev"));
 
-
-
 module.exports = server
