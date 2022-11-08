@@ -11,7 +11,7 @@ import 'bootstrap/dist/css/bootstrap.min.css' ;
   
   const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
-  <React.StrictMode>
+  <React.StrictMode>    
     <Auth0Provider 
      domain='dev-o7k6sbvjre41wvzb.us.auth0.com'
      clientId='66qlWattWEnEf9wvlEyxx3VC5P8S9sxK'
