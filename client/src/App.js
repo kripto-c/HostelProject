@@ -1,10 +1,9 @@
 import './App.css';
-import { Routes, Route } from "react-router-dom";
-import Login from './Components/login/Login';
-import Home from './Components/home/home';
-
+import { useAuth0 } from '@auth0/auth0-react';
+import axios from 'axios';
 
 function App() {
+  const { loginWithPopup, loginWithRedirect, logout, user, isAuthenticated, getAccessTokenSilently } = useAuth0();
 
   return (
       <div className='App'>
