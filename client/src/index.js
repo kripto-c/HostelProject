@@ -4,6 +4,7 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import { Auth0Provider } from '@auth0/auth0-react'
+<<<<<<< HEAD
 import { BrowserRouter } from "react-router-dom";
 //Importando react bootstrap ------------>>
 import 'bootstrap/dist/css/bootstrap.min.css' ;
@@ -11,6 +12,12 @@ import 'bootstrap/dist/css/bootstrap.min.css' ;
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>    
+=======
+
+const root = ReactDOM.createRoot(document.getElementById('root'));
+root.render(
+  <React.StrictMode>
+>>>>>>> d2d2629 (auth login and delete indes.js)
     <Auth0Provider 
      domain='dev-o7k6sbvjre41wvzb.us.auth0.com'
      clientId='66qlWattWEnEf9wvlEyxx3VC5P8S9sxK'
@@ -18,9 +25,13 @@ root.render(
      audience='route-protected'
      scope='openid profile email'
      >
+<<<<<<< HEAD
        <BrowserRouter>
     <App />
     </BrowserRouter>
+=======
+    <App />
+>>>>>>> d2d2629 (auth login and delete indes.js)
     </Auth0Provider>
   </React.StrictMode>
 );
