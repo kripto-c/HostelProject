@@ -4,8 +4,6 @@ import Login from './Components/login/Login';
 import Home from './Components/home/home';
 
 
-import 'bootstrap/dist/css/bootstrap.min.css'
-
 function App() {
 
   return (
