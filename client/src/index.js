@@ -4,6 +4,7 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import { Auth0Provider } from '@auth0/auth0-react'
+import { BrowserRouter } from "react-router-dom";
 <<<<<<< HEAD
 import { BrowserRouter } from "react-router-dom";
 //Importando react bootstrap ------------>>
@@ -25,13 +26,9 @@ root.render(
      audience='route-protected'
      scope='openid profile email'
      >
-<<<<<<< HEAD
        <BrowserRouter>
     <App />
     </BrowserRouter>
-=======
-    <App />
->>>>>>> d2d2629 (auth login and delete indes.js)
     </Auth0Provider>
   </React.StrictMode>
 );
