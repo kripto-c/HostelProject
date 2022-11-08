@@ -3,13 +3,22 @@ import ReactDOM from 'react-dom/client';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
+import { Auth0Provider } from '@auth0/auth0-react'
 //Importando react bootstrap ------------>>
 import 'bootstrap/dist/css/bootstrap.min.css' ;
 //---------------------------------------------
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
+    <Auth0Provider 
+     domain='dev-o7k6sbvjre41wvzb.us.auth0.com'
+     clientId='66qlWattWEnEf9wvlEyxx3VC5P8S9sxK'
+     redirectUri={window.location.origin}
+     audience='route-protected'
+     scope='openid profile email'
+     >
     <App />
+    </Auth0Provider>
   </React.StrictMode>
 );
 
