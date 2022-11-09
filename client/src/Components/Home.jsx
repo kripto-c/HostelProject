@@ -2,6 +2,7 @@ import React from "react";
 import Footer from "./Layout/Footer";
 import Header from "./Layout/Header";
 import Carousel from "react-bootstrap/Carousel";
+import "./Home.css"
 
 const Home = () => {
   return (
@@ -24,6 +25,17 @@ const Home = () => {
                 alt="third-item"/>
             </Carousel.Item>
         </Carousel>
+        <div className="info">
+          <img
+          src="https://media.gq.com.mx/photos/619fc54a7a3578ea6e576d03/1:1/w_2000,h_2000,c_limit/bares%20de%20vino-160836693.jpg"
+          alt="chocando-copa"
+          />
+          <div className="texto">
+          <h1>Bienvendios al Hostel Dinamita
+          </h1>
+          <p>el hostel dinamita cuenta con varias cosas dasd asdsadsad asd asdas dasd asd asd sa asd asd</p>
+          </div>
+        </div>
       <Footer></Footer>
     </div>
   );
