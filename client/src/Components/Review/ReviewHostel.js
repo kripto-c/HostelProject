@@ -7,8 +7,8 @@ import Form from "react-bootstrap/Form";
 import { Button } from "react-bootstrap";
 
 import { IoIosStar } from "react-icons/io";
-import style from "../Styles/RatingBootstrap.module.css";
-import { postReview } from "../../redux/actions";
+import style from "../../Styles/ReviewHostel.module.css";
+import { postReview } from "../../Redux/actions/index.js";
 
 export default function RatingBootstrap() {
   // eslint-disable-next-line no-unused-vars
