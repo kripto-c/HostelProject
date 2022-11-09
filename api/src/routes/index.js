@@ -4,6 +4,8 @@ const login = require('./login/route');
 const reviews = require("./reviews/reviews.js")
 const router = Router();
     
+
+router.use("/reviews",reviews)
     //changed sofi 
 // const controllers = require("../controllers/index.js")
 
@@ -63,8 +65,9 @@ router.use(jwtCheck);
 
 router.use(express.json());
 //RUTAS----------------------------------->>
+
 router.use('/login', login);
-router.use("/reviews",reviews)
+
 
 
 module.exports = router;
