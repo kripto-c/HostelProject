@@ -9,7 +9,7 @@ const Footer = () => {
         <p>Dinamita Hostel</p>
         <p>Copyright Team Dinamita®</p>
       </div>
-      <div>
+      <div className="logos">
         <span>Nuestras redes sociales:</span>
         <a href="https://www.facebook.com/" target="blank">
           <img
