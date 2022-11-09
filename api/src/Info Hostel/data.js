@@ -1,29 +1,29 @@
-module.exports=[
+module.exports = [
   {
     client: [
       {
-        personalID: 39652632,
+        personalID: 1520,
         name: "Pedro Sanchez",
         nationality: "Bulgaria",
-        phoneNumber: 2804563236,
+        phoneNumber: 281,
         email: "pedrito@gmail.com",
         password: "pedrito123",
         observation: "",
       },
       {
-        personalID: 37528693,
+        personalID: 3720,
         name: "Jose Malboro",
         nationality: "Argentina",
-        phoneNumber: 2804563236,
+        phoneNumber: 280,
         email: "malboro@gmail.com",
         password: "malboro123",
         observation: "",
       },
       {
-        personalID: 33658965,
+        personalID: 3314,
         name: "Miguel Carrasco",
         nationality: "Chile",
-        phoneNumber: 011236512,
+        phoneNumber: 112,
         email: "miguelito@gmail.com",
         password: "miguelITO123",
         observation: "",
@@ -38,15 +38,15 @@ module.exports=[
         status: true,
       },
       {
-        dateIn: "09/11/2022",
-        dateOut: "12/11/2022",
+        dateIn: new Date(2023, 00, 05),
+        dateOut: new Date(2023, 00, 10),
         price: 3500,
         observation: "",
         status: true,
       },
       {
-        dateIn: "15/11/2022",
-        dateOut: "19/11/2022",
+        dateIn: new Date(2023, 00, 01),
+        dateOut: new Date(2023, 00, 20),
         price: 4000,
         observation: "",
         status: true,
@@ -71,7 +71,7 @@ module.exports=[
         bathroom: "publico",
         price: 1995.5,
         observation: "",
-        status: true,
+        status: false,
       },
       {
         beds: 6,
