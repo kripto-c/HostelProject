@@ -1,12 +1,12 @@
-const { Review } = require("../db");
+const { Review } = require("../db.js");
 const postReviews = async (req, res) => {
   try {
     console.log(Review);
-    let { rating, description, usuario } = req.body;
+    let { rating, description } = req.body;
     const data = await Review.create({
       rating,
       description,
-      usuario,
+      
     });
     console.log(data);
     res.status(200).json(data);
