@@ -5,6 +5,8 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 import { Auth0Provider } from '@auth0/auth0-react'
 import { BrowserRouter } from "react-router-dom";
+import {Provider} from "react-redux";
+import {store} from "./Redux/store/index.js"
 //Importando react bootstrap ------------>>
 import 'bootstrap/dist/css/bootstrap.min.css' ;
 
@@ -12,6 +14,8 @@ import 'bootstrap/dist/css/bootstrap.min.css' ;
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>    
+    <Provider store={store}>
+
     <BrowserRouter>
     <Auth0Provider 
      domain='dev-o7k6sbvjre41wvzb.us.auth0.com'
@@ -22,7 +26,8 @@ root.render(
      >
     <App />
     </Auth0Provider>
-    </BrowserRouter>
+    </BrowserRouter>,
+    </Provider>
   </React.StrictMode>
 );
 
