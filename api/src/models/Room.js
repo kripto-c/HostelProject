@@ -17,6 +17,12 @@ module.exports = (sequelize) => {
     description: {
         type: DataTypes.STRING
     },
+    image: {
+      type: DataTypes.STRING
+    },
+    bathroom: {
+      type: DataTypes.STRING
+    },
     price: {
         type: DataTypes.DOUBLE,
         allowNull: false,
