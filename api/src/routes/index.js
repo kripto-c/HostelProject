@@ -1,6 +1,7 @@
 const {Router} = require("express");
 const express = require('express');
 const login = require('./login/route');
+const reviews = require("./reviews/reviews.js")
 const router = Router();
     
     //changed sofi 
@@ -61,8 +62,9 @@ let jwtCheck = jwt({
 router.use(jwtCheck);
 
 router.use(express.json());
-
+//RUTAS----------------------------------->>
 router.use('/login', login);
+router.use("/reviews",reviews)
 
 
 module.exports = router;
