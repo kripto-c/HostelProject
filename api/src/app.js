@@ -1,17 +1,3 @@
-// const express = require("express");
-// const morgan = require("morgan");
-
-// const server = express();
-
-// const routes = require("./routes/index")
-
-// server.use("/", routes)
-
-// server.use(express.json());
-// server.use(morgan("dev"));
-
-// module.exports = server
-
 const express = require('express');
 const cookieParser = require('cookie-parser');
 const bodyParser = require('body-parser');
@@ -38,6 +24,25 @@ server.use((req, res, next) => {
 });
 
 server.use('/', routes);
+
+// server.get('/', (req, res)=>{
+//   res.send('hello from index route')
+// })
+
+// server.get('/protected', (req, res)=>{
+// res.send('hello from protected route')
+// })
+
+// server.get('/profile', async (req, res)=>{
+//  const accesToken = req.headers.authorization.split(' ')[1];
+//  const responds = await axios.get('https://dev-o7k6sbvjre41wvzb.us.auth0.com/userinfo', {
+//     headers:{
+//       authorization:`Bearer ${accesToken}`
+//     }
+//  })
+//  const userinfo = responds.data;
+//  res.send(userinfo);  
+// })
 
 // Error catching endware.
 server.use((err, req, res, next) => { // eslint-disable-line no-unused-vars
