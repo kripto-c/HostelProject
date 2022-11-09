@@ -7,6 +7,8 @@ const router = Router();
 router.use("/reviews", reviews);
 router.use("/info", info);
 
+const payment = require("./payments/payment");
+
 //changed sofi
 // const controllers = require("../controllers/index.js")
 
@@ -60,11 +62,18 @@ let jwtCheck = jwt({
   algorithms: ["RS256"],
 }).unless({ path: ["/login"] });
 
-router.use(jwtCheck);
+// router.use(jwtCheck);
 
 router.use(express.json());
 //RUTAS----------------------------------->>
 
+//payments
+
+router.use("/payment", payment)
+
+router.get("/prueba", async(req, res) =>{
+    res.send("si")
+})
 
 router.use("/login", login);
 
