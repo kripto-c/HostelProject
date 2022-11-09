@@ -42,7 +42,7 @@ async function getProfile() {
 
      return(
              //auth0
-      <div className='App container d-flex flex-column text-light'>
+      <div className='App'>
          <ul>
             <li><button onClick={loginWithPopup}>login with Propup</button></li>
             <li><button onClick={logout}>logout</button></li>
