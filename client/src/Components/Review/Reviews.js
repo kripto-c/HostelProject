@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { getReview } from "../redux/actions";
+import { getReview } from "../../Redux/actions/index.js";
 //IMPORT DE REACT BOOTSTRAP --------------------------->>
 import { IoIosStar } from "react-icons/io";
 
