@@ -4,7 +4,7 @@ export default function RoomCard({beds, description, image, bathroom, type}) {
     console.log(beds, description, image, bathroom, type)
     return (
         <div>
-            <img src={image}></img>
+            <img src={image} alt=""></img>
             <div>
                 <h2>Habitación {type}</h2>
                 <h4>Habitación para {beds} personas</h4>
