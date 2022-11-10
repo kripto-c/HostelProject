@@ -13,9 +13,9 @@ function App() {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/login" element={<Login />} />
-            {/* <Route path="/review" element={<Reviews/>}/> */}
-      <Route path="/roomdetail/:id" element={<RoomDetail />} />
-      <Route path="/feedback" element={<FeedBack/>} />
+          {/* <Route path="/review" element={<Reviews/>}/> */}
+        <Route path="/roomdetail/:id" element={<RoomDetail />} />
+        <Route path="/feedback" element={<FeedBack/>} />
       </Routes>
     </>
   );
