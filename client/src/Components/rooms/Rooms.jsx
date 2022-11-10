@@ -1,7 +1,7 @@
 import { useSelector, useDispatch } from "react-redux"
 import { useEffect } from "react"
-import { getRooms } from "../../Redux/actions"
 import { Link } from "react-router-dom"
+import { useState } from "react"
 import { filterTypeRoom, getRooms } from "../../Redux/actions"
 import RoomCard from "./RoomCard.jsx"
 import style from "./Rooms.module.css"
@@ -24,26 +24,27 @@ export default function Rooms() {
         <div className={style.Container}>
             <h1><i>HABITACIONES</i></h1>
             <div className={style.Cards}>
-         <div>
-            {console.log(allRooms)}
-            <select id='type' defaultValue="Todo" onChange={(e) => roomTypeHandler(e)}>
-                <option value="Todo" hidden>Tipo de habitación</option>
-                <option value="Privado" >Privado</option>
-                <option value="Público" >Público</option>
-            </select>
-        
+            <div>
+                {console.log(allRooms)}
+                <select id='type' defaultValue="Todo" onChange={(e) => roomTypeHandler(e)}>
+                    <option value="Todo" hidden>Tipo de habitación</option>
+                    <option value="Privado" >Privado</option>
+                    <option value="Público" >Público</option>
+                </select>
             <h1>Habitaciones</h1>
+
             {allRooms && allRooms.map(e => {    
                 return(
                     
                         <RoomCard
                             beds={e.beds} description={e.description} image={e.image} bathroom={e.bathroom} type={e.type}
-                            className={style.Card}
+                            className={style.Card} id= {e.id}
                         />  
                     
                 )  
             
             })}
+                </div>
             </div>
         </div>
     )

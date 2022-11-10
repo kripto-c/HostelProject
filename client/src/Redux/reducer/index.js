@@ -22,7 +22,7 @@ export default function rootReducer(state= initialState, action) {
                   reviews:action.payload,
                 }
               }
-              case FILTER_TYPE_ROOM: {
+              case "FILTER_TYPE_ROOM": {
                 const filteredRooms = state.rooms
                 let filter = 
                 action.payload === "Publico"
@@ -33,7 +33,7 @@ export default function rootReducer(state= initialState, action) {
                   type: filter,
                 }
               }
-              case FILTER_TYPE_BATHROOM: {
+              case "FILTER_TYPE_BATHROOM": {
                 const filteredBathrooms = state.rooms
                 let filter = 
                 action.payload === "Publico"
