@@ -42,3 +42,18 @@ export function getReview() {
   }
 
   //----------------------------------------------------------------------------->>
+
+  //ACTIONS FILTROS---------------------------------------------------------------->>
+
+  export function filterTypeRoom(payload){
+    return {
+      type: "FILTER_TYPE_ROOM",
+      payload
+    }
+  }
+  export function filterTypeBathroom(payload){
+    return {
+      type: "FILTER_TYPE_BATHROOM",
+      payload
+    }
+  }

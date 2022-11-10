@@ -22,6 +22,29 @@ export default function rootReducer(state= initialState, action) {
                   reviews:action.payload,
                 }
               }
+              case FILTER_TYPE_ROOM: {
+                const filteredRooms = state.type
+                let filter = 
+                action.payload === "Publico"
+                ? filteredRooms.filter((t) => t.type === "Público") : filteredRooms.filter((t) => t.type === "Privado")
+                if(action.payload === "Todo") filter = filteredRooms
+                return{
+                  ...state,
+                  type: filter,
+                }
+              }
+              case FILTER_TYPE_BATHROOM: {
+                const filteredBathrooms = state.rooms
+                let filter = 
+                action.payload === "Publico"
+                ? filteredBathrooms.filter((b) => b.bathroom === "Público") : filteredBathrooms.filter((b) => b.bathroom === "Privado")
+                if(action.payload === "Todo") filter = filteredBathrooms
+                return {
+                  ...state,
+                  rooms: filter
+                }
+              }
+
         default:
             return state
     }
