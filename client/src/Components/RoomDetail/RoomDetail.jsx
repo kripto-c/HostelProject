@@ -1,6 +1,6 @@
 import React, {useState} from 'react'
 import './RoomDetail.css';
-
+import axios from "axios";
 
 const RoomDetail = () => {
    
@@ -52,7 +52,7 @@ const RoomDetail = () => {
         return setCheckOut(e.target.value.split('-').reverse().join('-'));
     }
 
-    const pay = ()=>{
+    const pay = async ()=>{
         const body = {}
         body.items = [{
             title: detailRoom.name,
@@ -62,12 +62,12 @@ const RoomDetail = () => {
             check_out: checkOut
         }]
         body.user = user;
-
-        const result = "axios.etc";
+        console.log(body)
+        const result = await axios.post("http://localhost:4000/payment", body);
         
-        setPagar(result.data.unit_point);
+        setPagar(result.data.init);
+        console.log(result.data.id);
     }
-
     return (
     <div className='detailRoom'>
         <h1>Detalle de la habitacion</h1>
