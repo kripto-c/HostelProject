@@ -68,7 +68,7 @@ export function getReview() {
 
     }
   }
-  export function sendFeedback(data){
+/*   export function sendFeedback(data){
     try {
       return async function(dispatch){
         let response = await axios.get(`http://localhost:4000/feedback${data}`);
@@ -78,4 +78,4 @@ export function getReview() {
     } catch (error) {
       console.log(error)
     }
-  }
+  } */

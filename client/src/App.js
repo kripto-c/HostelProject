@@ -8,6 +8,8 @@ import Rooms from "./Components/rooms/Rooms";
 import Contact from "./Components/Contact/Contact";
 import FeedBack from "./Components/feedback/Feedback";
 import RoomDetail from "./Components/RoomDetail/RoomDetail";
+import About from "./Components/about/about.jsx";
+
 function App() {
   return (
     <>
@@ -18,8 +20,7 @@ function App() {
         <Route path="/reviewHostel" element={<ReviewHostel />} />
         <Route exact path="/rooms" element={<Rooms />} />
         <Route path="/contact" element={<Contact />} />
-        <Route path="/feedback" element={<FeedBack/>} />
-        <Route path="/roomdetail/:id" element={<RoomDetail />} />
+        <Route exact path="/about" element={<About/>}/>
       </Routes>
     </>
   );
