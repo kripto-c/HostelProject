@@ -29,30 +29,31 @@ const Home = () => {
       <h1>Bienvendios al Hostel Dinamita</h1>
       <div className="info">
         <div className="collage">
-        <img
-          src="https://media.gq.com.mx/photos/619fc54a7a3578ea6e576d03/1:1/w_2000,h_2000,c_limit/bares%20de%20vino-160836693.jpg"
-          alt="collage-1"
-        />
-        <img
-          src="https://cf.bstatic.com/xdata/images/xphoto/max1440/48357258.jpg?k=035ac71dc8cf908f6b770ec79bf034f5891a734d172c80159a0ac713ff2a1a7c&o="
-          alt="collage-2"
-        />
-        <img
-          src="https://i0.wp.com/www.disfrutarosario.com/wp-content/uploads/2020/10/Como-construir-una-pileta-en-casa-2.jpg?resize=640%2C480&ssl=1"
-          alt="collage-3"
-        />
-        <img
-          src="https://hqbeds.com/wp-content/uploads/2019/11/hostel1-e1573156979842.jpg"
-          alt="collage-4"
-        />
-        <img
-          src="https://www.elcalafate.tur.ar/img/anunciantes/724/matices-hostel-2-.jpg"
-          alt="collage-5"
-        />
-        <img
-          src="https://viajeros-17f81.kxcdn.com/wp-content/uploads/2020/10/DSC_0310-scaled.jpg"
-          alt="collage-6"
-        />
+          <img
+            src="https://media.gq.com.mx/photos/619fc54a7a3578ea6e576d03/1:1/w_2000,h_2000,c_limit/bares%20de%20vino-160836693.jpg"
+            alt="collage-1"
+          />
+
+          <img
+            src="https://cf.bstatic.com/xdata/images/xphoto/max1440/48357258.jpg?k=035ac71dc8cf908f6b770ec79bf034f5891a734d172c80159a0ac713ff2a1a7c&o="
+            alt="collage-2"
+          />
+          <img
+            src="https://i0.wp.com/www.disfrutarosario.com/wp-content/uploads/2020/10/Como-construir-una-pileta-en-casa-2.jpg?resize=640%2C480&ssl=1"
+            alt="collage-3"
+          />
+          <img
+            src="https://hqbeds.com/wp-content/uploads/2019/11/hostel1-e1573156979842.jpg"
+            alt="collage-4"
+          />
+          <img
+            src="https://www.elcalafate.tur.ar/img/anunciantes/724/matices-hostel-2-.jpg"
+            alt="collage-5"
+          />
+          <img
+            src="https://viajeros-17f81.kxcdn.com/wp-content/uploads/2020/10/DSC_0310-scaled.jpg"
+            alt="collage-6"
+          />
         </div>
       </div>
       <Footer></Footer>

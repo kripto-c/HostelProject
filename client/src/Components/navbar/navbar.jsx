@@ -19,13 +19,12 @@ function Navbars() {
         <Container className="d-flex justify-content-between">
           <Navbar.Brand href="/">Dinamita Hostel</Navbar.Brand>
           <Nav className="col-10  justify-content-end">
-            <Nav.Link href="/">
-              Home
-            </Nav.Link>
+            <Nav.Link href="/">Home</Nav.Link>
             <Nav.Link href="/reservas">Reservas</Nav.Link>
-            <Nav.Link href="/habitaciones">Habitaciones</Nav.Link>
-            <Nav.Link href="/contactanos">Contactanos</Nav.Link>
+            <Nav.Link href="/rooms">Habitaciones</Nav.Link>
+            <Nav.Link href="/contact">Contactanos</Nav.Link>
             <Nav.Link href="/acerca">Acerca de</Nav.Link>
+            <Nav.Link href="/reviewHostel">Reviews</Nav.Link>
           </Nav>
           {isAuthenticated ? (
             <Navbar.Collapse id="basic-navbar-nav m-auto col-2 me-5">
