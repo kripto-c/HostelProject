@@ -6,8 +6,7 @@ const info = require(".././routes/info/info.js")
 const router = Router();
 router.use("/reviews", reviews);
 router.use("/info", info);
-
-const payment = require("./payments/payment");
+const payments = require("./payments/payment.js");
 
 //changed sofi
 // const controllers = require("../controllers/index.js")
@@ -43,12 +42,8 @@ const payment = require("./payments/payment");
 // auth0 backend
 const { expressjwt: jwt } = require("express-jwt");
 const jwks = require("jwks-rsa");
+const { Rent } = require("../db");
 
-// router.get("/", async(req, res) =>{
-//     console.log("si")
-//     res.send("estamos listos!");
-
-// })
 
 let jwtCheck = jwt({
   secret: jwks.expressJwtSecret({
@@ -69,12 +64,31 @@ router.use(express.json());
 
 //payments
 
-router.use("/payment", payment)
+router.use("/payment", payments);
 
-router.get("/prueba", async(req, res) =>{
-    res.send("si")
+router.post("/rent", async(req, res) =>{
+    const preference_id = req.query.preference_id;
+    const payment_status = req.query.status;
+    if(payment_status === "approved"){
+        let comprobante = await Rent.create({
+           status: true,
+           pago_id: preference_id
+        });
+        res.send(comprobante)
+    }
 })
 
 router.use("/login", login);
 
 module.exports = router;
+
+
+//feedback?collection_id=51359010704
+// &collection_status=approved
+// &payment_id=51359010704&status=approved
+// &external_reference=null
+// &payment_type=account_money&merchant_order_id=6444906662
+// &preference_id=1230124929-ad67b343-3407-4f3f-8b97-32ccb089a264
+// &site_id=MLA
+// &processing_mode=aggregator
+// &merchant_account_id=null
