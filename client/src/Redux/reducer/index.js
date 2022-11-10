@@ -23,10 +23,10 @@ export default function rootReducer(state= initialState, action) {
                 }
               }
               case FILTER_TYPE_ROOM: {
-                const filteredRooms = state.type
+                const filteredRooms = state.rooms
                 let filter = 
                 action.payload === "Publico"
-                ? filteredRooms.filter((t) => t.type === "Público") : filteredRooms.filter((t) => t.type === "Privado")
+                ? filteredRooms.filter((r) => r.type === "Público") : filteredRooms.filter((r) => r.type === "Privado")
                 if(action.payload === "Todo") filter = filteredRooms
                 return{
                   ...state,
