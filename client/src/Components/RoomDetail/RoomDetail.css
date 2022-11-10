@@ -1,0 +1,115 @@
+.detailRoom h1{
+    text-align: center;
+}
+.datas{
+    background-color: #ededed;
+    display: flex;
+    max-width: 650px;
+    min-width: 300px;
+    padding: 5px;
+    margin: auto;
+    justify-content: center;
+}
+.datas div{
+    margin: 3px;
+    width: 100%;
+}
+.datas div input{
+    width: 100%;
+}
+.datas div label{
+    margin-bottom: 10px;
+}
+
+.infoRoom{
+    margin: auto;
+    margin-top: 30px;
+    display: flex;
+    max-width: 900px;
+    min-width: 300px;
+}
+
+.infoRoom div{
+    margin: 0 30px;
+}
+
+.listBeds{
+    text-align: center;
+}
+.Ac{
+    margin: auto;
+    max-width: 800px;
+    min-width: 300px;
+}
+.listBeds label{
+    margin-right: 750px;
+}
+
+.listBeds input[type='checkbox']{
+    width: 20px;
+    height: 20px;
+}
+
+.pay{
+    background-color: #999898;
+    max-width: 600px;
+    min-width: 300px;
+    margin: auto;
+    border-radius: 30px;
+    text-align: center;
+    padding-top: 10px;
+}
+
+.pay p{
+    font-size: 23px;
+}
+
+.pay button{
+    background-color: #083b2f;
+    border: 0;
+    color: #fff;
+    padding: 5px 50px;
+    border-radius: 20px;
+}
+@media only screen and (max-width: 837px){
+    .listBeds{
+        width: 300px;
+        margin: auto;
+    }
+    .listBeds label{
+        text-align: left;
+        width: 200px;
+        margin: 10px 30px;
+    }
+    
+    .listBeds input[type='checkbox']{
+        width: 20px;
+        height: 20px;
+    }
+}
+
+@media only screen and (max-width: 600px){
+    .datas, .infoRoom{
+        display: flex;
+        flex-direction: column-reverse;
+    }
+    .infoRoom img{
+        margin: auto;
+    }
+
+
+    .listBeds{
+        width: 300px;
+        margin: auto;
+    }
+    .listBeds label{
+        text-align: left;
+        width: 200px;
+        margin: 10px 30px;
+    }
+    
+    .listBeds input[type='checkbox']{
+        width: 20px;
+        height: 20px;
+    }
+}

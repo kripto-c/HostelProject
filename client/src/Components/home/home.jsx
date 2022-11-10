@@ -6,7 +6,7 @@ import "./Home.css";
 const Home = () => {
   return (
     <div className="home-container">
-      <Carousel className="carousel">
+      <Carousel className="d-flex justify-content-center">
         <Carousel.Item>
           <img
             src="https://upload.wikimedia.org/wikipedia/commons/e/e8/Hostel_Dormitory.jpg"

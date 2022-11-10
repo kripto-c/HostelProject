@@ -58,7 +58,13 @@ Client.belongsTo(Rent);
 Client.hasMany(Review);
 Review.belongsTo(Client);
 
+Client.hasMany(Review);
+Review.belongsTo(Client);
 module.exports = {
+  Room,
+  Rent,
+  Type,
+  Client,
   ...sequelize.models, // para poder importar los modelos así: const { Product, User } = require('./db.js');
   conn: sequelize, // para importart la conexión { conn } = require('./db.js');
 };
