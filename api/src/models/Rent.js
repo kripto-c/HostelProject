@@ -27,6 +27,9 @@ module.exports = (sequelize) => {
         type: DataTypes.BOOLEAN,
         allowNull: false,
         defaultValue: false,
+    },
+    pago_id:{
+      type: DataTypes.STRING
     }
   },
   {
