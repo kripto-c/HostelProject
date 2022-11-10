@@ -2,9 +2,10 @@
     display: flex;
     width: 100vw;
     justify-content: space-around;
-    background-color: blanchedalmond;
+    background-color: #212529;
     font-size: 15px;
     border-top: 2px solid black;
+    color: rgb(253, 194, 224);
     
 }
 
