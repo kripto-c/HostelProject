@@ -1,0 +1,16 @@
+.Container {
+    display: flex;
+    width: 98vh;
+    margin: 2vw;
+    background-color: rgb(104, 135, 150);
+}
+
+.Image {
+    width: 40vh;
+    margin: 2vw;
+}
+
+.Detail {
+    width: 50vh;
+    margin: 2vw 2vw 2vw 0;
+}

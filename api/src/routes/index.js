@@ -3,12 +3,17 @@ const express = require("express");
 const login = require("./login/route");
 const reviews = require("./reviews/reviews.js");
 const info = require(".././routes/info/info.js")
+
+const rooms = require("../routes/rooms/index.js")
+
 const payment = require("./payments/payment");
 const feedback = require("./payments/feedback")
+
 const router = Router();
 //------Dejo esto aca porque mas abajo me tira error de authenticacion!!!!NO BORREN--->
 router.use("/info", info)
 router.use("/reviews",reviews)
+router.use("/rooms", rooms)
 //----------------------------------------------------------------------------------
 // auth0 backend
 const { expressjwt: jwt } = require("express-jwt");
