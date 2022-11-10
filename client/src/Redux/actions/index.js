@@ -68,3 +68,14 @@ export function getReview() {
 
     }
   }
+  export function sendFeedback(data){
+    try {
+      return async function(dispatch){
+        let response = await axios.get(`http://localhost:4000/feedback${data}`);
+        console.log(data)
+        return response.data;
+      }
+    } catch (error) {
+      console.log(error)
+    }
+  }

@@ -40,8 +40,6 @@ let jwtCheck = jwt({
 
 router.use(express.json());
 //RUTAS----------------------------------->>
-
-
 router.use("/login", login);
 router.use("/payment", payment);
 router.use("/feedback", feedback);
