@@ -41,20 +41,7 @@ export function getReview() {
     }
   }
 
-  //----------------------------------------------------------------------------->>
-
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
+  //ACTIONS FILTROS---------------------------------------------------------------->>
   
   export function sendFeedback(data){
     try {
@@ -65,5 +52,19 @@ export function getReview() {
       }
     } catch (error) {
       console.log(error)
+      }
+  }
+
+  export function filterTypeRoom(payload){
+    return {
+      type: "FILTER_TYPE_ROOM",
+      payload
+    }
+  }
+  export function filterTypeBathroom(payload){
+    return {
+      type: "FILTER_TYPE_BATHROOM",
+      payload
+
     }
   }
