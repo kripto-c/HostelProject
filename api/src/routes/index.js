@@ -4,8 +4,10 @@ const login = require("./login/route");
 const reviews = require("./reviews/reviews.js");
 const info = require(".././routes/info/info.js")
 const router = Router();
-
-
+//------Dejo esto aca porque mas abajo me tira error de authenticacion!!!!NO BORREN--->
+router.use("/info", info)
+router.use("/reviews",reviews)
+//----------------------------------------------------------------------------------
 // auth0 backend
 const { expressjwt: jwt } = require("express-jwt");
 const jwks = require("jwks-rsa");
