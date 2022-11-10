@@ -1,10 +1,15 @@
 import React from "react";
 import { useEffect } from "react";
-import axios from "axios";
 import  { useNavigate } from "react-router-dom"
-
+import { useDispatch } from "react-redux";
+import { sendFeedback } from "../../Redux/actions";
 export default function FeedBack(){
+    const dispatch = useDispatch();
+    const queryString = window.location.search;
 
+    useEffect(() =>{
+        dispatch(sendFeedback(queryString))
+    },[dispatch])
 
     const naviGate = useNavigate();
     setTimeout(() =>{
@@ -17,6 +22,8 @@ export default function FeedBack(){
         </div>
     )
 }
+
+//DATOS Q VIENEN POR QUERY
 
 // http://localhost:3000/feedback?
 // collection_id=1310679791

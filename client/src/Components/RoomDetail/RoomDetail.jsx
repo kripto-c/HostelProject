@@ -2,7 +2,7 @@ import React, {useState} from 'react'
 import './RoomDetail.css';
 import axios from "axios";
 
-const RoomDetail = () => {
+export default function RoomDetail(){
    
     const [camas, setCamas] = useState(0);
     const [total, setTotal] = useState(0);
@@ -106,5 +106,3 @@ const RoomDetail = () => {
  
    )
 }
-
-export default RoomDetail;

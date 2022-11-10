@@ -3,6 +3,8 @@ const express = require("express");
 const login = require("./login/route");
 const reviews = require("./reviews/reviews.js");
 const info = require(".././routes/info/info.js")
+const payment = require("./payments/payment");
+const feedback = require("./payments/feedback")
 const router = Router();
 //------Dejo esto aca porque mas abajo me tira error de authenticacion!!!!NO BORREN--->
 router.use("/info", info)
@@ -29,12 +31,14 @@ let jwtCheck = jwt({
   algorithms: ["RS256"],
 }).unless({ path: ["/login"] });
 
-router.use(jwtCheck);
+// router.use(jwtCheck);
 
 router.use(express.json());
 //RUTAS----------------------------------->>
 
 
 router.use("/login", login);
+router.use("/payment", payment);
+router.use("/feedback", feedback);
 
 module.exports = router;
