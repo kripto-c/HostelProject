@@ -1,9 +1,9 @@
 const {Router} = require("express");
 const router = Router();
-const controllers = require("../controllers/index.js")
+const controllers = require("../../controllers/index.js")
 
     //RUTA PARA TRAER DATOS DE LAS HABITACIONES DE LA DB (No comentar)
-    router.get("/rooms", (req, res) => {
+    router.get("/", (req, res) => {
         try {
             return controllers.getRoomInfo()
                 .then((result) => {
@@ -14,7 +14,7 @@ const controllers = require("../controllers/index.js")
         }
     })
     //RUTA PARA POSTEAR DATOS DE LAS HABITACIONES A LA DB
-    router.post("/rooms", (req, res) => {
+    router.post("/", (req, res) => {
         let {beds, description, image, bathroom, price, observation, status} = req.body
         try {
             return controllers.postRoomInfo(beds, description, image, bathroom, price, observation, status)
@@ -25,4 +25,4 @@ const controllers = require("../controllers/index.js")
             res.status(400).send(error)
         }
     })
-   
+    module.exports = router;
