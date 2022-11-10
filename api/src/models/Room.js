@@ -21,7 +21,7 @@ module.exports = (sequelize) => {
       type: DataTypes.STRING
     },
     bathroom: {
-      type: DataTypes.STRING
+      type: DataTypes.BOOLEAN
     },
     price: {
         type: DataTypes.DOUBLE,

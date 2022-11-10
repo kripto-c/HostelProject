@@ -23,6 +23,7 @@ export function getReview() {
           payload: dataDb.data,
         });
       };
+    // eslint-disable-next-line no-unreachable
     } catch (e) {
       console.log(e);
     }
