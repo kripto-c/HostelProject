@@ -42,6 +42,18 @@ export function getReview() {
   }
 
   //ACTIONS FILTROS---------------------------------------------------------------->>
+  
+  export function sendFeedback(data){
+    try {
+      return async function(dispatch){
+        let response = await axios.get(`http://localhost:4000/feedback${data}`);
+        console.log(data)
+        return response.data;
+      }
+    } catch (error) {
+      console.log(error)
+      }
+  }
 
   export function filterTypeRoom(payload){
     return {
@@ -53,6 +65,7 @@ export function getReview() {
     return {
       type: "FILTER_TYPE_BATHROOM",
       payload
+
     }
   }
   export function sendFeedback(data){
