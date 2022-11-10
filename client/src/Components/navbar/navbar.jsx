@@ -33,6 +33,9 @@ function Navbars() {
               Home
             </Nav.Link>
             <Nav.Link href="/reservas">Reservas</Nav.Link>
+            <Nav.Link href="/habitaciones">Habitaciones</Nav.Link>
+            <Nav.Link href="/contactanos">Contactanos</Nav.Link>
+            <Nav.Link href="/acerca">Acerca de</Nav.Link>
             <Nav.Link href="/rooms">Habitaciones</Nav.Link>
             <Nav.Link href="/contact">Contactanos</Nav.Link>
             <Nav.Link href="/about">Acerca de</Nav.Link>
