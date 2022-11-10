@@ -1,4 +1,7 @@
-import { GET_REVIEW, POST_REVIEW, GET_CLIENT } from "../actions/index.js";
+
+import { GET_REVIEW, POST_REVIEW, GET_CLIENT,FILTER_TYPE_BATHROOM, FILTER_TYPE_ROOM } from "../actions/index.js";
+
+
 const initialState = {
     rooms: [],
     reviews: [],
