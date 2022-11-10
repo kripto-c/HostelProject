@@ -14,9 +14,9 @@ function Navbars() {
       <Navbar variant="dark" bg='dark'>
         <Container className='d-flex justify-content-between'>
           <Nav className="col-10  justify-content-center">
-            <Nav.Link href='#home'  className='bg-primary rounded-pill w-25 text-center me-1' ><Link to='/' style={{textDecoration:'none', color: 'inherit'}}>Home</Link></Nav.Link>
+            <Nav.Link href='#home'  className='bg-primary rounded-pill w-25 text-center me-1'>Home</Nav.Link>
             <Nav.Link href="#reservas" className='bg-primary rounded-pill w-25 text-center me-1'>Reservas</Nav.Link>
-            <Nav.Link href="#habitaciones"  className='bg-primary rounded-pill w-25 text-center me-1'>Habitaciones</Nav.Link>
+            <Nav.Link href="/rooms"  className='bg-primary rounded-pill w-25 text-center me-1'>Habitaciones</Nav.Link>
             <Nav.Link href="#contactanos"  className='bg-primary rounded-pill w-25 text-center me-1'>Contactanos</Nav.Link>
             <Nav.Link href="#acerca"  className='bg-primary rounded-pill w-25 text-center me-1'>Acerca de</Nav.Link>
           </Nav>

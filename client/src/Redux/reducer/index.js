@@ -10,7 +10,7 @@ export default function rootReducer(state= initialState, action) {
             return {
                 ...state,
                 rooms: action.payload
-            }
+            };
             case POST_REVIEW: {
                 return {
                   ...state,
