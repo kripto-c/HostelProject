@@ -6,6 +6,7 @@ import Navbars from "./Components/navbar/navbar";
 import ReviewHostel from "./Components/Review/ReviewHostel.js";
 import Rooms from "./Components/rooms/Rooms";
 import Contact from "./Components/Contact/Contact";
+import About from "./Components/about/about.jsx";
 
 function App() {
   return (
@@ -17,6 +18,7 @@ function App() {
         <Route path="/reviewHostel" element={<ReviewHostel />} />
         <Route exact path="/rooms" element={<Rooms />} />
         <Route path="/contact" element={<Contact />} />
+        <Route exact path="/about" element={<About/>}/>
       </Routes>
     </>
   );
