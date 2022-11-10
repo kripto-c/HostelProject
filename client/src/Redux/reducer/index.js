@@ -27,7 +27,6 @@ export default function rootReducer(state= initialState, action) {
                 let filter = 
                 action.payload === "Publico"
                 ? filteredRooms.filter((t) => t.type === "Público") : filteredRooms.filter((t) => t.type === "Privado")
-                if(action.payload === "Mixto") filter = filteredRooms.filter((t) => t.type === "Mixto")
                 if(action.payload === "Todo") filter = filteredRooms
                 return{
                   ...state,
