@@ -1,0 +1,67 @@
+.home-container {
+  background-color: blanchedalmond;
+}
+
+.home-container h1{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+ font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+
+
+.carousel {
+  display: flex;
+  background-color: blanchedalmond;
+  min-height: 400px;
+  color: black;
+  width: 100%;
+  margin: auto;
+}
+
+.carousel img {
+  max-width: 500px;
+  max-height: 500px;
+  min-width: 650px;
+  min-height: 500px;
+  border-radius: 7px;
+}
+
+.info {
+  margin: auto;
+  background-color: blanchedalmond;
+}
+
+
+.info h1 {
+  display: inline;
+}
+
+.collage {
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  margin:10px auto;
+  animation-name: overlay;
+  animation-duration: 1s;
+}
+
+.collage img{
+  width: 33%;
+  margin: 10px 10px 0;
+  max-width: 500px;
+  max-height: 500px;
+  position: relative;
+  left: 0;
+}
+
+@keyframes overlay {
+  0%{
+    width: 300px;
+    height: 300px;
+  }
+  100%{
+    width: 100vw;
+    height: 100vh;
+  }
+}

@@ -1,4 +1,4 @@
-const { Room } = require("../db")
+const { Room, Type } = require("../db")
 
 module.exports = {
     getRoomInfo: async function() {

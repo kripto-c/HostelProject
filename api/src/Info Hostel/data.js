@@ -10,6 +10,7 @@ module.exports = [
         password: "pedrito123",
         observation: "",
       },
+
       {
         personalID: 3720,
         name: "Jose Malboro",
@@ -31,8 +32,8 @@ module.exports = [
     ],
     rent: [
       {
-        dateIn: "09/11/2022",
-        dateOut: "18/11/2022",
+        dateIn: new Date(2023, 00, 01),
+        dateOut: new Date(2023, 00, 05),
         price: 6500,
         observation: "",
         status: true,
@@ -58,8 +59,9 @@ module.exports = [
         description: "Habitacion simple con 10 camas",
         image:
           "https://www.hostelclub.com/images/habitacion_compartidas_ppal.jpg",
-        bathroom: "privado",
-        price: 3500.50,
+        bathroom: true,
+
+        price: 3500.5,
         observation: "",
         status: true,
       },
@@ -68,18 +70,20 @@ module.exports = [
         description: "Habitacion simple con 2 cama cucheta",
         image:
           "https://milhousehostel.com/wp-content/uploads/2021/03/4476180-1394672_702_0_3538_2829_1000_800-605x605.jpg",
-        bathroom: "publico",
+        bathroom: true,
+
         price: 1995.5,
         observation: "",
         status: false,
       },
+
       {
         beds: 6,
         description: "Habitacion simple con 3 cama cuchetas",
         image:
           "https://www.kayak.com.ar/rimg/himg/33/8a/40/expediav2-570549-15b4ae-819968.jpg?width=720&height=576&crop=true",
-        bathroom: "publico",
-        price: 2450.50,
+        bathroom: false,
+        price: 2450.5,
         observation: "",
         status: true,
       },
