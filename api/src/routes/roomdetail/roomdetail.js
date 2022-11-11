@@ -3,8 +3,8 @@ const route = Router();
 const {Room} = require("../../db")
 
 
-route.get("/:id", async (req, res) =>{
-    let id = req.params.id;
+route.get("/", async (req, res) =>{
+    let id = req.query.id;
     try {
 
         let roomdetail = await Room.findOne({

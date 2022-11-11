@@ -110,7 +110,7 @@ export function getCLient(email) {
   export function getRoomDetail(id){
     return async (dispatch)=>{
       try {
-        let res = await axios.get(`http://localhost:4000/getroomdetail/${id}`);
+        let res = await axios.get(`http://localhost:4000/getroomdetail?id=${id}`);
         return dispatch({
           type: "GET_ROOM_DETAIL",
           payload: res.data
