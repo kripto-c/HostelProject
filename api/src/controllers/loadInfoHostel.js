@@ -26,8 +26,7 @@ const loadInfoHostel = async (req, res) => {
     }
     // let idRoom = await Room.findByPk(Math.round(Math.random()*5))
     // let idType = await Type.findByPk(Math.round(Math.random()))
-    //hola
-      
+
     
       //idType.addRoom(idRoom)
     let idRoom
