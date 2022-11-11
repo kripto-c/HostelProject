@@ -7,9 +7,8 @@ import Review from "../Review/Reviews.js";
 
 const Home = () => {
   return (
-    <div className="home-container">
-      <div className="carro">
-      <Carousel className="d-flex justify-content-center">
+    <div className="home-container row ">
+      <Carousel className="mt-4 w-75 m-auto carousel">
         <Carousel.Item>
           <img
             src="https://upload.wikimedia.org/wikipedia/commons/e/e8/Hostel_Dormitory.jpg"
