@@ -34,7 +34,7 @@ export default function Reviews() {
   //RENDER------------------------------------------------------------------->>
   return (
     <div>
-      {reviews.map((r) => {
+      {reviews?.map((r) => {
         return (
           <div key={r.id}>
             <h1>{r.usuario}</h1>

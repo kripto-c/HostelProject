@@ -71,7 +71,6 @@ export function postReview(payload) {
 
     }
   }
-}
 
 /*   export function sendFeedback(data){
     try {
@@ -87,7 +86,7 @@ export function postReview(payload) {
 
   } */
 
-  export function getClient(payload){
+  export function setClient(payload){
     try{
      return async function(){
       let res = await axios('http://localhost:4000/login/setClient', {headers:{authorization:`Bearer ${payload}`}})

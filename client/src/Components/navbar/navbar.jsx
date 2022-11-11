@@ -1,53 +1,45 @@
-import Container from 'react-bootstrap/Container';
-import Nav from 'react-bootstrap/Nav';
-import Navbar from 'react-bootstrap/Navbar';
-import NavDropdown from 'react-bootstrap/NavDropdown';
-import { useAuth0 } from '@auth0/auth0-react';
-import axios from 'axios'
-
+import React from "react";
+import Container from "react-bootstrap/Container";
+import Nav from "react-bootstrap/Nav";
+import Navbar from "react-bootstrap/Navbar";
+import NavDropdown from "react-bootstrap/NavDropdown";
+import { useAuth0 } from "@auth0/auth0-react";
+import { setClient } from "../../Redux/actions";
+import { useDispatch } from "react-redux";
 
 function Navbars() {
-  const { loginWithPopup, logout, user, isAuthenticated, getAccessTokenSilently } = useAuth0();
+  const dispatch = useDispatch();
+  const {
+    loginWithPopup,
+    logout,
+    user,
+    isAuthenticated,
+    getAccessTokenSilently,
+  } = useAuth0();
 
-  async function setClient () {
-    try {
-      const token = await getAccessTokenSilently();
-       const info = await axios.get('http://localhost:4000/login/setClient', {
-         headers:{
-            authorization:`Bearer ${token}`
-         },
-       })
-       console.log(info.data)
-    } catch (error) {
-       console.log(error);
-    }
-  }
-  
+  // function handleClick(e) {
+  //   return async function () {
+  //     const token = await getAccessTokenSilently();
+  //     dispatch(setClient(token));
+  //     console.log(token);
+  //   };
+  // }
   return (
     <>
       <Navbar variant="dark" bg="dark">
         <Container className="d-flex justify-content-between">
-          <Navbar.Brand href="/" className='col-3'>Dinamita Hostel</Navbar.Brand>
-          <Nav className="col-7 justify-content-end">
-            <Nav.Link href="/">
-              Home
-            </Nav.Link>
-            <Nav.Link href="/reservas">Reservas</Nav.Link>
-            <Nav.Link href="/habitaciones">Habitaciones</Nav.Link>
-            <Nav.Link href="/contactanos">Contactanos</Nav.Link>
-            <Nav.Link href="/acerca">Acerca de</Nav.Link>
+          <Navbar.Brand href="/">Dinamita Hostel</Navbar.Brand>
+          <Nav className="col-10  justify-content-end">
+            <Nav.Link href="/">Home</Nav.Link>
             <Nav.Link href="/rooms">Habitaciones</Nav.Link>
             <Nav.Link href="/contact">Contactanos</Nav.Link>
             <Nav.Link href="/about">Acerca de</Nav.Link>
             <Nav.Link href="/reviewHostel">Reviews</Nav.Link>
           </Nav>
           {isAuthenticated ? (
-           <>
-          
-             <Navbar.Collapse className="container basic-navbar-nav m-auto col-1 ms-3">
-             <img src={isAuthenticated ? user.picture : ""} alt="foto perfil" className='rounded-circle w-25'/>
+            <Navbar.Collapse id="basic-navbar-nav m-auto col-2 me-5">
               <Nav className="me-auto">
-                <NavDropdown title="Mi Cuenta" id="basic-nav-dropdown">
+                <NavDropdown title="Perfil" id="basic-nav-dropdown">
                   <NavDropdown.Item href="#action/3.1">
                     Editar Datos
                   </NavDropdown.Item>
@@ -61,14 +53,11 @@ function Navbars() {
                 </NavDropdown>
               </Nav>
             </Navbar.Collapse>
-           </>
           ) : (
             <Navbar.Brand
-              href="/#login"
-              onClick={async ()=>{
-                await loginWithPopup()
-                 setClient()
-              }}
+              href="/"
+              className="col-2 text-end"
+              onClick={loginWithPopup}
             >
               Login
             </Navbar.Brand>

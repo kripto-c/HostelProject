@@ -12,7 +12,7 @@ import About from "./Components/about/about.jsx";
 function App() {
   return (
     <>
-      <Navbars />
+    <Navbars></Navbars>
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/reviewHostel" element={<ReviewHostel />} />
