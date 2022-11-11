@@ -16,7 +16,7 @@ export default function RatingBootstrap() {
   const [current, setCurrent] = useState(0);
   // const [description, setDescription] = useState("");
   const [input, setInput] = useState({
-    usuario: "Nicolas",
+    usuario: "Pedro Sanchez",
     rating: 0,
     description: "",
   });
@@ -40,9 +40,8 @@ export default function RatingBootstrap() {
             "Por Favor, un comentario sobre su experencia en PH es importante para nosotros, complete."
           );
     } else {
-      console.log(input);
       dispatch(postReview(input));
-      setInput({ usuario: "Nicolas", rating: 0, description: "" });
+      setInput({ usuario: "Pedro Sanchez", rating: 0, description: "" });
       setCurrent(0);
       setRating([1, 2, 3, 4, 5]);
       alert("Gracias por darnos su opinion. Que tenga un buen dia!");
