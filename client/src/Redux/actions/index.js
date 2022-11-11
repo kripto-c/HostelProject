@@ -1,7 +1,7 @@
 import axios from "axios"
 export const POST_REVIEW = "POST_REVIEW";
 export const GET_REVIEW = "GET_REVIEW";
-
+export const GET_CLIENT = "GET_CLIENT"
 //ACTION ROOMS ----------------------------------------------------------->>
 export function getRooms() {
     return async function(dispatch) {
@@ -42,18 +42,6 @@ export function getReview() {
   }
 
   //ACTIONS FILTROS---------------------------------------------------------------->>
-  
-  export function sendFeedback(data){
-    try {
-      return async function(dispatch){
-        let response = await axios.get(`http://localhost:4000/feedback${data}`);
-        console.log(data)
-        return response.data;
-      }
-    } catch (error) {
-      console.log(error)
-      }
-  }
 
   export function filterTypeRoom(payload){
     return {
@@ -65,9 +53,26 @@ export function getReview() {
     return {
       type: "FILTER_TYPE_BATHROOM",
       payload
-
     }
   }
+
+
+  //ACTION GET INFO CLIENT
+export function getCLient(email){
+  try {
+    return async function (dispatch) {
+      const info = await axios.get("http://localhost:4000/login/client", email);
+      dispatch({
+        type: GET_CLIENT,
+        payload: info.data,
+      });
+    };
+  // eslint-disable-next-line no-unreachable
+  } catch (e) {
+    console.log(e);
+  }
+}
+
 /*   export function sendFeedback(data){
     try {
       return async function(dispatch){
