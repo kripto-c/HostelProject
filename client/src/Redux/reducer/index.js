@@ -10,6 +10,7 @@ const initialState = {
   rooms: [],
   reviews: [],
   client: [],
+  roomdetail: []
 };
 
 export default function rootReducer(state = initialState, action) {
@@ -59,6 +60,12 @@ export default function rootReducer(state = initialState, action) {
         ...state,
         client: action.payload,
       };
+    }
+    case "GET_ROOM_DETAIL":{
+      return{
+        ...state,
+        roomdetail: action.payload
+      }
     }
 
     default:

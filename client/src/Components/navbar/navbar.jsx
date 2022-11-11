@@ -41,7 +41,6 @@ function Navbars() {
           </Navbar.Brand>
           <Nav className="col-7 justify-content-end">
             <Nav.Link href="/">Home</Nav.Link>
-            <Nav.Link href="/reservas">Reservas</Nav.Link>
             <Nav.Link href="/rooms">Habitaciones</Nav.Link>
             <Nav.Link href="/contact">Contactanos</Nav.Link>
             <Nav.Link href="/about">Acerca de</Nav.Link>
@@ -72,7 +71,8 @@ function Navbars() {
           ) : (
             <Navbar.Brand
               href="/#login"
-              onClick={async () => {
+              onClick={async (e) => {
+                e.preventDefault();
                 await loginWithPopup();
                 setClient();
               }}

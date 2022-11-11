@@ -13,7 +13,7 @@ export default function FeedBack(){
 
     const naviGate = useNavigate();
     setTimeout(() =>{
-        naviGate("/home")
+        naviGate("/")
     },2000)
 
     return(

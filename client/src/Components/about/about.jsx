@@ -1,6 +1,6 @@
 import style from "./about.module.css"
 
-export default function About() {
+export default function Aboutus() {
 
     return (
         <div>
