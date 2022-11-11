@@ -70,9 +70,9 @@ function Navbars() {
 
           ) : (
             <Navbar.Brand
-              href="/#login"
+              href='/#login'
               onClick={async (e) => {
-                e.preventDefault();
+                e.preventDefault()
                 await loginWithPopup();
                 setClient();
               }}
