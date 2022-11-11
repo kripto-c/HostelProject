@@ -43,30 +43,28 @@ function Navbars() {
             <Nav.Link href="/about">Acerca de</Nav.Link>
             <Nav.Link href="/reviewHostel">Reviews</Nav.Link>
           </Nav>
+          <>
           {isAuthenticated ? (
-            <>
-              <Navbar.Collapse className="container basic-navbar-nav m-auto col-1 ms-3">
-                <img
-                  src={isAuthenticated ? user.picture : ""}
-                  alt="foto perfil"
-                  className="rounded-circle w-25"
-                />
-                <Nav className="me-auto">
-                  <NavDropdown title="Mi Cuenta" id="basic-nav-dropdown">
-                    <NavDropdown.Item href="#action/3.1">
-                      Editar Datos
-                    </NavDropdown.Item>
-                    <NavDropdown.Item href="#action/3.2">
-                      Registro
-                    </NavDropdown.Item>
-                    <NavDropdown.Divider />
-                    <NavDropdown.Item href="#action/3.4" onClick={logout}>
-                      cerrar sesión
-                    </NavDropdown.Item>
-                  </NavDropdown>
-                </Nav>
-              </Navbar.Collapse>
-            </>
+
+          
+             <Navbar.Collapse className="container basic-navbar-nav m-auto col-1 ms-3">
+             <img src={isAuthenticated ? user.picture : ""} alt="foto perfil" className='rounded-circle w-25'/>
+              <Nav className="me-auto">
+                <NavDropdown title="Perfil" id="basic-nav-dropdown">
+                  <NavDropdown.Item href="#action/3.1">
+                    Editar Datos
+                  </NavDropdown.Item>
+                  <NavDropdown.Item href="#action/3.2">
+                    Registro
+                  </NavDropdown.Item>
+                  <NavDropdown.Divider />
+                  <NavDropdown.Item href="#action/3.4" onClick={logout}>
+                    cerrar sesión
+                  </NavDropdown.Item>
+                </NavDropdown>
+              </Nav>
+            </Navbar.Collapse>
+
           ) : (
             <Navbar.Brand
               href="/#login"
@@ -78,6 +76,7 @@ function Navbars() {
               Login
             </Navbar.Brand>
           )}
+    </> 
         </Container>
       </Navbar>
     </>

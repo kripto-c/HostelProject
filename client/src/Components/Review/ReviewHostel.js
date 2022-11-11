@@ -45,6 +45,7 @@ export default function RatingBootstrap() {
       setCurrent(0);
       setRating([1, 2, 3, 4, 5]);
       alert("Gracias por darnos su opinion. Que tenga un buen dia!");
+  
     }
   }
   return (

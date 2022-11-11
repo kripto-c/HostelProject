@@ -51,15 +51,17 @@ Room.belongsTo(Type);
 Rent.hasMany(Room);
 Room.belongsTo(Rent);
 
-Rent.hasMany(Client);
-Client.belongsTo(Rent);
+/* Rent.hasMany(Client);
+Client.belongsTo(Rent); */
+Client.hasMany(Rent);
+Rent.belongsTo(Client);
 
+Client.hasMany(Review);
+Review.belongsTo(Client);
 
 Client.hasMany(Review);
 Review.belongsTo(Client);
 
-Client.hasMany(Review);
-Review.belongsTo(Client);
 module.exports = {
   Room,
   Rent,
