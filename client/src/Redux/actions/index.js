@@ -6,7 +6,7 @@ export const GET_REVIEW = "GET_REVIEW";
 export const GET_CLIENT = "GET_CLIENT"
 
 export const FILTER_TYPE_BATHROOM = "FILTER_TYPE_BATHROOM";
-export const FILTER_TYPE_ROOM = "FILTER TYPE ROOM";
+export const FILTER_TYPE_ROOM = "FILTER_TYPE_ROOM";
 
 
 //ACTION ROOMS ----------------------------------------------------------->>
