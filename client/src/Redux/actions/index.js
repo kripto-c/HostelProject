@@ -2,10 +2,12 @@ import axios from "axios";
 export const POST_REVIEW = "POST_REVIEW";
 export const GET_REVIEW = "GET_REVIEW";
 
+
 export const GET_CLIENT = "GET_CLIENT"
 
 export const FILTER_TYPE_BATHROOM = "FILTER_TYPE_BATHROOM";
 export const FILTER_TYPE_ROOM = "FILTER TYPE ROOM";
+
 
 //ACTION ROOMS ----------------------------------------------------------->>
 export function getRooms() {
@@ -58,6 +60,7 @@ export function postReview(payload) {
     return {
       type: "FILTER_TYPE_BATHROOM",
       payload
+
     }
 
   }
@@ -88,6 +91,8 @@ export function getCLient(email){
       }
     } catch (error) {
       console.log(error)
+
     }
+
   } */
 
