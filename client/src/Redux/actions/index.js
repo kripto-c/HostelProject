@@ -44,6 +44,7 @@ export function postReview(payload) {
   }
 }
 
+<<<<<<< HEAD
   //ACTIONS FILTROS---------------------------------------------------------------->>
   
   export function sendFeedback(data){
@@ -70,6 +71,36 @@ export function postReview(payload) {
       payload
 
     }
+=======
+//ACTIONS FILTROS---------------------------------------------------------------->>
+
+export function filterTypeRoom(payload) {
+  return {
+    type: "FILTER_TYPE_ROOM",
+    payload,
+  };
+}
+export function filterTypeBathroom(payload) {
+  return {
+    type: "FILTER_TYPE_BATHROOM",
+    payload,
+  };
+}
+
+//ACTION GET INFO CLIENT
+export function getCLient(email) {
+  try {
+    return async function (dispatch) {
+      const info = await axios.get(`http://localhost:4000/login/client?email=${email}`);
+      dispatch({
+        type: GET_CLIENT,
+        payload: info.data,
+      });
+    };
+    // eslint-disable-next-line no-unreachable
+  } catch (e) {
+    console.log(e);
+>>>>>>> a07fc162632cdbb77b72c5f0bf1140f967401f4c
   }
 
 /*   export function sendFeedback(data){
