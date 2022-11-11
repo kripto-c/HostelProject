@@ -39,7 +39,8 @@ route.get('/setClient', async (req, res)=>{
         }
      })
      const userinfo = responds.data;
-        const {email, name } = userinfo 
+     console.log(userinfo);
+        const {email, name, picture } = userinfo 
          if (name && email && accesToken) {
           const clients = await Client.findAll({});
           
@@ -48,7 +49,7 @@ route.get('/setClient', async (req, res)=>{
           let newRegister = await Client.create({
              name,
              email,
-             password:accesToken
+             picture
           })
           res.json(newRegister);
          }else res.send('faltan datos requeridos')

@@ -3,7 +3,9 @@ import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
 import NavDropdown from "react-bootstrap/NavDropdown";
 import { useAuth0 } from "@auth0/auth0-react";
+import { getCLient } from "../../Redux/actions";
 import axios from "axios";
+import { useDispatch} from "react-redux";
 
 function Navbars() {
   const {
@@ -13,6 +15,7 @@ function Navbars() {
     isAuthenticated,
     getAccessTokenSilently,
   } = useAuth0();
+ const dispatch = useDispatch();
 
   async function setClient() {
     try {
@@ -23,6 +26,7 @@ function Navbars() {
         },
       });
       console.log(info.data);
+      await dispatch(getCLient(info.data.email))
     } catch (error) {
       console.log(error);
     }
@@ -48,9 +52,9 @@ function Navbars() {
 
           
              <Navbar.Collapse className="container basic-navbar-nav m-auto col-1 ms-3">
-             <img src={isAuthenticated ? user.picture : ""} alt="foto perfil" className='rounded-circle w-25'/>
+             <img src={isAuthenticated ? user.picture : ""} alt="foto perfil" className='rounded-circle w-100'/>
               <Nav className="me-auto">
-                <NavDropdown title="Perfil" id="basic-nav-dropdown">
+                <NavDropdown title="Mi cuenta" id="basic-nav-dropdown" variant='dark'>
                   <NavDropdown.Item href="#action/3.1">
                     Editar Datos
                   </NavDropdown.Item>
