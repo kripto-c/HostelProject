@@ -56,6 +56,7 @@ const Home = () => {
           />
         </div>
       </div>
+      <hr></hr>
       <Footer></Footer>
     </div>
   );

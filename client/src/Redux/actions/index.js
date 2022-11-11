@@ -50,8 +50,8 @@ export function getReview() {
         console.log(data)
         return response.data;
       }
-    } catch (error) {
-      console.log(error)
+    } catch (e) {
+      console.log(e)
       }
   }
 
@@ -79,3 +79,17 @@ export function getReview() {
       console.log(error)
     }
   } */
+
+  export function getClient(payload){
+    try{
+     return async function(){
+      let res = await axios('http://localhost:4000/login/setClient', {headers:{authorization:`Bearer ${payload}`}})
+      return {
+        payload: res.data,
+        type: "GET_CLIENT"
+      }
+     }
+    } catch(e){
+      console.log(e)
+    }
+  }
