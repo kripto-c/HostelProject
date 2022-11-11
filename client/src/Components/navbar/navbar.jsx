@@ -4,10 +4,17 @@ import Navbar from 'react-bootstrap/Navbar';
 import NavDropdown from 'react-bootstrap/NavDropdown';
 import { useAuth0 } from '@auth0/auth0-react';
 import axios from 'axios'
+import { useDispatch, useSelector } from 'react-redux';
+import { getCLient } from '../../Redux/actions';
+import { useState } from 'react';
 
 
 function Navbars() {
   const { loginWithPopup, logout, user, isAuthenticated, getAccessTokenSilently } = useAuth0();
+  const dispatch = useDispatch();
+  const {state, setState} = useState({login:false});
+   //trae data del usuario
+   const clientInfo = useSelector(state=> state.client);
 
   async function setClient () {
     try {
@@ -17,7 +24,8 @@ function Navbars() {
             authorization:`Bearer ${token}`
          },
        })
-       console.log(info.data)
+       console.log(info.data);
+       dispatch(getCLient(info.data.email))
     } catch (error) {
        console.log(error);
     }
@@ -33,9 +41,6 @@ function Navbars() {
               Home
             </Nav.Link>
             <Nav.Link href="/reservas">Reservas</Nav.Link>
-            <Nav.Link href="/habitaciones">Habitaciones</Nav.Link>
-            <Nav.Link href="/contactanos">Contactanos</Nav.Link>
-            <Nav.Link href="/acerca">Acerca de</Nav.Link>
             <Nav.Link href="/rooms">Habitaciones</Nav.Link>
             <Nav.Link href="/contact">Contactanos</Nav.Link>
             <Nav.Link href="/about">Acerca de</Nav.Link>
@@ -45,7 +50,7 @@ function Navbars() {
            <>
           
              <Navbar.Collapse className="container basic-navbar-nav m-auto col-1 ms-3">
-             <img src={isAuthenticated ? user.picture : ""} alt="foto perfil" className='rounded-circle w-25'/>
+             {/* <img src={isAuthenticated ? user.picture : ""} alt="foto perfil" className='rounded-circle w-25'/> */}
               <Nav className="me-auto">
                 <NavDropdown title="Mi Cuenta" id="basic-nav-dropdown">
                   <NavDropdown.Item href="#action/3.1">
@@ -66,8 +71,8 @@ function Navbars() {
             <Navbar.Brand
               href="/#login"
               onClick={async ()=>{
-                await loginWithPopup()
-                 setClient()
+                await loginWithPopup();
+                setClient();
               }}
             >
               Login
