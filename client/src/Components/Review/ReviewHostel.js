@@ -24,17 +24,29 @@ export default function RatingBootstrap() {
 
   function handleClick(index) {
     setCurrent(index);
-    setInput({...input, rating:index})
+    setInput({ ...input, rating: index });
   }
   function handleChange(e) {
-    
-    setInput({...input, [e.target.name]:e.target.value});
+    setInput({ ...input, [e.target.name]: e.target.value });
   }
   function handleSubmit(e) {
     e.preventDefault();
-    console.log(input)
-    dispatch(postReview(input));
-    
+    if (input.rating === 0 || !input.description) {
+      return input.rating === 0
+        ? alert(
+            "Por favor seleccione un numero de estrellas de acuerdo a su experencia en Project Hostel!"
+          )
+        : alert(
+            "Por Favor, un comentario sobre su experencia en PH es importante para nosotros, complete."
+          );
+    } else {
+      console.log(input);
+      dispatch(postReview(input));
+      setInput({ usuario: "Nicolas", rating: 0, description: "" });
+      setCurrent(0);
+      setRating([1, 2, 3, 4, 5]);
+      alert("Gracias por darnos su opinion. Que tenga un buen dia!");
+    }
   }
   return (
     <form onSubmit={(e) => handleSubmit(e)}>
@@ -45,14 +57,12 @@ export default function RatingBootstrap() {
             key={index}
             name="rating" //No acepta name
             value={current}
-            
             onClick={() => handleClick(r)}
           ></IoIosStar>
         ))}
         <br />
         <FloatingLabel
           name="description"
-          value={input.description}
           controlId="floatingTextarea"
           label="Comments"
           className="mb-3"
@@ -62,12 +72,13 @@ export default function RatingBootstrap() {
           {" "}
           <Form.Control
             as="textarea"
+            value={input.description}
             name="description"
             placeholder="Leave a comment here"
             style={{ height: "100px" }}
           />
         </FloatingLabel>
-        {/*rows=10 filas,  cols = columnas  max length = maximo caracteres*/}
+
         <br />
         <Button type="submit" value="Enviar">
           Enviar
