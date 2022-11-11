@@ -18,8 +18,7 @@ function App() {
         <Route path="/" element={<Home />} />
         <Route path="/reviewHostel" element={<ReviewHostel />} />
         <Route exact path="/rooms" element={<Rooms />} />
-        <Route path="/contact" element={<Contact />} />
-        <Route path="/contact" element={<Contact />} />        
+        <Route path="/contact" element={<Contact />} />    
         <Route exact path="/about" element={<About/>}/>
         <Route path="/feedback" element={<FeedBack/>} />
         <Route path="/roomdetail/:id" element={<RoomDetail/>} />
