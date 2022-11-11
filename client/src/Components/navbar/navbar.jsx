@@ -71,7 +71,8 @@ function Navbars() {
           ) : (
             <Navbar.Brand
               href="/#login"
-              onClick={async () => {
+              onClick={async (e) => {
+                e.preventDefault();
                 await loginWithPopup();
                 setClient();
               }}
