@@ -39,7 +39,7 @@ export default function Rooms() {
                 return(
                     
                         <RoomCard
-                            beds={e.beds} description={e.description} image={e.image} bathroom={e.bathroom} type={e.type}
+                            beds={e.beds} description={e.description} image={e.image} bathroom={e.bathroom} type={e.type.type ? e.type.type : null}
                             className={style.Card} id= {e.id}
                         />  
                 )  
