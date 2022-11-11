@@ -1,7 +1,11 @@
-import { GET_REVIEW, POST_REVIEW, FILTER_TYPE_BATHROOM, FILTER_TYPE_ROOM } from "../actions/index.js";
+
+import { GET_REVIEW, POST_REVIEW, FILTER_TYPE_BATHROOM, FILTER_TYPE_ROOM, GET_CLIENT } from "../actions/index.js";
+
+
 const initialState = {
     rooms: [],
     reviews: [],
+    client:[]
 }
 
 export default function rootReducer(state= initialState, action) {
@@ -42,6 +46,12 @@ export default function rootReducer(state= initialState, action) {
                 return {
                   ...state,
                   rooms: filter
+                }
+              }
+              case GET_CLIENT:{
+                return{
+                ...state,
+                   client:action.payload
                 }
               }
 
