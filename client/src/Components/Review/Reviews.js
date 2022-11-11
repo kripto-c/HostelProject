@@ -9,7 +9,7 @@ export default function Reviews() {
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(getReview());
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
   const reviews = useSelector((state) => state.reviews);
   function numberStar(number) {

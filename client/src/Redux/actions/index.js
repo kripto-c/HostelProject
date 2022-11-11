@@ -1,13 +1,9 @@
 import axios from "axios";
 export const POST_REVIEW = "POST_REVIEW";
 export const GET_REVIEW = "GET_REVIEW";
-
-
-export const GET_CLIENT = "GET_CLIENT"
-
+export const GET_CLIENT = "GET_CLIENT";
 export const FILTER_TYPE_BATHROOM = "FILTER_TYPE_BATHROOM";
 export const FILTER_TYPE_ROOM = "FILTER_TYPE_ROOM";
-
 
 //ACTION ROOMS ----------------------------------------------------------->>
 export function getRooms() {
@@ -48,26 +44,23 @@ export function postReview(payload) {
   }
 }
 
-  //ACTIONS FILTROS---------------------------------------------------------------->>
+//ACTIONS FILTROS---------------------------------------------------------------->>
 
-  export function filterTypeRoom(payload){
-    return {
-      type: "FILTER_TYPE_ROOM",
-      payload
-    }
-  }
-  export function filterTypeBathroom(payload){
-    return {
-      type: "FILTER_TYPE_BATHROOM",
-      payload
+export function filterTypeRoom(payload) {
+  return {
+    type: "FILTER_TYPE_ROOM",
+    payload,
+  };
+}
+export function filterTypeBathroom(payload) {
+  return {
+    type: "FILTER_TYPE_BATHROOM",
+    payload,
+  };
+}
 
-    }
-
-  }
-
-
-  //ACTION GET INFO CLIENT
-export function getCLient(email){
+//ACTION GET INFO CLIENT
+export function getCLient(email) {
   try {
     return async function (dispatch) {
       const info = await axios.get("http://localhost:4000/login/client", email);
@@ -76,7 +69,7 @@ export function getCLient(email){
         payload: info.data,
       });
     };
-  // eslint-disable-next-line no-unreachable
+    // eslint-disable-next-line no-unreachable
   } catch (e) {
     console.log(e);
   }
@@ -95,4 +88,3 @@ export function getCLient(email){
     }
 
   } */
-
