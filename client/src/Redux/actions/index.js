@@ -4,14 +4,17 @@ export const GET_REVIEW = "GET_REVIEW";
 export const GET_CLIENT = "GET_CLIENT";
 export const FILTER_TYPE_BATHROOM = "FILTER_TYPE_BATHROOM";
 export const FILTER_TYPE_ROOM = "FILTER_TYPE_ROOM";
-
+export const GET_ROOMS = "GET_ROOMS"
 //ACTION ROOMS ----------------------------------------------------------->>
 export function getRooms() {
   return async function (dispatch) {
-    var json = await axios.get("http://localhost:4000/rooms");
+    
+    let room = await axios.get("http://localhost:4000/rooms");        
+    console.log("mirar acaaa",room.data)
     return dispatch({
-      type: "GET_ROOMS",
-      payload: json.data,
+      type: GET_ROOMS,
+      payload: room.data,
+      
     });
   };
 }
@@ -44,44 +47,27 @@ export function postReview(payload) {
   }
 }
 
-
-  //ACTIONS FILTROS---------------------------------------------------------------->>
-  
-  export function sendFeedback(data){
-    try {
-      return async function(dispatch){
-        let response = await axios.get(`http://localhost:4000/feedback${data}`);
-        console.log(data)
-        return response.data;
-      }
-    } catch (e) {
-      console.log(e)
-      }
-  }
-
-  export function filterTypeRoom(payload){
-    return {
-      type: "FILTER_TYPE_ROOM",
-      payload
-    }
-  }
-  export function filterTypeBathroom(payload){
-    return {
-      type: "FILTER_TYPE_BATHROOM",
-      payload
-
-    }
-  }
 //ACTIONS FILTROS---------------------------------------------------------------->>
 
-
-
+export function filterTypeRoom(payload) {
+  console.log("hooaal",payload)
+  return {
+    type: FILTER_TYPE_ROOM,
+    payload,
+  };
+}
+export function filterTypeBathroom(payload) {
+  return {
+    type: FILTER_TYPE_BATHROOM,
+    payload,
+  };
+}
 
 //ACTION GET INFO CLIENT
 export function getCLient(email) {
   try {
     return async function (dispatch) {
-      const info = await axios.get(`http://localhost:4000/login/client?email=${email}`);
+      const info = await axios.get("http://localhost:4000/login/client", email);
       dispatch({
         type: GET_CLIENT,
         payload: info.data,
@@ -90,34 +76,19 @@ export function getCLient(email) {
     // eslint-disable-next-line no-unreachable
   } catch (e) {
     console.log(e);
-
   }
 }
 
-  export function setClient(payload){
-    try{
-     return async function(){
-      let res = await axios('http://localhost:4000/login/setClient', {headers:{authorization:`Bearer ${payload}`}})
-        return {
-          payload: res.data,
-          type: "GET_CLIENT"
-        }
-     }  
-    } catch(e){
-      console.log(e)
-    }
-  }
-  export function getRoomDetail(id){
-    return async (dispatch)=>{
-      try {
-        let res = await axios.get(`http://localhost:4000/getroomdetail?id=${id}`);
-        return dispatch({
-          type: "GET_ROOM_DETAIL",
-          payload: res.data
-        })
-      } catch (error) {
-        console.log(error);
+/*   export function sendFeedback(data){
+    try {
+      return async function(dispatch){
+        let response = await axios.get(`http://localhost:4000/feedback${data}`);
+        console.log(data)
+        return response.data;
       }
+    } catch (error) {
+      console.log(error)
+
     }
-  }
-  
+
+  } */
