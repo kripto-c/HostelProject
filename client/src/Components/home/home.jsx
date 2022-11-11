@@ -3,10 +3,10 @@ import Footer from "../Layout/Footer";
 import Carousel from "react-bootstrap/Carousel";
 import Review from '../Review/Reviews';
 import "./Home.css";
-import Review from "../Review/Reviews.js";
 
 const Home = () => {
   return (
+    <>
     <div className="home-container row ">
       <Carousel className="mt-4 w-75 m-auto carousel">
         <Carousel.Item>
@@ -71,7 +71,7 @@ const Home = () => {
      
 
       <Footer></Footer>
-    </div>
+    </>
   );
 };
 
