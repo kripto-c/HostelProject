@@ -34,7 +34,7 @@ module.exports = [
       {
         dateIn: new Date(2023, 00, 01),
         dateOut: new Date(2023, 00, 05),
-        price: 6500,
+        price: 6500.50,
         observation: "",
         status: true,
       },
