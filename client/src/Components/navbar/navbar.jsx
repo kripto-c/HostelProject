@@ -55,7 +55,7 @@ function Navbars() {
              <img src={isAuthenticated ? user.picture : ""} alt="foto perfil" className='rounded-circle w-100'/>
               <Nav className="me-auto">
                 <NavDropdown title="Mi cuenta" id="basic-nav-dropdown" variant='dark'>
-                  <NavDropdown.Item href="#action/3.1">
+                  <NavDropdown.Item href="/clientEdit">
                     Editar Datos
                   </NavDropdown.Item>
                   <NavDropdown.Item href="#action/3.2">
@@ -71,8 +71,9 @@ function Navbars() {
 
           ) : (
             <Navbar.Brand
-              href="/#login"
-              onClick={async () => {
+              href='/#login'
+              onClick={async (e) => {
+                e.preventDefault()
                 await loginWithPopup();
                 setClient();
               }}
