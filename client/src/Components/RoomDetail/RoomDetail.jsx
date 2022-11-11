@@ -1,8 +1,10 @@
-import React, {useState} from 'react'
+import React, {useEffect, useState} from 'react'
 import './RoomDetail.css';
 import axios from "axios";
 import { useParams } from 'react-router-dom';
 import { useDispatch, useSelector } from "react-redux";
+import { getRoomDetail } from '../../Redux/actions';
+import Footer from "../Layout/Footer";
 
 export default function RoomDetail(){
    
@@ -11,17 +13,8 @@ export default function RoomDetail(){
     const [checkIn, setCheckIn] = useState(0);
     const [checkOut, setCheckOut] = useState(0);
     const [pagar, setPagar] = useState('');
-
+    
     //========DATOS DE EJEMPLOS======//
-    let detailRoom = {
-        img: 'http://www.decorablog.com/wp-content/2008/11/habitacion-hotel-1.jpg',
-        name: 'Nombre de habitacion',
-        beds: 5,
-        description: "Lorem, ipsum dolor sit amet consectetur adipisicing elit. Odio, corrupti voluptas? Quibusdam tenetur alias placeat dolor. Quasi ullam commodi et nostrum. Blanditiis atque, totam minima nemo culpa qui id in, vitae corporis enim excepturi. Maiores a doloribus nemo sed officiis similique, alias vitae eius? Eos delectus impedit vitae temporibus corporis.",
-        price: 3500,
-        status: true,
-        observation: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Veniam, blanditiis."
-    }
 
     let user = {
         name: "nombre",
@@ -36,20 +29,27 @@ export default function RoomDetail(){
 
     let {id} = useParams();
     const dispatch = useDispatch();
-    
+
+    useEffect(() =>{
+        dispatch(getRoomDetail(id))
+    },[dispatch]);
+
+    const room = useSelector((state) => state.roomdetail);
+    const client = useSelector((state) => state.client);
+
 
     let arreglo = [];
-    for (let a = 1; a <= detailRoom.beds; a++) {
+    for (let a = 1; a <= room.beds; a++) {
         arreglo.push(a);
     }
    
     const sumres = (e)=>{
         if(e.target.checked) {
             setCamas(camas+1)
-            return setTotal(total+3500)
+            return setTotal(total+room.price)
         }
         setCamas(camas-1)
-        return setTotal(total-3500)
+        return setTotal(total-room.price)
     }
 
     const data = (b, e)=>{
@@ -60,9 +60,9 @@ export default function RoomDetail(){
     const pay = async ()=>{
         const body = {}
         body.items = [{
-            title: detailRoom.name,
+            title: room.name,
             quantity: camas,
-            unit_price: detailRoom.price,
+            unit_price: room.price,
             check_in: checkIn,
             check_out: checkOut
         }]
@@ -78,28 +78,31 @@ export default function RoomDetail(){
         <h1>Detalle de la habitacion</h1>
         <div className='datas'>
             <div>
-                <label>check-in</label>
+                <label>Dia de llegada</label>
                 <input onChange={(e)=>data(true,e)} type="date" name="" id="" />
             </div>
             <div>
-                <label>check-out</label>
+                <label>Dia de salida</label>
                 <input onChange={(e)=>data(false,e)} type="date" name="" id="" />
             </div>
         </div>
         <div className='infoRoom'>
             <div>
-                <h3>{detailRoom.name}</h3>
-                <p>{detailRoom.description}</p><br />
-                <h4>${detailRoom.price} por cama</h4>
+                <h3>{room.name}</h3>
+                <p>{room.description}</p><br />
+                <h4>${room.price} por cama</h4>
             </div>
-            <img width="300" height='200' src={detailRoom.img} alt='habitacion de Hostel' />
+            <img className='image' width="600" height='400' src={room.image} alt='habitacion de Hostel' />
         </div>
-        <p className='Ac'><b>Accommodations</b></p>
+        <p className='Ac'><b>Alojamientos</b></p>
         {arreglo.map((e)=>{
             return (<div key={e} className='listBeds'>
-                <label>Cama</label> <input disabled={!detailRoom.status} onClick={sumres} type="checkbox" />
+                <label>Cama</label> <input disabled={!room.status} onClick={sumres} type="checkbox" />
             </div>)
         })}
+        {
+            !room.status && (<div className='disponibilidad' >No hay camas disponibles</div>)
+        }
         <div className='pay'>
             <p><b>Total ${total}</b></p>
             <button onClick={pay}>Pagar</button>
@@ -107,6 +110,8 @@ export default function RoomDetail(){
         {!pagar.length ? null : <div className='IframeDiv'>
             <iframe className='PagarIframe' src={pagar} frameborder="0"></iframe>
         </div> }
+        <br/>
+        <Footer />
     </div>
  
    )

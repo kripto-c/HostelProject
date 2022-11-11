@@ -43,6 +43,6 @@ router.use(express.json());
 router.use("/login", login);
 router.use("/payment", payment);
 router.use("/feedback", feedback);
-router.use("/getroomdetail", roomdetail)
+router.use(`/getroomdetail`, roomdetail);
 
 module.exports = router;

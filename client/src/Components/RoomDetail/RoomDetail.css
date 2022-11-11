@@ -113,3 +113,18 @@
         height: 20px;
     }
 }
+
+.disponibilidad{
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 30px;
+    color: red;
+    margin-bottom: 2%;
+    text-decoration-line: underline;
+}
+.image{
+    margin-left: 25%;
+    border-radius: 5px;
+}
