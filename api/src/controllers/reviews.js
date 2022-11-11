@@ -1,15 +1,16 @@
-const { Review } = require("../db.js");
+const { Review, Client } = require("../db.js");
+
 const postReviews = async (req, res) => {
   try {
-    console.log(Review);
-    let { rating, description } = req.body;
+    let { rating, description, usuario } = req.body;
     const data = await Review.create({
       rating,
       description,
-      
     });
-    console.log(data);
-    res.status(200).json(data);
+    let user = await Client.findOne({ where: { name: usuario } });
+
+    await user.addReview(data);
+    res.status(200).json(`Gracias ${usuario} por tu review!! Que tengas buen dia!`);
   } catch (e) {
     res.json(e);
   }
@@ -17,9 +18,9 @@ const postReviews = async (req, res) => {
 
 const getReviews = async (req, res) => {
   try {
-    const data = await Review.findAll();
-    console.log(data);
-    res.json(data);
+    const data = await Review.findAll({ include: Client });
+
+    res.status(200).json(data);
   } catch (e) {
     res.status(400).json(e);
   }
