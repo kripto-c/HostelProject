@@ -23,13 +23,14 @@ export default function Reviews() {
     let fecha = data[0];
     let hora = data[1];
 
-    console.log(data, fecha, hora);
+    
     return (
       <span>
         Fecha: {fecha} Hora: {hora}
       </span>
     );
   }
+  
 
   //RENDER------------------------------------------------------------------->>
   return (
@@ -37,11 +38,11 @@ export default function Reviews() {
       {reviews?.map((r) => {
         return (
           <div key={r.id}>
-            <h1>{r.usuario}</h1>
-            <h1>
+            <h1>{r.client.name}</h1>
+            <h2>
               {numberStar(r.rating)}({getFechaHora(r.createdAt)})
-            </h1>
-            <h1>{r.description}</h1>
+            </h2>
+            <h3>{r.description}</h3>
           </div>
         );
       })}

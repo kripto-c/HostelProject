@@ -3,6 +3,7 @@ import Footer from "../Layout/Footer";
 import Carousel from "react-bootstrap/Carousel";
 import Review from '../Review/Reviews';
 import "./Home.css";
+import Review from "../Review/Reviews.js";
 
 const Home = () => {
   return (
@@ -59,8 +60,17 @@ const Home = () => {
           />
         </div>
       </div>
+
+      <br />
+      <div className="review">
+        <Review />
+      </div>
+
+      <br />
+
       <hr></hr>
-      <Review></Review>
+     
+
       <Footer></Footer>
     </div>
   );

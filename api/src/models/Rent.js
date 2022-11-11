@@ -17,7 +17,7 @@ module.exports = (sequelize) => {
         type: DataTypes.DATE,
     },
     price: {
-        type: DataTypes.DATE,
+        type: DataTypes.DOUBLE,
     },
     observation: {
         type: DataTypes.STRING,
