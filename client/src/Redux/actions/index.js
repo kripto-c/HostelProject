@@ -59,19 +59,22 @@ export function postReview(payload) {
       }
   }
 
+  export function filterTypeRoom(payload){
+    return {
+      type: "FILTER_TYPE_ROOM",
+      payload
+    }
+  }
+  export function filterTypeBathroom(payload){
+    return {
+      type: "FILTER_TYPE_BATHROOM",
+      payload
 
-export function filterTypeRoom(payload) {
-  return {
-    type: "FILTER_TYPE_ROOM",
-    payload,
-  };
-}
-export function filterTypeBathroom(payload) {
-  return {
-    type: "FILTER_TYPE_BATHROOM",
-    payload,
-  };
-}
+    }
+//ACTIONS FILTROS---------------------------------------------------------------->>
+
+
+
 
 //ACTION GET INFO CLIENT
 export function getCLient(email) {
@@ -86,18 +89,19 @@ export function getCLient(email) {
     // eslint-disable-next-line no-unreachable
   } catch (e) {
     console.log(e);
+
   }
-   
+}
 
   export function setClient(payload){
     try{
      return async function(){
       let res = await axios('http://localhost:4000/login/setClient', {headers:{authorization:`Bearer ${payload}`}})
-      return {
-        payload: res.data,
-        type: "GET_CLIENT"
-      }
-     }
+        return {
+          payload: res.data,
+          type: "GET_CLIENT"
+        }
+     }  
     } catch(e){
       console.log(e)
     }
