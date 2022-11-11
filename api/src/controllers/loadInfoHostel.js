@@ -1,8 +1,10 @@
-const data = require("../Info Hostel/data.js");
+// const data = require("../Info Hostel/data.js");
 const { Room, Rent, Client } = require("../db.js");
+const data = require("../Info Hostel/data")
 
 const loadInfoHostel = async (req, res) => {
   //Cargar Clientes
+  console.log(data);
   try {
     let infoDB = await Client.findAll();
     let infoDbRent = await Rent.findAll();

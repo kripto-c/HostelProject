@@ -1,6 +1,8 @@
 import React, {useState} from 'react'
 import './RoomDetail.css';
 import axios from "axios";
+import { useParams } from 'react-router-dom';
+import { useDispatch, useSelector } from "react-redux";
 
 export default function RoomDetail(){
    
@@ -32,6 +34,9 @@ export default function RoomDetail(){
     }
     //========DATOS DE EJEMPLOS======//
 
+    let {id} = useParams();
+    const dispatch = useDispatch();
+    
 
     let arreglo = [];
     for (let a = 1; a <= detailRoom.beds; a++) {

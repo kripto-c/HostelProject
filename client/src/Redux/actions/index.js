@@ -44,6 +44,8 @@ export function postReview(payload) {
   }
 }
 
+
+  //ACTIONS FILTROS---------------------------------------------------------------->>
   
   export function sendFeedback(data){
     try {
@@ -57,7 +59,6 @@ export function postReview(payload) {
       }
   }
 
-//ACTIONS FILTROS---------------------------------------------------------------->>
 
 export function filterTypeRoom(payload) {
   return {
@@ -85,24 +86,22 @@ export function getCLient(email) {
     // eslint-disable-next-line no-unreachable
   } catch (e) {
     console.log(e);
-
   }
-}
+   
 
-  // export function setClient(payload){
-  //   try{
-  //    return async function(){
-  //     let res = await axios('http://localhost:4000/login/setClient', {headers:{authorization:`Bearer ${payload}`}})
-  //       return {
-  //         payload: res.data,
-  //         type: "GET_CLIENT"
-  //       }
-  //    }  
-  //   } catch(e){
-  //     console.log(e)
-  //   }
-  // }
-
+  export function setClient(payload){
+    try{
+     return async function(){
+      let res = await axios('http://localhost:4000/login/setClient', {headers:{authorization:`Bearer ${payload}`}})
+      return {
+        payload: res.data,
+        type: "GET_CLIENT"
+      }
+     }
+    } catch(e){
+      console.log(e)
+    }
+  }
   export function getRoomDetail(id){
     return async (dispatch)=>{
       try {
@@ -116,3 +115,4 @@ export function getCLient(email) {
       }
     }
   }
+  

@@ -5,7 +5,7 @@ const reviews = require("./reviews/reviews.js");
 const info = require(".././routes/info/info.js")
 
 const rooms = require("../routes/rooms/index.js")
-
+const roomdetail = require("./roomdetail/roomdetail")
 const payment = require("./payments/payment");
 const feedback = require("./payments/feedback")
 
@@ -43,5 +43,6 @@ router.use(express.json());
 router.use("/login", login);
 router.use("/payment", payment);
 router.use("/feedback", feedback);
+router.use("/getroomdetail", roomdetail)
 
 module.exports = router;
