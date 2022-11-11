@@ -10,18 +10,11 @@ const payment = require("./payments/payment");
 const feedback = require("./payments/feedback")
 
 const router = Router();
-//------Dejo esto aca porque mas abajo me tira error de authenticacion!!!!NO BORREN--->
-router.use("/info", info)
-router.use("/reviews",reviews)
-router.use("/rooms", rooms)
+
 //----------------------------------------------------------------------------------
 // auth0 backend
 const { expressjwt: jwt } = require("express-jwt");
 const jwks = require("jwks-rsa");
-
-// router.get("/", async(req, res) =>{
-//     console.log("si")
-//     res.send("estamos listos!");
 
 
 let jwtCheck = jwt({
@@ -34,15 +27,18 @@ let jwtCheck = jwt({
   audience: "route-protected",
   issuer: "https://dev-o7k6sbvjre41wvzb.us.auth0.com/",
   algorithms: ["RS256"],
-}).unless({ path: ["/login"] });
+}).unless({ path: ["/login", "/login/client", "/getroomdetail", "/info", "/rooms", '/reviews'] });
 
-// router.use(jwtCheck);
+router.use(jwtCheck);
 
 router.use(express.json());
 //RUTAS----------------------------------->>
 router.use("/login", login);
 router.use("/payment", payment);
 router.use("/feedback", feedback);
-router.use(`/getroomdetail`, roomdetail);
+router.use(`/getroomdetail`, roomdetail);//------Dejo esto aca porque mas abajo me tira error de authenticacion!!!!NO BORREN--->
+router.use("/info", info)
+router.use("/reviews",reviews)
+router.use("/rooms", rooms)
 
 module.exports = router;

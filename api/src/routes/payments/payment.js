@@ -9,7 +9,6 @@ route.post("/", async(req, res, next) =>{
     let ACCESS_TOKEN = "TEST-3953691119722438-110705-5a73c90c16e5a96a9e786f5d1bdb5ccd-1230124929";
     let items = req.body.items;
     let user = req.body.user;
-    // console.log(items[0])
     try {
         //MANEJO DE ERRORES
         if(!items[0].title) return res.status(400).send("Debe tener titulo");  

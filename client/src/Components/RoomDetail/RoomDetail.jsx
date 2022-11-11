@@ -4,12 +4,12 @@ import axios from "axios";
 import { useParams } from 'react-router-dom';
 import { useDispatch, useSelector } from "react-redux";
 import {useNavigate} from 'react-router-dom';
-import {useAuth0} from '@auth0/auth0-react';
+import { useAuth0 } from '@auth0/auth0-react';
 import { getRoomDetail } from '../../Redux/actions';
 import Footer from "../Layout/Footer";
 
 export default function RoomDetail(){
-   
+    const { getAccessTokenSilently } = useAuth0();
     const [camas, setCamas] = useState(0);
     const [total, setTotal] = useState(0);
     const [checkIn, setCheckIn] = useState(0);
@@ -72,6 +72,7 @@ export default function RoomDetail(){
         if(!checkIn) return alert("Por favor ingrese una fecha de ingreso");
         if(!checkOut) return alert("Por favor ingrese una fecha de salida");
         
+       
 
         const body = {}
         body.items = [{
@@ -84,7 +85,14 @@ export default function RoomDetail(){
         }]
         body.user = user;
         console.log(body)
-        const result = await axios.post("http://localhost:4000/payment", body);
+        const token = await getAccessTokenSilently();
+
+        const result = await axios.post("http://localhost:4000/payment", body,
+            {headers:{
+                authorization:`Bearer ${token}`
+             }
+            } 
+    );
         
         setPagar(result.data.init);
         console.log(result.data.id);
