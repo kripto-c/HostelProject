@@ -1,9 +1,9 @@
 import { useSelector, useDispatch } from "react-redux"
 import { useEffect } from "react"
-import { Link } from "react-router-dom"
 import { useState } from "react"
 import { filterTypeRoom, getRooms } from "../../Redux/actions"
 import RoomCard from "./RoomCard.jsx"
+import Footer from "../Layout/Footer"
 import style from "./Rooms.module.css"
 
 export default function Rooms() {
@@ -21,7 +21,7 @@ export default function Rooms() {
     }
 
     return (
-        <div>
+        <div className={style.background}>
             <h1><i>HABITACIONES</i></h1>
         <div className={style.Container}>
             
@@ -42,12 +42,11 @@ export default function Rooms() {
                             beds={e.beds} description={e.description} image={e.image} bathroom={e.bathroom} type={e.type}
                             className={style.Card} id= {e.id}
                         />  
-                    
                 )  
             
             })}
             </div>
-                
+            <Footer />
             </div>
         </div>
         </div>

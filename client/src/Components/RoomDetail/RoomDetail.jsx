@@ -3,6 +3,8 @@ import './RoomDetail.css';
 import axios from "axios";
 import { useParams } from 'react-router-dom';
 import { useDispatch, useSelector } from "react-redux";
+import {useNavigate} from 'react-router-dom';
+import {useAuth0} from '@auth0/auth0-react';
 import { getRoomDetail } from '../../Redux/actions';
 import Footer from "../Layout/Footer";
 
@@ -13,6 +15,8 @@ export default function RoomDetail(){
     const [checkIn, setCheckIn] = useState(0);
     const [checkOut, setCheckOut] = useState(0);
     const [pagar, setPagar] = useState('');
+    const [cargando, setCargando] = useState(false);
+    const [login, setLogin] = useState(false);
     
     //========DATOS DE EJEMPLOS======//
 
@@ -26,6 +30,9 @@ export default function RoomDetail(){
         }
     }
     //========DATOS DE EJEMPLOS======//
+    const userLogin = useAuth0();
+    const navigate = useNavigate();
+    console.log(userLogin)
 
     let {id} = useParams();
     const dispatch = useDispatch();
@@ -56,15 +63,24 @@ export default function RoomDetail(){
         if(b) return setCheckIn(e.target.value.split('-').reverse().join('-'));
         return setCheckOut(e.target.value.split('-').reverse().join('-'));
     }
-
+    
     const pay = async ()=>{
+
+        // VERIFICACION DE DATOS
+        if(!camas && !checkIn && !checkOut && !pagar) return alert("Complete el form antes de pedir una reserva");
+        if(!camas) return alert("Seleccione cuantas camas desea reservar");
+        if(!checkIn) return alert("Por favor ingrese una fecha de ingreso");
+        if(!checkOut) return alert("Por favor ingrese una fecha de salida");
+        
+
         const body = {}
         body.items = [{
             title: room.name,
             quantity: camas,
             unit_price: room.price,
             check_in: checkIn,
-            check_out: checkOut
+            check_out: checkOut,
+            room_id : room.id
         }]
         body.user = user;
         console.log(body)
@@ -72,9 +88,19 @@ export default function RoomDetail(){
         
         setPagar(result.data.init);
         console.log(result.data.id);
+        console.log(body.items);
     }
     return (
     <div className='detailRoom'>
+        {!userLogin.isAuthenticated ? <div className="alertLog" hidden={login}>
+            <div>
+                <button onClick={()=>setLogin(true)}>X</button>
+                <p>Para poder hacer reservas debes registrarte primero</p>
+            </div>
+        </div> : null}
+
+
+
         <h1>Detalle de la habitacion</h1>
         <div className='datas'>
             <div>
@@ -103,11 +129,12 @@ export default function RoomDetail(){
         {
             !room.status && (<div className='disponibilidad' >No hay camas disponibles</div>)
         }
-        <div className='pay'>
+         <div className='pay'>
             <p><b>Total ${total}</b></p>
-            <button onClick={pay}>Pagar</button>
+            <input onClick={pay} type="submit" value={cargando ? "Cargando..." : "Pagar"} />
         </div>
         {!pagar.length ? null : <div className='IframeDiv'>
+        <button onClick={()=>setPagar('')}>X</button>
             <iframe className='PagarIframe' src={pagar} frameborder="0"></iframe>
         </div> }
         <br/>
