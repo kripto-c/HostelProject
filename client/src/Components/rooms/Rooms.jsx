@@ -21,8 +21,10 @@ export default function Rooms() {
     }
 
     return (
-        <div className={style.Container}>
+        <div>
             <h1><i>HABITACIONES</i></h1>
+        <div className={style.Container}>
+            
             <div className={style.Cards}>
             <div>
                 {console.log(allRooms)}
@@ -31,8 +33,8 @@ export default function Rooms() {
                     <option value="Privado" >Privado</option>
                     <option value="Público" >Público</option>
                 </select>
-            <h1>Habitaciones</h1>
-
+            </div>
+            <div className={style.ContainerCards}>
             {allRooms && allRooms.map(e => {    
                 return(
                     
@@ -44,8 +46,10 @@ export default function Rooms() {
                 )  
             
             })}
-                </div>
             </div>
+                
+            </div>
+        </div>
         </div>
     )
 }
