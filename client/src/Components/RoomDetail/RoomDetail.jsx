@@ -44,7 +44,7 @@ export default function RoomDetail(){
     const room = useSelector((state) => state.roomdetail);
     const client = useSelector((state) => state.client);
 
-
+    console.log(room)
     let arreglo = [];
     for (let a = 1; a <= room.beds; a++) {
         arreglo.push(a);
@@ -75,7 +75,7 @@ export default function RoomDetail(){
 
         const body = {}
         body.items = [{
-            title: room.name,
+            title: room.description,
             quantity: camas,
             unit_price: room.price,
             check_in: checkIn,
