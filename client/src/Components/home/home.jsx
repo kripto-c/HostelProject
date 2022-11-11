@@ -1,11 +1,13 @@
 import React from "react";
 import Footer from "../Layout/Footer";
 import Carousel from "react-bootstrap/Carousel";
+import Review from '../Review/Reviews';
 import "./Home.css";
 
 const Home = () => {
   return (
     <div className="home-container">
+      <div className="carro">
       <Carousel className="d-flex justify-content-center">
         <Carousel.Item>
           <img
@@ -26,6 +28,7 @@ const Home = () => {
           />
         </Carousel.Item>
       </Carousel>
+      </div>
       <h1>Bienvendios al Hostel Dinamita</h1>
       <div className="info">
         <div className="collage">
@@ -56,6 +59,8 @@ const Home = () => {
           />
         </div>
       </div>
+      <hr></hr>
+      <Review></Review>
       <Footer></Footer>
     </div>
   );
