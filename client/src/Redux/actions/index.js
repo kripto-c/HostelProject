@@ -48,10 +48,10 @@ export function postReview(payload) {
   //ACTIONS FILTROS---------------------------------------------------------------->>
   
   export function sendFeedback(data){
+    console.log(data)
     try {
       return async function(dispatch){
         let response = await axios.get(`http://localhost:4000/feedback${data}`);
-        console.log(data)
         return response.data;
       }
     } catch (e) {

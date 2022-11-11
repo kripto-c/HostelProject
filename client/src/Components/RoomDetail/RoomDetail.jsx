@@ -67,6 +67,7 @@ export default function RoomDetail(){
     const pay = async ()=>{
 
         // VERIFICACION DE DATOS
+        if(!userLogin.isAuthenticated) return alert("No podras realizar una reserva sin registrarte");
         if(!camas && !checkIn && !checkOut && !pagar) return alert("Complete el form antes de pedir una reserva");
         if(!camas) return alert("Seleccione cuantas camas desea reservar");
         if(!checkIn) return alert("Por favor ingrese una fecha de ingreso");

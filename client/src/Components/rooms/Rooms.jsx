@@ -27,7 +27,7 @@ export default function Rooms() {
             
             <div className={style.Cards}>
             <div>
-                {console.log(allRooms)}
+                
                 <select id='type' defaultValue="Todo" onChange={(e) => roomTypeHandler(e)}>
                     <option value="Todo" hidden>Tipo de habitación</option>
                     <option value="Privado" >Privado</option>
