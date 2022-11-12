@@ -13,8 +13,6 @@ export default function RoomCard({beds, description, image, bathroom, type, id})
                         <p className="text-secondary">{description}</p>
                         <p className="text-secondary">Baño {bathroom}</p>
                     </div>
-                    
-                    <button>Reservar</button>
                 </div>
             </Link>
         </div>

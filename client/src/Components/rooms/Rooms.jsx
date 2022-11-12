@@ -26,13 +26,12 @@ export default function Rooms() {
         <div className={style.Container}>
             
             <div className={style.Cards}>
-            <div>
-                <select id='type' defaultValue="Todo" onChange={(e) => roomTypeHandler(e)}>
-                    <option value="Todo" hidden>Tipo de habitación</option>
+                <select id='type' defaultValue="Todo" onChange={(e) => roomTypeHandler(e)} >
+                    <option value="Todo" hidden >Tipo de habitación</option>
                     <option value="Privado" >Privado</option>
                     <option value="Público" >Público</option>
                 </select>
-            </div>
+              
             <div className="container">
                 <div className="row">
             {allRooms && allRooms.map(e => {    
