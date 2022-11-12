@@ -4,14 +4,17 @@ export const GET_REVIEW = "GET_REVIEW";
 export const GET_CLIENT = "GET_CLIENT";
 export const FILTER_TYPE_BATHROOM = "FILTER_TYPE_BATHROOM";
 export const FILTER_TYPE_ROOM = "FILTER_TYPE_ROOM";
-
+export const GET_ROOMS = "GET_ROOMS"
 //ACTION ROOMS ----------------------------------------------------------->>
 export function getRooms() {
   return async function (dispatch) {
-    var json = await axios.get("http://localhost:4000/rooms");
+    
+    let room = await axios.get("http://localhost:4000/rooms");        
+    console.log("mirar acaaa",room.data)
     return dispatch({
-      type: "GET_ROOMS",
-      payload: json.data,
+      type: GET_ROOMS,
+      payload: room.data,
+      
     });
   };
 }
@@ -81,7 +84,7 @@ export function postReview(payload) {
 export function getCLient(email) {
   try {
     return async function (dispatch) {
-      const info = await axios.get(`http://localhost:4000/login/client?email=${email}`);
+      const info = await axios.get("http://localhost:4000/login/client", email);
       dispatch({
         type: GET_CLIENT,
         payload: info.data,
@@ -90,7 +93,6 @@ export function getCLient(email) {
     // eslint-disable-next-line no-unreachable
   } catch (e) {
     console.log(e);
-
   }
 }
 export function postClient(email, body, headers) {
@@ -127,5 +129,5 @@ export function postClient(email, body, headers) {
       } catch (error) {
         console.log(error);
       }
-    }
+    } 
   }
