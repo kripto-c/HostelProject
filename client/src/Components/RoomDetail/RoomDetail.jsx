@@ -5,7 +5,7 @@ import { useParams } from 'react-router-dom';
 import { useDispatch, useSelector } from "react-redux";
 import {useNavigate} from 'react-router-dom';
 import { useAuth0 } from '@auth0/auth0-react';
-import { getRoomDetail } from '../../Redux/actions';
+// import { getRoomDetail } from '../../Redux/actions';
 import Footer from "../Layout/Footer";
 
 export default function RoomDetail(){
@@ -37,9 +37,9 @@ export default function RoomDetail(){
     let {id} = useParams();
     const dispatch = useDispatch();
 
-    useEffect(() =>{
-        dispatch(getRoomDetail(id))
-    },[dispatch]);
+    // useEffect(() =>{
+    //     dispatch(getRoomDetail(id))
+    // },[dispatch]);
 
     const room = useSelector((state) => state.roomdetail);
     const client = useSelector((state) => state.client);

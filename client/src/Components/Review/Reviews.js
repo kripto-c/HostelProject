@@ -38,7 +38,7 @@ export default function Reviews() {
       {reviews?.map((r) => {
         return (
           <div  key={r.id} className={s.review}>
-            <h1>{r.client.name}</h1>
+            <h1>{r.client?.name}</h1>
             <h2>
               {numberStar(r.rating)}({getFechaHora(r.createdAt)})
             </h2>
