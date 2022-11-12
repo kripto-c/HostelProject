@@ -14,7 +14,7 @@ export default function ClientNew() {
     const [name, setName ] = useState(true)
     const [lastname, setLastname] =useState(true);
     const [client,setClient ]= useState({})
-    const [confirm, setConfirm]=useState(false);
+
 
     function handleChange(e) {
         setClient({
@@ -38,37 +38,15 @@ export default function ClientNew() {
        authorization:`Bearer ${token}`
     }
    } 
-    setConfirm(true)
-    // await dispatch(postClient(info.email, client, authorization))
-    // await dispatch(getCLient(info.email))
-    // setClient({})
-    // setName(true);
-    // setLastname(true);
+    await dispatch(postClient(info.email, client, authorization))
+    setClient({})
+    await dispatch(getCLient(info.email))
+    setName(true);
+    setLastname(true);
 } 
 
     return (
         <div className={`${style.bgWhites} container my-4`} >
-            {
-              confirm && 
-              <div class="modal" tabindex="-1">
-              <div class="modal-dialog">
-                <div class="modal-content">
-                  <div class="modal-header">
-                    <h5 class="modal-title">Modal title</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                  </div>
-                  <div class="modal-body">
-                    <p>Modal body text goes here.</p>
-                  </div>
-                  <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-primary">Save changes</button>
-                  </div>
-                </div>
-              </div>
-            </div>
-            
-            }
             <form className="row g-3 needs-validation " onSubmit={e=> handleSubmit(e) }>
                 <div className="col-md-6">
                     <label htmlFor="validationCustom01" className="form-label">Nombre</label>
@@ -118,5 +96,3 @@ export default function ClientNew() {
         </div>
     )
 }
-
-
