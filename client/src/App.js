@@ -8,7 +8,7 @@ import Contact from "./Components/Contact/index";
 import FeedBack from "./Components/feedback/Feedback";
 import RoomDetail from "./Components/RoomDetail/RoomDetail";
 import About from "./Components/about/about.jsx";
-import ClientNew from "./Components/ClientNew";
+import ClientEdit from "./Components/ClientEdit";
 
 function App() {
   return (
@@ -22,7 +22,7 @@ function App() {
         <Route exact path="/about" element={<About/>}/>
         <Route path="/feedback" element={<FeedBack/>} />
         <Route path="/roomdetail/:id" element={<RoomDetail/>} />
-        <Route path="/clientEdit" element={<ClientNew />} />
+        <Route path="/clientEdit" element={<ClientEdit />} />
       </Routes>
     </>
   );
