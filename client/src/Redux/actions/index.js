@@ -48,15 +48,11 @@ export function postReview(payload) {
 //ACTIONS FILTROS---------------------------------------------------------------->>
 
 export function sendFeedback(data) {
-  try {
-    return async function (dispatch) {
-      let response = await axios.get(`http://localhost:3001/feedback${data}`);
-      console.log(data);
-      return response.data;
-    };
-  } catch (e) {
-    console.log(e);
-  }
+  return async function (dispatch) {
+    let response = await axios.get(`http://localhost:3001/feedback${data}`);
+    console.log(data);
+    return response.data;
+  };
 }
 
 export function filterTypeRoom(payload) {
@@ -90,19 +86,15 @@ export function filterTypeBathroom(payload) {
   } */
 
 export function setClient(payload) {
-  try {
-    return async function () {
-      let res = await axios("http://localhost:3001/login/setClient", {
-        headers: { authorization: `Bearer ${payload}` },
-      });
-      return {
-        payload: res.data,
-        type: "SET_CLIENT",
-      };
-    };
-  } catch (e) {
-    console.log(e);
-  }
+  return async function (dispatch) {
+    let res = await axios("http://localhost:3001/login/setClient", {
+      headers: { authorization: `Bearer ${payload}` },
+    });
+    dispatch({
+      payload: res.data,
+      type: "SET_CLIENT",
+    });
+  };
 }
 
 export function getCLient(email) {
@@ -122,39 +114,42 @@ export function getCLient(email) {
   }
 }
 export function postClient(email, body, headers) {
-    return async () =>{
-       try {
-        const res = await axios.post(`http://localhost:4000/login/userEdit?email=${email}`, body, headers)
-        console.log(res.data);
-       } catch (error) {
-         console.log(error);
-       }
+  return async () => {
+    try {
+      const res = await axios.post(
+        `http://localhost:4000/login/userEdit?email=${email}`,
+        body,
+        headers
+      );
+      console.log(res.data);
+    } catch (error) {
+      console.log(error);
     }
+  };
 }
-  // export function setClient(payload){
-  //   try{
-  //    return async function(){
-  //     let res = await axios('http://localhost:4000/login/setClient', {headers:{authorization:`Bearer ${payload}`}})
-  //       return {
-  //         payload: res.data,
-  //         type: GET_CLIENT
-  //       }
-  //    }  
-  //   } catch(e){
-  //     console.log(e)
-  //   }
-  // }
-  export function getRoomDetail(id){
-    return async (dispatch)=>{
-      try {
-        let res = await axios.get(`http://localhost:4000/getroomdetail?id=${id}`);
-        return dispatch({
-          type: "GET_ROOM_DETAIL",
-          payload: res.data
-        })
-      } catch (error) {
-        console.log(error);
-      }
+// export function setClient(payload){
+//   try{
+//    return async function(){
+//     let res = await axios('http://localhost:4000/login/setClient', {headers:{authorization:`Bearer ${payload}`}})
+//       return {
+//         payload: res.data,
+//         type: GET_CLIENT
+//       }
+//    }
+//   } catch(e){
+//     console.log(e)
+//   }
+// }
+export function getRoomDetail(id) {
+  return async (dispatch) => {
+    try {
+      let res = await axios.get(`http://localhost:4000/getroomdetail?id=${id}`);
+      return dispatch({
+        type: "GET_ROOM_DETAIL",
+        payload: res.data,
+      });
+    } catch (error) {
+      console.log(error);
     }
-  }
-  
+  };
+}

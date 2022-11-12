@@ -3,7 +3,6 @@ import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
 import NavDropdown from "react-bootstrap/NavDropdown";
 import { useAuth0 } from "@auth0/auth0-react";
-import axios from "axios";
 import { useDispatch } from "react-redux";
 import { setClient } from "../../Redux/actions";
 
@@ -31,8 +30,7 @@ function Navbars() {
   //   }
   // }
   
-  async function handleSetClient(event) {
-    event.preventDefault();
+  async function handleSetClient() {
     let token = await getAccessTokenSilently();
      dispatch(setClient());
      console.log(token)
@@ -78,7 +76,8 @@ function Navbars() {
             ) : (
               <Navbar.Brand
                 href="/#login"
-                onClick={async () => {
+                onClick={async (e) => {
+                  e.preventDefault()
                   await loginWithPopup();
                   handleSetClient();
                 }}
