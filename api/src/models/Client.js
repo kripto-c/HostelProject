@@ -11,16 +11,19 @@ module.exports = (sequelize) => {
       primaryKey: true
     },
     personalID: { //documento/pasaporte
-        type: DataTypes.INTEGER
+        type: DataTypes.CHAR
     },
     name: {
         type: DataTypes.STRING,
     },
+     lastname:{
+      type: DataTypes.STRING,
+     },
     nationality: {
         type: DataTypes.STRING
     },
     phoneNumber: {
-        type: DataTypes.INTEGER,
+        type: DataTypes.CHAR,
     },
     email: {
         type: DataTypes.STRING,

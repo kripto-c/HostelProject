@@ -10,18 +10,21 @@ route.get('/', (req, res)=>{
 
 route.get('/client', getClient)
 
-// route.get('/users', getClient)
+route.get('/users', getClient)
 
 route.post('/userEdit', async(req, res)=>{    
-        const {email, personalID, nationality, phoneNumber, observation} = req.body;    
+        const {name, lastname, personalID, nationality, phoneNumber, observation} = req.body;
+        const { email } = req.query;  
         try {
           const client = await Client.findOne({where: {email: email}});
-           await client.update({personalID, nationality, });
-           client.personalID = personalID;
-           client.nationality = nationality;
-           client.phoneNumber = phoneNumber;
-           client.observation = observation;
-
+           await client.update({
+              name : name,
+              lastname,
+              personalID,
+              nationality,
+              phoneNumber,
+              observation,
+          });
            await client.save();
 
            res.send(client)
@@ -40,17 +43,18 @@ route.get('/setClient', async (req, res)=>{
      })
      const userinfo = responds.data;
      console.log(userinfo);
-        const {email, name, picture } = userinfo 
-         if (name && email && accesToken) {
+        const {email, given_name, family_name } = userinfo 
+         if ( email && accesToken) {
           const clients = await Client.findAll({});
           
           if (clients.find(e=> e.email == email )) return res.json({message:"ya existe un usuario registrado con este email", email});
 
           let newRegister = await Client.create({
-             name,
+             name:given_name,
+             lastname:family_name,
              email,
-             picture
           })
+          console.log(newRegister);
           res.json(newRegister);
          }else res.send('faltan datos requeridos')
         } catch (error) {
