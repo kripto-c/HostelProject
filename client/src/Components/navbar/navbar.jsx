@@ -34,7 +34,7 @@ function Navbars() {
   async function handleSetClient(event) {
     event.preventDefault();
     let token = await getAccessTokenSilently();
-     dispatch(setClient(token));
+     dispatch(setClient());
      console.log(token)
   }
 
@@ -62,7 +62,7 @@ function Navbars() {
                 />
                 <Nav className="me-auto">
                   <NavDropdown title="Perfil" id="basic-nav-dropdown">
-                    <NavDropdown.Item href="#action/3.1">
+                    <NavDropdown.Item href="/clientEdit">
                       Editar Datos
                     </NavDropdown.Item>
                     <NavDropdown.Item href="#action/3.2">

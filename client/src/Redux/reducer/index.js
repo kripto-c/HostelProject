@@ -4,6 +4,7 @@ import {
   GET_CLIENT,
   FILTER_TYPE_BATHROOM,
   FILTER_TYPE_ROOM,
+  SET_CLIENT,
 } from "../actions/index.js";
 
 const initialState = {
@@ -65,6 +66,12 @@ export default function rootReducer(state = initialState, action) {
       return{
         ...state,
         roomdetail: action.payload
+      }
+    }
+    case SET_CLIENT:{
+      return{
+        ...state,
+        client: action.payload
       }
     }
 

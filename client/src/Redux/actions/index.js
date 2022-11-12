@@ -4,7 +4,7 @@ export const GET_REVIEW = "GET_REVIEW";
 export const GET_CLIENT = "GET_CLIENT";
 export const FILTER_TYPE_BATHROOM = "FILTER_TYPE_BATHROOM";
 export const FILTER_TYPE_ROOM = "FILTER_TYPE_ROOM";
-export const SET_CLIENT = "SET_CLIENT"
+export const SET_CLIENT = "SET_CLIENT";
 
 //ACTION ROOMS ----------------------------------------------------------->>
 export function getRooms() {
@@ -45,73 +45,79 @@ export function postReview(payload) {
   }
 }
 
-  //ACTIONS FILTROS---------------------------------------------------------------->>
-  
-  export function sendFeedback(data){
-    console.log(data)
-    try {
-      return async function(dispatch){
-        let response = await axios.get(`http://localhost:3001/feedback${data}`);
-        console.log(data)
-        return response.data;
-      }
-    } catch (e) {
-      console.log(e)
-      }
-  }
+//ACTIONS FILTROS---------------------------------------------------------------->>
 
-  export function filterTypeRoom(payload){
-    return {
-      type: "FILTER_TYPE_ROOM",
-      payload
-    }
+export function sendFeedback(data) {
+  try {
+    return async function (dispatch) {
+      let response = await axios.get(`http://localhost:3001/feedback${data}`);
+      console.log(data);
+      return response.data;
+    };
+  } catch (e) {
+    console.log(e);
   }
-  export function filterTypeBathroom(payload){
-    return {
-      type: "FILTER_TYPE_BATHROOM",
-      payload
+}
 
-    }
-  }
+export function filterTypeRoom(payload) {
+  return {
+    type: "FILTER_TYPE_ROOM",
+    payload,
+  };
+}
+export function filterTypeBathroom(payload) {
+  return {
+    type: "FILTER_TYPE_BATHROOM",
+    payload,
+  };
+}
 
 /*   export function sendFeedback(data){
     try {
-      return async function(dispatch){
-        let response = await axios.get(`http://localhost:4000/feedback${data}`);
-        console.log(data)
-        return response.data;
-      }
-    } catch (error) {
-      console.log(error)
+    return async function (dispatch) {
+      const info = await axios.get(`http://localhost:4000/login/client?email=${email}`);
+      dispatch({
+        type: GET_CLIENT,
+        payload: info.data,
+      });
+    };
+    // eslint-disable-next-line no-unreachable
+  } catch (e) {
+    console.log(e);
 
     }
 
   } */
 
-  export function setClient(payload){
-    try{
-     return async function(){
-      let res = await axios('http://localhost:3001/login/setClient', {headers:{authorization:`Bearer ${payload}`}})
+export function setClient(payload) {
+  try {
+    return async function () {
+      let res = await axios("http://localhost:3001/login/setClient", {
+        headers: { authorization: `Bearer ${payload}` },
+      });
       return {
         payload: res.data,
-        type: "SET_CLIENT"
-      }
-     }
-    } catch(e){
-      console.log(e)
-    }
+        type: "SET_CLIENT",
+      };
+    };
+  } catch (e) {
+    console.log(e);
   }
-  export function getRoomDetail(id){
-    return async (dispatch)=>{
-      try {
-        let res = await axios.get(`http://localhost:4000/getroomdetail?id=${id}`);
-        return dispatch({
-          type: "GET_ROOM_DETAIL",
-          payload: res.data
-        })
-      } catch (error) {
-        console.log(error);
-      }
-    }
+}
+
+export function getCLient(email) {
+  try {
+    return async function (dispatch) {
+      const info = await axios.get(
+        `http://localhost:4000/login/client?email=${email}`
+      );
+      dispatch({
+        type: GET_CLIENT,
+        payload: info.data,
+      });
+    };
+    // eslint-disable-next-line no-unreachable
+  } catch (e) {
+    console.log(e);
   }
-  
+}
