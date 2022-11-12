@@ -6,6 +6,9 @@ import { useAuth0 } from "@auth0/auth0-react";
 import { getCLient } from "../../Redux/actions";
 import axios from "axios";
 import { useDispatch} from "react-redux";
+import {Link} from 'react-router-dom';
+import {useState} from 'react'
+import './navbar.css'; 
 
 function Navbars() {
   const {
@@ -16,6 +19,8 @@ function Navbars() {
     getAccessTokenSilently,
   } = useAuth0();
  const dispatch = useDispatch();
+
+  const[view, setView] = useState(true);
 
   async function setClient() {
     try {
@@ -32,31 +37,52 @@ function Navbars() {
     }
   }
 
+  const verOptiones = ()=>{
+    const bar = document.querySelector('.nav')
+    if(view) {
+      setView(false)
+      return bar.style.height='max-content'
+    } else {
+      setView(true);
+      return bar.style.height='0'
+    };
+  }
+
   return (
     <>
       <Navbar variant="dark" bg="dark">
-        <Container className="d-flex justify-content-between">
-          <Navbar.Brand href="/" className="col-3">
+        <Container className="d-flex justify-content-between cont">
+          <Navbar.Brand href="/" >
             Dinamita Hostel
           </Navbar.Brand>
-          <Nav className="col-7 justify-content-end">
-            <Nav.Link href="/">Home</Nav.Link>
-            <Nav.Link href="/rooms">Habitaciones</Nav.Link>
-            <Nav.Link href="/contact">Contactanos</Nav.Link>
-            <Nav.Link href="/about">Acerca de</Nav.Link>
-            <Nav.Link href="/reviewHostel">Reviews</Nav.Link>
-          </Nav>
+          <div className="res">
+            <div className="but">
+              <div className="act" onClick={verOptiones}>
+                <span></span>
+                <span></span>
+                <span></span>
+              </div>
+            </div>
+            <Nav className="nav">
+              <Link className="linkComponent" to="/">Home</Link>
+              <Link className="linkComponent" to="/rooms">Habitaciones</Link>
+              <Link className="linkComponent" to="/contact">Contactanos</Link>
+              <Link className="linkComponent" to="/about">Acerca de</Link>
+              <Link className="linkComponent" to="/reviewHostel">Reviews</Link>
+            </Nav>
+          </div>
           <>
           {isAuthenticated ? (
 
           
-             <Navbar.Collapse className="container basic-navbar-nav m-auto col-1 ms-3">
-             <img src={isAuthenticated ? user.picture : ""} alt="foto perfil" className='rounded-circle w-100'/>
-              <Nav className="me-auto">
-                <NavDropdown title="Mi cuenta" id="basic-nav-dropdown" variant='dark'>
-                  <NavDropdown.Item href="/clientEdit">
+             <Navbar.Collapse className="loginInfo">
+             <img src={isAuthenticated ? user.picture : ""} alt="foto perfil" className='rounded-circle profileIMG'/>
+              <Nav className="me-auto CuentaLog">
+                <button className="miCuentaOp">Mi Cuenta</button>
+                  <div className="LoginOp">
+                  <Link to="/clientEdit" className="clientEdit">
                     Editar Datos
-                  </NavDropdown.Item>
+                  </Link>
                   <NavDropdown.Item href="#action/3.2">
                     Registro
                   </NavDropdown.Item>
@@ -64,13 +90,14 @@ function Navbars() {
                   <NavDropdown.Item href="#action/3.4" onClick={logout}>
                     cerrar sesión
                   </NavDropdown.Item>
-                </NavDropdown>
+                  </div>
               </Nav>
             </Navbar.Collapse>
 
           ) : (
-            <Navbar.Brand
-              href='/#login'
+            <Link
+              className="Login"
+              to='/#login'
               onClick={async (e) => {
                 e.preventDefault()
                 await loginWithPopup();
@@ -78,7 +105,7 @@ function Navbars() {
               }}
             >
               Login
-            </Navbar.Brand>
+            </Link>
           )}
     </> 
         </Container>
