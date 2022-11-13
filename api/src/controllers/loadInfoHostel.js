@@ -38,12 +38,6 @@ const loadInfoHostel = async (req, res) => {
     //   await idType.addRoom(idRoom) 
     // }}
     // repit() 
-      
-       
-    
-   
-    
-  
 
     return res.status(200).json("Base de datos completa");
   } catch (e) {
