@@ -95,35 +95,39 @@ const [clientInf,setClientInfo ]= useState({
         console.log(client)
         
        //CONTROL DE DATOS DEL USUARIO
+       if(!client.name || !client.lastname || !client.phoneNumber || !client.nationality) {
+        setShow(true);
+        return console.log("anda", show);
 
-        if(!client.name || !client.lastname || !client.nacionality || !client.phoneNumber || !client.email){
-            
-            return setShow(true);
-        } 
+       }
 
-
-
-
-        const body = {}
-        body.items = [{
-            title: room.description,
-            quantity: camas,
-            unit_price: room.price,
-            check_in: checkIn,
-            check_out: checkOut,
-            room_id : room.id
-        }]
-        body.user = user;
-        const token = await getAccessTokenSilently();
-
-        const result = await axios.post("http://localhost:4000/payment", body,
-            {headers:{
-                authorization:`Bearer ${token}`
-             }
-            } 
-    );
         
-        setPagar(result.data.init);
+            const body = {}
+            body.items = [{
+                title: room.description,
+                quantity: camas,
+                unit_price: room.price,
+                check_in: checkIn,
+                check_out: checkOut,
+                room_id : room.id
+            }]
+            body.user = user;
+            const token = await getAccessTokenSilently();
+    
+            const result = await axios.post("http://localhost:4000/payment", body,
+                {headers:{
+                    authorization:`Bearer ${token}`
+                 }
+                } 
+        );
+            
+            setPagar(result.data.init);
+
+
+
+
+
+
     }
 
 ///handle ventana emergente
@@ -248,7 +252,7 @@ setShow(true);
         }
 
         {!userLogin.isAuthenticated ? <div className="alertLog" hidden={login}>
-            <div>
+            <div className='bg-dark text-white'>
                 <button onClick={()=>setLogin(true)}>X</button>
                 <p>Para poder hacer reservas debes registrarte primero</p>
             </div>
