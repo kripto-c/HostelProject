@@ -3,7 +3,7 @@ import style from "./RoomCard.module.css"
 import {Link} from "react-router-dom"
 export default function RoomCard({beds, description, image, bathroom, type, id}) {
     return (
-        <div  className="container bg-dark my-3">
+        <div  className={style.contain} style={{width: "120vh"}}>
             <Link style={{ textDecoration: 'none' }} to={`/roomdetail/${id}`}>
                 <div className="row py-3">
                     <img src={image} alt="bedroom" className="col-md-3 ml-3" width="250px"></img>
@@ -11,7 +11,7 @@ export default function RoomCard({beds, description, image, bathroom, type, id})
                         <h2 className="tittle text-white ms-0">Habitación {type}</h2>
                         <h4 className="text-secondary">Habitación para {beds} personas</h4>
                         <p className="text-secondary">{description}</p>
-                        <p className="text-secondary">Baño {bathroom}</p>
+                        <p className="text-secondary">Baño {bathroom?"Privado":"Publico"}</p>
                     </div>
                 </div>
             </Link>
