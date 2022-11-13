@@ -122,7 +122,7 @@ export default function ClientEdit() {
                     <div className="input-group">
                         <input type="text" className="form-control"
                             name='name' id="validationCustom01" disabled={namec}
-                            value={info.name}
+                            value={namec ? info.name : client.name}
                             onKeyDown ={e=> notNumbers(e)}
                             onChange={e => handleChange(e)} required />
                         <button key={'btnNamec'} name='sasa' className="btn btn-outline-danger" type='button'
@@ -142,7 +142,7 @@ export default function ClientEdit() {
                     <div className="input-group">
                         <input type="text" className="form-control" id="validationCustom02"
                             name='lastname' disabled={lastname}
-                            value={info.lastname}
+                            value={lastname ? info.lastname : client.lastname}
                             onKeyDown ={e=> notNumbers(e)}
                             onChange={e => handleChange(e)} required />
                         <button key={'btnLastName'} className="btn btn-outline-danger" type='button'
@@ -158,7 +158,7 @@ export default function ClientEdit() {
                         <input type="text" className="form-control" id="validationCustom03" 
                         name="nationality" disabled={provin} 
                         onChange={e => handleChange(e)} 
-                        value={info.nationality} required />
+                        value={provin ? info.nationality : client.nationality } required />
                         <button key={'btnNamesc'} className="btn btn-outline-danger" type='button' 
                         onClick={e => handleProvin(e)}><BsFillPencilFill /></button>
                     </div>
@@ -169,9 +169,9 @@ export default function ClientEdit() {
                 <div className="col-md-6">
                     <label htmlFor="validationCustom04" className="form-label">DNI</label>
                     <div className="input-group">
-                        <input type="number" className="form-control" id="validationCustom05"
+                        <input type={personalId ? "text":"number"} className="form-control" id="validationCustom05"
                             name='personalID' disabled={personalId}
-                            value={info.personalID}
+                            value={personalId ? info.personalID : client.personalID }
                             onKeyDown ={e=>validateDniLength(e)}
                             onChange={e => handleChange(e)} required />
                         <button className="btn btn-outline-danger" type='button'
@@ -184,9 +184,9 @@ export default function ClientEdit() {
                 <div className="col-md-6">
                     <label htmlFor="validationCustom05" className="form-label">Telefono</label>
                     <div className="input-group">
-                        <input type="number" className="form-control" id="validationCustom05" 
+                        <input type={phone ? "text" : "number"} className="form-control" id="validationCustom05" 
                         name='phoneNumber' disabled={phone} 
-                        value={info.phoneNumber} 
+                        value={phone ?  info.phoneNumber : client.phoneNumber} 
                         onChange={e => handleChange(e)} required />
                         <button key={'btnNamedsadac'} className="btn btn-outline-danger" type='button' 
                         onClick={e => handlePhone(e)}><BsFillPencilFill /></button>
