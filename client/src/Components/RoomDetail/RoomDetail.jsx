@@ -171,12 +171,12 @@ setShow(true);
                <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
                  <Form.Label>Nombre</Form.Label>
                  <div className="input-group">
-                  <input type="text" className="form-control" name='name' id="validationCustom01" disabled={name} value={name ? client.name : "" }  onChange={e=> handleChange(e)} required />
+                  <input type="text" className="form-control" name='name' id="validationCustom01" disabled={name} value={name ? client.name : clientInf.name }  onChange={e=> handleChange(e)} required />
                   <button className="btn btn-outline-danger" type='button' onClick={e => handleName(e)}><BsFillPencilFill /></button>
                   </div>
                 <Form.Label>Apellido</Form.Label>
                 <div className="input-group">
-                <input type="text" className="form-control" id="validationCustom02" name='lastname' disabled={lastname} value={lastname ? client.lastname : ""}  onChange={e=> handleChange(e)} required />
+                <input type="text" className="form-control" id="validationCustom02" name='lastname' disabled={lastname} value={lastname ? client.lastname : clientInf.lastname}  onChange={e=> handleChange(e)} required />
                 <button className="btn btn-outline-danger" type='button' onClick={e =>handleLastName(e)}><BsFillPencilFill /></button>
                 </div>
                 <Form.Label>Provincia</Form.Label>
