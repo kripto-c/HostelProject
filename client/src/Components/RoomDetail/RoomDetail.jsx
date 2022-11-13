@@ -29,7 +29,7 @@ export default function RoomDetail(){
     
 /////ventana emergente
 const dispatch = useDispatch();
-const info =  useSelector(state=> state.client);
+// const client =  useSelector(state=> state.client);
 const [show, setShow] = useState(false);
 const handleClose = () => setShow(false);
 // const handleShow = () => setShow(true);
@@ -37,8 +37,6 @@ const [name, setName ] = useState(true)
 const [lastname, setLastname] = useState(true);
 
 const [clientInf,setClientInfo ]= useState({
-    name: info ? info.name : "",
-    lastname:info ? info.lastname : "",
     nationality:""
 })
 ///////
@@ -58,7 +56,6 @@ const [clientInf,setClientInfo ]= useState({
     //========DATOS DE EJEMPLOS======//
     const userLogin = useAuth0();
     const navigate = useNavigate();
-    console.log(userLogin)
 
     let {id} = useParams();
 
@@ -67,7 +64,7 @@ const [clientInf,setClientInfo ]= useState({
     },[dispatch]);
 
 
-    console.log(room)
+
     let arreglo = [];
     for (let a = 1; a <= room.beds; a++) {
         arreglo.push(a);
@@ -108,7 +105,6 @@ const [clientInf,setClientInfo ]= useState({
             room_id : room.id
         }]
         body.user = user;
-        console.log(body)
         const token = await getAccessTokenSilently();
 
         const result = await axios.post("http://localhost:4000/payment", body,
@@ -119,17 +115,15 @@ const [clientInf,setClientInfo ]= useState({
     );
         
         setPagar(result.data.init);
-        console.log(result.data.id);
-        console.log(body.items);
     }
 
 ///handle ventana emergente
 
 function handleChange(e) {
     setClientInfo({
-       ...client, [e.target.name]: e.target.value
+       ...clientInf, [e.target.name]: e.target.value
     })
-    console.log(client);
+    console.log(clientInf);
 }
 function handleName(e) {
     e.preventDefault()
@@ -148,9 +142,9 @@ const authorization  =  {headers:{
    authorization:`Bearer ${token}`
 }
 } 
-await dispatch(postClient(info.email, client, authorization))
+await dispatch(postClient(client.email, clientInf, authorization))
 setClientInfo({})
-await dispatch(getCLient(info.email))
+await dispatch(getCLient(client.email))
 setName(true);
 setLastname(true);
 
@@ -177,12 +171,12 @@ setShow(true);
                <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
                  <Form.Label>Nombre</Form.Label>
                  <div className="input-group">
-                  <input type="text" className="form-control" name='name' id="validationCustom01" disabled={name} value={name ? info.name : client.name }  onChange={e=> handleChange(e)} required />
+                  <input type="text" className="form-control" name='name' id="validationCustom01" disabled={name} value={name ? client.name : "" }  onChange={e=> handleChange(e)} required />
                   <button className="btn btn-outline-danger" type='button' onClick={e => handleName(e)}><BsFillPencilFill /></button>
                   </div>
                 <Form.Label>Apellido</Form.Label>
                 <div className="input-group">
-                <input type="text" className="form-control" id="validationCustom02" name='lastname' disabled={lastname} value={lastname ? info.lastname : client.lastname}  onChange={e=> handleChange(e)} required />
+                <input type="text" className="form-control" id="validationCustom02" name='lastname' disabled={lastname} value={lastname ? client.lastname : ""}  onChange={e=> handleChange(e)} required />
                 <button className="btn btn-outline-danger" type='button' onClick={e =>handleLastName(e)}><BsFillPencilFill /></button>
                 </div>
                 <Form.Label>Provincia</Form.Label>
@@ -202,6 +196,7 @@ setShow(true);
                    type="text"
                    placeholder="DNI o Passport"
                    autoFocus
+                   name="PersonalID"
                  />
                 <Form.Label>Telefono</Form.Label>
                  <Form.Control
@@ -210,6 +205,7 @@ setShow(true);
                    type="text"
                    placeholder="Telefono"
                    autoFocus
+                   name='phoneNumber'
                  />
                </Form.Group>
              </Form>
