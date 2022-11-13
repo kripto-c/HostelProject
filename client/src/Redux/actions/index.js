@@ -2,7 +2,6 @@ import axios from "axios";
 export const POST_REVIEW = "POST_REVIEW";
 export const GET_REVIEW = "GET_REVIEW";
 export const GET_CLIENT = "GET_CLIENT";
-export const FILTER_TYPE_BATHROOM = "FILTER_TYPE_BATHROOM";
 export const FILTER_TYPE_ROOM = "FILTER_TYPE_ROOM";
 export const GET_ROOMS = "GET_ROOMS";
 //ACTION ROOMS ----------------------------------------------------------->>
@@ -59,6 +58,7 @@ export function sendFeedback(data) {
   }
 }
 
+<<<<<<< Updated upstream
 export function filterTypeRoom(payloadOne, payloadTwo) {
   return {
     type: "FILTER_TYPE_ROOM",
@@ -66,6 +66,15 @@ export function filterTypeRoom(payloadOne, payloadTwo) {
     payloadTwo,
   };
 }
+=======
+  export function filterTypeRoom(payloadOne, payloadTwo) {
+    return {
+      type: FILTER_TYPE_ROOM,
+      payloadOne,
+      payloadTwo,
+    };
+  }
+>>>>>>> Stashed changes
 
 //ACTIONS FILTROS---------------------------------------------------------------->>
 
