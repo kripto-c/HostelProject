@@ -26,7 +26,8 @@ export default function RoomDetail(){
     const [pagar, setPagar] = useState('');
     const [cargando, setCargando] = useState(false);
     const [login, setLogin] = useState(false);
-    
+    //CONTROL DEL FORM
+
 /////ventana emergente
 const dispatch = useDispatch();
 const info =  useSelector(state=> state.client);
@@ -58,7 +59,6 @@ const [clientInf,setClientInfo ]= useState({
     //========DATOS DE EJEMPLOS======//
     const userLogin = useAuth0();
     const navigate = useNavigate();
-    console.log(userLogin)
 
     let {id} = useParams();
 
@@ -67,7 +67,6 @@ const [clientInf,setClientInfo ]= useState({
     },[dispatch]);
 
 
-    console.log(room)
     let arreglo = [];
     for (let a = 1; a <= room.beds; a++) {
         arreglo.push(a);
@@ -89,14 +88,22 @@ const [clientInf,setClientInfo ]= useState({
     
     const pay = async ()=>{
 
-        // VERIFICACION DE DATOS
-        if(!userLogin.isAuthenticated) return alert("No podras realizar una reserva sin registrarte");
+        // VERIFICACION DE DATOS DE LA RESERVA
+        if(!userLogin.isAuthenticated) return null
         if(!camas && !checkIn && !checkOut && !pagar) return alert("Complete el form antes de pedir una reserva");
         if(!camas) return alert("Seleccione cuantas camas desea reservar");
         if(!checkIn) return alert("Por favor ingrese una fecha de ingreso");
         if(!checkOut) return alert("Por favor ingrese una fecha de salida");
         
-       
+       //CONTROL DE DATOS DEL USUARIO
+
+        if(!client.name || !client.lastname || !client.personalID || !client.nacionality || !client.phoneNumber || !client.email){
+            
+            return setShow(true);
+        } 
+
+
+
 
         const body = {}
         body.items = [{
@@ -129,7 +136,6 @@ function handleChange(e) {
     setClientInfo({
        ...client, [e.target.name]: e.target.value
     })
-    console.log(client);
 }
 function handleName(e) {
     e.preventDefault()
@@ -167,12 +173,19 @@ setShow(true);
     <div className='detailRoom'>
              <button onClick={e=> active(e)}>alert</button>
              {
-           show && 
+                // CONTROL DE DATOS DE USUARIO
+            ( show ) && 
            <Modal show={show} onHide={handleClose}>
            <Modal.Header closeButton className="bg-primary text-white">
              <Modal.Title>Datos del Cliente</Modal.Title>
            </Modal.Header>
            <Modal.Body className='bg-dark text-white'>
+             {
+                (!client.personalID || !client.nacionality || !client.phoneNumber || !client.email) && 
+                (<p>Por favor complete con los datos faltantes</p>)
+             }
+
+
              <Form onSubmit={e=> handleSubmit(e) }>
                <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
                  <Form.Label>Nombre</Form.Label>
@@ -228,6 +241,11 @@ setShow(true);
              </Button>
            </Modal.Footer>
          </Modal>
+        }
+        {
+            //CONTROL DE LA RESERVA DE LA HABITACION!
+
+
         }
 
         {!userLogin.isAuthenticated ? <div className="alertLog" hidden={login}>
