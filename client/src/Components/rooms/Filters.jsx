@@ -55,7 +55,11 @@ export default function Filters({getRooms}) {
         onChange={(e) => roomTypeHandler(e)}
       >
         <option value="Todo" hidden>
+<<<<<<< HEAD
           Baño
+=======
+          Tipo de baño
+>>>>>>> 09aabb3 (Se corrigio el force false y el select)
         </option>
         <option value="batchroomPrivate">Privado</option>
         <option value="batchroomPublic">Público</option>
