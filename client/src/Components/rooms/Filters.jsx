@@ -5,7 +5,7 @@ import { useDispatch } from "react-redux";
 import { useState } from "react";
 // import style from "./RoomCard.module.css";
 
-export default function Filters() {
+export default function Filters({getRooms}) {
   // const allRooms = useSelector((state) => state.rooms);
   const dispatch = useDispatch();
   const [typeBatchroom, setTypeBatchroom] = useState("");
@@ -25,6 +25,13 @@ export default function Filters() {
     e.preventDefault();
     dispatch(filterTypeRoom(type, typeBatchroom));
     console.log(type, typeBatchroom);
+  }
+  function recargarFiltros(e){
+    e.preventDefault();
+    setType("")
+    setTypeBatchroom("")
+    dispatch(getRooms())
+    
   }
   return (
     <div>
@@ -56,6 +63,7 @@ export default function Filters() {
       <button type="button" onClick={(e) => handleSubmitFilter(e)}>
         Filtrar
       </button>
+      <button type="button" onClick={e=>recargarFiltros(e)}>Recargar</button>
     </div>
   );
 }
