@@ -54,8 +54,7 @@ route.get('/setClient', async (req, res)=>{
              lastname:family_name,
              email,
           })
-          console.log(newRegister);
-          res.json(newRegister);
+          res.json({message:"usuario registrado correctamente ", email});
          }else res.send('faltan datos requeridos')
         } catch (error) {
           res.json({error: error + ""})

@@ -1,54 +1,51 @@
-import { useSelector, useDispatch } from "react-redux"
-import { useEffect } from "react"
-import { useState } from "react"
-import { filterTypeRoom, getRooms } from "../../Redux/actions"
-import RoomCard from "./RoomCard.jsx"
-import Footer from "../Layout/Footer"
-import style from "./Rooms.module.css"
+import { useSelector, useDispatch } from "react-redux";
+import { useEffect } from "react";
+import Footer from "../Layout/Footer";
+
+import { getRooms } from "../../Redux/actions/index.js";
+import RoomCard from "./RoomCard.jsx";
+import style from "./Rooms.module.css";
+import Filters from "./Filters";
 
 export default function Rooms() {
-    const allRooms = useSelector((state) => state.rooms)
-    const dispatch = useDispatch()
-    const [type, setType] = useState("");
+  const allRooms = useSelector((state) => state.rooms);
+  const dispatch = useDispatch();
 
-    useEffect(() => {
-        dispatch(getRooms())
-    }, [dispatch])
+  useEffect(() => {
+    dispatch(getRooms());
+  }, [dispatch]);
 
-    function roomTypeHandler(e){
-        dispatch(filterTypeRoom(e.target.value))
-        setType(e.target.value);
-    }
+  return (
+    <div className={style.Container}>
+      <Filters getRooms={getRooms} />
 
-    return (
-        <div className={style.background}>
-            <h1><i>HABITACIONES</i></h1>
-        <div className={style.Container}>
-            
-            <div className={style.Cards}>
-            <div>
-                
-                <select id='type' defaultValue="Todo" onChange={(e) => roomTypeHandler(e)}>
-                    <option value="Todo" hidden>Tipo de habitación</option>
-                    <option value="Privado" >Privado</option>
-                    <option value="Público" >Público</option>
-                </select>
-            </div>
-            <div className={style.ContainerCards}>
-            {allRooms && allRooms.map(e => {    
-                return(
-                    
-                        <RoomCard
-                            beds={e.beds} description={e.description} image={e.image} bathroom={e.bathroom} type={e.type}
-                            className={style.Card} id= {e.id}
-                        />  
-                )  
-            
+      <div className="container">
+        <div className="row">
+          {allRooms &&
+            allRooms.map((e) => {
+              return (
+                <div key={e.id} className="view overlay">
+                  <RoomCard
+                    beds={e.beds}
+                    type={e.type.type ? e.type.type : null}
+                    description={e.description}
+                    image={e.image}
+                    bathroom={e.bathroom}
+                    className={style.Card}
+                    id={e.id}
+                  />
+                </div>
+              );
             })}
-            </div>
-            <Footer />
-            </div>
         </div>
-        </div>
-    )
+      </div>
+      <Footer />
+    </div>
+  );
+}
+
+      </div>
+      <Footer />
+    </div>
+  );
 }
