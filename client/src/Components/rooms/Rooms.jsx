@@ -21,9 +21,9 @@ export default function Rooms() {
                 
             <div className="container">
                 <div className="row">
-                    {allRooms && allRooms.map(e => {  
+                    {allRooms && allRooms.map(e => {    
                         return(
-                            <div key={e.id} className="view  overlay">
+                            <div className="view  overlay">
                                 <RoomCard
                                     beds={e.beds} description={e.description} image={e.image} bathroom={e.bathroom} type={e.type}
                                     id= {e.id}

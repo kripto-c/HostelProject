@@ -116,9 +116,9 @@ function Navbars() {
     </> 
         </Container>
       </Navbar>
- 
+
     </>
-  ); 
+  );
 }
 
 export default Navbars;

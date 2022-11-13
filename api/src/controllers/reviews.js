@@ -20,7 +20,6 @@ const postReviews = async (req, res) => {
 
 const getReviews = async (req, res) => {
   try {
-    // console.log("OAIWNDOAIWND");
     const data = await Review.findAll({
       include: { model: Client, attributes: ["name"] },
     });
