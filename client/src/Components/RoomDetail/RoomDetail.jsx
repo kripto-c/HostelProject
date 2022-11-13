@@ -40,7 +40,7 @@ const [lastname, setLastname] = useState(true);
 const [clientInf,setClientInfo ]= useState({
     nationality:""
 })
-///////
+//////
 
 
     //========DATOS DE EJEMPLOS======//
