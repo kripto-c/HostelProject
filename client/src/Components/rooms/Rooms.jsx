@@ -18,7 +18,6 @@ export default function Rooms() {
   return (
     <div className={style.Container}>
       <Filters getRooms={getRooms} />
-      
 
       <div className="container">
         <div className="row">
