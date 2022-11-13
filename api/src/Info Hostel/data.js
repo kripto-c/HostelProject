@@ -2,31 +2,28 @@ module.exports = [
   {
     client: [
       {
-        personalID: 1520,
+        personalID: "1520",
         name: "Pedro Sanchez",
         nationality: "Bulgaria",
-        phoneNumber: 281,
+        phoneNumber: "281",
         email: "pedrito@gmail.com",
-        password: "pedrito123",
         observation: "",
       },
 
       {
-        personalID: 3720,
+        personalID: "3720",
         name: "Jose Malboro",
         nationality: "Argentina",
-        phoneNumber: 280,
+        phoneNumber: "280",
         email: "malboro@gmail.com",
-        password: "malboro123",
         observation: "",
       },
       {
-        personalID: 3314,
+        personalID: "3314",
         name: "Miguel Carrasco",
         nationality: "Chile",
-        phoneNumber: 112,
+        phoneNumber: "112",
         email: "miguelito@gmail.com",
-        password: "miguelITO123",
         observation: "",
       },
     ],
@@ -34,14 +31,14 @@ module.exports = [
       {
         dateIn: new Date(2023, 00, 01),
         dateOut: new Date(2023, 00, 05),
-        price: 6500.50,
+        price: 6580.2,
         observation: "",
         status: true,
       },
       {
         dateIn: new Date(2023, 00, 05),
         dateOut: new Date(2023, 00, 10),
-        price: 3500,
+        price: 3500.5,
         observation: "",
         status: true,
       },
@@ -59,7 +56,7 @@ module.exports = [
         description: "Habitacion simple con 10 camas",
         image:
           "https://www.hostelclub.com/images/habitacion_compartidas_ppal.jpg",
-        bathroom: true,
+        bathroom: false,
 
         price: 3500.5,
         observation: "",
@@ -87,6 +84,33 @@ module.exports = [
         observation: "",
         status: true,
       },
+      {
+        beds: 1,
+        description: "Habitacion con cama doble",
+        image:
+          "https://www.pensionjoakina.com/public/images/sites/2198-135177.jpg",
+        bathroom: true,
+        price: 4550.5,
+        observation: "",
+        status: true,
+      },
+      {
+        beds: 2,
+        description: "Habitacion con cama doble y una cama simple",
+        image:
+          "https://previews.123rf.com/images/rilueda/rilueda1604/rilueda160400155/55280236-cama-individual-y-doble-en-la-habitaci%C3%B3n-de-hotel.jpg",
+        bathroom: true,
+        price: 6550.5,
+        observation: "",
+        status: true,
+      },
+    ],
+    type: [
+      { type: "Publico" },
+      { type: "Privado" },
+      
     ],
   },
 ];
+
+

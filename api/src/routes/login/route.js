@@ -14,7 +14,7 @@ route.get('/users', getClient)
 
 route.post('/userEdit', async(req, res)=>{    
         const {name, lastname, personalID, nationality, phoneNumber, observation} = req.body;
-        const { email } = req.query;  
+        const { email } = req.body;  
         try {
           const client = await Client.findOne({where: {email: email}});
            await client.update({
@@ -43,7 +43,7 @@ route.get('/setClient', async (req, res)=>{
      })
      const userinfo = responds.data;
      console.log(userinfo);
-        const {email, given_name, family_name } = userinfo 
+        const {email, given_name, family_name } = userinfo;
          if ( email && accesToken) {
           const clients = await Client.findAll({});
           
