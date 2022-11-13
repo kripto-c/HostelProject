@@ -5,9 +5,9 @@ import NavDropdown from "react-bootstrap/NavDropdown";
 import { useAuth0 } from "@auth0/auth0-react";
 import { getCLient } from "../../Redux/actions";
 import axios from "axios";
-import { useDispatch} from "react-redux";
+import { useDispatch, useSelector} from "react-redux";
 import {Link} from 'react-router-dom';
-import {useState} from 'react'
+import {useState, useEffect } from 'react'
 import './navbar.css'; 
 
 function Navbars() {
@@ -19,7 +19,7 @@ function Navbars() {
     getAccessTokenSilently,
   } = useAuth0();
  const dispatch = useDispatch();
-
+ const client = useSelector((state) => state.client);
   const[view, setView] = useState(true);
 
   async function setClient() {
@@ -47,6 +47,12 @@ function Navbars() {
       return bar.style.height='0'
     };
   }
+
+  useEffect(()=>{
+    if(client.length === 0 && isAuthenticated ){
+      dispatch(getCLient(client.email));
+    }
+},[dispatch])
 
   return (
     <>

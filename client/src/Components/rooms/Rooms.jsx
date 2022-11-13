@@ -43,3 +43,9 @@ export default function Rooms() {
     </div>
   );
 }
+
+      </div>
+      <Footer />
+    </div>
+  );
+}
