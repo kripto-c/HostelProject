@@ -117,26 +117,6 @@ module.exports = [
         status: true,
         typeId: 2
       },
-      {
-        beds: 1,
-        description: "Habitacion con cama doble",
-        image:
-          "https://www.pensionjoakina.com/public/images/sites/2198-135177.jpg",
-        bathroom: true,
-        price: 4550.5,
-        observation: "",
-        status: true,
-      },
-      {
-        beds: 2,
-        description: "Habitacion con cama doble y una cama simple",
-        image:
-          "https://previews.123rf.com/images/rilueda/rilueda1604/rilueda160400155/55280236-cama-individual-y-doble-en-la-habitaci%C3%B3n-de-hotel.jpg",
-        bathroom: true,
-        price: 6550.5,
-        observation: "",
-        status: true,
-      },
     ],
     type: [
       { type: "Publico" },
