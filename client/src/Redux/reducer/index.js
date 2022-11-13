@@ -45,10 +45,6 @@ export default function rootReducer(state = initialState, action) {
           action.payloadTwo === "batchroomPrivate"
             ? roomType.filter((e) => e.bathroom === true)
             : roomType.filter((e) => e.bathroom === false);
-<<<<<<< Updated upstream
-        console.log("ENTRO ACA 2 JUNTOS");
-=======
->>>>>>> Stashed changes
       } else {
         if (action.payloadTwo) {
           roomType =
@@ -61,10 +57,6 @@ export default function rootReducer(state = initialState, action) {
               ? filterRoom.filter((e) => e.type.type === "Privado")
               : filterRoom.filter((e) => e.type.type === "Publico");
         }
-<<<<<<< Updated upstream
-        console.log("Entro aca SEPARADOS");
-=======
->>>>>>> Stashed changes
       }
 
       return {

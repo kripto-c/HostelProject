@@ -58,15 +58,6 @@ export function sendFeedback(data) {
   }
 }
 
-<<<<<<< Updated upstream
-export function filterTypeRoom(payloadOne, payloadTwo) {
-  return {
-    type: "FILTER_TYPE_ROOM",
-    payloadOne,
-    payloadTwo,
-  };
-}
-=======
   export function filterTypeRoom(payloadOne, payloadTwo) {
     return {
       type: FILTER_TYPE_ROOM,
@@ -74,7 +65,6 @@ export function filterTypeRoom(payloadOne, payloadTwo) {
       payloadTwo,
     };
   }
->>>>>>> Stashed changes
 
 //ACTIONS FILTROS---------------------------------------------------------------->>
 
