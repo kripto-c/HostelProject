@@ -191,13 +191,41 @@ setShow(true);
                <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
                  <Form.Label>Nombre</Form.Label>
                  <div className="input-group">
-                  <input type="text" className="form-control" name='name' id="validationCustom01" disabled={name} value={name ? client.name : clientInf.name }  onChange={e=> handleChange(e)} required />
-                  <button className="btn btn-outline-danger" type='button' onClick={e => handleName(e)}><BsFillPencilFill /></button>
+             { client.name ?
+                <>                
+                <input type="text" className="form-control" name='name' id="validationCustom01" disabled={name} value={name ? client.name : clientInf.name }  onChange={e=> handleChange(e)} required />
+                 <button className="btn btn-outline-danger" type='button' onClick={e => handleName(e)}><BsFillPencilFill /></button>
+                </>
+                  :
+                  <Form.Control
+                  onChange={e=> handleChange(e)}
+                   className=' bg-gradient'
+                    type="text"
+                    placeholder="Nombre"
+                    autoFocus
+                    name='name'
+                  />
+                  }
                   </div>
                 <Form.Label>Apellido</Form.Label>
                 <div className="input-group">
-                <input type="text" className="form-control" id="validationCustom02" name='lastname' disabled={lastname} value={lastname ? client.lastname : clientInf.lastname}  onChange={e=> handleChange(e)} required />
-                <button className="btn btn-outline-danger" type='button' onClick={e =>handleLastName(e)}><BsFillPencilFill /></button>
+                {
+                    client.lastname ?
+                    <>
+                    <input type="text" className="form-control" id="validationCustom02" name='lastname' disabled={lastname} value={lastname ? client.lastname : clientInf.lastname}  onChange={e=> handleChange(e)} required />
+                    <button className="btn btn-outline-danger" type='button' onClick={e =>handleLastName(e)}><BsFillPencilFill /></button>                    
+                    </>:
+                       <Form.Control
+                           onChange={e=> handleChange(e)}
+                            className=' bg-gradient'
+                             type="text"
+                             placeholder="Apellido"
+                             autoFocus
+                             name='lastname'
+                           />
+                           }
+            
+
                 </div>
                 <Form.Label>Provincia</Form.Label>
                <Form.Select aria-label="Default select example"
@@ -216,7 +244,7 @@ setShow(true);
                    type="text"
                    placeholder="DNI o Passport"
                    autoFocus
-                   name="PersonalID"
+                   name="personalID"
                  />
                 <Form.Label>Telefono</Form.Label>
                  <Form.Control
