@@ -23,7 +23,7 @@ export default function Rooms() {
                 <div className="row">
                     {allRooms && allRooms.map(e => {    
                         return(
-                            <div className="view  overlay">
+                            <div key={e.id} className="view  overlay">
                                 <RoomCard
                                     beds={e.beds} description={e.description} image={e.image} bathroom={e.bathroom} type={e.type}
                                     id= {e.id}
