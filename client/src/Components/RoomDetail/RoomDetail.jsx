@@ -26,7 +26,7 @@ export default function RoomDetail(){
     const [pagar, setPagar] = useState('');
     const [cargando, setCargando] = useState(false);
     const [login, setLogin] = useState(false);
-    //CONTROL DEL FORM
+    //CONTROL DEL FORM 
 
 /////ventana emergente
 const dispatch = useDispatch();
