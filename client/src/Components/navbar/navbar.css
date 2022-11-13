@@ -62,7 +62,7 @@
     overflow: hidden;
 }
 
-.miCuentaOp:hover ~ .LoginOp, .LoginOp:hover{
+.miCuentaOp:focus ~ .LoginOp, .LoginOp:hover{
     height: max-content;
     visibility: visible;
 }
