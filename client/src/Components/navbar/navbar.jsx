@@ -118,7 +118,7 @@ function Navbars() {
       </Navbar>
  
     </>
-  );
+  ); 
 }
 
 export default Navbars;
