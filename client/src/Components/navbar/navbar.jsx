@@ -49,7 +49,7 @@ function Navbars() {
   }
 
   useEffect(()=>{
-    if(client.length === 0 && isAuthenticated ){
+    if(client.length > 0 && isAuthenticated ){
       dispatch(getCLient(client.email));
     }
 },[dispatch])
