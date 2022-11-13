@@ -92,37 +92,42 @@ const [clientInf,setClientInfo ]= useState({
         if(!camas) return alert("Seleccione cuantas camas desea reservar");
         if(!checkIn) return alert("Por favor ingrese una fecha de ingreso");
         if(!checkOut) return alert("Por favor ingrese una fecha de salida");
+        console.log(client)
         
        //CONTROL DE DATOS DEL USUARIO
 
-        if(!client.name || !client.lastname || !client.personalID || !client.nacionality || !client.phoneNumber || !client.email){
+        if(!client.name || !client.lastname || !client.nacionality || !client.phoneNumber || !client.email){
             
             return setShow(true);
         } 
 
-
-
-
-        const body = {}
-        body.items = [{
-            title: room.description,
-            quantity: camas,
-            unit_price: room.price,
-            check_in: checkIn,
-            check_out: checkOut,
-            room_id : room.id
-        }]
-        body.user = user;
-        const token = await getAccessTokenSilently();
-
-        const result = await axios.post("http://localhost:4000/payment", body,
-            {headers:{
-                authorization:`Bearer ${token}`
-             }
-            } 
-    );
         
-        setPagar(result.data.init);
+            const body = {}
+            body.items = [{
+                title: room.description,
+                quantity: camas,
+                unit_price: room.price,
+                check_in: checkIn,
+                check_out: checkOut,
+                room_id : room.id
+            }]
+            body.user = user;
+            const token = await getAccessTokenSilently();
+    
+            const result = await axios.post("http://localhost:4000/payment", body,
+                {headers:{
+                    authorization:`Bearer ${token}`
+                 }
+                } 
+        );
+            
+            setPagar(result.data.init);
+
+
+
+
+
+
     }
 
 ///handle ventana emergente
@@ -177,7 +182,7 @@ setShow(true);
            </Modal.Header>
            <Modal.Body className='bg-dark text-white'>
              {
-                (!client.personalID || !client.nacionality || !client.phoneNumber || !client.email) && 
+                ( !client.nacionality || !client.phoneNumber || !client.email) && 
                 (<p>Por favor complete con los datos faltantes</p>)
              }
 
@@ -247,7 +252,7 @@ setShow(true);
         }
 
         {!userLogin.isAuthenticated ? <div className="alertLog" hidden={login}>
-            <div>
+            <div className='bg-dark text-white'>
                 <button onClick={()=>setLogin(true)}>X</button>
                 <p>Para poder hacer reservas debes registrarte primero</p>
             </div>
