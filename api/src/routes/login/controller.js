@@ -2,7 +2,7 @@ const { Client } = require('../../db')
 
 async function getClient(req, res) {     
          const { email } = req.query; 
-          console.log(email);
+         console.log(email)
     try {
         const data = await Client.findOne({
             where:{ email: email }
