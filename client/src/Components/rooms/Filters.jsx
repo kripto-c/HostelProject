@@ -49,14 +49,12 @@ export default function Filters({getRooms}) {
         <option value="roomPublic">Público</option>
       </select>
       <select
-        id="type"
+        id="type" 
         defaultValue="Todo"
         value={typeBatchroom}
         onChange={(e) => roomTypeHandler(e)}
       >
-        <option value="Todo" hidden>
-          Baño
-        </option>
+        <option value="Todo" hidden>Tipo de baño</option>
         <option value="batchroomPrivate">Privado</option>
         <option value="batchroomPublic">Público</option>
       </select>
