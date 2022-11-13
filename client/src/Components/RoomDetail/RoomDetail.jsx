@@ -131,10 +131,7 @@ function handleChange(e) {
     setClientInfo({
        ...clientInf, [e.target.name]: e.target.value
     })
-<<<<<<< HEAD
     console.log(clientInf);
-=======
->>>>>>> 29ea7fb36fb6332c90c43a28a26217ac09882029
 }
 function handleName(e) {
     e.preventDefault()
