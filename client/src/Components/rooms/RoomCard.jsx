@@ -11,7 +11,7 @@ export default function RoomCard({beds, description, image, bathroom, type, id})
                         <h2>Habitación {type}</h2>
                         <h4>Habitación para {beds} personas</h4>
                         <p>{description}</p>
-                        <p>Baño {bathroom}</p>
+                        <p>Baño {bathroom?"Privado":"Publico"}</p>
                     </div>
                 </div>
             </Link>

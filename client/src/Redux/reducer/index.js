@@ -2,15 +2,15 @@ import {
   GET_REVIEW,
   POST_REVIEW,
   GET_CLIENT,
-  FILTER_TYPE_BATHROOM,
   FILTER_TYPE_ROOM,
 } from "../actions/index.js";
 
 const initialState = {
   rooms: [],
+  allRooms: [],
   reviews: [],
   client: [],
-  roomdetail: []
+  roomdetail: [],
 };
 
 export default function rootReducer(state = initialState, action) {
@@ -19,6 +19,7 @@ export default function rootReducer(state = initialState, action) {
       return {
         ...state,
         rooms: action.payload,
+        allRooms: action.payload,
       };
     case POST_REVIEW: {
       return {
@@ -32,40 +33,51 @@ export default function rootReducer(state = initialState, action) {
       };
     }
     case FILTER_TYPE_ROOM: {
-      const filteredRooms = state.rooms;
-      let filter =
-        action.payload === "Publico"
-          ? filteredRooms.filter((r) => r.type === "Público")
-          : filteredRooms.filter((r) => r.type === "Privado");
-      if (action.payload === "Todo") filter = filteredRooms;
+      let filterRoom = state.allRooms;
+      let roomType;
+      if (action.payloadOne && action.payloadTwo) {
+        roomType =
+          action.payloadOne === "roomPrivate"
+            ? filterRoom.filter((e) => e.type.type === "Privado")
+            : filterRoom.filter((e) => e.type.type === "Publico");
+
+        roomType =
+          action.payloadTwo === "batchroomPrivate"
+            ? roomType.filter((e) => e.bathroom === true)
+            : roomType.filter((e) => e.bathroom === false);
+        console.log("ENTRO ACA 2 JUNTOS");
+      } else {
+        if (action.payloadTwo) {
+          roomType =
+            action.payloadTwo === "batchroomPrivate"
+              ? filterRoom.filter((e) => e.bathroom === true)
+              : filterRoom.filter((e) => e.bathroom === false);
+        } else {
+          roomType =
+            action.payloadOne === "roomPrivate"
+              ? filterRoom.filter((e) => e.type.type === "Privado")
+              : filterRoom.filter((e) => e.type.type === "Publico");
+        }
+        console.log("Entro aca SEPARADOS");
+      }
+
       return {
         ...state,
-        type: filter,
+        rooms: roomType,
       };
     }
-    case FILTER_TYPE_BATHROOM: {
-      const filteredBathrooms = state.rooms;
-      let filter =
-        action.payload === "Publico"
-          ? filteredBathrooms.filter((b) => b.bathroom === "Público")
-          : filteredBathrooms.filter((b) => b.bathroom === "Privado");
-      if (action.payload === "Todo") filter = filteredBathrooms;
-      return {
-        ...state,
-        rooms: filter,
-      };
-    }
+
     case GET_CLIENT: {
       return {
         ...state,
         client: action.payload,
       };
     }
-    case "GET_ROOM_DETAIL":{
-      return{
+    case "GET_ROOM_DETAIL": {
+      return {
         ...state,
-        roomdetail: action.payload
-      }
+        roomdetail: action.payload,
+      };
     }
 
     default:
