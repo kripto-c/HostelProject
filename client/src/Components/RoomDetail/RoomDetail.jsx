@@ -92,10 +92,11 @@ const [clientInf,setClientInfo ]= useState({
         if(!camas) return alert("Seleccione cuantas camas desea reservar");
         if(!checkIn) return alert("Por favor ingrese una fecha de ingreso");
         if(!checkOut) return alert("Por favor ingrese una fecha de salida");
+        console.log(client)
         
        //CONTROL DE DATOS DEL USUARIO
 
-        if(!client.name || !client.lastname || !client.personalID || !client.nacionality || !client.phoneNumber || !client.email){
+        if(!client.name || !client.lastname || !client.nacionality || !client.phoneNumber || !client.email){
             
             return setShow(true);
         } 
@@ -177,7 +178,7 @@ setShow(true);
            </Modal.Header>
            <Modal.Body className='bg-dark text-white'>
              {
-                (!client.personalID || !client.nacionality || !client.phoneNumber || !client.email) && 
+                ( !client.nacionality || !client.phoneNumber || !client.email) && 
                 (<p>Por favor complete con los datos faltantes</p>)
              }
 
