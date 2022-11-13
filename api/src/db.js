@@ -40,7 +40,7 @@ sequelize.models = Object.fromEntries(capsEntries);
 
 const { Room, Rent, Type, Client, Review } = sequelize.models;
 
-
+console.log(sequelize.models);
 
 // Aca vendrian las relaciones
 // Product.hasMany(Reviews);
@@ -66,7 +66,7 @@ module.exports = {
   Room,
   Rent,
   Type,
-  Client,
+  // Client,
   ...sequelize.models, // para poder importar los modelos así: const { Product, User } = require('./db.js');
   conn: sequelize, // para importart la conexión { conn } = require('./db.js');
 };

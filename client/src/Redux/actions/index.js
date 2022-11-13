@@ -20,7 +20,7 @@ export function getReview() {
   try {
     return async function (dispatch) {
       const dataDb = await axios.get("http://localhost:4000/reviews");
-      console.log(dataDb);
+      // console.log(dataDb);
       dispatch({
         type: GET_REVIEW,
         payload: dataDb.data,

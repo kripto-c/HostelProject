@@ -10,7 +10,9 @@ const postReviews = async (req, res) => {
     let user = await Client.findOne({ where: { name: usuario } });
 
     await user.addReview(data);
-    res.status(200).json(`Gracias ${usuario} por tu review!! Que tengas buen dia!`);
+    res
+      .status(200)
+      .json(`Gracias ${usuario} por tu review!! Que tengas buen dia!`);
   } catch (e) {
     res.json(e);
   }
@@ -18,10 +20,14 @@ const postReviews = async (req, res) => {
 
 const getReviews = async (req, res) => {
   try {
-    const data = await Review.findAll({ include: Client });
+    // console.log("OAIWNDOAIWND");
+    const data = await Review.findAll({
+      include: { model: Client, attributes: ["name"] },
+    });
 
     res.status(200).json(data);
   } catch (e) {
+    console.log(e.message);
     res.status(400).json(e);
   }
 };
