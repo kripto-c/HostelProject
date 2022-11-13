@@ -1,10 +1,6 @@
 module.exports = [
   {
-    type: [
-      { type: "Publico" },
-      { type: "Privado" },
-      
-    ],
+    type: [{ type: "Publico" }, { type: "Privado" }],
     client: [
       {
         personalID: "1520",
@@ -66,7 +62,7 @@ module.exports = [
         price: 3500.5,
         observation: "",
         status: true,
-        typeId: 2
+        typeId: 2,
       },
       {
         beds: 4,
@@ -78,7 +74,7 @@ module.exports = [
         price: 1995.5,
         observation: "",
         status: false,
-        typeId: 1
+        typeId: 1,
       },
 
       {
@@ -109,25 +105,12 @@ module.exports = [
         bathroom: true,
         price: 6550.5,
         observation: "",
-        status: false,
+        status: true,
+        typeId: 2,
       },
     ],
-    type: [
-      { type: "Publico" },
-      { type: "Privado" },
-      
-    ],
-    type: [
-      { type: "Publico" },
-      { type: "Privado" },
-      
-    ],
-    type: [
-      { type: "Publico" },
-      { type: "Privado" },
-      
-    ],
-  },
+    type: [{ type: "Publico" }, { type: "Privado" }],
+    type: [{ type: "Publico" }, { type: "Privado" }],
+    type: [{ type: "Publico" }, { type: "Privado" }],
+  },
 ];
-
-
