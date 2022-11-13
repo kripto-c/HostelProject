@@ -95,10 +95,11 @@ const [clientInf,setClientInfo ]= useState({
         console.log(client)
         
        //CONTROL DE DATOS DEL USUARIO
-       if(!client.name || !client.lastname || !client.phoneNumber || !client.nationality) {
-        setShow(true);
 
-       }
+        if(!client.name || !client.lastname || !client.nacionality || !client.phoneNumber || !client.email){
+            
+            return setShow(true);
+        } 
 
         
             const body = {}
