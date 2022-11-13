@@ -97,7 +97,6 @@ const [clientInf,setClientInfo ]= useState({
        //CONTROL DE DATOS DEL USUARIO
        if(!client.name || !client.lastname || !client.phoneNumber || !client.nationality) {
         setShow(true);
-        return console.log("anda", show);
 
        }
 
