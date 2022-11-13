@@ -72,7 +72,7 @@ export function sendFeedback(data) {
 export function getCLient(email) {
   try {
     return async function (dispatch) {
-      const info = await axios.get("http://localhost:4000/login/client", email);
+      const info = await axios.get(`http://localhost:4000/login/client?email=${email}`);
       dispatch({
         type: GET_CLIENT,
         payload: info.data,
