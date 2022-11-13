@@ -56,10 +56,14 @@ export default function Filters({getRooms}) {
       >
         <option value="Todo" hidden>
 <<<<<<< HEAD
+<<<<<<< HEAD
           Baño
 =======
           Tipo de baño
 >>>>>>> 09aabb3 (Se corrigio el force false y el select)
+=======
+          Tipo de baño
+>>>>>>> 09aabb3e57deaeab4ef5d244ee889368b12c16e5
         </option>
         <option value="batchroomPrivate">Privado</option>
         <option value="batchroomPublic">Público</option>
