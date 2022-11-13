@@ -55,7 +55,7 @@ export default function Filters({getRooms}) {
         onChange={(e) => roomTypeHandler(e)}
       >
         <option value="Todo" hidden>
-          Tipo de habitación
+          Tipo de baño
         </option>
         <option value="batchroomPrivate">Privado</option>
         <option value="batchroomPublic">Público</option>
