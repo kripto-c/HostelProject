@@ -3,14 +3,15 @@ export const POST_REVIEW = "POST_REVIEW";
 export const GET_REVIEW = "GET_REVIEW";
 export const GET_CLIENT = "GET_CLIENT";
 export const FILTER_TYPE_ROOM = "FILTER_TYPE_ROOM";
+export const SET_CLIENT = "SET_CLIENT"
 
 //ACTION ROOMS ----------------------------------------------------------->>
 export function getRooms() {
   return async function (dispatch) {
     var json = await axios.get("http://localhost:4000/rooms");
     return dispatch({
-      type: GET_ROOMS,
-      payload: room.data,
+      type: "GET_ROOMS",
+      payload: json.data,
     });
   };
 }
