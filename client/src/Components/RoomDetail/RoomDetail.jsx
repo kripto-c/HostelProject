@@ -10,10 +10,10 @@ import './RoomDetail.css';
 import axios from "axios";
 import { useParams } from 'react-router-dom';
 import { useDispatch, useSelector } from "react-redux";
-import {useNavigate} from 'react-router-dom';
 import { useAuth0 } from '@auth0/auth0-react';
 import { getRoomDetail } from '../../Redux/actions';
 import Footer from "../Layout/Footer";
+import ModalHeader from 'react-bootstrap/esm/ModalHeader';
 
 export default function RoomDetail(){
     const room = useSelector((state) => state.roomdetail);
@@ -26,8 +26,12 @@ export default function RoomDetail(){
     const [pagar, setPagar] = useState('');
     const [cargando, setCargando] = useState(false);
     const [login, setLogin] = useState(false);
-    //CONTROL DEL FORM
-
+    //CONTROL DEL FORM ////////////////////
+    const [all, setAll] = useState(false);
+    const [verRoom, setVerRoom] = useState(false);
+    const [verCheckIn, setVerCheckIn] = useState(false);
+    const [verCheckOut, setVerCheckOut] = useState(false);
+    const [verLogin, setVerLogin] = useState(false);
 /////ventana emergente
 const dispatch = useDispatch();
 // const client =  useSelector(state=> state.client);
@@ -42,21 +46,8 @@ const [clientInf,setClientInfo ]= useState({
 })
 ///////
 
-
-    //========DATOS DE EJEMPLOS======//
-
-    let user = {
-        name: "nombre",
-        surname: 'ejemplo',
-        email: "emailejemplo@gmail.com",
-        identification: {
-            type: "DNI",
-            number: 12345678
-        }
-    }
     //========DATOS DE EJEMPLOS======//
     const userLogin = useAuth0();
-    const navigate = useNavigate();
 
     let {id} = useParams();
 
@@ -87,21 +78,16 @@ const [clientInf,setClientInfo ]= useState({
     const pay = async ()=>{
 
         // VERIFICACION DE DATOS DE LA RESERVA
-        if(!userLogin.isAuthenticated) return null
-        if(!camas && !checkIn && !checkOut && !pagar) return alert("Complete el form antes de pedir una reserva");
-        if(!camas) return alert("Seleccione cuantas camas desea reservar");
-        if(!checkIn) return alert("Por favor ingrese una fecha de ingreso");
-        if(!checkOut) return alert("Por favor ingrese una fecha de salida");
-        console.log(client)
+        if(!userLogin.isAuthenticated) return setVerLogin(true);
+        if(!camas && !checkIn && !checkOut && !pagar) return setAll(true);
+        if(!camas) return setVerRoom(true);
+        if(!checkIn) return setVerCheckIn(true);
+        if(!checkOut) return setVerCheckOut(true);
         
        //CONTROL DE DATOS DEL USUARIO
 
-        if(!client.name || !client.lastname || !client.nacionality || !client.phoneNumber || !client.email){
-            
-            return setShow(true);
-        } 
+        if(!client.name || !client.lastname || !client.nationality || !client.phoneNumber || !client.email) return setShow(true);
 
-        
             const body = {}
             body.items = [{
                 title: room.description,
@@ -109,9 +95,18 @@ const [clientInf,setClientInfo ]= useState({
                 unit_price: room.price,
                 check_in: checkIn,
                 check_out: checkOut,
-                room_id : room.id
+                room_id : room.id,
+                client_id: client.id && client.id
             }]
-            body.user = user;
+            body.user = {
+                name: client.name,
+                surname: client.lastname,
+                email: client.email,
+                identification: {
+                    type: "DNI",
+                    number: "12345678"
+                }
+            };
             const token = await getAccessTokenSilently();
     
             const result = await axios.post("http://localhost:4000/payment", body,
@@ -119,16 +114,9 @@ const [clientInf,setClientInfo ]= useState({
                     authorization:`Bearer ${token}`
                  }
                 } 
-        );
-            
+            );
             setPagar(result.data.init);
-
-
-
-
-
-
-    }
+        }
 
 ///handle ventana emergente
 
@@ -169,13 +157,10 @@ setShow(true);
 }
 
 
-
     return (
     <div className='detailRoom'>
-             <button onClick={e=> active(e)}>alert</button>
              {
-                // CONTROL DE DATOS DE USUARIO
-            ( show ) && 
+                // CONTROL DE DATOS DE USUARIO 
            <Modal show={show} onHide={handleClose}>
            <Modal.Header closeButton className="bg-primary text-white">
              <Modal.Title>Datos del Cliente</Modal.Title>
@@ -185,8 +170,6 @@ setShow(true);
                 ( !client.nacionality || !client.phoneNumber || !client.email) && 
                 (<p>Por favor complete con los datos faltantes</p>)
              }
-
-
              <Form onSubmit={e=> handleSubmit(e) }>
                <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
                  <Form.Label>Nombre</Form.Label>
@@ -273,10 +256,31 @@ setShow(true);
            </Modal.Footer>
          </Modal>
         }
+        {/* //CONTROL DE LA RESERVA DE LA HABITACION!  */}
         {
-            //CONTROL DE LA RESERVA DE LA HABITACION!
-
-
+            <Modal show={all} onHide={() => {setAll(false)}}>
+                <ModalHeader closeButton className='bg-dark text-white'>Por favor llene complete los datos de la reserva.</ModalHeader>
+            </Modal>
+        }
+        {
+        <Modal show={verRoom} onHide={() => {setVerRoom(false)}}>
+            <ModalHeader closeButton className='bg-dark text-white'>Seleccione al menos una cama para pedir reserva.</ModalHeader>
+        </Modal>
+        }
+        {
+            <Modal show={verCheckIn} onHide={() => {setVerCheckIn(false)}}>
+                <ModalHeader closeButton className='bg-dark text-white'>Por favor ingrese una fecha de ingreso.</ModalHeader>
+            </Modal>
+        }
+        {
+            <Modal show={verCheckOut} onHide={() => {setVerCheckOut(false)}}>
+                <ModalHeader closeButton className='bg-dark text-white'>Por favor ingrese una fecha de salida.</ModalHeader>
+            </Modal>
+        }
+        {
+            <Modal show={verLogin} onHide={() => {setVerLogin(false)}}>
+                <ModalHeader closeButton className='bg-dark text-white'>Debe estar registrado para reservar.</ModalHeader>
+            </Modal>
         }
 
         {!userLogin.isAuthenticated ? <div className="alertLog" hidden={login}>
@@ -307,11 +311,11 @@ setShow(true);
         <p className='Ac'><b>Alojamientos</b></p>
         {arreglo.map((e)=>{
             return (<div key={e} className='listBeds'>
-                <label>Cama</label> <input disabled={!room.status} onClick={sumres} type="checkbox" />
+                <label>Cama</label> <input disabled={room.status} onClick={sumres} type="checkbox" />
             </div>)
         })}
         {
-            !room.status && (<div className='disponibilidad' >No hay camas disponibles</div>)
+            room.status && (<div className='disponibilidad' >No hay camas disponibles</div>)
         }
          <div className='pay'>
             <p><b>Total ${total}</b></p>

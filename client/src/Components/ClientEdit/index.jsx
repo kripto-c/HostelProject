@@ -92,8 +92,8 @@ export default function ClientEdit() {
 
     async function handleSubmit(e) {
         e.preventDefault()
-        if (!client.personalID) alert('Falta DNI')
-        if (!validateDni(client.personalID)) alert('Esta mal cargado el numero')
+        // if (!client.personalID) alert('Falta DNI')
+        // if (!validateDni(client.personalID)) alert('Esta mal cargado el numero')
         
         // alert('ok')
 
