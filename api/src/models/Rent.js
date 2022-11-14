@@ -11,10 +11,10 @@ module.exports = (sequelize) => {
       primaryKey: true
     },
     dateIn: {
-        type: DataTypes.DATE,
+        type: DataTypes.STRING,
     },
     dateOut: {
-        type: DataTypes.DATE,
+        type: DataTypes.STRING,
     },
     price: {
         type: DataTypes.DOUBLE,
@@ -30,6 +30,12 @@ module.exports = (sequelize) => {
     },
     pago_id:{
       type: DataTypes.STRING
+    },
+    bed_id: {
+      type: DataTypes.FLOAT
+    },
+    client_id: {
+      type: DataTypes.FLOAT
     }
   },
   {

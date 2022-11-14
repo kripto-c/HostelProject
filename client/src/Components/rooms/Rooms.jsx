@@ -4,7 +4,6 @@ import Footer from "../Layout/Footer";
 
 import { getRooms } from "../../Redux/actions/index.js";
 import RoomCard from "./RoomCard.jsx";
-import style from "./Rooms.module.css";
 import Filters from "./Filters";
 
 export default function Rooms() {
@@ -16,7 +15,7 @@ export default function Rooms() {
   }, [dispatch]);
 
   return (
-    <div className={style.Container}>
+    <div>
       <Filters getRooms={getRooms} />
 
       <div className="container">
@@ -27,12 +26,11 @@ export default function Rooms() {
                 <div key={e.id} className="view overlay">
                   <RoomCard
                     beds={e.beds}
-                    type={e.type.type ? e.type.type : null}
                     description={e.description}
                     image={e.image}
                     bathroom={e.bathroom}
-                    className={style.Card}
                     id={e.id}
+                    type={e.type.type}
                   />
                 </div>
               );
@@ -43,4 +41,3 @@ export default function Rooms() {
     </div>
   );
 }
-

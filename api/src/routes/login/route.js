@@ -10,7 +10,7 @@ route.get('/', (req, res)=>{
 
 route.get('/client', getClient)
 
-route.get('/users', getClient)
+// route.get('/users', getClient)
 
 route.post('/userEdit', async(req, res)=>{    
         const {name, lastname, personalID, nationality, phoneNumber, observation} = req.body;
@@ -43,7 +43,7 @@ route.get('/setClient', async (req, res)=>{
      })
      const userinfo = responds.data;
      console.log(userinfo);
-        const {email, given_name, family_name } = userinfo 
+        const {email, given_name, family_name } = userinfo;
          if ( email && accesToken) {
           const clients = await Client.findAll({});
           

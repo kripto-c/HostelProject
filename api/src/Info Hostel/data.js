@@ -1,32 +1,30 @@
 module.exports = [
   {
+    type: [{ type: "Publico" }, { type: "Privado" }],
     client: [
       {
-        personalID: 1520,
+        personalID: "1520",
         name: "Pedro Sanchez",
         nationality: "Bulgaria",
-        phoneNumber: 281,
+        phoneNumber: "281",
         email: "pedrito@gmail.com",
-        password: "pedrito123",
         observation: "",
       },
 
       {
-        personalID: 3720,
+        personalID: "3720",
         name: "Jose Malboro",
         nationality: "Argentina",
-        phoneNumber: 280,
+        phoneNumber: "280",
         email: "malboro@gmail.com",
-        password: "malboro123",
         observation: "",
       },
       {
-        personalID: 3314,
+        personalID: "3314",
         name: "Miguel Carrasco",
         nationality: "Chile",
-        phoneNumber: 112,
+        phoneNumber: "112",
         email: "miguelito@gmail.com",
-        password: "miguelITO123",
         observation: "",
       },
     ],
@@ -64,6 +62,7 @@ module.exports = [
         price: 3500.5,
         observation: "",
         status: true,
+        typeId: 2,
       },
       {
         beds: 4,
@@ -75,6 +74,7 @@ module.exports = [
         price: 1995.5,
         observation: "",
         status: false,
+        typeId: 1,
       },
 
       {
@@ -85,7 +85,8 @@ module.exports = [
         bathroom: false,
         price: 2450.5,
         observation: "",
-        status: true,
+        status: false,
+        typeId: 2,
       },
       {
         beds: 1,
@@ -95,23 +96,23 @@ module.exports = [
         bathroom: true,
         price: 4550.5,
         observation: "",
-        status: true,
+        status: false,
+        typeId: 2,
       },
       {
         beds: 2,
         description: "Habitacion con cama doble y una cama simple",
         image:
           "https://previews.123rf.com/images/rilueda/rilueda1604/rilueda160400155/55280236-cama-individual-y-doble-en-la-habitaci%C3%B3n-de-hotel.jpg",
-        bathroom: true,
+        bathroom: false,
         price: 6550.5,
         observation: "",
         status: true,
+        typeId: 1,
       },
     ],
-    type: [
-      { type: "Publico" },
-      { type: "Privado" },
-      
-    ],
+    // type: [{ type: "Publico" }, { type: "Privado" }],
+    // type: [{ type: "Publico" }, { type: "Privado" }],
+    // type: [{ type: "Publico" }, { type: "Privado" }],
   },
 ];
