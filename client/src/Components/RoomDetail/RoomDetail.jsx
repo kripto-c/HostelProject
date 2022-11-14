@@ -95,7 +95,8 @@ const [clientInf,setClientInfo ]= useState({
                 unit_price: room.price,
                 check_in: checkIn,
                 check_out: checkOut,
-                room_id : room.id
+                room_id : room.id,
+                client_id: client.id && client.id
             }]
             body.user = {
                 name: client.name,
@@ -158,7 +159,6 @@ setShow(true);
 
     return (
     <div className='detailRoom'>
-             <button onClick={e=> active(e)}>alert</button>
              {
                 // CONTROL DE DATOS DE USUARIO 
            <Modal show={show} onHide={handleClose}>
@@ -311,11 +311,11 @@ setShow(true);
         <p className='Ac'><b>Alojamientos</b></p>
         {arreglo.map((e)=>{
             return (<div key={e} className='listBeds'>
-                <label>Cama</label> <input disabled={!room.status} onClick={sumres} type="checkbox" />
+                <label>Cama</label> <input disabled={room.status} onClick={sumres} type="checkbox" />
             </div>)
         })}
         {
-            !room.status && (<div className='disponibilidad' >No hay camas disponibles</div>)
+            room.status && (<div className='disponibilidad' >No hay camas disponibles</div>)
         }
          <div className='pay'>
             <p><b>Total ${total}</b></p>

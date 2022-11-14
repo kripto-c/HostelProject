@@ -27,9 +27,9 @@ let jwtCheck = jwt({
   audience: "route-protected",
   issuer: "https://dev-o7k6sbvjre41wvzb.us.auth0.com/",
   algorithms: ["RS256"],
-}).unless({ path: ["/login", "/login/client", "/getroomdetail", "/info", "/rooms", '/reviews'] });
+}).unless({ path: ["/login", "/login/client", "/getroomdetail", "/info", "/rooms", '/reviews', "/feedback"] });
 
-router.use(jwtCheck);
+// router.use(jwtCheck);
 
 router.use(express.json());
 //RUTAS----------------------------------->>

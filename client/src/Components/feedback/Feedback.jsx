@@ -6,16 +6,16 @@ import { sendFeedback } from "../../Redux/actions";
 export default function FeedBack(){
     const dispatch = useDispatch();
     const queryString = window.location.search;
+    const naviGate = useNavigate();
 
     useEffect(() =>{
         dispatch(sendFeedback(queryString))
+        setTimeout(() =>{
+            naviGate("/")
+        },2000)
     },[dispatch]);
-console.log(queryString);
+// console.log(queryString);
 
-    const naviGate = useNavigate();
-    setTimeout(() =>{
-        naviGate("/")
-    },2000)
 
     return(
         <div>

@@ -3,12 +3,11 @@ const route = Router();
 const mercadopago = require("mercadopago");
 require('dotenv').config();
 const {Room, Rent} = require("../../db");
-
 route.post("/", async(req, res, next) =>{
 
     let ACCESS_TOKEN = "TEST-3953691119722438-110705-5a73c90c16e5a96a9e786f5d1bdb5ccd-1230124929";
     let items = req.body.items;
-    let user = req.body.user;
+    var user = req.body.user;
     try {
         //MANEJO DE ERRORES
         if(!items[0].title) return res.status(400).send("Debe tener titulo");  
@@ -17,8 +16,8 @@ route.post("/", async(req, res, next) =>{
         if(!items[0].room_id) return res.status(400).send("Debe traer el id de la habitacion");
         if(items[0].check_in === "0" || items[0].check_out === "0") return res.status(400).send("Debe tener fecha tanto de ingreso como de salida");
 
+
         user.identification.number = toString(user.identification.number);
-        // console.log(user)
         
         mercadopago.configure({
             access_token: ACCESS_TOKEN
@@ -34,7 +33,7 @@ route.post("/", async(req, res, next) =>{
             },
             payer: user,
     
-            auto_return: "all"
+            auto_return: "approved"
     
         }
     
@@ -44,7 +43,22 @@ route.post("/", async(req, res, next) =>{
                 id: response.body.id,
                 init: response.body.init_point
             }
+            //CREACION DE FACTURA
+            
+            
+            let comprobante = await Rent.create({
+                pago_id: responds.id,
+                dateIn: items[0].check_in,
+                dateOut: items[0].check_out,
+                price: (items[0].unit_price * items[0].quantity),
+                observation: items[0].quantity,
+                bed_id: items[0].room_id,
+                client_id: items[0].client_id
+            })
+            console.log(comprobante);
             res.send(responds);
+
+
     
         } catch (error) {
             console.log(error);
@@ -52,6 +66,7 @@ route.post("/", async(req, res, next) =>{
     } catch (error) {
         console.log(error)
     }
+
 });
 
 

@@ -9,7 +9,6 @@ import { useDispatch, useSelector} from "react-redux";
 import {Link} from 'react-router-dom';
 import {useState, useEffect } from 'react'
 import './navbar.css'; 
-
 function Navbars() {
   const {
     loginWithPopup,
@@ -32,11 +31,11 @@ function Navbars() {
       });
       console.log(info.data);
       await dispatch(getCLient(info.data.email))
+      localStorage.setItem("email", info.data.email);
     } catch (error) {
       console.log(error);
     }
   }
-
   const verOptiones = ()=>{
     const bar = document.querySelector('.nav')
     if(view) {
@@ -47,20 +46,25 @@ function Navbars() {
       return bar.style.height='0'
     };
   }
-
+  
   useEffect(()=>{
+    let email = localStorage.getItem("email");
+    if(email) dispatch(getCLient(email));
     if(client.length > 0 && isAuthenticated ){
       dispatch(getCLient(client.email));
     }
+    console.log(email);
+    console.log("client", client.length);
+    console.log("authenticated", isAuthenticated);
 },[dispatch])
 
   return (
     <>
       <Navbar variant="dark" bg="dark">
         <Container className="d-flex justify-content-between cont">
-          <Navbar.Brand href="/" >
-            Dinamita Hostel
-          </Navbar.Brand>
+          <Link style={{textDecoration: "none"}} to="/">
+            <p>Dinamita Hostel</p>
+          </Link>
           <div className="res">
             <div className="but">
               <div className="act" onClick={verOptiones}>
@@ -93,13 +97,12 @@ function Navbars() {
                     Registro
                   </NavDropdown.Item>
                   <NavDropdown.Divider />
-                  <NavDropdown.Item href="#action/3.4" onClick={logout}>
+                  <NavDropdown.Item href="#action/3.4" onClick={() =>{ localStorage.clear(); logout()}}>
                     cerrar sesión
                   </NavDropdown.Item>
                   </div>
               </Nav>
             </Navbar.Collapse>
-
           ) : (
             <Link
               className="Login"
