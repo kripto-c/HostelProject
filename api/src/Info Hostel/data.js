@@ -34,21 +34,21 @@ module.exports = [
         dateOut: new Date(2023, 00, 05),
         price: 6580.2,
         observation: "",
-        status: true,
+        status: false,
       },
       {
         dateIn: new Date(2023, 00, 05),
         dateOut: new Date(2023, 00, 10),
         price: 3500.5,
         observation: "",
-        status: true,
+        status: false,
       },
       {
         dateIn: new Date(2023, 00, 01),
         dateOut: new Date(2023, 00, 20),
         price: 4000,
         observation: "",
-        status: true,
+        status: false,
       },
     ],
     room: [
@@ -61,7 +61,7 @@ module.exports = [
 
         price: 3500.5,
         observation: "",
-        status: true,
+        status: false,
         typeId: 2,
       },
       {
@@ -107,12 +107,16 @@ module.exports = [
         bathroom: false,
         price: 6550.5,
         observation: "",
-        status: true,
+        status: false,
         typeId: 1,
       },
     ],
-    // type: [{ type: "Publico" }, { type: "Privado" }],
-    // type: [{ type: "Publico" }, { type: "Privado" }],
-    // type: [{ type: "Publico" }, { type: "Privado" }],
+    type: [{ type: "Publico" }, { type: "Privado" }],
+    type: [{ type: "Publico" }, { type: "Privado" }],
+    type: [{ type: "Publico" }, { type: "Privado" }],
   },
 ];
+
+// usuario de prueba para la pasarela
+// TETE5257626 user
+// 5Np4jmaDGd pass

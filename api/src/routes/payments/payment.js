@@ -4,8 +4,11 @@ const mercadopago = require("mercadopago");
 require('dotenv').config();
 const {Room, Rent} = require("../../db");
 route.post("/", async(req, res, next) =>{
+    //tokens de prueba
+    //APP_USR-3953691119722438-110705-8aa9c78385a42cb1b8a52623939155f8-1230124929
+    //TEST-3953691119722438-110705-5a73c90c16e5a96a9e786f5d1bdb5ccd-1230124929
 
-    let ACCESS_TOKEN = "TEST-3953691119722438-110705-5a73c90c16e5a96a9e786f5d1bdb5ccd-1230124929";
+    let ACCESS_TOKEN = "APP_USR-3953691119722438-110705-8aa9c78385a42cb1b8a52623939155f8-1230124929";
     let items = req.body.items;
     var user = req.body.user;
     try {

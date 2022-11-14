@@ -20,6 +20,8 @@ function Navbars() {
  const dispatch = useDispatch();
  const client = useSelector((state) => state.client);
   const[view, setView] = useState(true);
+  const [confirmLog, setConfirmLog] = useState(false);
+  const [Sort, setSort] = useState("");
 
   async function setClient() {
     try {
@@ -46,10 +48,12 @@ function Navbars() {
       return bar.style.height='0'
     };
   }
-  
   useEffect(()=>{
     let email = localStorage.getItem("email");
-    if(email) dispatch(getCLient(email));
+    if(email) {
+      dispatch(getCLient(email));
+      setConfirmLog(true);
+    };
     if(client.length > 0 && isAuthenticated ){
       dispatch(getCLient(client.email));
     }
@@ -57,7 +61,8 @@ function Navbars() {
     console.log("client", client.length);
     console.log("authenticated", isAuthenticated);
 },[dispatch])
-
+  console.log(user);
+  console.log(isAuthenticated)
   return (
     <>
       <Navbar variant="dark" bg="dark">
@@ -78,7 +83,10 @@ function Navbars() {
               <Link className="linkComponent" to="/rooms">Habitaciones</Link>
               <Link className="linkComponent" to="/contact">Contactanos</Link>
               <Link className="linkComponent" to="/about">Acerca de</Link>
+              {
+                confirmLog &&
               <Link className="linkComponent" to="/reviewHostel">Reviews</Link>
+              }
             </Nav>
           </div>
           <>
@@ -97,7 +105,12 @@ function Navbars() {
                     Registro
                   </NavDropdown.Item>
                   <NavDropdown.Divider />
-                  <NavDropdown.Item href="#action/3.4" onClick={() =>{ localStorage.clear(); logout()}}>
+                  <NavDropdown.Item href="#action/3.4" onClick={() =>{ 
+                    localStorage.clear(); 
+                    logout(); 
+                    setConfirmLog(false);
+                    setSort("deslogueado")
+                    }}>
                     cerrar sesión
                   </NavDropdown.Item>
                   </div>
@@ -111,6 +124,7 @@ function Navbars() {
                 e.preventDefault()
                 await loginWithPopup();
                 setClient();
+                setConfirmLog(true);
               }}
             >
               Login

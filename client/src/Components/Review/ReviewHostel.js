@@ -1,6 +1,6 @@
 import React from "react";
 import { useState } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 //import BOOTSTRAP --------------------------------------------->>
 import FloatingLabel from "react-bootstrap/FloatingLabel";
 import Form from "react-bootstrap/Form";
@@ -11,12 +11,13 @@ import style from "../../Styles/ReviewHostel.module.css";
 import { postReview } from "../../Redux/actions/index.js";
 
 export default function RatingBootstrap() {
+  const client = useSelector((state) => state.client)
   // eslint-disable-next-line no-unused-vars
   const [rating, setRating] = useState([1, 2, 3, 4, 5]);
   const [current, setCurrent] = useState(0);
   // const [description, setDescription] = useState("");
   const [input, setInput] = useState({
-    usuario: "Pedro Sanchez",
+    usuario: client.name,
     rating: 0,
     description: "",
   });
@@ -41,7 +42,7 @@ export default function RatingBootstrap() {
           );
     } else {
       dispatch(postReview(input));
-      setInput({ usuario: "Pedro Sanchez", rating: 0, description: "" });
+      setInput({ usuario: client.name, rating: 0, description: "" });
       setCurrent(0);
       setRating([1, 2, 3, 4, 5]);
       alert("Gracias por darnos su opinion. Que tenga un buen dia!");
