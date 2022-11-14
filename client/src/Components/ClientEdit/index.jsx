@@ -104,9 +104,9 @@ export default function ClientEdit() {
             }
         }
 
-        dispatch(postClient(info.email, client, authorization))
-        setClient({})
-        dispatch(getCLient(info.email))
+      await dispatch(postClient(info.email, client, authorization))
+    //  setClient({})
+     await  dispatch(getCLient(info.email))
         setName(true);
         setLastname(true);
         setPersonalid(true)
@@ -153,14 +153,29 @@ export default function ClientEdit() {
                     </div>
                 </div>
                 <div className="col-md-12">
-                    <label htmlFor="validationCustom03" className="form-label">Provincia</label>
+                    <label htmlFor="validationCustom03" className="form-label">Pais</label>
                     <div className="input-group">
-                        <input type="text" className="form-control" id="validationCustom03" 
+                   {
+                      provin ?  <input type="text" className="form-control" id="validationCustom03" 
                         name="nationality" disabled={provin} 
                         onChange={e => handleChange(e)} 
-                        value={provin ? info.nationality : client.nationality } required />
-                        <button key={'btnNamesc'} className="btn btn-outline-danger" type='button' 
-                        onClick={e => handleProvin(e)}><BsFillPencilFill /></button>
+                        value={info.nationality} required />
+                       :
+                       <>
+                       <select className="form-select" id="inputGroupSelect04" aria-label="Example select with button addon" name="nationality" onChange={e => handleChange(e)} required>
+                           <option>Selecciona tu pais</option>
+                           <option value="Canada">Canada</option>
+                           <option value="Colombia">Colombia</option>
+                           <option value="Brasil">Brasil</option>
+                           <option value="argentina">argentina</option>
+                           <option value="venezuela">venezuela</option>
+                          </select>
+                       </>
+                   }
+
+                   <button key={'btnNamesc'} className="btn btn-outline-danger" type='button' 
+                   onClick={e => handleProvin(e)}><BsFillPencilFill /></button>                       
+
                     </div>
                     <div className="invalid-feedback">
                         Por favor indique su Provincia
