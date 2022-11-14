@@ -3,6 +3,7 @@ import {
   POST_REVIEW,
   GET_CLIENT,
   FILTER_TYPE_ROOM,
+  GET_ALL_COUNTRIES
 } from "../actions/index.js";
 
 const initialState = {
@@ -11,10 +12,16 @@ const initialState = {
   reviews: [],
   client: [],
   roomdetail: [],
+  countries:[]
 };
 
 export default function rootReducer(state = initialState, action) {
   switch (action.type) {
+    case GET_ALL_COUNTRIES:
+      return{
+        ...state,
+        countries:action.payload
+      }
     case "GET_ROOMS":
       return {
         ...state,
