@@ -26,6 +26,7 @@ export default function Rooms() {
                 <div key={e.id} className="view overlay">
                   <RoomCard
                     beds={e.beds}
+                    // type={e.type.type ? e.type.type : null}
                     description={e.description}
                     image={e.image}
                     bathroom={e.bathroom}
