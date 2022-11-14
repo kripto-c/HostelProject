@@ -212,37 +212,37 @@ const [lastname, setLastname] = useState(true);
                            }
             
 
-//                 </div>
-//                 <Form.Label>Provincia</Form.Label>
-//                <Form.Select aria-label="Default select example"
-//                  name="nationality"
-//                  onChange={e=> handleChange(e)}
-//                >
-//                <option>Selecciona tu Provincia</option>
-//                <option value="venezuela">venezuela</option>
-//                <option value="argentina">argentina</option>
-//                <option value="Canada">Canada</option>
-//               </Form.Select>
-//                 <Form.Label>DNI o Pasaporte</Form.Label>
-//                  <Form.Control
-//                  onChange={e=> handleChange(e)}
-//                   className=' bg-gradient'
-//                    type="text"
-//                    placeholder="DNI o Passport"
-//                    autoFocus
-//                    name="personalID"
-//                  />
-//                 <Form.Label>Telefono</Form.Label>
-//                  <Form.Control
-//                  onChange={e=> handleChange(e)}
-//                   className=' bg-gradient'
-//                    type="text"
-//                    placeholder="Telefono"
-//                    autoFocus
-//                    name='phoneNumber'
-//                  />
-//                </Form.Group>
-//              </Form>
+                </div>
+                <Form.Label>Provincia</Form.Label>
+               <Form.Select aria-label="Default select example"
+                 name="nationality"
+                 onChange={e=> handleChange(e)}
+               >
+               <option>Selecciona tu Provincia</option>
+               <option value="venezuela">venezuela</option>
+               <option value="argentina">argentina</option>
+               <option value="Canada">Canada</option>
+              </Form.Select>
+                <Form.Label>DNI o Pasaporte</Form.Label>
+                 <Form.Control
+                 onChange={e=> handleChange(e)}
+                  className=' bg-gradient'
+                   type="text"
+                   placeholder="DNI o Passport"
+                   autoFocus
+                   name="personalID"
+                 />
+                <Form.Label>Telefono</Form.Label>
+                 <Form.Control
+                 onChange={e=> handleChange(e)}
+                  className=' bg-gradient'
+                   type="text"
+                   placeholder="Telefono"
+                   autoFocus
+                   name='phoneNumber'
+                 />
+               </Form.Group>
+             </Form>
 
 //            </Modal.Body>
 //            <Modal.Footer className=" text-white">
