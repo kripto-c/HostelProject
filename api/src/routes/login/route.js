@@ -10,7 +10,6 @@ route.get('/', (req, res)=>{
 
 route.get('/client', getClient)
 
-// route.get('/users', getClient)
 
 route.post('/userEdit', async(req, res)=>{    
         const {name, lastname, personalID, nationality, phoneNumber, observation} = req.body;
