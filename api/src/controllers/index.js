@@ -1,4 +1,4 @@
-const { Room, Type, Countrie, Rent } = require("../db")
+const { Room, Type, Countrie, Countrie, Rent } = require("../db")
 
 module.exports = {
     getRoomInfo: async function() {
