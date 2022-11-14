@@ -116,7 +116,6 @@ module.exports = [
     type: [{ type: "Publico" }, { type: "Privado" }],
   },
 ];
-
 // usuario de prueba para la pasarela
 // TETE5257626 user
 // 5Np4jmaDGd pass

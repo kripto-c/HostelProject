@@ -11,6 +11,7 @@ route.post("/", async(req, res, next) =>{
     let ACCESS_TOKEN = "APP_USR-3953691119722438-110705-8aa9c78385a42cb1b8a52623939155f8-1230124929";
     let items = req.body.items;
     var user = req.body.user;
+    console.log(user)
     try {
         //MANEJO DE ERRORES
         if(!items[0].title) return res.status(400).send("Debe tener titulo");  
@@ -19,7 +20,7 @@ route.post("/", async(req, res, next) =>{
         if(!items[0].room_id) return res.status(400).send("Debe traer el id de la habitacion");
         if(items[0].check_in === "0" || items[0].check_out === "0") return res.status(400).send("Debe tener fecha tanto de ingreso como de salida");
 
-
+        
         user.identification.number = toString(user.identification.number);
         
         mercadopago.configure({
@@ -30,9 +31,9 @@ route.post("/", async(req, res, next) =>{
             items: items,
     
             back_urls: {
-                success: "http://localhost:3000/feedback",
-                failure: "http://localhost:3000/feedback",
-                pending: "http://localhost:3000/feedback"
+                success: `http://localhost:3000/feedback/?email=${user.email}&&check_in=${items[0].check_in}&&check_out=${items[0].check_out}&&dni=${user.identification.number}&&name=${user.name}&&lastname=${user.lastname}&&camas=${items[0].quantity}`,
+                failure: `http://localhost:3000/feedback/?email=${user.email}&&check_in=${items[0].check_in}&&check_out=${items[0].check_out}&&dni=${user.identification.number}&&name=${user.name}&&lastname=${user.lastname}&&camas=${items[0].quantity}`,
+                pending: `http://localhost:3000/feedback/?email=${user.email}&&check_in=${items[0].check_in}&&check_out=${items[0].check_out}&&dni=${user.identification.number}&&name=${user.name}&&lastname=${user.lastname}&&camas=${items[0].quantity}`
             },
             payer: user,
     
