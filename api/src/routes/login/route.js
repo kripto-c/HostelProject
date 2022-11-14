@@ -12,7 +12,7 @@ route.get('/client', getClient)
 
 
 route.post('/userEdit', async(req, res)=>{    
-        const {name, lastname, personalID, nationality, phoneNumber, observation} = req.body;
+        const {name, lastname, personalID, nationality, phoneNumber, observation,countrieId} = req.body;
         const { email } = req.query;  
         try {
           const client = await Client.findOne({where: {email: email}});
@@ -23,6 +23,7 @@ route.post('/userEdit', async(req, res)=>{
               nationality,
               phoneNumber,
               observation,
+              countrieId
           });
            await client.save();
 
