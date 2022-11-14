@@ -30,6 +30,7 @@ export default function Rooms() {
                     image={e.image}
                     bathroom={e.bathroom}
                     id={e.id}
+                    type={e.type.type}
                   />
                 </div>
               );
