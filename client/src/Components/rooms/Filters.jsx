@@ -67,7 +67,6 @@ export default function Filters({getRooms}) {
         <li className="nav-item">
           <button type="button" onClick={e=>recargarFiltros(e)} className="nav-item mx-2 btn btn-primary">Quitar filtros</button>
         </li>
-
       </nav>
     </div>
   );
