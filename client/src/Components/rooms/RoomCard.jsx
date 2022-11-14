@@ -8,7 +8,7 @@ export default function RoomCard({beds, description, image, bathroom, type, id})
                 <div className="row py-3">
                     <img src={image} alt="bedroom" className="col-md-3 ml-3" width="250px"></img>
                     <div className="col-md-9 ">
-                        <h2 className="tittle text-white ms-0">Habitación {type}</h2>
+                        <h2 className="tittle text-white ms-0">Habitación</h2>
                         <h4 className="text-secondary">Habitación para {beds} personas</h4>
                         <p className="text-secondary">{description}</p>
                         <p className="text-secondary">Baño {bathroom}</p>

@@ -1,24 +1,47 @@
 
 const { Router} = require('express');
 const route = Router();
-const { Rent } = require('../../db');
+const { Rent, Client, Room } = require('../../db');
 require('dotenv').config();
 
 route.get("/", async (req, res) =>{
     const preference_id = req.query.preference_id;
     const payment_status = req.query.status;
-    console.log(preference_id)
     try {
         if(payment_status === "approved"){
-            // let comprobante = await Rent.create({
-            //    status: true,
-            //    pago_id: preference_id
-            // });
-            // console.log(comprobante)
+            let pagado = await Rent.findOne({
+                where: {
+                    pago_id: preference_id
+                }
+            });
+
+            let room = await Room.findOne({
+                where: {
+                    id: pagado.bed_id
+                }
+            })
+
+            let client = await Client.findOne({
+                where: {
+                    id: pagado.client_id
+                }
+            });
+            console.log("entramos aca")
+            room.beds = room.beds - pagado.observation
+            if(room.beds <= 0) {
+                room.beds = 0
+                room.status = true
+            }
+            client.addRent(pagado)
+            pagado.addRoom(room);
+            await room.save();
+            
+            res.send(room);
         }
-      
-        console.log("si entro al home ponele");
-        res.send("reserva hecha");
+        else{
+            res.send("nada")
+        }
+        
         
     } catch (error) {
         console.log(error)
