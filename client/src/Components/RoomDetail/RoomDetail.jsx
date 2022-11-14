@@ -210,15 +210,17 @@ setShow(true);
             
 
                 </div>
-                <Form.Label>Provincia</Form.Label>
+                <Form.Label>Pais</Form.Label>
                <Form.Select aria-label="Default select example"
                  name="nationality"
                  onChange={e=> handleChange(e)}
                >
-               <option>Selecciona tu Provincia</option>
-               <option value="venezuela">venezuela</option>
-               <option value="argentina">argentina</option>
+               <option>Selecciona tu pais</option>
                <option value="Canada">Canada</option>
+               <option value="Colombia">Colombia</option>
+               <option value="Brasil">Brasil</option>
+               <option value="argentina">argentina</option>
+               <option value="venezuela">venezuela</option>
               </Form.Select>
                 <Form.Label>DNI o Pasaporte</Form.Label>
                  <Form.Control
