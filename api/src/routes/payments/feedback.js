@@ -3,6 +3,7 @@ const { Router} = require('express');
 const route = Router();
 const { Rent, Client, Room } = require('../../db');
 require('dotenv').config();
+const { sendEmail } = require("./sendEmail");
 
 route.get("/", async (req, res) =>{
     const preference_id = req.query.preference_id;
@@ -37,6 +38,7 @@ route.get("/", async (req, res) =>{
             await room.save();
             
             res.send(room);
+            sendEmail(req.query)
         }
         else{
             res.send("nada")
