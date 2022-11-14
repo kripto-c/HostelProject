@@ -1,4 +1,4 @@
-const { Room, Type } = require("../db")
+const { Room, Type, Countrie } = require("../db")
 
 module.exports = {
     getRoomInfo: async function() {
@@ -20,5 +20,9 @@ module.exports = {
             return newBed
             
         }
+    },
+    getCountries: async function(){
+        let countries = await Countrie.findAll()
+        return countries
     }
 }
