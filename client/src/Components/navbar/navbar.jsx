@@ -9,6 +9,7 @@ import { useDispatch, useSelector} from "react-redux";
 import {Link} from 'react-router-dom';
 import {useState, useEffect } from 'react'
 import './navbar.css'; 
+import logo from '../../images/logo.svg'
 function Navbars() {
   const {
     loginWithPopup,
@@ -61,10 +62,16 @@ function Navbars() {
   return (
     <>
       <Navbar variant="dark" bg="dark">
-        <Container className="d-flex justify-content-between cont">
-          <Link style={{textDecoration: "none"}} to="/">
-            <p>Dinamita Hostel</p>
-          </Link>
+        <Container className="d-flex justify-content-between container-fluid">
+          <Link style={{textDecoration: "none"}} to="/" className="d-block">
+            {/* <h2 className="h5">Dinamita Hostel</h2> */}
+     {/* <div className="container-fluid "> */}
+    <div className="navbar-brand d-flex">    
+        <img src={logo} alt="Logo" width="50" height="50" className="d-inline-block align-text-top bg-light rounded-1" />
+        <p className="m-auto ms-3">Dinamita Hostel</p>
+    </div>
+  {/* </div> */}
+            </Link>
           <div className="res">
             <div className="but">
               <div className="act" onClick={verOptiones}>
@@ -112,7 +119,7 @@ function Navbars() {
                 await loginWithPopup();
                 setClient();
               }}
-            >
+           >
               Login
             </Link>
           )}
