@@ -10,11 +10,10 @@ route.get('/', (req, res)=>{
 
 route.get('/client', getClient)
 
-route.get('/users', getClient)
 
 route.post('/userEdit', async(req, res)=>{    
         const {name, lastname, personalID, nationality, phoneNumber, observation} = req.body;
-        const { email } = req.body;  
+        const { email } = req.query;  
         try {
           const client = await Client.findOne({where: {email: email}});
            await client.update({
