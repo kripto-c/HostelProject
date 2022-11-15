@@ -124,12 +124,7 @@ export default function ClientEdit() {
         alert('Tus datos han sido modificados.')
         //history.push('/home')
     }
-    // function handleNationality(e) {
-    //     setInput({
-    //         ...client,
-    //         countrieId: [...client.tempers, e.target.value]
-    //     })
-    // }
+
     return (
         <div className={`${style.bgWhites} container my-4`} >
             <form className="row g-3 needs-validation" onSubmit={e => handleSubmit(e)} >
@@ -204,7 +199,7 @@ export default function ClientEdit() {
                     <div className="input-group">
                         <input type={personalId ? "text":"number"} className="form-control" id="validationCustom05"
                             name='personalID' disabled={personalId}
-                            value={personalId ? info.personalID : client.personalID}
+                            value={personalId ? info.personalID : client.personalID }
                             onKeyDown ={e=>validateDniLength(e)}
                             onChange={e => handleChange(e)} required />
                         <button className="btn btn-outline-danger" type='button'
