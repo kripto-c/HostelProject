@@ -41,6 +41,6 @@ router.use(`/getroomdetail`, roomdetail);//------Dejo esto aca porque mas abajo 
 router.use("/info", info)
 router.use("/reviews",reviews)
 router.use("/rooms", rooms)
-router.use("/countries", rooms)
+router.use("/countries", getCountries)
 
 module.exports = router;
