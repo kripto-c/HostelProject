@@ -13,9 +13,9 @@ route.get('/client', getClient)
 
 route.post('/userEdit', async(req, res)=>{    
         const {name, lastname, personalID, nationality, phoneNumber, observation,countrieId} = req.body;
-        const { email } = req.query;  
+        const { id } = req.query;  
         try {
-          const client = await Client.findOne({where: {email: email}});
+          const client = await Client.findOne({where: {idAuth: id}});
            await client.update({
               name : name,
               lastname,
@@ -43,19 +43,19 @@ route.get('/setClient', async (req, res)=>{
      })
      const userinfo = responds.data;
      console.log(userinfo);
-        const {email, given_name, family_name } = userinfo;
-         if ( email && accesToken) {
+        const {email, given_name, family_name, sub } = userinfo;
+        const id = sub.split('|')[1];
+         if ( email && id) {
           const clients = await Client.findAll({});
-          
-          if (clients.find(e=> e.email == email )) 
-          return res.json({message:"ya existe un usuario registrado con este email", email});
-
+          if (clients.find(e=> e.idAuth == id && e.email == email)) return res.json({message:"logeado correctamente", id:id});
+ 
           let newRegister = await Client.create({
              name:given_name,
              lastname:family_name,
              email,
-          })
-          res.json({message:"usuario registrado correctamente ", email});
+             idAuth: id 
+          }) 
+          res.json({message:"usuario registrado correctamente ", id:id});
          }else res.send('faltan datos requeridos')
         } catch (error) {
           res.json({error: error + ""})

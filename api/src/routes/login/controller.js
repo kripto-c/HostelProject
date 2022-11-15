@@ -1,10 +1,10 @@
 const { Client, Countrie } = require('../../db')
 
 async function getClient(req, res) {     
-         const { email } = req.query; 
+         const { id } = req.query; 
     try {
         const data = await Client.findOne(
-          {where:{ email: email },include:{
+          {where:{ idAuth: id },include:{
             model:Countrie,
             attributes:['country'],
             trought:{attributes:[]}
