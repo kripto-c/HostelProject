@@ -32,14 +32,12 @@ export default function RatingBootstrap() {
   }
   function handleSubmit(e) {
     e.preventDefault();
-    if (input.rating === 0 || !input.description) {
+    if (input.rating === 0) {
       return input.rating === 0
         ? alert(
             "Por favor seleccione un numero de estrellas de acuerdo a su experencia en Project Hostel!"
           )
-        : alert(
-            "Por Favor, un comentario sobre su experencia en PH es importante para nosotros, complete."
-          );
+        : null
     } else {
       dispatch(postReview(input));
       setInput({ usuario: client.name, rating: 0, description: "" });
