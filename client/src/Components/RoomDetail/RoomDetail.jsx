@@ -104,7 +104,7 @@ const [clientInf,setClientInfo ]= useState({
                 email: client.email,
                 identification: {
                     type: "DNI",
-                    number: "12345678"
+                    number: client.personalID
                 }
             };
             const token = await getAccessTokenSilently();

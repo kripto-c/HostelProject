@@ -11,6 +11,7 @@ route.post("/", async(req, res, next) =>{
     let ACCESS_TOKEN = "APP_USR-3953691119722438-110705-8aa9c78385a42cb1b8a52623939155f8-1230124929";
     let items = req.body.items;
     var user = req.body.user;
+    let numero = req.body.user.identification.number
     console.log(user)
     try {
         //MANEJO DE ERRORES
@@ -31,9 +32,9 @@ route.post("/", async(req, res, next) =>{
             items: items,
     
             back_urls: {
-                success: `http://localhost:3000/feedback/?email=${user.email}&&check_in=${items[0].check_in}&&check_out=${items[0].check_out}&&dni=${user.identification.number}&&name=${user.name}&&lastname=${user.lastname}&&camas=${items[0].quantity}`,
-                failure: `http://localhost:3000/feedback/?email=${user.email}&&check_in=${items[0].check_in}&&check_out=${items[0].check_out}&&dni=${user.identification.number}&&name=${user.name}&&lastname=${user.lastname}&&camas=${items[0].quantity}`,
-                pending: `http://localhost:3000/feedback/?email=${user.email}&&check_in=${items[0].check_in}&&check_out=${items[0].check_out}&&dni=${user.identification.number}&&name=${user.name}&&lastname=${user.lastname}&&camas=${items[0].quantity}`
+                success: `http://localhost:3000/feedback/?email=${user.email}&&check_in=${items[0].check_in}&&check_out=${items[0].check_out}&&dni=${numero}&&name=${user.name}&&lastname=${user.lastname}&&camas=${items[0].quantity}`,
+                failure: `http://localhost:3000/feedback/?email=${user.email}&&check_in=${items[0].check_in}&&check_out=${items[0].check_out}&&dni=${numero}&&name=${user.name}&&lastname=${user.lastname}&&camas=${items[0].quantity}`,
+                pending: `http://localhost:3000/feedback/?email=${user.email}&&check_in=${items[0].check_in}&&check_out=${items[0].check_out}&&dni=${numero}&&name=${user.name}&&lastname=${user.lastname}&&camas=${items[0].quantity}`
             },
             payer: user,
     

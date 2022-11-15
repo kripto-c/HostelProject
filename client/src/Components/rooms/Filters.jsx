@@ -17,6 +17,9 @@ export default function Filters({getRooms}) {
   }
   function handleSubmitFilter(e) {
     e.preventDefault();
+    if(!type && !typeBatchroom){
+      return alert("No hay filtros a aplicar")
+    }
     dispatch(filterTypeRoom(type, typeBatchroom));
     console.log(type, typeBatchroom);
   }
