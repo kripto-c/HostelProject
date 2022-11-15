@@ -1,5 +1,5 @@
 const data = require("../Info Hostel/data.js");
-const { Room, Rent, Client, Type } = require("../db.js");
+const { Room, Rent, Client, Type, Countrie } = require("../db.js");
 
 const loadInfoHostel = async (req, res) => {
   //Cargar Clientes
@@ -8,9 +8,10 @@ const loadInfoHostel = async (req, res) => {
     let infoDbRent = await Rent.findAll();
     let infoDbRoom = await Room.findAll();
     let infoDbType = await Type.findAll();
+    let infoDbCountrie = await Countrie.findAll();
     
     
-    if (!infoDB.length || !infoDbRent.length || !infoDbRoom.length ||!infoDbType.length) {
+    if (!infoDB.length || !infoDbRent.length || !infoDbRoom.length ||!infoDbType.length || !infoDbCountrie) {
       let type = data.map((e) => e.type).flat();
       let dataType = await Type.bulkCreate(type);
 
@@ -23,6 +24,8 @@ const loadInfoHostel = async (req, res) => {
       let room = data.map((e) => e.room).flat();
       let dataRoom = await Room.bulkCreate(room);
      
+      let countries = data.map((e) => e.country).flat();
+      let dataCountrie = await Countrie.bulkCreate(countries);
     }
     // let idRoom = await Room.findByPk(Math.round(Math.random()*5))
     // let idType = await Type.findByPk(Math.round(Math.random()))

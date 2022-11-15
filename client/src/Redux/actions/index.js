@@ -4,6 +4,7 @@ export const GET_REVIEW = "GET_REVIEW";
 export const GET_CLIENT = "GET_CLIENT";
 export const FILTER_TYPE_ROOM = "FILTER_TYPE_ROOM";
 export const GET_ROOMS = "GET_ROOMS";
+export const GET_ALL_COUNTRIES = "GET_ALL_COUNTRIES"
 //ACTION ROOMS ----------------------------------------------------------->>
 export function getRooms() {
   return async function (dispatch) {
@@ -123,4 +124,17 @@ export function getRoomDetail(id) {
       console.log(error);
     }
   };
+}
+export function getAllCountries(){
+  return async function(dispatch){
+    try {      
+      let {data} = await axios.get("http://localhost:4000/countries")
+      return dispatch({
+        type: GET_ALL_COUNTRIES,
+        payload: data
+      })
+    } catch (error) {
+      console.log(error)
+    }
+  }
 }

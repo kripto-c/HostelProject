@@ -1,11 +1,12 @@
 import React from "react";
+import { useEffect } from "react";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap/dist/js/bootstrap.bundle.min.js';
 import style from './style.module.css'
 import { useState } from "react";
 import { useAuth0 } from '@auth0/auth0-react';
 import { useDispatch, useSelector } from "react-redux";
-import { getCLient, postClient } from "../../Redux/actions";
+import { getCLient, postClient,getAllCountries } from "../../Redux/actions";
 import { BsFillPencilFill } from "react-icons/bs";
 
 export default function ClientEdit() {
@@ -26,6 +27,12 @@ export default function ClientEdit() {
     //     nationality: "",
     //     phoneNumber: "",
     // })
+
+    useEffect(() => {
+        dispatch(getAllCountries());
+    }, [dispatch]);
+    const countries = useSelector(state => state.countries)
+    console.log("Pais: ",info.countrie.country)
 
     function handleChange(e) {
         e.preventDefault()
@@ -92,9 +99,10 @@ export default function ClientEdit() {
 
     async function handleSubmit(e) {
         e.preventDefault()
-        // if (!client.personalID) alert('Falta DNI')
-        // if (!validateDni(client.personalID)) alert('Esta mal cargado el numero')
-        
+        if (!personalId){
+            if (!client.personalID) alert('Falta DNI')
+            if (!validateDni(client.personalID)) alert('Esta mal cargado el numero')
+        }        
         // alert('ok')
 
         const token = await getAccessTokenSilently();
@@ -104,14 +112,17 @@ export default function ClientEdit() {
             }
         }
 
-      await dispatch(postClient(info.email, client, authorization))
-    //  setClient({})
-     await  dispatch(getCLient(info.email))
+        await dispatch(postClient(info.email, client, authorization))
+        //setClient({})
+        await dispatch(getCLient(info.email))
         setName(true);
         setLastname(true);
         setPersonalid(true)
         setPhone(true)
         setProvin(true)
+
+        alert('Tus datos han sido modificados.')
+        //history.push('/home')
     }
 
     return (
@@ -122,7 +133,7 @@ export default function ClientEdit() {
                     <div className="input-group">
                         <input type="text" className="form-control"
                             name='name' id="validationCustom01" disabled={namec}
-                            value={namec ? info.name : client.name}
+                            value={info.name}
                             onKeyDown ={e=> notNumbers(e)}
                             onChange={e => handleChange(e)} required />
                         <button key={'btnNamec'} name='sasa' className="btn btn-outline-danger" type='button'
@@ -142,7 +153,7 @@ export default function ClientEdit() {
                     <div className="input-group">
                         <input type="text" className="form-control" id="validationCustom02"
                             name='lastname' disabled={lastname}
-                            value={lastname ? info.lastname : client.lastname}
+                            value={info.lastname}
                             onKeyDown ={e=> notNumbers(e)}
                             onChange={e => handleChange(e)} required />
                         <button key={'btnLastName'} className="btn btn-outline-danger" type='button'
@@ -152,30 +163,32 @@ export default function ClientEdit() {
                         ¡Se ve bien!
                     </div>
                 </div>
+                
+                <div className="col-md-12">
+                <label htmlFor="validationCustom03" className="form-label">Pais</label>
+                    <select className="form-select" aria-label="Default select example"
+                    name='countrieId'
+                    onChange={e=>handleChange(e)}>
+                    {/* selected */}                    
+                    {countries?.map(coun => (
+                            coun.country === info.countrie.country ?
+                            <option key ={coun.id} value = {coun.id} selected> {coun.country} </option>
+                            :
+                            <option key ={coun.id} value = {coun.id}> {coun.country} </option>)
+                        )
+                    }
+                    </select>
+                </div>
+
                 <div className="col-md-12">
                     <label htmlFor="validationCustom03" className="form-label">Pais</label>
                     <div className="input-group">
-                   {
-                      provin ?  <input type="text" className="form-control" id="validationCustom03" 
+                    <input type="text" className="form-control" id="validationCustom03" 
                         name="nationality" disabled={provin} 
                         onChange={e => handleChange(e)} 
-                        value={info.nationality} required />
-                       :
-                       <>
-                       <select className="form-select" id="inputGroupSelect04" aria-label="Example select with button addon" name="nationality" onChange={e => handleChange(e)} required>
-                           <option>Selecciona tu pais</option>
-                           <option value="Canada">Canada</option>
-                           <option value="Colombia">Colombia</option>
-                           <option value="Brasil">Brasil</option>
-                           <option value="argentina">argentina</option>
-                           <option value="venezuela">venezuela</option>
-                          </select>
-                       </>
-                   }
-
-                   <button key={'btnNamesc'} className="btn btn-outline-danger" type='button' 
-                   onClick={e => handleProvin(e)}><BsFillPencilFill /></button>                       
-
+                        value={info.nationality } required />
+                        <button key={'btnNamesc'} className="btn btn-outline-danger" type='button' 
+                        onClick={e => handleProvin(e)}><BsFillPencilFill /></button>
                     </div>
                     <div className="invalid-feedback">
                         Por favor indique su Provincia
@@ -201,7 +214,7 @@ export default function ClientEdit() {
                     <div className="input-group">
                         <input type={phone ? "text" : "number"} className="form-control" id="validationCustom05" 
                         name='phoneNumber' disabled={phone} 
-                        value={phone ?  info.phoneNumber : client.phoneNumber} 
+                        value={info.phoneNumber } 
                         onChange={e => handleChange(e)} required />
                         <button key={'btnNamedsadac'} className="btn btn-outline-danger" type='button' 
                         onClick={e => handlePhone(e)}><BsFillPencilFill /></button>
