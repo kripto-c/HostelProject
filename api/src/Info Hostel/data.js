@@ -62,7 +62,7 @@ module.exports = [
         price: 3500.5,
         observation: "",
         status: false,
-        typeId: 2,
+        typeId: 1,
       },
       {
         beds: 4,
@@ -86,7 +86,7 @@ module.exports = [
         price: 2450.5,
         observation: "",
         status: false,
-        typeId: 2,
+        typeId: 1,
       },
       {
         beds: 1,
@@ -108,7 +108,7 @@ module.exports = [
         price: 6550.5,
         observation: "",
         status: false,
-        typeId: 1,
+        typeId: 2,
       },
     ],
     type: [{ type: "Publico" }, { type: "Privado" }],
