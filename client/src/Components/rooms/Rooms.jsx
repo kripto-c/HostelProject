@@ -32,6 +32,7 @@ export default function Rooms() {
                     bathroom={e.bathroom}
                     id={e.id}
                     type={e.type.type}
+                    price={e.price}
                   />
                 </div>
               );
