@@ -72,7 +72,7 @@ export default function rootReducer(state = initialState, action) {
 
     case FILTER_TYPE_ROOM: {
       let filterRoom = state.allRooms;
-      let roomType = []
+      let roomType = [];
       if (action.payloadOne || action.payloadTwo) {
         if (action.payloadOne && action.payloadTwo) {
           roomType =
