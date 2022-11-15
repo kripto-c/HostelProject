@@ -145,7 +145,7 @@ const authorization  =  {headers:{
 } 
 await dispatch(postClient(client.idAuth, clientInf, authorization))
 setClientInfo({})
-await dispatch(getCLient(client.idAuth))
+await dispatch(getCLient(client.idAuth, token))
 setName(true);
 setLastname(true);
 
