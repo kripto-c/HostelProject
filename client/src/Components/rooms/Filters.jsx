@@ -1,4 +1,4 @@
-import { filterPrice, filterTypeRoom } from "../../Redux/actions";
+import {  filterTypeRoom } from "../../Redux/actions";
 import { useDispatch } from "react-redux";
 import { useState } from "react";
 import style from "./Filters.module.css";
