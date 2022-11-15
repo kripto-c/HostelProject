@@ -1,6 +1,13 @@
 import React from "react"
 import {Link} from "react-router-dom"
-export default function RoomCard({beds, description, image, bathroom, type, price, id}) {
+export default function RoomCard({beds, description, image, bathroom, type, id,price}) {
+    let typeRoom = ""
+
+    if(type === "Publico") {
+        typeRoom = "compartida"
+    } else if(type === "Privado") {
+        typeRoom = "privada"
+    }
 
     return (
         <div className="container bg-dark my-3" >

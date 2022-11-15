@@ -9,11 +9,13 @@ import Filters from "./Filters";
 export default function Rooms() {
   const allRooms = useSelector((state) => state.rooms);
   const dispatch = useDispatch();
-
+  
   useEffect(() => {
     dispatch(getRooms());
-  }, [dispatch]);
-
+    
+  }, []);
+  console.log("VIENDO HABITACIONES!!!!!",allRooms)
+  
   return (
     <div>
       <Filters getRooms={getRooms} />
