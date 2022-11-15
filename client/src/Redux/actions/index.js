@@ -5,7 +5,7 @@ export const GET_CLIENT = "GET_CLIENT";
 export const FILTER_TYPE_ROOM = "FILTER_TYPE_ROOM";
 export const GET_ROOMS = "GET_ROOMS";
 export const GET_ALL_COUNTRIES = "GET_ALL_COUNTRIES"
-export const FILTER_PRICE = "FILTER_PRICE"
+
 //ACTION ROOMS ----------------------------------------------------------->>
 export function getRooms() {
   return async function (dispatch) {
