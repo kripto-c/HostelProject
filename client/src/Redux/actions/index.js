@@ -69,11 +69,14 @@ export function postReview(payload) {
 //ACTIONS FILTROS---------------------------------------------------------------->>
 
 //ACTION GET INFO CLIENT
-export function getCLient(email) {
+export function getCLient(id, token) {
   try {
     return async function (dispatch) {
-      const info = await axios.get(`http://localhost:4000/login/client?email=${email}`);
-      console.log(info.data)
+      const info = await axios.get(`http://localhost:4000/login/client?id=${id}`, {
+        headers: {
+          authorization: `Bearer ${token}`
+      }
+      });
       dispatch({
         type: GET_CLIENT,
         payload: info.data,
@@ -84,11 +87,11 @@ export function getCLient(email) {
     console.log(e);
   }
 }
-export function postClient(email, body, headers) {
+export function postClient(id, body, headers) {
   return async () => {
     try {
       const res = await axios.post(
-        `http://localhost:4000/login/userEdit?email=${email}`,
+        `http://localhost:4000/login/userEdit?id=${id}`,
         body,
         headers
       );

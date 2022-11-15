@@ -1,10 +1,10 @@
 const { Client } = require('../../db')
 
 async function getClient(req, res) {     
-         const { email } = req.query; 
+         const { id } = req.query; 
     try {
         const data = await Client.findOne({
-            where:{ email: email }
+            where:{ idAuth: id }
         })
          if (data.length == 0) return res.send('empty db')
          console.log(data)

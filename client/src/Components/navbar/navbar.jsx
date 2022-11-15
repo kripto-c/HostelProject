@@ -32,9 +32,8 @@ function Navbars() {
           authorization: `Bearer ${token}`,
         },
       });
-      console.log(info.data);
-      await dispatch(getCLient(info.data.email))
-      localStorage.setItem("email", info.data.email);
+       await getInfo(info.data.id)
+      localStorage.setItem("IDUser", info.data.id);
     } catch (error) {
       console.log(error);
     }
@@ -49,21 +48,24 @@ function Navbars() {
       return bar.style.height='0'
     };
   }
+
+async function getInfo(id) {
+    const token = await getAccessTokenSilently()
+    dispatch(getCLient(id, token))
+}
+
+
   useEffect(()=>{
-    let email = localStorage.getItem("email");
-    if(email) {
-      dispatch(getCLient(email));
+    let idUser = localStorage.getItem("IDUser");
+    if(idUser) {
+     getInfo(idUser)
       setConfirmLog(true);
     };
     if(client.length > 0 && isAuthenticated ){
-      dispatch(getCLient(client.email));
+      getInfo(client.idAuth)
     }
-    console.log(email);
-    console.log("client", client.length);
-    console.log("authenticated", isAuthenticated);
 },[dispatch])
-  console.log(user);
-  console.log(isAuthenticated)
+
   return (
     <>
       <Navbar variant="dark" bg="dark">

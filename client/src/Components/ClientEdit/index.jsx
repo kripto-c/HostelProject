@@ -104,9 +104,8 @@ export default function ClientEdit() {
             }
         }
 
-      await dispatch(postClient(info.email, client, authorization))
-    //  setClient({})
-     await  dispatch(getCLient(info.email))
+      await dispatch(postClient(info.idAuth, client, authorization))
+     await  dispatch(getCLient(info.idAuth, token))
         setName(true);
         setLastname(true);
         setPersonalid(true)
