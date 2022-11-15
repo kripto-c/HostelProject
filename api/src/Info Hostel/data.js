@@ -61,7 +61,7 @@ module.exports = [
 
         price: 3500.5,
         observation: "",
-        status: false,
+        status: true,
         typeId: 1,
       },
       {
@@ -107,7 +107,7 @@ module.exports = [
         bathroom: false,
         price: 6550.5,
         observation: "",
-        status: false,
+        status: true,
         typeId: 2,
       },
     ],

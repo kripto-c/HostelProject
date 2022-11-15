@@ -47,7 +47,8 @@ route.get('/setClient', async (req, res)=>{
          if ( email && accesToken) {
           const clients = await Client.findAll({});
           
-          if (clients.find(e=> e.email == email )) return res.json({message:"ya existe un usuario registrado con este email", email});
+          if (clients.find(e=> e.email == email )) 
+          return res.json({message:"ya existe un usuario registrado con este email", email});
 
           let newRegister = await Client.create({
              name:given_name,

@@ -32,6 +32,7 @@ export default function ClientEdit() {
         dispatch(getAllCountries());
     }, [dispatch]);
     const countries = useSelector(state => state.countries)
+    console.log("Pais: ",info.countrie.country)
 
     function handleChange(e) {
         e.preventDefault()
@@ -98,7 +99,7 @@ export default function ClientEdit() {
 
     async function handleSubmit(e) {
         e.preventDefault()
-        if (personalId){
+        if (!personalId){
             if (!client.personalID) alert('Falta DNI')
             if (!validateDni(client.personalID)) alert('Esta mal cargado el numero')
         }        
@@ -111,14 +112,17 @@ export default function ClientEdit() {
             }
         }
 
-      await dispatch(postClient(info.email, client, authorization))
-    //  setClient({})
-     await  dispatch(getCLient(info.email))
+        await dispatch(postClient(info.email, client, authorization))
+        //setClient({})
+        await dispatch(getCLient(info.email))
         setName(true);
         setLastname(true);
         setPersonalid(true)
         setPhone(true)
         setProvin(true)
+
+        alert('Tus datos han sido modificados.')
+        //history.push('/home')
     }
     // function handleNationality(e) {
     //     setInput({
