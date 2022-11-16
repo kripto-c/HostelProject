@@ -12,10 +12,16 @@ route.get('/client', getClient)
 
 
 route.post('/userEdit', async(req, res)=>{    
-        const {name, lastname, personalID, nationality, phoneNumber, observation,countrieId} = req.body;
-        const { email } = req.query;  
-        try {
-          const client = await Client.findOne({where: {email: email}});
+  try {
+          const accesToken = req.headers.authorization.split(' ')[1];
+          const responds = await axios.get('https://dev-o7k6sbvjre41wvzb.us.auth0.com/userinfo', {
+             headers:{authorization:`Bearer ${accesToken}`}
+           })
+           const userinfo = responds.data;
+           const { sub } = userinfo;
+          const {name, lastname, personalID, nationality, phoneNumber, observation,countrieId} = req.body;
+          const id = sub.split('|')[1];
+          const client = await Client.findOne({where: {idAuth: id}});
            await client.update({
               name : name,
               lastname,
@@ -35,27 +41,26 @@ route.post('/userEdit', async(req, res)=>{
 
 route.get('/setClient', async (req, res)=>{
   try {
-     const accesToken = req.headers.authorization.split(' ')[1];
-     const responds = await axios.get('https://dev-o7k6sbvjre41wvzb.us.auth0.com/userinfo', {
-        headers:{
-          authorization:`Bearer ${accesToken}`
-        }
+    const accesToken = req.headers.authorization.split(' ')[1];
+    const responds = await axios.get('https://dev-o7k6sbvjre41wvzb.us.auth0.com/userinfo', {
+       headers:{authorization:`Bearer ${accesToken}`}
      })
      const userinfo = responds.data;
-     console.log(userinfo);
-        const {email, given_name, family_name } = userinfo;
-         if ( email && accesToken) {
+     console.log(responds.data);
+        const { email, given_name, family_name, sub } = userinfo;
+        const id = sub.split('|')[1];
+         if ( email && id ) {
           const clients = await Client.findAll({});
-          
-          if (clients.find(e=> e.email == email )) 
-          return res.json({message:"ya existe un usuario registrado con este email", email});
-
+          if (clients.find(e=> e.idAuth == id && e.email == email)) return res.json({message:"logeado correctamente"}
+          );
+ 
           let newRegister = await Client.create({
              name:given_name,
              lastname:family_name,
              email,
-          })
-          res.json({message:"usuario registrado correctamente ", email});
+             idAuth:id 
+          }) 
+          res.json({message:"usuario registrado correctamente "});
          }else res.send('faltan datos requeridos')
         } catch (error) {
           res.json({error: error + ""})

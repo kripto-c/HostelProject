@@ -11,6 +11,7 @@ import { BsFillPencilFill } from "react-icons/bs";
 
 export default function ClientEdit() {
     const info = useSelector(state => state.client);
+    const countries = useSelector(state => state.countries)
     const dispatch = useDispatch();
     const { getAccessTokenSilently } = useAuth0();
     const [namec, setName] = useState(true)
@@ -31,7 +32,6 @@ export default function ClientEdit() {
     useEffect(() => {
         dispatch(getAllCountries());
     }, [dispatch]);
-    const countries = useSelector(state => state.countries)
     console.log("Pais: ",info.countrie.country)
 
     function handleChange(e) {
@@ -112,14 +112,13 @@ export default function ClientEdit() {
             }
         }
 
-        await dispatch(postClient(info.email, client, authorization))
-        //setClient({})
-        await dispatch(getCLient(info.email))
+        await dispatch(postClient(client, authorization))
+        await  dispatch(getCLient(token))
         setName(true);
         setLastname(true);
-        setPersonalid(true)
-        setPhone(true)
-        setProvin(true)
+        setPersonalid(true);
+        setPhone(true);
+        setProvin(true);
 
         alert('Tus datos han sido modificados.')
         //history.push('/home')
