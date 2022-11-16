@@ -6,7 +6,6 @@ import Modal from 'react-bootstrap/Modal';
 import { getCLient, postClient } from "../../Redux/actions";
 import { BsFillPencilFill } from "react-icons/bs";
 /////////////////
-import './RoomDetail.css';
 import axios from "axios";
 import { useParams } from 'react-router-dom';
 import { useDispatch, useSelector } from "react-redux";
