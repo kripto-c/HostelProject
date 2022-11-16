@@ -143,12 +143,11 @@ const authorization  =  {headers:{
    authorization:`Bearer ${token}`
 }
 } 
-await dispatch(postClient(client.email, clientInf, authorization))
+await dispatch(postClient(clientInf, authorization))
 setClientInfo({})
-await dispatch(getCLient(client.email))
+await dispatch(getCLient(token))
 setName(true);
 setLastname(true);
-
 } 
 
 function active(e) {
