@@ -72,7 +72,7 @@ export default function rootReducer(state = initialState, action) {
 
     case FILTER_TYPE_ROOM: {
       let filterRoom = state.allRooms;
-      let roomType = []
+      let roomType
       //FILTRO POR TIPO DE HABITACION Y POR TIPO DE BAÑO
       if (action.payloadOne || action.payloadTwo) {
         if (action.payloadOne && action.payloadTwo) {
