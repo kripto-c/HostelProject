@@ -8,6 +8,7 @@ const rooms = require("../routes/rooms/index.js")
 const roomdetail = require("./roomdetail/roomdetail")
 const payment = require("./payments/payment");
 const feedback = require("./payments/feedback")
+const getCountries = require("./countries")
 
 const router = Router();
 
@@ -27,7 +28,7 @@ let jwtCheck = jwt({
   audience: "route-protected",
   issuer: "https://dev-o7k6sbvjre41wvzb.us.auth0.com/",
   algorithms: ["RS256"],
-}).unless({ path: ["/login", "/login/client", "/getroomdetail", "/info", "/rooms", '/reviews', "/feedback"] });
+}).unless({ path: ["/getroomdetail", "/info", "/rooms", '/reviews','/countries',"/feedback"] });
 
 router.use(jwtCheck);
 
@@ -40,5 +41,6 @@ router.use(`/getroomdetail`, roomdetail);//------Dejo esto aca porque mas abajo 
 router.use("/info", info)
 router.use("/reviews",reviews)
 router.use("/rooms", rooms)
+router.use("/countries", getCountries)
 
 module.exports = router;

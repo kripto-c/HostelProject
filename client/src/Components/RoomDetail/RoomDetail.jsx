@@ -91,26 +91,26 @@
 
 //         if(!client.name || !client.lastname || !client.nationality || !client.phoneNumber || !client.email) return setShow(true);
 
-//             const body = {}
-//             body.items = [{
-//                 title: room.description,
-//                 quantity: camas,
-//                 unit_price: room.price,
-//                 check_in: checkIn,
-//                 check_out: checkOut,
-//                 room_id : room.id,
-//                 client_id: client.id && client.id
-//             }]
-//             body.user = {
-//                 name: client.name,
-//                 surname: client.lastname,
-//                 email: client.email,
-//                 identification: {
-//                     type: "DNI",
-//                     number: "12345678"
-//                 }
-//             };
-//             const token = await getAccessTokenSilently();
+            const body = {}
+            body.items = [{
+                title: room.description,
+                quantity: camas,
+                unit_price: room.price,
+                check_in: checkIn,
+                check_out: checkOut,
+                room_id : room.id,
+                client_id: client.id && client.id
+            }]
+            body.user = {
+                name: client.name,
+                surname: client.lastname,
+                email: client.email,
+                identification: {
+                    type: "DNI",
+                    number: client.personalID
+                }
+            };
+            const token = await getAccessTokenSilently();
     
 //             const result = await axios.post("http://localhost:4000/payment", body,
 //                 {headers:{
@@ -139,20 +139,19 @@
 // //  setLastname(!lastname);
 // // }
 
-// // async function handleSubmit(e) {
-// // e.preventDefault()
-// // const token = await getAccessTokenSilently();
-// // const authorization  =  {headers:{
-// //    authorization:`Bearer ${token}`
-// // }
-// // } 
-// // await dispatch(postClient(client.email, clientInf, authorization))
-// // setClientInfo({})
-// // await dispatch(getCLient(client.email))
-// // setName(true);
-// // setLastname(true);
-
-// // } 
+async function handleSubmit(e) {
+e.preventDefault()
+const token = await getAccessTokenSilently();
+const authorization  =  {headers:{
+   authorization:`Bearer ${token}`
+}
+} 
+await dispatch(postClient(clientInf, authorization))
+setClientInfo({})
+await dispatch(getCLient(token))
+setName(true);
+setLastname(true);
+} 
 
 // // function active(e) {
 // // e.preventDefault()

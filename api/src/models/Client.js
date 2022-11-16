@@ -28,6 +28,9 @@ module.exports = (sequelize) => {
     email: {
         type: DataTypes.STRING,
     },
+    idAuth:{
+       type: DataTypes.TEXT
+    },
     observation: {
         type: DataTypes.STRING,
         allowNull: true,

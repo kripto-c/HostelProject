@@ -3,7 +3,8 @@ import {
   POST_REVIEW,
   GET_CLIENT,
   FILTER_TYPE_ROOM,
-  SET_CLIENT,
+  GET_ALL_COUNTRIES
+  
 } from "../actions/index.js";
 
 const initialState = {
@@ -12,10 +13,16 @@ const initialState = {
   reviews: [],
   client: [],
   roomdetail: [],
+  countries:[]
 };
 
 export default function rootReducer(state = initialState, action) {
   switch (action.type) {
+    case GET_ALL_COUNTRIES:
+      return{
+        ...state,
+        countries:action.payload
+      }
     case "GET_ROOMS":
       return {
         ...state,
@@ -33,37 +40,67 @@ export default function rootReducer(state = initialState, action) {
         reviews: action.payload,
       };
     }
+   
     case FILTER_TYPE_ROOM: {
       let filterRoom = state.allRooms;
       let roomType;
-      if (action.payloadOne && action.payloadTwo) {
-        roomType =
-          action.payloadOne === "roomPrivate"
-            ? filterRoom.filter((e) => e.type.type === "Privado")
-            : filterRoom.filter((e) => e.type.type === "Publico");
-
-        roomType =
-          action.payloadTwo === "batchroomPrivate"
-            ? roomType.filter((e) => e.bathroom === true)
-            : roomType.filter((e) => e.bathroom === false);
-      } else {
-        if (action.payloadTwo) {
-          roomType =
-            action.payloadTwo === "batchroomPrivate"
-              ? filterRoom.filter((e) => e.bathroom === true)
-              : filterRoom.filter((e) => e.bathroom === false);
-        } else {
+      if (action.payloadOne || action.payloadTwo) {
+        if (action.payloadOne && action.payloadTwo) {
           roomType =
             action.payloadOne === "roomPrivate"
               ? filterRoom.filter((e) => e.type.type === "Privado")
               : filterRoom.filter((e) => e.type.type === "Publico");
-        }
-      }
 
-      return {
-        ...state,
-        rooms: roomType,
-      };
+          roomType =
+            action.payloadTwo === "batchroomPrivate"
+              ? roomType.filter((e) => e.bathroom === true)
+              : roomType.filter((e) => e.bathroom === false);
+        } else {
+          if (action.payloadTwo) {
+            roomType =
+              action.payloadTwo === "batchroomPrivate"
+                ? filterRoom.filter((e) => e.bathroom === true)
+                : filterRoom.filter((e) => e.bathroom === false);
+          } else {
+            roomType =
+              action.payloadOne === "roomPrivate"
+                ? filterRoom.filter((e) => e.type.type === "Privado")
+                : filterRoom.filter((e) => e.type.type === "Publico");
+          }
+        }
+
+        if(action.payloadThree){
+          if (action.payloadThree === "asc") {
+            roomType = roomType.sort((a, b) => {
+              if (a.price > b.price) {
+                return 1;
+              }
+              if (a.price < b.price) {
+                return -1;
+              }
+              return 0;
+            });
+          } else {
+            
+            roomType = roomType.sort((a, b) => {
+              if (a.price > b.price) {
+                return -1;
+              }
+              if (a.price < b.price) {
+                return 1;
+              }
+              return 0;
+            });
+          }
+        }
+
+        return {
+          ...state,
+          rooms: roomType,
+        };
+      } else {
+        return { ...state };
+      }
     }
 
     case GET_CLIENT: {

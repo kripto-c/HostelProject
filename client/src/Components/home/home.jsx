@@ -29,7 +29,7 @@ const Home = () => {
         </Carousel.Item>
       </Carousel>
       </div>
-      <h1>Bienvendios al Hostel Dinamita</h1>
+      <h1>Bienvenidos al Hostel Dinamita</h1>
       <div className="info">
         <div className="collage">
           <img
