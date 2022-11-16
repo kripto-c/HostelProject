@@ -33,6 +33,7 @@ function Navbars() {
         },
       });
       console.log(info.data);
+      console.log(token);
        getInfo()
       localStorage.setItem("IDUser", info.data.id);
     } catch (error) {
