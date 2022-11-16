@@ -9,6 +9,7 @@ import { Button } from "react-bootstrap";
 import { IoIosStar } from "react-icons/io";
 import style from "../../Styles/ReviewHostel.module.css";
 import { postReview } from "../../Redux/actions/index.js";
+const Swal = require('sweetalert2')
 
 export default function RatingBootstrap() {
   const client = useSelector((state) => state.client)
@@ -34,16 +35,23 @@ export default function RatingBootstrap() {
     e.preventDefault();
     if (input.rating === 0) {
       return input.rating === 0
-        ? alert(
-            "Por favor seleccione un numero de estrellas de acuerdo a su experencia en Project Hostel!"
-          )
+        ? 
+          Swal.fire({
+            icon: 'warning',
+            title: 'Oops...',
+            text: 'Por favor, seleccione un número de estrellas de acuerdo a su experencia en Project Hostel.',
+          })
         : null
     } else {
       dispatch(postReview(input));
       setInput({ usuario: client.name, rating: 0, description: "" });
       setCurrent(0);
       setRating([1, 2, 3, 4, 5]);
-      alert("Gracias por darnos su opinion. Que tenga un buen dia!");
+      Swal.fire({
+        icon: 'success',
+        title: 'Success',
+        text: 'Gracias por darnos su opinion. ¡Que tenga un buen dia!',
+      })
   
     }
   }
