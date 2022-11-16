@@ -32,7 +32,8 @@ function Navbars() {
           authorization: `Bearer ${token}`,
         },
       });
-       await getInfo(info.data.id)
+      console.log(info.data);
+       getInfo()
       localStorage.setItem("IDUser", info.data.id);
     } catch (error) {
       console.log(error);
@@ -49,20 +50,20 @@ function Navbars() {
     };
   }
 
-async function getInfo(id) {
+async function getInfo() {
     const token = await getAccessTokenSilently()
-    dispatch(getCLient(id, token))
+    dispatch(getCLient(token))
 }
 
 
   useEffect(()=>{
     let idUser = localStorage.getItem("IDUser");
     if(idUser) {
-     getInfo(idUser)
+     getInfo()
       setConfirmLog(true);
     };
     if(client.length > 0 && isAuthenticated ){
-      getInfo(client.idAuth)
+       getInfo()
     }
 },[dispatch])
 
