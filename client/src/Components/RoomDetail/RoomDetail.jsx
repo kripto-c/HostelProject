@@ -143,9 +143,9 @@ const authorization  =  {headers:{
    authorization:`Bearer ${token}`
 }
 } 
-await dispatch(postClient(client.email, clientInf, authorization))
+await dispatch(postClient(client.idAuth, clientInf, authorization))
 setClientInfo({})
-await dispatch(getCLient(client.email))
+await dispatch(getCLient(client.idAuth, token))
 setName(true);
 setLastname(true);
 
