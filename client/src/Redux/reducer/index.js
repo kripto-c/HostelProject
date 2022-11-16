@@ -3,8 +3,7 @@ import {
   POST_REVIEW,
   GET_CLIENT,
   FILTER_TYPE_ROOM,
-  GET_ALL_COUNTRIES
-  
+  GET_ALL_COUNTRIES,
 } from "../actions/index.js";
 
 const initialState = {
@@ -13,16 +12,16 @@ const initialState = {
   reviews: [],
   client: [],
   roomdetail: [],
-  countries:[]
+  countries: [],
 };
 
 export default function rootReducer(state = initialState, action) {
   switch (action.type) {
     case GET_ALL_COUNTRIES:
-      return{
+      return {
         ...state,
-        countries:action.payload
-      }
+        countries: action.payload,
+      };
     case "GET_ROOMS":
       return {
         ...state,
@@ -40,7 +39,7 @@ export default function rootReducer(state = initialState, action) {
         reviews: action.payload,
       };
     }
-   
+
     case FILTER_TYPE_ROOM: {
       let filterRoom = state.allRooms;
       let roomType;
@@ -69,7 +68,7 @@ export default function rootReducer(state = initialState, action) {
           }
         }
 
-        if(action.payloadThree){
+        if (action.payloadThree) {
           if (action.payloadThree === "asc") {
             roomType = roomType.sort((a, b) => {
               if (a.price > b.price) {
@@ -81,7 +80,6 @@ export default function rootReducer(state = initialState, action) {
               return 0;
             });
           } else {
-            
             roomType = roomType.sort((a, b) => {
               if (a.price > b.price) {
                 return -1;
@@ -115,13 +113,6 @@ export default function rootReducer(state = initialState, action) {
         roomdetail: action.payload,
       };
     }
-    case SET_CLIENT:{
-      return{
-        ...state,
-        client: action.payload
-      }
-    }
-
     default:
       return state;
   }
