@@ -51,7 +51,7 @@ route.get('/setClient', async (req, res)=>{
         const id = sub.split('|')[1];
          if ( email && id ) {
           const clients = await Client.findAll({});
-          if (clients.find(e=> e.idAuth == id && e.email == email)) return res.json({message:"logeado correctamente", id:id}
+          if (clients.find(e=> e.idAuth == id && e.email == email)) return res.json({message:"logeado correctamente"}
           );
  
           let newRegister = await Client.create({
@@ -60,7 +60,7 @@ route.get('/setClient', async (req, res)=>{
              email,
              idAuth:id 
           }) 
-          res.json({message:"usuario registrado correctamente ", id:id});
+          res.json({message:"usuario registrado correctamente "});
          }else res.send('faltan datos requeridos')
         } catch (error) {
           res.json({error: error + ""})
