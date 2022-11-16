@@ -2,6 +2,7 @@ import {  filterTypeRoom } from "../../Redux/actions";
 import { useDispatch } from "react-redux";
 import { useState } from "react";
 import style from "./Filters.module.css";
+const Swal = require('sweetalert2')
 
 export default function Filters({ getRooms }) {
   //Estados -------------------------------------------------->>
@@ -27,7 +28,11 @@ export default function Filters({ getRooms }) {
   function handleSubmitFilter(e) {
     e.preventDefault();
     if (!type && !typeBatchroom && !price) {
-      return alert("No hay filtros a aplicar");
+      Swal.fire({
+        icon: 'error',
+        title: 'Oops...',
+        text: 'No hay filtros a aplicar',
+      })
     }
     // dispatch(filterPrice(price));
     dispatch(filterTypeRoom(type, typeBatchroom,price));
