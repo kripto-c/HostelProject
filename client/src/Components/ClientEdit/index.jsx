@@ -48,6 +48,7 @@ export default function ClientEdit() {
     function validate() {
                 
     }
+    
     function validateDni(campo){
         var regExpDni = /^[\d]{1,3}\.?[\d]{3,3}\.?[\d]{3,3}$/
         if ((campo.match(regExpDni)) && (campo !=='')){

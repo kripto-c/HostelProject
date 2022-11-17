@@ -9,6 +9,7 @@ import FeedBack from "./Components/feedback/Feedback";
 import RoomDetail from "./Components/RoomDetail/RoomDetail";
 import About from "./Components/about/about.jsx";
 import ClientEdit from "./Components/ClientEdit";
+import OwnerCrud from "./Components/OwnerCrud";
 
 
 function App() {
@@ -24,6 +25,7 @@ function App() {
         <Route path="/feedback" element={<FeedBack/>} />
         <Route path="/roomdetail/:id" element={<RoomDetail/>} />
         <Route path="/clientEdit" element={<ClientEdit />} />
+        <Route path="/ownerCrud" element={<OwnerCrud />} />
       </Routes>
     </>
   );

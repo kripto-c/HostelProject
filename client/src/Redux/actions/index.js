@@ -5,6 +5,8 @@ export const GET_CLIENT = "GET_CLIENT";
 export const FILTER_TYPE_ROOM = "FILTER_TYPE_ROOM";
 export const GET_ROOMS = "GET_ROOMS";
 export const GET_ALL_COUNTRIES = "GET_ALL_COUNTRIES"
+export const POST_OWNER = "POST_OWNER"
+export const GET_OWNER = "GET_OWNER"
 //ACTION ROOMS ----------------------------------------------------------->>
 export function getRooms() {
   return async function (dispatch) {
@@ -99,6 +101,26 @@ export function postClient(email, body, headers) {
     }
   };
 }
+export function postOwner(payload) {
+  return async function() {
+      const {data} = await axios.post(`http://localhost:4000/owner/post`, payload);
+      return data
+  };
+}
+export function getOwner(){
+  return async function(dispatch){
+    try {      
+      let {data} = await axios.get("http://localhost:4000/owner/get")
+      return dispatch({
+        type: GET_OWNER,
+        payload: data
+      })
+    } catch (error) {
+      console.log(error)
+    }
+  }
+}
+
 // export function setClient(payload){
 //   try{
 //    return async function(){
