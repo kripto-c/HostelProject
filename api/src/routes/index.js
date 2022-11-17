@@ -12,9 +12,9 @@ const getCountries = require("./countries")
 
 const router = Router();
 
-/////////////
-// const jwtAuthz = require("express-jwt-authz");
-// const {ItemPermission} = require("../permisos/items-permisos");
+/////////////permissos
+const checkPermissions  = require("../permisos/permisosCheck");
+const itemPermissos = require('../permisos/permisos')
 //----------------------------------------------------------------------------------
 // auth0 backend
 const { expressjwt: jwt } = require("express-jwt");
@@ -37,18 +37,6 @@ router.use(jwtCheck);
 
 router.use(express.json());
 //RUTAS----------------------------------->>
-// var options = {
-//   customScopeKey: "permissions",
-//   checkAllScopes: true,
-//   failWithError: true
-// }; 
- // This is necessary to support the direct-user permissions
-// const checkScopes = jwtAuthz([ 'modifict:hostellWeb' ], options);
-// console.log(checkScopes);
-
-// router.get('/',jwtCheck, checkScopes,(req, res)=>{
-//   res.send('hello from index route')
-// })
 
 
 

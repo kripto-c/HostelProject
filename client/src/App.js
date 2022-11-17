@@ -9,7 +9,7 @@ import FeedBack from "./Components/feedback/Feedback";
 import RoomDetail from "./Components/RoomDetail/RoomDetail";
 import About from "./Components/about/about.jsx";
 import ClientEdit from "./Components/ClientEdit";
-// import Login from './Components/login/Login'
+import Login from './Components/login/Login'
 
 function App() {
   return (
@@ -24,7 +24,7 @@ function App() {
         <Route path="/feedback" element={<FeedBack/>} />
         <Route path="/roomdetail/:id" element={<RoomDetail/>} />
         <Route path="/clientEdit" element={<ClientEdit />} />
-        {/* <Route path="/prueba"  element={<Login />}/> */}
+        <Route path="/prueba"  element={<Login />}/>
       </Routes>
     </>
   );

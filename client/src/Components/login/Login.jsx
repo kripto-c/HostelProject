@@ -12,7 +12,8 @@ export default function Login() {
 
 async function callProtected() {
    // axios.get('http://localhost:4000/protected').then(responds => console.log(responds.data)).catch(e=> console.log(e))
-  try {
+   try {
+
    const token = await getAccessTokenSilently();
    const responds = await axios.get('http://localhost:4000/', {
       headers:{
@@ -24,6 +25,11 @@ async function callProtected() {
     console.log(error);
   }
 }
+
+
+
+
+
 
 async function getProfile() {
     try {
