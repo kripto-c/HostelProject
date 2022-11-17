@@ -135,7 +135,7 @@ export default function rootReducer(state = initialState, action) {
         rooms: [...roomType],
       };
     }
-        
+    
 
     case GET_CLIENT: {
       return {

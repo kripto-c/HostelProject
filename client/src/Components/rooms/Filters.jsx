@@ -8,7 +8,8 @@ const Swal = require('sweetalert2')
 
 export default function Filters({ getRooms, setData }) {
   //Estados -------------------------------------------------->>
-  const dispatch = useDispatch();
+  const dispatch = useDispatch(); 
+  //Estados locales donde se guardan los value de los select de los filtros!!  (Que despues se hace dispatch en el momento de filtrar) ------------->>
   const [typeBatchroom, setTypeBatchroom] = useState("");
   const [type, setType] = useState("");
   const [price, setPrice] = useState("");
