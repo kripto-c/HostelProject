@@ -27,13 +27,13 @@ function Navbars() {
   async function setClient() {
     try {
       const token = await getAccessTokenSilently();
+      console.log(token);
       const info = await axios.get("http://localhost:4000/login/setClient", {
         headers: {
           authorization: `Bearer ${token}`,
         },
       });
       console.log(info.data);
-      console.log(token);
        getInfo()
       localStorage.setItem("IDUser", info.data.id);
     } catch (error) {
