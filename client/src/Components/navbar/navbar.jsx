@@ -90,7 +90,7 @@ async function getInfo() {
               </div>
             </div>
             <Nav className="nav">
-              <Link className="linkComponent" to="/">Home</Link>
+              <Link className="linkComponent" to="/ownerCrud">Tablero</Link>
               <Link className="linkComponent" to="/rooms">Habitaciones</Link>
               <Link className="linkComponent" to="/contact">Contactanos</Link>
               <Link className="linkComponent" to="/about">Acerca de</Link>
