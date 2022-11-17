@@ -23,12 +23,28 @@ export default function rootReducer(state = initialState, action) {
         ...state,
         countries:action.payload
       }
-    case "GET_ROOMS":
-      return {
-        ...state,
-        rooms: action.payload,
-        allRooms: action.payload,
-      };
+      case "GET_ROOMS": {
+        if (!localStorage.getItem("filtros")) {
+          return {
+            ...state,
+            rooms: action.payload,
+            allRooms: action.payload,
+          };
+        }
+        if (localStorage.getItem("filtros")) {
+          return {
+            ...state,
+            rooms: JSON.parse(localStorage.getItem("filtros")),
+          };
+        } else {
+          return {
+            ...state,
+            rooms: action.payload,
+            allRooms: action.payload,
+          };
+        }
+      }
+
     case POST_REVIEW: {
       return {
         ...state,
@@ -67,8 +83,14 @@ export default function rootReducer(state = initialState, action) {
                 ? filterRoom.filter((e) => e.type.type === "Privado")
                 : filterRoom.filter((e) => e.type.type === "Publico");
           }
-        }
+         }} else {
+            if (!action.payloadOne && !action.payloadTwo && action.payloadThree) {
+              roomType = state.rooms;
+            }
+          }
+        
 
+        //SI ME LLEGA PAYLOAD y no me llegan type y typbatchroom PARA ORDENAR POR PRECIO. SE LO APLICO A LOS FILTROS ANTERIORES
         if(action.payloadThree){
           if (action.payloadThree === "asc") {
             roomType = roomType.sort((a, b) => {
@@ -93,15 +115,15 @@ export default function rootReducer(state = initialState, action) {
             });
           }
         }
+          //GUARDO ESTADO REDUX EN LOCALSTORAGE
 
-        return {
-          ...state,
-          rooms: roomType,
-        };
-      } else {
-        return { ...state };
-      }
+      localStorage.setItem("filtros", JSON.stringify(roomType))
+      return {
+        ...state,
+        rooms: [...roomType],
+      };
     }
+        
 
     case GET_CLIENT: {
       return {
