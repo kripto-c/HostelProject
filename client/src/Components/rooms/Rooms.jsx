@@ -15,6 +15,13 @@ export default function Rooms() {
     
   }, []);
   console.log("VIENDO HABITACIONES!!!!!",allRooms)
+
+/*   function a() {
+    const b = [] 
+    b.push(allRooms.map(e =>e.beds))
+    console.log(b)
+  }
+  a() */
   
   return (
     <div>

@@ -1,8 +1,11 @@
+import { useSelector } from "react-redux";
 import {  filterTypeRoom } from "../../Redux/actions";
 import { useDispatch } from "react-redux";
 import { useState } from "react";
 import style from "./Filters.module.css";
 const Swal = require('sweetalert2')
+
+
 
 export default function Filters({ getRooms }) {
   //Estados -------------------------------------------------->>
@@ -10,6 +13,23 @@ export default function Filters({ getRooms }) {
   const [typeBatchroom, setTypeBatchroom] = useState("");
   const [type, setType] = useState("");
   const [price, setPrice] = useState("");
+  const allRooms = useSelector((state) => state.rooms);
+  const listOfBeds = []
+  const a = []
+
+  function getBeds() {
+    listOfBeds.push(allRooms.map(e =>e.beds))
+    let sumWithInitial = listOfBeds.reduce(
+      function(a, b)  {return a + b;}
+    );
+    sumWithInitial = sumWithInitial.reduce(
+      function(a, b)  {return a + b;}, 0
+    );
+    a.push(sumWithInitial)
+   
+  }
+  getBeds()
+
   function roomTypeHandler(e) {
     e.preventDefault();
     if (e.target.name === "filterRoomType") {
@@ -34,6 +54,12 @@ export default function Filters({ getRooms }) {
         text: 'No hay filtros a aplicar',
       })
     }
+    a[0] === 0 ? 
+      Swal.fire({
+        icon: 'error',
+        title: 'Oops...',
+        text: 'No hay camas disponibles',
+      }) :
     // dispatch(filterPrice(price));
     dispatch(filterTypeRoom(type, typeBatchroom,price));
   }
@@ -92,7 +118,7 @@ export default function Filters({ getRooms }) {
             className="form-select"
           >
             <option value="Todo" hidden>
-              Precio
+              Ordenar por precio
             </option>
             <option value="asc">Asc</option>
             <option value="desc">Desc</option>
