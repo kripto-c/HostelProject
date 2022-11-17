@@ -24,7 +24,6 @@ function App() {
         <Route path="/feedback" element={<FeedBack/>} />
         <Route path="/roomdetail/:id" element={<RoomDetail/>} />
         <Route path="/clientEdit" element={<ClientEdit />} />
-        <Route path="/prueba"  element={<Login />}/>
       </Routes>
     </>
   );
