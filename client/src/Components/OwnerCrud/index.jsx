@@ -21,7 +21,6 @@ export default function OwnerCrud() {
   }
   useEffect(() => {
       dispatch(getOwner());
-      // console.log("Info: ",info)
   }, [dispatch]);
 
   const handleSubmit = (event) => {
@@ -50,7 +49,7 @@ export default function OwnerCrud() {
               type="text"
               placeholder="Nombre"
               onChange={e=> handleChange(e)}
-              value={info?.name}
+              defaultValue={info?.name}
             />
             <Form.Control.Feedback>Genial!</Form.Control.Feedback>
             <Form.Control.Feedback type="invalid">Por favor coloque su nombre.</Form.Control.Feedback>
@@ -63,7 +62,7 @@ export default function OwnerCrud() {
               type="text"
               placeholder="Apellido"
               onChange={e=> handleChange(e)}
-              value={info.lastName}
+              defaultValue={info.lastName}
             />
             <Form.Control.Feedback>Genial!</Form.Control.Feedback>
             <Form.Control.Feedback type="invalid">Por favor coloque su apellido.</Form.Control.Feedback>
@@ -79,7 +78,8 @@ export default function OwnerCrud() {
                 placeholder="Usuario"
                 aria-describedby="inputGroupPrepend"
                 onChange={e=> handleChange(e)}
-                value={info.user}
+                defaultValue={info.user}
+                // value={info.user}
               />
               <Form.Control.Feedback>Genial!</Form.Control.Feedback>
               <Form.Control.Feedback type="invalid">Por favor coloque su E-mail.</Form.Control.Feedback>
@@ -96,7 +96,7 @@ export default function OwnerCrud() {
                 type="text"
                 placeholder="Nombre del hotel"
                 onChange={e=> handleChange(e)}
-                value = {info.hostelName}
+                defaultValue = {info.hostelName}
               />
               <Form.Control.Feedback>Genial!</Form.Control.Feedback>
             </Form.Group>
@@ -110,7 +110,7 @@ export default function OwnerCrud() {
               type="text" 
               placeholder="Provincia"
               onChange={e=> handleChange(e)}
-              value = {info.city}
+              defaultValue = {info.city}
               />
             <Form.Control.Feedback type="invalid">Por favor, coloque una provincia válida.</Form.Control.Feedback>
           </Form.Group>
@@ -122,7 +122,7 @@ export default function OwnerCrud() {
               type="text" 
               placeholder="Pais" 
               onChange={e=> handleChange(e)}
-              value = {info.country}
+              defaultValue = {info.country}
               />
             <Form.Control.Feedback type="invalid">Por favor, coloque un país válido.</Form.Control.Feedback>
           </Form.Group>
@@ -134,7 +134,7 @@ export default function OwnerCrud() {
               type="text" 
               placeholder="Codigo postal" 
               onChange={e=> handleChange(e)}
-              value = {info.zip}
+              defaultValue = {info.zip}
               />
             <Form.Control.Feedback type="invalid">Por favor, coloque un codigo postal válido.</Form.Control.Feedback>
           </Form.Group>
@@ -158,7 +158,7 @@ export default function OwnerCrud() {
               type="text"
               placeholder="Instagram"
               onChange={e=> handleChange(e)}
-              value = {info.instagram}
+              defaultValue = {info.instagram}
               />
             <Form.Control.Feedback>Genial!</Form.Control.Feedback>
           </Form.Group>
@@ -169,7 +169,7 @@ export default function OwnerCrud() {
               type="text"
               placeholder="Facebook"
               onChange={e=> handleChange(e)}
-              value = {info.facebook}
+              defaultValue = {info.facebook}
               />
             <Form.Control.Feedback>Genial!</Form.Control.Feedback>
           </Form.Group>
@@ -182,7 +182,7 @@ export default function OwnerCrud() {
                 placeholder="Twitter"
                 aria-describedby="inputGroupPrepend"
                 onChange={e=> handleChange(e)}
-                value = {info.twitter}
+                defaultValue = {info.twitter}
                 />
                 <Form.Control.Feedback>Genial!</Form.Control.Feedback>
             </InputGroup>
