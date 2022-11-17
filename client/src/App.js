@@ -9,7 +9,6 @@ import FeedBack from "./Components/feedback/Feedback";
 import RoomDetail from "./Components/RoomDetail/RoomDetail";
 import About from "./Components/about/about.jsx";
 import ClientEdit from "./Components/ClientEdit";
-import Login from './Components/login/Login'
 
 function App() {
   return (
