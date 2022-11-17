@@ -12,19 +12,24 @@ export default function Login() {
 
 async function callProtected() {
    // axios.get('http://localhost:4000/protected').then(responds => console.log(responds.data)).catch(e=> console.log(e))
-  try {
+   try {
+
    const token = await getAccessTokenSilently();
-   const responds = await axios.get('http://localhost:4000/login/protected', {
+   const responds = await axios.get('http://localhost:4000/', {
       headers:{
          authorization:`Bearer ${token}`
       }
    });
-
    console.log(responds.data);
   } catch (error) {
     console.log(error);
   }
 }
+
+
+
+
+
 
 async function getProfile() {
     try {
@@ -50,11 +55,11 @@ async function getProfile() {
 
            <h3>User is {isAuthenticated ? 'logged in ' : 'Not logged in'}</h3>
              
-          {/* <ul>
+          <ul>
             <li><button onClick={callApi}>Call Api route</button></li>
             <li><button onClick={callProtected}>Call Protected Api route</button></li>
             <li><button onClick={getProfile}>Get info profile</button></li>
-          </ul> */}
+          </ul>
 
             {
                isAuthenticated && <pre style={{textAlign: 'start'}}>{JSON.stringify(user, null, 2)}</pre>

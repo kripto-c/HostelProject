@@ -4,14 +4,11 @@ const axios = require('axios');
 const {  Client } = require('../../db');
 const route = Router();
 
-route.get('/', (req, res)=>{
-  res.send('hello from index route')
-})
 
-route.get('/client', getClient)
+route.get('/client',getClient)
 
 
-route.post('/userEdit', async(req, res)=>{    
+route.post('/userEdit',async(req, res)=>{    
   try {
           const accesToken = req.headers.authorization.split(' ')[1];
           const responds = await axios.get('https://dev-o7k6sbvjre41wvzb.us.auth0.com/userinfo', {
@@ -66,6 +63,7 @@ route.get('/setClient', async (req, res)=>{
           res.json({error: error + ""})
         }
 })
+
 
 
 module.exports = route;

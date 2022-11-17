@@ -10,7 +10,6 @@ import RoomDetail from "./Components/RoomDetail/RoomDetail";
 import About from "./Components/about/about.jsx";
 import ClientEdit from "./Components/ClientEdit";
 
-
 function App() {
   return (
     <>
