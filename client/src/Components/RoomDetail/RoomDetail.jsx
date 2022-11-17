@@ -100,13 +100,14 @@ const [clientInf,setClientInfo ]= useState({
             }]
             body.user = {
                 name: client.name,
-                surname: client.lastname,
+                lastname: client.lastname,
                 email: client.email,
                 identification: {
                     type: "DNI",
                     number: client.personalID
                 }
             };
+
             const token = await getAccessTokenSilently();
     
             const result = await axios.post("http://localhost:4000/payment", body,
