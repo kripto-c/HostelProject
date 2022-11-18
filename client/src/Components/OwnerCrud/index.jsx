@@ -7,8 +7,10 @@ import Row from "react-bootstrap/Row"
 import style from './style.module.css'
 import { postOwner,getOwner } from "../../Redux/actions";
 import {useDispatch, useSelector} from "react-redux"
+import { useAuth0 } from "@auth0/auth0-react";
 
 export default function OwnerCrud() {
+  const {isAuthenticated, getAccessTokenSilently} = useAuth0();
   const info = useSelector(state => state.owner);
   const [validated, setValidated] = useState(false);
   const [owner,setOwner ]= useState({})
@@ -19,15 +21,17 @@ export default function OwnerCrud() {
         [e.target.name]: e.target.value
     })
   }
-  async function getOwnerF(){
 
+  async function getOwnerF(){
+    const token = await  getAccessTokenSilently()
+    dispatch(getOwner(token))
   }
 
   useEffect(() => {
-      dispatch(getOwner());
+    if (!info.length) getOwnerF()
   }, [dispatch]);
 
-  const handleSubmit = (event) => {
+  async function handleSubmit (event) {
     const form = event.currentTarget;
     if (form.checkValidity() === false) {
       event.preventDefault();
@@ -35,7 +39,12 @@ export default function OwnerCrud() {
     }
     setValidated(true);
     if (form.checkValidity() === true){
-      dispatch(postOwner(owner))
+      const token = await getAccessTokenSilently()
+      const authorization = {headers:{
+      authorization:`Bearer ${token}`  
+      }}
+      await dispatch(postOwner(owner, authorization))
+      await getOwnerF()
       alert("Datos guardados")
     }
   };

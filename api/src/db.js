@@ -11,6 +11,7 @@ const sequelize = new Sequelize(
     native: false, // lets Sequelize know we can use pg-native for ~30% more speed
   }
 );
+
 // const sequelize = new Sequelize({
 //   database: "hostelproject",
 //   username: DB_USER,
@@ -28,6 +29,7 @@ const sequelize = new Sequelize(
 //   //================================//
 //   logging: false,
 // });
+
 const basename = path.basename(__filename);
 
 const modelDefiners = [];
