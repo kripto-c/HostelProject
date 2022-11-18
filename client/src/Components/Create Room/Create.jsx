@@ -23,7 +23,7 @@ const Create = () => {
     precio: "",
   });
   const dispatch = useDispatch();
-  const navigate = useNavigate()
+  const navigate = useNavigate();
 
   // SUBIR IMAGENES CON CLOUDINARY //
   const uploadImage = async (e) => {
@@ -98,7 +98,7 @@ const Create = () => {
         observacion: "",
         precio: "",
       });
-      navigate("/") 
+      navigate("/");
     }
   };
 
@@ -106,7 +106,7 @@ const Create = () => {
     <div className="form-container">
       <Form onSubmit={(e) => handleSubmit(e)}>
         <div className="form-group">
-          <Row className="d-flex justify-content-around"> 
+          <Row className="d-flex justify-content-around">
             <Form.Group as={Col} md="4">
               <Form.Label>Instertar imagen: </Form.Label>
               <Form.Control
@@ -118,21 +118,34 @@ const Create = () => {
               />
             </Form.Group>
             <Form.Group as={Col} md="7">
-              <img
-                style={{
-                  width: "450px",
-                  height: "300px",
-                  backgroundSize: "cover",
-                  marginTop: "5px",
-                  border: "3px solid black",
-                }}
-                alt=""
-                src={image}
-              />
+              {image.length < 1 ? (
+                <h1>no ha seleccionado una imagen</h1>
+              ) : (
+                <img
+                  style={{
+                    width: "450px",
+                    height: "300px",
+                    backgroundSize: "cover",
+                    marginTop: "5px",
+                    border: "3px solid black",
+                  }}
+                  alt=""
+                  src={image}
+                />
+              )}
             </Form.Group>
           </Row>
           <Row>
-            <Form.Group as={Col} md="4">
+            <Form.Group as={Col} md="5">
+              <Form.Label>Baño: </Form.Label>
+              <Form.Select onChange={(e) => handleBañoSelect(e)}>
+                <option placeholder="Seleccion tipo de baño" value="Privado">
+                  Privado
+                </option>
+                <option value="Compartido">Compartido</option>
+              </Form.Select>
+            </Form.Group>
+            <Form.Group as={Col} md="1">
               <Form.Label>Camas: </Form.Label>
               <Form.Control
                 type="number"
@@ -143,17 +156,7 @@ const Create = () => {
                 onChange={handleChange}
               />
             </Form.Group>
-            <Form.Group as={Col} md="4">
-              <Form.Label>Baño: </Form.Label>
-              <Form.Select
-                placeholder="Seleccionar tipo"
-                onChange={(e) => handleBañoSelect(e)}
-              >
-                <option value="Privado">Privado</option>
-                <option value="Compartido">Compartido</option>
-              </Form.Select>
-            </Form.Group>
-            <Form.Group as={Col} md="4">
+            <Form.Group as={Col} md="5">
               <Form.Label>Tipo: </Form.Label>
               <Form.Select onChange={(e) => handleTipoSelect(e)}>
                 <option value="compartida">Compartida</option>
@@ -183,17 +186,19 @@ const Create = () => {
               />
             </Form.Group>
           </Row>
-          <Form.Group>
-            <Form.Label>Precio: </Form.Label>
-            <Form.Control
-              type="number"
-              min="0"
-              max="10000"
-              name="precio"
-              value={room.precio}
-              onChange={handleChange}
-            />
-          </Form.Group>
+          <Row className="d-flex justify-content-center">
+            <Form.Group as={Col} md="2">
+              <Form.Label>Precio: </Form.Label>
+              <Form.Control
+                type="number"
+                min="0"
+                max="10000"
+                name="precio"
+                value={room.precio}
+                onChange={handleChange}
+              />
+            </Form.Group>
+          </Row>
         </div>
         <Button type="submit">Crear</Button>
       </Form>
