@@ -27,7 +27,6 @@ function Navbars() {
   async function setClient() {
     try {
       const token = await getAccessTokenSilently();
-       console.log(token)
       const info = await axios.get("http://localhost:4000/login/setClient", {
         // const info = await axios.get("https://hosteldinamitabackend.herokuapp.com/login/setClient", {
         headers: {
