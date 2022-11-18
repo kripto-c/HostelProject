@@ -3,8 +3,9 @@ import {
   POST_REVIEW,
   GET_CLIENT,
   FILTER_TYPE_ROOM,
-  GET_ALL_COUNTRIES
-  
+  GET_ALL_COUNTRIES,
+  POST_OWNER,
+  GET_OWNER
 } from "../actions/index.js";
 
 const initialState = {
@@ -13,7 +14,8 @@ const initialState = {
   reviews: [],
   client: [],
   roomdetail: [],
-  countries:[]
+  countries:[],
+  owner:[]
 };
 
 export default function rootReducer(state = initialState, action) {
@@ -49,6 +51,17 @@ export default function rootReducer(state = initialState, action) {
       return {
         ...state,
       };
+    }
+    case GET_OWNER:{
+      return{
+        ...state,
+        owner:action.payload
+      }
+    }
+    case POST_OWNER: {
+      return {
+        ...state
+      }
     }
     case GET_REVIEW: {
       return {

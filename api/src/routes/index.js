@@ -9,6 +9,8 @@ const roomdetail = require("./roomdetail/roomdetail")
 const payment = require("./payments/payment");
 const feedback = require("./payments/feedback")
 const getCountries = require("./countries")
+//const postOwner = require ("./owner")
+const owner = require("./owner")
 
 const router = Router();
 
@@ -28,9 +30,10 @@ router.use("/login", checkPermissions(itemPermissos.clientRoute),login);
 router.use("/payment", checkPermissions(itemPermissos.payment),payment);
 router.use("/feedback", feedback);
 router.use(`/getroomdetail`, roomdetail);//------Dejo esto aca porque mas abajo me tira error de authenticacion!!!!NO BORREN--->
-router.use("/info", info);
-router.use("/reviews",reviews);
-router.use("/rooms", rooms);
-router.use("/countries", getCountries);
+router.use("/info", info)
+router.use("/reviews",reviews)
+router.use("/rooms", rooms)
+router.use("/countries", getCountries)
+router.use("/owner", owner)
 
 module.exports = router;
