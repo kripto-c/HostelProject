@@ -109,8 +109,9 @@ const [clientInf,setClientInfo ]= useState({
             };
 
             const token = await getAccessTokenSilently();
-    
-            const result = await axios.post("http://localhost:4000/payment", body,
+            
+            // const result = await axios.post("http://localhost:4000/payment", body,
+            const result = await axios.post("https://hosteldinamitabackend.herokuapp.com/payment", body,
                 {headers:{
                     authorization:`Bearer ${token}`
                  }
