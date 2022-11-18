@@ -9,10 +9,12 @@ import { Button } from "react-bootstrap";
 import { IoIosStar } from "react-icons/io";
 import style from "../../Styles/ReviewHostel.module.css";
 import { postReview } from "../../Redux/actions/index.js";
-const Swal = require('sweetalert2')
+// const Swal = require("sweetalert2");
+import Swal from "sweetalert2";
+import { withAuthenticationRequired } from "@auth0/auth0-react";
 
-export default function RatingBootstrap() {
-  const client = useSelector((state) => state.client)
+function RatingBootstrap() {
+  const client = useSelector((state) => state.client);
   // eslint-disable-next-line no-unused-vars
   const [rating, setRating] = useState([1, 2, 3, 4, 5]);
   const [current, setCurrent] = useState(0);
@@ -35,24 +37,22 @@ export default function RatingBootstrap() {
     e.preventDefault();
     if (input.rating === 0) {
       return input.rating === 0
-        ? 
-          Swal.fire({
-            icon: 'warning',
-            title: 'Oops...',
-            text: 'Por favor, seleccione un número de estrellas de acuerdo a su experencia en Project Hostel.',
+        ? Swal.fire({
+            icon: "warning",
+            title: "Oops...",
+            text: "Por favor, seleccione un número de estrellas de acuerdo a su experencia en Project Hostel.",
           })
-        : null
+        : null;
     } else {
       dispatch(postReview(input));
       setInput({ usuario: client.name, rating: 0, description: "" });
       setCurrent(0);
       setRating([1, 2, 3, 4, 5]);
       Swal.fire({
-        icon: 'success',
-        title: 'Success',
-        text: 'Gracias por darnos su opinion. ¡Que tenga un buen dia!',
-      })
-  
+        icon: "success",
+        title: "Success",
+        text: "Gracias por darnos su opinion. ¡Que tenga un buen dia!",
+      });
     }
   }
   return (
@@ -94,3 +94,11 @@ export default function RatingBootstrap() {
     </form>
   );
 }
+
+export default withAuthenticationRequired(RatingBootstrap, {
+  onRedirecting: () => (
+    <div>
+      <h1>No estas registrado para esto....</h1>
+    </div>
+  ),
+});

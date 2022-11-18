@@ -4,6 +4,8 @@ import {
   GET_CLIENT,
   FILTER_TYPE_ROOM,
   GET_ALL_COUNTRIES,
+  POST_OWNER,
+  GET_OWNER
 } from "../actions/index.js";
 
 const initialState = {
@@ -12,7 +14,8 @@ const initialState = {
   reviews: [],
   client: [],
   roomdetail: [],
-  countries: [],
+  countries:[],
+  owner:[]
 };
 
 export default function rootReducer(state = initialState, action) {
@@ -20,18 +23,45 @@ export default function rootReducer(state = initialState, action) {
     case GET_ALL_COUNTRIES:
       return {
         ...state,
-        countries: action.payload,
-      };
-    case "GET_ROOMS":
-      return {
-        ...state,
-        rooms: action.payload,
-        allRooms: action.payload,
-      };
+        countries:action.payload
+      }
+      case "GET_ROOMS": {
+        if (!localStorage.getItem("filtros")) {
+          return {
+            ...state,
+            rooms: action.payload,
+            allRooms: action.payload,
+          };
+        }
+        if (localStorage.getItem("filtros")) {
+          return {
+            ...state,
+            rooms: JSON.parse(localStorage.getItem("filtros")),
+          };
+        } else {
+          return {
+            ...state,
+            rooms: action.payload,
+            allRooms: action.payload,
+          };
+        }
+      }
+
     case POST_REVIEW: {
       return {
         ...state,
       };
+    }
+    case GET_OWNER:{
+      return{
+        ...state,
+        owner:action.payload
+      }
+    }
+    case POST_OWNER: {
+      return {
+        ...state
+      }
     }
     case GET_REVIEW: {
       return {
@@ -66,9 +96,15 @@ export default function rootReducer(state = initialState, action) {
                 ? filterRoom.filter((e) => e.type.type === "Privado")
                 : filterRoom.filter((e) => e.type.type === "Publico");
           }
-        }
+         }} else {
+            if (!action.payloadOne && !action.payloadTwo && action.payloadThree) {
+              roomType = state.rooms;
+            }
+          }
+        
 
-        if (action.payloadThree) {
+        //SI ME LLEGA PAYLOAD y no me llegan type y typbatchroom PARA ORDENAR POR PRECIO. SE LO APLICO A LOS FILTROS ANTERIORES
+        if(action.payloadThree){
           if (action.payloadThree === "asc") {
             roomType = roomType.sort((a, b) => {
               if (a.price > b.price) {
@@ -91,15 +127,15 @@ export default function rootReducer(state = initialState, action) {
             });
           }
         }
+          //GUARDO ESTADO REDUX EN LOCALSTORAGE
 
-        return {
-          ...state,
-          rooms: roomType,
-        };
-      } else {
-        return { ...state };
-      }
+      localStorage.setItem("filtros", JSON.stringify(roomType))
+      return {
+        ...state,
+        rooms: [...roomType],
+      };
     }
+        
 
     case GET_CLIENT: {
       return {

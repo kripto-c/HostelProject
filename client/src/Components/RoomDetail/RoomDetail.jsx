@@ -93,36 +93,37 @@ export default function RoomDetail() {
     )
       return setShow(true);
 
-    const body = {};
-    body.items = [
-      {
-        title: room.description,
-        quantity: camas,
-        unit_price: room.price,
-        check_in: checkIn,
-        check_out: checkOut,
-        room_id: room.id,
-        client_id: client.id && client.id,
-      },
-    ];
-    body.user = {
-      name: client.name,
-      surname: client.lastname,
-      email: client.email,
-      identification: {
-        type: "DNI",
-        number: "12345678",
-      },
-    };
-    const token = await getAccessTokenSilently();
+            const body = {}
+            body.items = [{
+                title: room.description,
+                quantity: camas,
+                unit_price: room.price,
+                check_in: checkIn,
+                check_out: checkOut,
+                room_id : room.id,
+                client_id: client.id && client.id
+            }]
+            body.user = {
+                name: client.name,
+                lastname: client.lastname,
+                email: client.email,
+                identification: {
+                    type: "DNI",
+                    number: client.personalID
+                }
+            };
 
-    const result = await axios.post("http://localhost:4000/payment", body, {
-      headers: {
-        authorization: `Bearer ${token}`,
-      },
-    });
-    setPagar(result.data.init);
-  };
+            const token = await getAccessTokenSilently();
+            
+            // const result = await axios.post("http://localhost:4000/payment", body,
+            const result = await axios.post("https://hosteldinamitabackend.herokuapp.com/payment", body,
+                {headers:{
+                    authorization:`Bearer ${token}`
+                 }
+                } 
+            );
+            setPagar(result.data.init);
+        }
 
   ///handle ventana emergente
 

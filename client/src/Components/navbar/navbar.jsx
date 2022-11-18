@@ -28,6 +28,7 @@ function Navbars() {
     try {
       const token = await getAccessTokenSilently();
       const info = await axios.get("http://localhost:4000/login/setClient", {
+        // const info = await axios.get("https://hosteldinamitabackend.herokuapp.com/login/setClient", {
         headers: {
           authorization: `Bearer ${token}`,
         },
@@ -89,7 +90,7 @@ async function getInfo() {
               </div>
             </div>
             <Nav className="nav">
-              <Link className="linkComponent" to="/">Home</Link>
+              <Link className="linkComponent" to="/ownerCrud">Tablero</Link>
               <Link className="linkComponent" to="/rooms">Habitaciones</Link>
               <Link className="linkComponent" to="/contact">Contactanos</Link>
               <Link className="linkComponent" to="/about">Acerca de</Link>
@@ -142,8 +143,7 @@ async function getInfo() {
           )}
     </> 
         </Container>
-      </Navbar>
-
+      </Navbar>         
     </>
   );
 }

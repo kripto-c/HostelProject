@@ -5,6 +5,9 @@ import { createRoom } from "../../Redux/actions";
 import Swal from "sweetalert2";
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
+import Row from "react-bootstrap/Row";
+import Col from "react-bootstrap/Col";
+import { useNavigate } from "react-router-dom";
 
 const Create = () => {
   // SETTEAR INFO//
@@ -20,6 +23,7 @@ const Create = () => {
     precio: "",
   });
   const dispatch = useDispatch();
+  const navigate = useNavigate()
 
   // SUBIR IMAGENES CON CLOUDINARY //
   const uploadImage = async (e) => {
@@ -53,7 +57,7 @@ const Create = () => {
   const handleBañoSelect = (e) => {
     setRoom({
       ...room,
-      baños: [e.target.value],
+      baño: [e.target.value],
     });
   };
 
@@ -67,12 +71,12 @@ const Create = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     if (
-      !room.camas &&
-      !room.baño &&
-      !room.descripcion &&
-      !room.file &&
-      !room.observacion &&
-      !room.precio &&
+      !room.camas ||
+      !room.baño ||
+      !room.descripcion ||
+      !room.file ||
+      !room.observacion ||
+      !room.precio ||
       !room.tipo
     ) {
       Swal.fire({
@@ -94,83 +98,94 @@ const Create = () => {
         observacion: "",
         precio: "",
       });
+      navigate("/") 
     }
   };
 
   return (
-    <div>
+    <div className="form-container">
       <Form onSubmit={(e) => handleSubmit(e)}>
         <div className="form-group">
-          <div>
-            <label>Camas: </label>
-            <input
-              type="number"
-              name="camas"
-              min="1"
-              max="10"
-              value={room.camas}
-              onChange={handleChange}
-            />
-          </div>
-          <div>
-            <label>Descripcion: </label>
-            <input
-              type="text"
-              name="descripcion"
-              value={room.descripcion}
-              onChange={handleChange}
-            />
-          </div>
-          <div>
-            <label>Baño: </label>
-            <select
-              placeholder="Seleccionar tipo"
-              onChange={(e) => handleBañoSelect(e)}
-            >
-              <option value="Privado">Privado</option>
-              <option value="Compartido">Compartido</option>
-            </select>
-          </div>
-          <div>
-            <label>Tipo: </label>
-            <select onChange={(e) => handleTipoSelect(e)}>
-              <option value="compartida">Compartida</option>
-              <option value="privada">Privada</option>
-            </select>
-          </div>
-          <div>
-            <label>Instertar imagen: </label>
-            <input
-              name="file"
-              type="file"
-              onChange={(e) => {
-                uploadImage(e);
-              }}
-            />
-          </div>
-          <div>
-            <img
-              style={{
-                width: "450px",
-                height: "300px",
-                backgroundSize: "cover",
-              }}
-              alt=""
-              src={image}
-            />
-          </div>
-          <div>
-            <label>Observaciones: </label>
-            <input
-              type="text"
-              name="observacion"
-              value={room.observacion}
-              onChange={handleChange}
-            />
-          </div>
-          <div>
-            <label>Precio: </label>
-            <input
+          <Row className="d-flex justify-content-around"> 
+            <Form.Group as={Col} md="4">
+              <Form.Label>Instertar imagen: </Form.Label>
+              <Form.Control
+                name="file"
+                type="file"
+                onChange={(e) => {
+                  uploadImage(e);
+                }}
+              />
+            </Form.Group>
+            <Form.Group as={Col} md="7">
+              <img
+                style={{
+                  width: "450px",
+                  height: "300px",
+                  backgroundSize: "cover",
+                  marginTop: "5px",
+                  border: "3px solid black",
+                }}
+                alt=""
+                src={image}
+              />
+            </Form.Group>
+          </Row>
+          <Row>
+            <Form.Group as={Col} md="4">
+              <Form.Label>Camas: </Form.Label>
+              <Form.Control
+                type="number"
+                name="camas"
+                min="1"
+                max="10"
+                value={room.camas}
+                onChange={handleChange}
+              />
+            </Form.Group>
+            <Form.Group as={Col} md="4">
+              <Form.Label>Baño: </Form.Label>
+              <Form.Select
+                placeholder="Seleccionar tipo"
+                onChange={(e) => handleBañoSelect(e)}
+              >
+                <option value="Privado">Privado</option>
+                <option value="Compartido">Compartido</option>
+              </Form.Select>
+            </Form.Group>
+            <Form.Group as={Col} md="4">
+              <Form.Label>Tipo: </Form.Label>
+              <Form.Select onChange={(e) => handleTipoSelect(e)}>
+                <option value="compartida">Compartida</option>
+                <option value="privada">Privada</option>
+              </Form.Select>
+            </Form.Group>
+          </Row>
+          <Row className="d-flex justify-content-around">
+            <Form.Group as={Col} md="5">
+              <Form.Label>Observaciones: </Form.Label>
+              <Form.Control
+                as="textarea"
+                name="observacion"
+                placeholder="Escribir una observacion acerca de la habitacion"
+                value={room.observacion}
+                onChange={handleChange}
+              />
+            </Form.Group>
+            <Form.Group as={Col} md="5">
+              <Form.Label>Descripcion: </Form.Label>
+              <Form.Control
+                as="textarea"
+                name="descripcion"
+                placeholder="Escribir una descripcion acerca de la habitacion"
+                value={room.descripcion}
+                onChange={handleChange}
+              />
+            </Form.Group>
+          </Row>
+          <Form.Group>
+            <Form.Label>Precio: </Form.Label>
+            <Form.Control
               type="number"
               min="0"
               max="10000"
@@ -178,7 +193,7 @@ const Create = () => {
               value={room.precio}
               onChange={handleChange}
             />
-          </div>
+          </Form.Group>
         </div>
         <Button type="submit">Crear</Button>
       </Form>

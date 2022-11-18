@@ -11,6 +11,23 @@ const sequelize = new Sequelize(
     native: false, // lets Sequelize know we can use pg-native for ~30% more speed
   }
 );
+// const sequelize = new Sequelize({
+//   database: "hostelproject",
+//   username: DB_USER,
+//   password: DB_PASSWORD,
+//   host: DB_HOST,
+//   port: 5432,
+//   dialect: "postgres",
+//   //================================//
+//   dialectOptions: {
+//     ssl: {
+//       require: true, // comentar si da error al conectar, config necesaria para deploy
+//       rejectUnauthorized: false, //
+//     },
+//   },
+//   //================================//
+//   logging: false,
+// });
 const basename = path.basename(__filename);
 
 const modelDefiners = [];
@@ -38,9 +55,7 @@ sequelize.models = Object.fromEntries(capsEntries);
 // En sequelize.models están todos los modelos importados como propiedades
 // Para relacionarlos hacemos un destructuring
 
-const { Room, Rent, Type, Client, Review, Countrie } = sequelize.models;
-
-
+const { Room, Rent, Type, Client, Review, Countrie, Owner } = sequelize.models;
 
 // Aca vendrian las relaciones
 // Product.hasMany(Reviews);
@@ -68,6 +83,7 @@ module.exports = {
   Type,
   Client,
   Countrie,
+  Owner,
   ...sequelize.models, // para poder importar los modelos así: const { Product, User } = require('./db.js');
   conn: sequelize, // para importart la conexión { conn } = require('./db.js');
 };
