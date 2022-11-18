@@ -8,8 +8,8 @@ export const GET_ALL_COUNTRIES = "GET_ALL_COUNTRIES";
 export const POST_OWNER = "POST_OWNER";
 export const GET_OWNER = "GET_OWNER";
 
-// const URL = "https://hosteldinamitabackend.herokuapp.com";
-const URL = "http://localhost:4000" //descomentar para hacer pruebas
+const URL = "https://hosteldinamitabackend.herokuapp.com";
+// const URL = "http://localhost:4000" //descomentar para hacer pruebas
 
 //ACTION ROOMS ----------------------------------------------------------->>
 export function getRooms() {
