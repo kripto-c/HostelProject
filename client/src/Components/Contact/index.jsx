@@ -72,7 +72,7 @@ export default function Contact() {
                 <p className={style.response}>El número correspondiente a la cantidad de camas dentro de una habitación.</p>
                 <hr/>
                 <p className={style.question}>¿Dos (2) personas pueden compartir una cama?</p>
-                <p className={style.response}>No, solo se permite una (1) persona por cama.</p>
+                <p className={style.response}>No, solo se permite una (1) persona por cama, ah no ser que sea una cama de dos plazas.</p>
                 <hr/>
                 <p className={style.question}>¿Su Hostel cuenta con seguridad?</p>
                 <p className={style.response}>Sí, Nuestro hostel cuenta con 2 guardias con turnos rotativos que vigilan
@@ -83,8 +83,8 @@ export default function Contact() {
                 <p className={style.question}>¿Donde puedo guardar mis cosas?</p>
                 <p className={style.response}>Contamos con lockers individuales dentro de todas las habitaciónes con candados incluidos.</p>
                 <hr/>
-                <p className={style.question}>¿Puedo hacerlo en persona?</p>
-                <p className={style.response}>Si</p>
+                <p className={style.question}>¿Puedo hacer la reserva en persona?</p>
+                <p className={style.response}>Si, se puede hacer</p>
                 <hr/>
                 <p className={style.question}>¿Tengo que traer una toalla?</p>
                 <p className={style.response}>No, a cada inquilino se le provee con una toalla.</p>
@@ -95,9 +95,8 @@ export default function Contact() {
                 <p className={style.question}>¿Hay toque de queda?</p>
                 <p className={style.response}>No, los inquilinos pueden diambular por el hostel entre los horarios que ellos quieran, siempre y cuando no disturben el silencio general durante horarios de descanso.</p>
                 <hr/>
-                <p className={style.question}>¿La cama viene con almohada y savanas?</p>
-                <p className={style.response}>Sí, dependiendo de la epoca del año se les provee alconchado tambíen durante los climas fríos, 
-                aunque el inquilino es libre de solicitar más frazadas en la recepción si así lo desea.</p>
+                <p className={style.question}>¿La cama viene con almohada y sabanas?</p>
+                <p className={style.response}>Sí, dependiendo de la epoca del año se les provee alcochado aunque el inquilino es libre de solicitar más, si así lo desea.</p>
 
             </div>
         </div>
