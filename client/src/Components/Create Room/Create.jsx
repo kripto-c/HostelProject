@@ -8,6 +8,7 @@ import Button from "react-bootstrap/Button";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import { useNavigate } from "react-router-dom";
+import './Create.css'
 
 const Create = () => {
   // SETTEAR INFO//
@@ -103,10 +104,10 @@ const Create = () => {
   };
 
   return (
-    <div className="form-container">
+    <div className="container-create" >
       <Form onSubmit={(e) => handleSubmit(e)}>
         <div className="form-group">
-          <Row className="d-flex justify-content-around">
+          <Row className="d-flex justify-content-between">
             <Form.Group as={Col} md="4">
               <Form.Label>Instertar imagen: </Form.Label>
               <Form.Control
@@ -119,7 +120,9 @@ const Create = () => {
             </Form.Group>
             <Form.Group as={Col} md="7">
               {image.length < 1 ? (
-                <h1>no ha seleccionado una imagen</h1>
+                <div className="no-image">
+                  <h1>no ha seleccionado una imagen</h1>
+                </div>
               ) : (
                 <img
                   style={{
@@ -139,9 +142,8 @@ const Create = () => {
             <Form.Group as={Col} md="5">
               <Form.Label>Baño: </Form.Label>
               <Form.Select onChange={(e) => handleBañoSelect(e)}>
-                <option placeholder="Seleccion tipo de baño" value="Privado">
-                  Privado
-                </option>
+                <option selected>Elegir tipo de baño</option>
+                <option value="Privado">Privado</option>
                 <option value="Compartido">Compartido</option>
               </Form.Select>
             </Form.Group>
@@ -159,6 +161,7 @@ const Create = () => {
             <Form.Group as={Col} md="5">
               <Form.Label>Tipo: </Form.Label>
               <Form.Select onChange={(e) => handleTipoSelect(e)}>
+                <option selected>Elegir tipo de Habitacion</option>
                 <option value="compartida">Compartida</option>
                 <option value="privada">Privada</option>
               </Form.Select>
@@ -200,7 +203,7 @@ const Create = () => {
             </Form.Group>
           </Row>
         </div>
-        <Button type="submit">Crear</Button>
+        <Button className="submit" type="submit">Crear</Button>
       </Form>
     </div>
   );

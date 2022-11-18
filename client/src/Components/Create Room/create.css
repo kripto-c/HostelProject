@@ -1,5 +1,21 @@
-.form-container {
-    display: flex;
-    justify-content: space-between;
-    
+.container-create {
+  display: flex;
+  background-color: rgba(228, 235, 245, 0.4);
+  border-radius: 10px;
+  width: 85vw;
+  align-items: center;
+  justify-content: center;
+  margin: 10px auto;
+  
+}
+
+.no-image {
+  display: flex;
+  background-color: grey;
+  color: white;
+  width: 450px;
+  height: 300px;
+  text-align: center;
+  align-items: center;
+  border: 2px solid black;
 }
