@@ -21,7 +21,7 @@ const initialState = {
 export default function rootReducer(state = initialState, action) {
   switch (action.type) {
     case GET_ALL_COUNTRIES:
-      return{
+      return {
         ...state,
         countries:action.payload
       }
@@ -69,7 +69,7 @@ export default function rootReducer(state = initialState, action) {
         reviews: action.payload,
       };
     }
-   
+
     case FILTER_TYPE_ROOM: {
       let filterRoom = state.allRooms;
       let roomType;
@@ -116,7 +116,6 @@ export default function rootReducer(state = initialState, action) {
               return 0;
             });
           } else {
-            
             roomType = roomType.sort((a, b) => {
               if (a.price > b.price) {
                 return -1;
@@ -150,7 +149,6 @@ export default function rootReducer(state = initialState, action) {
         roomdetail: action.payload,
       };
     }
-
     default:
       return state;
   }

@@ -5,7 +5,7 @@
     background-color: #212529;
     font-size: 15px;
     border-top: 2px solid black;
-    color: rgb(253, 194, 224);
+    color: white
     
 }
 
@@ -13,4 +13,32 @@
     max-height: 30px;
     max-width: 30px;
     justify-content: center;
+}
+
+.links{
+    display: flex;
+    flex-direction: column  ;   
+}
+
+.links a{
+    color: white;
+}
+
+.links span{
+    font-weight: bold;
+    
+}
+
+.logos{
+    display: flex;
+    flex-direction: column;
+}
+
+.logos span{
+    font-weight: bold;
+}
+
+.logos a{
+    text-decoration: none;
+    color: white;
 }

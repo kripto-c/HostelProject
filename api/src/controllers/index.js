@@ -9,13 +9,13 @@ module.exports = {
         })
         return rooms
     },
-    postRoomInfo: async function(beds, description, image, bathroom, price, observation, status) {
-        if(!beds || !description || !image || !bathroom || !price || !observation || !status) {
+    postRoomInfo: async function(beds, description, image, bathroom, price, observation) {
+        if(!beds || !description || !image || !bathroom || !price || !observation) {
             return "Faltan ingresar datos"
         }
         else {
             let newBed = await Room.create({
-                beds, description, image, bathroom, price, observation, status
+                beds, description, image, bathroom, price, observation,
             })
             return newBed
             

@@ -170,3 +170,11 @@ export function getAllCountries() {
     }
   };
 }
+
+export const createRoom = (payload) => async () => {
+  let res = await axios.post("http://localhost:4004/rooms", payload);
+  return {
+    type: "CREATE_ROOM",
+    res,
+  };
+};
