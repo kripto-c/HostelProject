@@ -11,6 +11,7 @@ import { BsFillPencilFill } from "react-icons/bs";
 
 export default function ClientEdit() {
     const info = useSelector(state => state.client);
+    console.log("info: ",info)
     const countries = useSelector(state => state.countries)
     const dispatch = useDispatch();
     const { getAccessTokenSilently } = useAuth0();
@@ -131,7 +132,9 @@ export default function ClientEdit() {
                     <label htmlFor="validationCustom01" className="form-label">Nombre</label>
                     <div className="input-group">
                         <input type="text" className="form-control"
-                            name='name' id="validationCustom01" disabled={namec}
+                            name='name' 
+                            id="validationCustom01" 
+                            disabled={namec}
                             defaultValue={info.name}
                             onKeyDown ={e=> notNumbers(e)}
                             onChange={e => handleChange(e)} required />
@@ -139,19 +142,16 @@ export default function ClientEdit() {
                             onClick={e => handleName(e)}><BsFillPencilFill /></button>
                     </div>
 
-                    <div className="valid-feedback">
-                        ¡Se ve bien!
-                    </div>
-                    <div className="invalid-feedback">
-                        coloque el nombre
-                    </div>
+                    <div className="valid-feedback">¡Se ve bien!</div>
+                    <div className="invalid-feedback">Coloque el nombre</div>
 
                 </div>
                 <div className="col-md-6">
                     <label htmlFor="validationCustom02" className="form-label">Apellido</label>
                     <div className="input-group">
                         <input type="text" className="form-control" id="validationCustom02"
-                            name='lastname' disabled={lastname}
+                            name='lastname' 
+                            disabled={lastname}
                             defaultValue={info.lastname}
                             onKeyDown ={e=> notNumbers(e)}
                             onChange={e => handleChange(e)} required />
@@ -164,13 +164,17 @@ export default function ClientEdit() {
                 </div>
                 
                 <div className="col-md-12">
-                <label htmlFor="validationCustom03" className="form-label">Pais</label>
+                    <label htmlFor="validationCustom03" className="form-label">Pais</label>
                     <select className="form-select" aria-label="Default select example"
+                    id="validationCustom03" 
                     name='countrieId'
-                    onChange={e=>handleChange(e)}>
-                    {/* selected */}                    
-                    {countries?.map(coun => (
-                            coun.country === info.countrie.country ?
+                    onChange={e=>handleChange(e)}>                    
+                    {
+                        !info.countrie && <option> Seleccione un pais </option>
+                    }                  
+                    {                                                     
+                        countries?.map(coun => (
+                            coun.country === info.country ?
                             <option key ={coun.id} value = {coun.id} selected> {coun.country} </option>
                             :
                             <option key ={coun.id} value = {coun.id}> {coun.country} </option>)
@@ -179,25 +183,12 @@ export default function ClientEdit() {
                     </select>
                 </div>
 
-                <div className="col-md-12">
-                    <label htmlFor="validationCustom03" className="form-label">Pais</label>
-                    <div className="input-group">
-                    <input type="text" className="form-control" id="validationCustom03" 
-                        name="nationality" disabled={provin} 
-                        onChange={e => handleChange(e)} 
-                        defaultValue={info.nationality } required />
-                        <button key={'btnNamesc'} className="btn btn-outline-danger" type='button' 
-                        onClick={e => handleProvin(e)}><BsFillPencilFill /></button>
-                    </div>
-                    <div className="invalid-feedback">
-                        Por favor indique su Provincia
-                    </div>
-                </div>
                 <div className="col-md-6">
                     <label htmlFor="validationCustom04" className="form-label">DNI</label>
                     <div className="input-group">
                         <input type={personalId ? "text":"number"} className="form-control" id="validationCustom05"
-                            name='personalID' disabled={personalId}
+                            name='personalID' 
+                            disabled={personalId}
                             defaultValue={info.personalID}
                             onKeyDown ={e=>validateDniLength(e)}
                             onChange={e => handleChange(e)} required />

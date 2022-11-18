@@ -8,8 +8,8 @@ export const GET_ALL_COUNTRIES = "GET_ALL_COUNTRIES";
 export const POST_OWNER = "POST_OWNER";
 export const GET_OWNER = "GET_OWNER";
 
-const URL = "https://hosteldinamitabackend.herokuapp.com";
-// const URL = "http://localhost:4000" //descomentar para hacer pruebas
+//const URL = "https://hosteldinamitabackend.herokuapp.com";
+const URL = "http://localhost:4000" //descomentar para hacer pruebas
 
 //ACTION ROOMS ----------------------------------------------------------->>
 export function getRooms() {
@@ -115,16 +115,18 @@ export function postClient(body, headers) {
     }
   };
 }
-export function postOwner(payload) {
+export function postOwner(payload, headers) {
   return async function () {
-    const { data } = await axios.post(`${URL}/owner/post`, payload);
+    const { data } = await axios.post(`${URL}/owner/post`, payload, headers);
     return data;
   };
 }
-export function getOwner() {
-  return async function (dispatch) {
-    try {
-      let { data } = await axios.get(`${URL}/owner/get`);
+export function getOwner(token){
+  return async function(dispatch){
+    try {      
+      let {data} = await axios.get(`${URL}/owner/get`, {
+        headers: {authorization: `Bearer ${token}`}
+      });
       return dispatch({
         type: GET_OWNER,
         payload: data,

@@ -9,12 +9,12 @@ async function getClient(req, res) {
            authorization:`Bearer ${accesToken}`
          }
       })
-       const userinfo = responds.data;
-       const { sub } = userinfo;
-       const id = sub.split('|')[1];
+        const userinfo = responds.data;
+        const { sub } = userinfo;
+        const id = sub.split('|')[1];
         const data = await Client.findOne(
           {where:{ idAuth: id },include:{
-            model:Countrie,
+            model: Countrie,
             attributes:['country'],
             trought:{attributes:[]}
           }})
@@ -27,7 +27,8 @@ async function getClient(req, res) {
           phoneNumber:data.phoneNumber,
           email:data.email,
           observation:data.observation,
-          countieId:data.countieId 
+          countrieId:data.countrieId,
+          country:data.countrie.country
         });
        } catch (error) {
          res.json({error: error + ""})

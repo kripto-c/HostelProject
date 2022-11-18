@@ -26,7 +26,8 @@ router.use(jwtCheck);
 router.use(express.json());
 //RUTAS----------------------------------->>
 
-router.use("/login", checkPermissions(itemPermissos.clientRoute),login);
+//router.use("/login", checkPermissions(itemPermissos.clientRoute),login);
+router.use("/login",login);
 router.use("/payment", checkPermissions(itemPermissos.payment),payment);
 router.use("/feedback", feedback);
 router.use(`/getroomdetail`, roomdetail);//------Dejo esto aca porque mas abajo me tira error de authenticacion!!!!NO BORREN--->
