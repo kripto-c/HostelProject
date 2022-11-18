@@ -32,7 +32,6 @@ export default function ClientEdit() {
     useEffect(() => {
         dispatch(getAllCountries());
     }, [dispatch]);
-    console.log("Pais: ",info.countrie.country)
 
     function handleChange(e) {
         e.preventDefault()
