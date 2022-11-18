@@ -4,14 +4,18 @@ export const GET_REVIEW = "GET_REVIEW";
 export const GET_CLIENT = "GET_CLIENT";
 export const FILTER_TYPE_ROOM = "FILTER_TYPE_ROOM";
 export const GET_ROOMS = "GET_ROOMS";
-export const GET_ALL_COUNTRIES = "GET_ALL_COUNTRIES"
-export const POST_OWNER = "POST_OWNER"
-export const GET_OWNER = "GET_OWNER"
+export const GET_ALL_COUNTRIES = "GET_ALL_COUNTRIES";
+export const POST_OWNER = "POST_OWNER";
+export const GET_OWNER = "GET_OWNER";
+
+const URL = "https://hosteldinamitabackend.herokuapp.com";
+// const URL = "http://localhost:4000" //descomentar para hacer pruebas
+
 //ACTION ROOMS ----------------------------------------------------------->>
 export function getRooms() {
   return async function (dispatch) {
-    let room = await axios.get("http://localhost:4000/rooms");
-    console.log("mirar acaaa", typeof(room.data[0].price));
+    let room = await axios.get(`${URL}/rooms`);
+    console.log("mirar acaaa", typeof room.data[0].price);
     return dispatch({
       type: GET_ROOMS,
       payload: room.data,
@@ -22,7 +26,7 @@ export function getRooms() {
 export function getReview() {
   try {
     return async function (dispatch) {
-      const dataDb = await axios.get("http://localhost:4000/reviews");
+      const dataDb = await axios.get(`${URL}/reviews`);
       console.log(dataDb);
       dispatch({
         type: GET_REVIEW,
@@ -38,7 +42,7 @@ export function getReview() {
 export function postReview(payload) {
   try {
     return async function (dispatch) {
-      axios.post("http://localhost:4000/reviews", payload);
+      axios.post(`${URL}/reviews`, payload);
       return dispatch({ type: POST_REVIEW });
     };
     // eslint-disable-next-line no-unreachable
@@ -47,37 +51,36 @@ export function postReview(payload) {
   }
 }
 
+//ACTIONS FILTROS---------------------------------------------------------------->>
 
-  //ACTIONS FILTROS---------------------------------------------------------------->>
-  
-  export function sendFeedback(data){
-    try {
-      return async function(dispatch){
-        let response = await axios.get(`http://localhost:4000/feedback${data}`);
-        return response.data;
-      }
-    } catch (e) {
-      console.log(e)
-      }
-  }
-
-  export function filterTypeRoom(payloadOne, payloadTwo,payloadThree) {
-    console.log("TYPE ROOM FILTRO ACCIONADO",payloadOne)
-    return {
-      type: FILTER_TYPE_ROOM,
-      payloadOne,
-      payloadTwo,
-      payloadThree
+export function sendFeedback(data) {
+  try {
+    return async function (dispatch) {
+      let response = await axios.get(`${URL}/feedback${data}`);
+      return response.data;
     };
+  } catch (e) {
+    console.log(e);
   }
-  // export function filterPrice(payload){
-  //   console.log("Filter PRICE",payload)
-  //   return{
-  //     type:FILTER_PRICE,
-  //     payload
+}
 
-  //   }
-  // }
+export function filterTypeRoom(payloadOne, payloadTwo, payloadThree) {
+  console.log("TYPE ROOM FILTRO ACCIONADO", payloadOne);
+  return {
+    type: FILTER_TYPE_ROOM,
+    payloadOne,
+    payloadTwo,
+    payloadThree,
+  };
+}
+// export function filterPrice(payload){
+//   console.log("Filter PRICE",payload)
+//   return{
+//     type:FILTER_PRICE,
+//     payload
+
+//   }
+// }
 
 //ACTIONS FILTROS---------------------------------------------------------------->>
 
@@ -85,8 +88,8 @@ export function postReview(payload) {
 export function getCLient(token) {
   try {
     return async function (dispatch) {
-      const info = await axios.get(`http://localhost:4000/login/client`, {
-        headers: {authorization: `Bearer ${token}`}
+      const info = await axios.get(`${URL}/login/client`, {
+        headers: { authorization: `Bearer ${token}` },
       });
       dispatch({
         type: GET_CLIENT,
@@ -101,7 +104,7 @@ export function getCLient(token) {
 export function postClient(body, headers) {
   return async () => {
     try {
-      const res = await axios.post(`http://localhost:4000/login/userEdit`,body, headers);
+      const res = await axios.post(`${URL}/login/userEdit`, body, headers);
       console.log(res.data);
     } catch (error) {
       console.log(error);
@@ -109,23 +112,23 @@ export function postClient(body, headers) {
   };
 }
 export function postOwner(payload) {
-  return async function() {
-      const {data} = await axios.post(`http://localhost:4000/owner/post`, payload);
-      return data
+  return async function () {
+    const { data } = await axios.post(`${URL}/owner/post`, payload);
+    return data;
   };
 }
-export function getOwner(){
-  return async function(dispatch){
-    try {      
-      let {data} = await axios.get("http://localhost:4000/owner/get")
+export function getOwner() {
+  return async function (dispatch) {
+    try {
+      let { data } = await axios.get(`${URL}/owner/get`);
       return dispatch({
         type: GET_OWNER,
-        payload: data
-      })
+        payload: data,
+      });
     } catch (error) {
-      console.log(error)
+      console.log(error);
     }
-  }
+  };
 }
 
 // export function setClient(payload){
@@ -144,7 +147,7 @@ export function getOwner(){
 export function getRoomDetail(id) {
   return async (dispatch) => {
     try {
-      let res = await axios.get(`http://localhost:4000/getroomdetail?id=${id}`);
+      let res = await axios.get(`${URL}/getroomdetail?id=${id}`);
       return dispatch({
         type: "GET_ROOM_DETAIL",
         payload: res.data,
@@ -154,16 +157,16 @@ export function getRoomDetail(id) {
     }
   };
 }
-export function getAllCountries(){
-  return async function(dispatch){
-    try {      
-      let {data} = await axios.get("http://localhost:4000/countries")
+export function getAllCountries() {
+  return async function (dispatch) {
+    try {
+      let { data } = await axios.get(`${URL}/countries`);
       return dispatch({
         type: GET_ALL_COUNTRIES,
-        payload: data
-      })
+        payload: data,
+      });
     } catch (error) {
-      console.log(error)
+      console.log(error);
     }
-  }
+  };
 }

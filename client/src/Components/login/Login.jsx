@@ -7,7 +7,7 @@ export default function Login() {
 
 
   function callApi() {
-    axios.get('http://localhost:4000/login').then(responds => console.log(responds.data)).catch(e=> console.log(e))
+    axios.get('https://hosteldinamitabackend.herokuapp.com/login').then(responds => console.log(responds.data)).catch(e=> console.log(e))
 }
 
 async function callProtected() {
@@ -15,7 +15,7 @@ async function callProtected() {
    try {
 
    const token = await getAccessTokenSilently();
-   const responds = await axios.get('http://localhost:4000/', {
+   const responds = await axios.get('https://hosteldinamitabackend.herokuapp.com/', {
       headers:{
          authorization:`Bearer ${token}`
       }
@@ -34,7 +34,9 @@ async function callProtected() {
 async function getProfile() {
     try {
       const token = await getAccessTokenSilently();
-       const info = await axios.get('http://localhost:4000/login/profile', {
+      
+       const info = await axios.get('https://hosteldinamitabackend.herokuapp.com/login/profile', {
+         // const info = await axios.get('http://localhost:4000/login/profile', {
          headers:{
             authorization:`Bearer ${token}`
          }
