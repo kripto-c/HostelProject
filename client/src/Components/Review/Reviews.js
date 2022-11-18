@@ -3,7 +3,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { getReview } from "../../Redux/actions/index.js";
 //IMPORT DE REACT BOOTSTRAP --------------------------->>
 import { IoIosStar } from "react-icons/io";
-import s from "./Reviews.module.css"
+import s from "./Reviews.module.css";
 //----------------------------------------------------------------------
 export default function Reviews() {
   const dispatch = useDispatch();
@@ -23,22 +23,16 @@ export default function Reviews() {
     let fecha = data[0];
     let hora = data[1];
 
-    
-    return (
-      <span>
-         {fecha} 
-      </span>
-    );
+    return <span>{fecha}</span>;
   }
-  
 
   //RENDER------------------------------------------------------------------->>
   return (
     <div className={s.container}>
       {reviews?.map((r) => {
         return (
-          <div  key={r.id} className={s.review}>
-            <h1>{ r.client?.name? r.client .name : "usuario anonimo"}</h1>
+          <div key={r.id} className={s.review}>
+            <h1>{r.client?.name ? r.client.name : "usuario anonimo"}</h1>
             <h2>
               {numberStar(r.rating)}({getFechaHora(r.createdAt)})
             </h2>

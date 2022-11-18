@@ -64,6 +64,7 @@ export function sendFeedback(data) {
   }
 }
 
+
 export function filterTypeRoom(payloadOne, payloadTwo, payloadThree) {
   console.log("TYPE ROOM FILTRO ACCIONADO", payloadOne);
   return {
@@ -73,6 +74,9 @@ export function filterTypeRoom(payloadOne, payloadTwo, payloadThree) {
     payloadThree,
   };
 }
+
+
+
 // export function filterPrice(payload){
 //   console.log("Filter PRICE",payload)
 //   return{

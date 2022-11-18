@@ -2,16 +2,19 @@ import {  filterTypeRoom } from "../../Redux/actions";
 import { useDispatch, useSelector } from "react-redux";
 import { useState } from "react";
 import style from "./Filters.module.css";
+
 const Swal = require('sweetalert2')
 
 
 
 export default function Filters({ getRooms, setData }) {
   //Estados -------------------------------------------------->>
-  const dispatch = useDispatch();
-  const [typeBatchroom, setTypeBatchroom] = useState("");
-  const [type, setType] = useState("");
-  const [price, setPrice] = useState("");
+  const dispatch = useDispatch(); 
+  //Estados locales donde se guardan los value de los select de los filtros!!  (Que despues se hace dispatch en el momento de filtrar) ------------->>
+  const [typeBatchroom, setTypeBatchroom] = useState(JSON.parse(localStorage.getItem("selectTypeBatchRoom"))||"");
+  const [type, setType] = useState(JSON.parse(localStorage.getItem("selectType")) || "");
+  const [price, setPrice] = useState(JSON.parse(localStorage.getItem("selectPrice"))||"");
+  
   const listOfBeds = []
   const a = []
 
@@ -20,6 +23,9 @@ export default function Filters({ getRooms, setData }) {
   //Funcion para devolver el localStorage con TODA la informacion inicial que traemos de la base de datos de las rooms!! Se usa en RECARGAR FILTROS ---->> 
   const putRooms = () => {
     localStorage.setItem("filtros", JSON.stringify(allRooms));
+    localStorage.setItem("selectType",JSON.stringify(""))
+    localStorage.setItem("selectTypeBatchRoom",JSON.stringify(""))
+    localStorage.setItem("selectPrice",JSON.stringify(""))
   };
   
 
@@ -42,17 +48,28 @@ export default function Filters({ getRooms, setData }) {
      //SI EL CAMBIO FUE EN EL SELECT DE TIPO DE HABITACION, GUARDO SU VALOR EN EL ESTADO LOCAL DE TYPE!!-------->
     if (e.target.name === "filterRoomType") {
       console.log("CAMBIO TYPE ROOM");
+      
+      localStorage.setItem("selectType",JSON.stringify(e.target.value)) //asdasdasdasdasd - - -- - - - -- - - - - -- - (-)
+      JSON.parse(localStorage.getItem("selectType"))? setType(JSON.parse(localStorage.getItem("selectType"))):setType(e.target.value)
       return setType(e.target.value);
     }
     //SI EL CAMBIO FUE EN EL SELECT DE TIPO DE BAÑO, GUARDO SU VALOR EN EL ESTADO LOCAL DE TYPE!!-------->
     if (e.target.name === "typeBatchroom") {
+     
+      localStorage.setItem("selectTypeBatchRoom",JSON.stringify(e.target.value)) //asdasdasdasdasd - - -- - - - -- - - - - -- - (-)
+      JSON.parse(localStorage.getItem("selectTypeBatchRoom"))? setType(JSON.parse(localStorage.getItem("selectTypeBatchRoom"))):setType(e.target.value)
+      
       return setTypeBatchroom(e.target.value);
     }
     if (e.target.name === "price") {
-      return setPrice(e.target.value);
       
+      localStorage.setItem("selectPrice",JSON.stringify(e.target.value)) //asdasdasdasdasd - - -- - - - -- - - - - -- - (-)
+      JSON.parse(localStorage.getItem("selectPrice"))? setType(JSON.parse(localStorage.getItem("selectPrice"))):setType(e.target.value)
+     
+      return setPrice(e.target.value);
     }
   }
+  
   //SUBMIT DEL BOTON FILTRAR!! ----------------------------------------------->>
   function handleSubmitFilter(e) {
     e.preventDefault();
@@ -94,8 +111,8 @@ export default function Filters({ getRooms, setData }) {
         <li className="nav-item mx-1">
           <select
             id="type"
-            defaultValue="Todo"
-            value={type}
+            defaultValue={"Todo"}
+            value={JSON.parse(localStorage.getItem("selectType"))}
             name="filterRoomType"
             onChange={(e) => roomTypeHandler(e)}
             className="form-select"
@@ -113,7 +130,7 @@ export default function Filters({ getRooms, setData }) {
             id="type"
             defaultValue="Todo"
             name="typeBatchroom"
-            value={typeBatchroom}
+            value={JSON.parse(localStorage.getItem("selectTypeBatchRoom"))}
             onChange={(e) => roomTypeHandler(e)}
             className="form-select"
           >
@@ -131,7 +148,7 @@ export default function Filters({ getRooms, setData }) {
             id="price"
             defaultValue="Todo"
             name="price"
-            value={price}
+            value={JSON.parse(localStorage.getItem("selectPrice"))}
             onChange={(e) => roomTypeHandler(e)}
             className="form-select"
           >

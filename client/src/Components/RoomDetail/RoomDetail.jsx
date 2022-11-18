@@ -8,7 +8,7 @@ import { BsFillPencilFill } from "react-icons/bs";
 /////////////////
 import "./RoomDetail.css";
 import axios from "axios";
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from "react-redux";
 import { useAuth0 } from "@auth0/auth0-react";
 import { getRoomDetail } from "../../Redux/actions";
