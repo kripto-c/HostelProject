@@ -117,10 +117,12 @@ export function postOwner(payload) {
     return data;
   };
 }
-export function getOwner() {
-  return async function (dispatch) {
-    try {
-      let { data } = await axios.get(`${URL}/owner/get`);
+export function getOwner(token){
+  return async function(dispatch){
+    try {      
+      let {data} = await axios.get("http://localhost:4000/owner/get", {
+        headers: {authorization: `Bearer ${token}`}
+      });
       return dispatch({
         type: GET_OWNER,
         payload: data,

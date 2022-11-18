@@ -19,6 +19,10 @@ export default function OwnerCrud() {
         [e.target.name]: e.target.value
     })
   }
+  async function getOwnerF(){
+
+  }
+
   useEffect(() => {
       dispatch(getOwner());
   }, [dispatch]);
