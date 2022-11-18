@@ -1,10 +1,27 @@
 import React from "react";
 import { useState } from "react";
+import { useDispatch } from "react-redux";
+import { createRoom } from "../../Redux/actions";
+import Swal from "sweetalert2";
+import Form from "react-bootstrap/Form";
+import Button from "react-bootstrap/Button";
 
-const Create = (props) => {
+const Create = () => {
+  // SETTEAR INFO//
   const [image, setImage] = useState("");
   const [loading, setLoading] = useState(false);
+  const [room, setRoom] = useState({
+    camas: "",
+    descripcion: "",
+    file: "",
+    baño: "",
+    tipo: "",
+    observacion: "",
+    precio: "",
+  });
+  const dispatch = useDispatch();
 
+  // SUBIR IMAGENES CON CLOUDINARY //
   const uploadImage = async (e) => {
     const files = e.target.files;
     const data = new FormData();
@@ -16,18 +33,15 @@ const Create = (props) => {
       body: data,
     });
     const file = await res.json();
-    console.log(res);
-    setImage(file.secure_url);
+    setImage(file.secure_url.toString());
     setLoading(false);
+    setRoom({
+      ...room,
+      file: [file.secure_url],
+    });
   };
 
-  const [room, setRoom] = useState({
-    camas: "",
-    descripcion: "",
-    file: "",
-    precio: "",
-    baños: "",
-  });
+  // HANDLES //
 
   const handleChange = (e) => {
     setRoom({
@@ -43,77 +57,131 @@ const Create = (props) => {
     });
   };
 
-  const handleImageChange = () =>{
+  const handleTipoSelect = (e) => {
     setRoom({
       ...room,
-      file: image
-    })
-  }
+      tipo: [e.target.value],
+    });
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    if (
+      !room.camas &&
+      !room.baño &&
+      !room.descripcion &&
+      !room.file &&
+      !room.observacion &&
+      !room.precio &&
+      !room.tipo
+    ) {
+      Swal.fire({
+        icon: "error",
+        title: "Debes completar todos los datos!",
+      });
+    } else {
+      dispatch(createRoom(room));
+      Swal.fire({
+        icon: "success",
+        title: "Habitacion Creada Correctamente",
+      });
+      setRoom({
+        camas: "",
+        descripcion: "",
+        file: "",
+        baño: "",
+        tipo: "",
+        observacion: "",
+        precio: "",
+      });
+    }
+  };
 
   return (
     <div>
-      <form>
-        <div>
-          <label>Camas: </label>
-          <input
-            type="number"
-            name="camas"
-            min="1"
-            max="10"
-            value={room.camas}
-            onChange={handleChange}
-          />
+      <Form onSubmit={(e) => handleSubmit(e)}>
+        <div className="form-group">
+          <div>
+            <label>Camas: </label>
+            <input
+              type="number"
+              name="camas"
+              min="1"
+              max="10"
+              value={room.camas}
+              onChange={handleChange}
+            />
+          </div>
+          <div>
+            <label>Descripcion: </label>
+            <input
+              type="text"
+              name="descripcion"
+              value={room.descripcion}
+              onChange={handleChange}
+            />
+          </div>
+          <div>
+            <label>Baño: </label>
+            <select
+              placeholder="Seleccionar tipo"
+              onChange={(e) => handleBañoSelect(e)}
+            >
+              <option value="Privado">Privado</option>
+              <option value="Compartido">Compartido</option>
+            </select>
+          </div>
+          <div>
+            <label>Tipo: </label>
+            <select onChange={(e) => handleTipoSelect(e)}>
+              <option value="compartida">Compartida</option>
+              <option value="privada">Privada</option>
+            </select>
+          </div>
+          <div>
+            <label>Instertar imagen: </label>
+            <input
+              name="file"
+              type="file"
+              onChange={(e) => {
+                uploadImage(e);
+              }}
+            />
+          </div>
+          <div>
+            <img
+              style={{
+                width: "450px",
+                height: "300px",
+                backgroundSize: "cover",
+              }}
+              alt=""
+              src={image}
+            />
+          </div>
+          <div>
+            <label>Observaciones: </label>
+            <input
+              type="text"
+              name="observacion"
+              value={room.observacion}
+              onChange={handleChange}
+            />
+          </div>
+          <div>
+            <label>Precio: </label>
+            <input
+              type="number"
+              min="0"
+              max="10000"
+              name="precio"
+              value={room.precio}
+              onChange={handleChange}
+            />
+          </div>
         </div>
-        <div>
-          <label>Descripcion: </label>
-          <input
-            type="text"
-            name="descripcion"
-            value={room.descripcion}
-            onChange={handleChange}
-          />
-        </div>
-        <div>
-          <label>Baños: </label>
-          <select
-            placeholder="Seleccionar tipo"
-            onChange={(e) => handleBañoSelect(e)}
-          >
-            <option value="Privado">Privado</option>
-            <option value="Compartido">Compartido</option>
-          </select>
-        </div>
-        <div>
-          <label>Instertar imagen: </label>
-          <input
-            type="file"
-            name="file"
-            value={image}
-            onChange={() => {
-              handleImageChange();
-              uploadImage();
-            }}
-          />
-        </div>
-        <div>
-          <img
-            style={{ width: "450px", height: "300px", backgroundSize: "cover" }}
-            alt=""
-            src={image}
-          />
-        </div>
-        <div>
-          <label>Precio: </label>
-          <input
-            type="number"
-            min="0"
-            max="10000"
-            name="precio"
-            value={room.precio}
-            onChange={handleChange}
-          />
-        </div>
-      </form>
+        <Button type="submit">Crear</Button>
+      </Form>
     </div>
   );
 };
