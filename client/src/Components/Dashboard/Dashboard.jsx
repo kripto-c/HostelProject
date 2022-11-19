@@ -1,9 +1,9 @@
 import React, { useEffect } from "react";
-import styled from "styled-components";
+// import styled from "styled-components";
 import Analytics from "./Analytics";
 import Payments from "./Payments";
 import FAQ from "./FAQ";
-import Navbar from "./Navbar";
+import Navbar from "./Navbar"; 
 import Profile from "./Profile";
 import Transfers from "./Transfers";
 import scrollreveal from "scrollreveal";

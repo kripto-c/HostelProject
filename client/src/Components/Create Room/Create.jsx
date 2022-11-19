@@ -60,6 +60,9 @@ const Create = () => {
       ...room,
       baño: [e.target.value],
     });
+    if(e.target.value === "Compartido"){
+      setRoom({baño: true})
+    } else {setRoom({baño:false})}
   };
 
   const handleTipoSelect = (e) => {
@@ -68,6 +71,7 @@ const Create = () => {
       tipo: [e.target.value],
     });
   };
+  console.log(baño)
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -102,6 +106,7 @@ const Create = () => {
       navigate("/");
     }
   };
+
 
   return (
     <div className="container-create" >
