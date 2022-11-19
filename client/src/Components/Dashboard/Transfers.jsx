@@ -5,33 +5,15 @@ import { HiArrowNarrowRight } from "react-icons/hi";
 import { cardStyles } from "./ReusableStyles";
 
 export default function Transfers() {
-  const transactions = [
-    {
-      image: "IMAGEN AVATAR",
-      name: "From Kishan Sheth",
-      time: "Today, 16:36",
-      amount: "+$50",
-    },
-    {
-      image: "IMG AVATAR",
-      name: "To Lauras Santos",
-      time: "Today, 08:49",
-      amount: "-$25",
-    },
-    {
-      image: "IMG AVATAR",
-      name: "From Jadon S.",
-      time: "Yesterday, 14:36",
-      amount: "+$150",
-    },
-  ];
+  //NO ESTA HECHO, ADAPTEN COMO QUIERAN
+ const transactions = []
   return (
     <Section>
       <div className="title">
         <h2>Your Transfers</h2>
       </div>
       <div className="transactions">
-        {transactions.map((transaction) => {
+        {transactions && transactions.map((transaction) => {
           return (
             <div className="transaction">
               <div className="transaction__title">

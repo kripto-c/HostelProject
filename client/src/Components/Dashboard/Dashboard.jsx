@@ -33,7 +33,7 @@ export default function Dashboard() {
       <div className="row">
         <div className="col">
           <Analytics />
-          <FAQ />
+         
         </div>
         <div className="row__two">
           <Payments />
