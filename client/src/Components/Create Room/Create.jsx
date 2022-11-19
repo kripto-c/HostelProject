@@ -15,13 +15,13 @@ const Create = () => {
   const [image, setImage] = useState("");
   const [loading, setLoading] = useState(false);
   const [room, setRoom] = useState({
-    camas: "",
-    descripcion: "",
-    file: "",
-    baño: "",
-    tipo: "",
-    observacion: "",
-    precio: "",
+    beds: "",
+    description: "",
+    image: "",
+    bathroom: "",
+    observation: "",
+    price: "",
+    type:"",
   });
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -42,7 +42,7 @@ const Create = () => {
     setLoading(false);
     setRoom({
       ...room,
-      file: [file.secure_url],
+      image: file.secure_url
     });
   };
 
@@ -55,34 +55,30 @@ const Create = () => {
     });
   };
 
-  const handleBañoSelect = (e) => {
+  const handlebañoSelect = (e) => {
     setRoom({
       ...room,
-      baño: [e.target.value],
+      bathroom: e.target.value
     });
-    if(e.target.value === "Compartido"){
-      setRoom({baño: true})
-    } else {setRoom({baño:false})}
   };
 
   const handleTipoSelect = (e) => {
     setRoom({
       ...room,
-      tipo: [e.target.value],
+      type: e.target.value
     });
   };
-  console.log(baño)
 
   const handleSubmit = (e) => {
     e.preventDefault();
     if (
-      !room.camas ||
-      !room.baño ||
-      !room.descripcion ||
-      !room.file ||
-      !room.observacion ||
-      !room.precio ||
-      !room.tipo
+      !room.beds ||
+      !room.bathroom ||
+      !room.description ||
+      !room.image ||
+      !room.observation ||
+      !room.price ||
+      !room.type
     ) {
       Swal.fire({
         icon: "error",
@@ -95,13 +91,13 @@ const Create = () => {
         title: "Habitacion Creada Correctamente",
       });
       setRoom({
-        camas: "",
-        descripcion: "",
-        file: "",
-        baño: "",
-        tipo: "",
-        observacion: "",
-        precio: "",
+        beds: "",
+        description: "",
+        image: "",
+        bathroom: "",
+        observation: "",
+        price: "",
+        type:"",
       });
       navigate("/");
     }
@@ -146,20 +142,20 @@ const Create = () => {
           <Row>
             <Form.Group as={Col} md="5">
               <Form.Label>Baño: </Form.Label>
-              <Form.Select onChange={(e) => handleBañoSelect(e)}>
-                <option selected>Elegir tipo de baño</option>
-                <option value="Privado">Privado</option>
-                <option value="Compartido">Compartido</option>
+              <Form.Select onChange={(e) => handlebañoSelect(e)}>
+                <option >Elegir tipo de baño</option>
+                <option value="True">Privado</option>
+                <option value="False">Compartido</option>
               </Form.Select>
             </Form.Group>
             <Form.Group as={Col} md="1">
               <Form.Label>Camas: </Form.Label>
               <Form.Control
                 type="number"
-                name="camas"
+                name="beds"
                 min="1"
                 max="10"
-                value={room.camas}
+                value={room.beds}
                 onChange={handleChange}
               />
             </Form.Group>
@@ -177,9 +173,9 @@ const Create = () => {
               <Form.Label>Observaciones: </Form.Label>
               <Form.Control
                 as="textarea"
-                name="observacion"
+                name="observation"
                 placeholder="Escribir una observacion acerca de la habitacion"
-                value={room.observacion}
+                value={room.observation}
                 onChange={handleChange}
               />
             </Form.Group>
@@ -187,9 +183,9 @@ const Create = () => {
               <Form.Label>Descripcion: </Form.Label>
               <Form.Control
                 as="textarea"
-                name="descripcion"
-                placeholder="Escribir una descripcion acerca de la habitacion"
-                value={room.descripcion}
+                name="description"
+                placeholder="Escribir una description acerca de la habitacion"
+                value={room.description}
                 onChange={handleChange}
               />
             </Form.Group>
@@ -201,8 +197,8 @@ const Create = () => {
                 type="number"
                 min="0"
                 max="10000"
-                name="precio"
-                value={room.precio}
+                name="price"
+                value={room.price}
                 onChange={handleChange}
               />
             </Form.Group>

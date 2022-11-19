@@ -198,7 +198,7 @@ export function getAllCountries() {
 }
 
 export const createRoom = (payload) => async () => {
-  let res = await axios.post("http://localhost:4000/rooms", payload);
+  let res = await axios.post(`${URL}/rooms`, payload);
   return {
     type: "CREATE_ROOM",
     res,

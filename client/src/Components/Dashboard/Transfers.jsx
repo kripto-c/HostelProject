@@ -1,5 +1,5 @@
 import React from "react";
-// import styled from "styled-components";
+import styled from "styled-components";
 import { HiArrowNarrowRight } from "react-icons/hi";
 
 import { cardStyles } from "./ReusableStyles";

@@ -1,5 +1,5 @@
 import React from "react";
-// import styled from "styled-components";
+import styled from "styled-components";
 import { IoIosArrowForward } from "react-icons/io";
 import { AiFillCalendar } from "react-icons/ai";
 import { MdTimelapse } from "react-icons/md";

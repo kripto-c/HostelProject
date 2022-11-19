@@ -1,6 +1,6 @@
 import React from "react";
 import 'bootstrap/dist/css/bootstrap.min.css';
-// import style from './style.module.css'
+import style from './style.module.css'
 
 export default function Dashboard(){
     return(

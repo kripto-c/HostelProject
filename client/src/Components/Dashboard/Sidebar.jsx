@@ -11,7 +11,7 @@ import { GiHamburgerMenu } from "react-icons/gi";
 import { VscChromeClose } from "react-icons/vsc";
 import scrollreveal from "scrollreveal";
 import logo from "../../images/logo.svg";
-// import styled from "styled-components";
+import styled from "styled-components";
 
 
 const Section = styled.section`
