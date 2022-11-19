@@ -7,9 +7,10 @@ export const GET_ROOMS = "GET_ROOMS";
 export const GET_ALL_COUNTRIES = "GET_ALL_COUNTRIES";
 export const POST_OWNER = "POST_OWNER";
 export const GET_OWNER = "GET_OWNER";
+export const GET_ALL_CLIENTS = "GET_ALL_CLIENTS"
 
-// const URL = "https://dinamitahostel.herokuapp.com";
-const URL = "http://localhost:4000" //descomentar para hacer pruebas locales
+// const URL = "https://hosteldinamitabackend.herokuapp.com";
+const URL = "http://localhost:4000"; //descomentar para hacer pruebas
 
 //ACTION ROOMS ----------------------------------------------------------->>
 export function getRooms() {
@@ -44,9 +45,9 @@ export function deleteReview(id) {
     return async function (dispatch) {
       await axios.put(`${URL}/reviews/${id}`);
       dispatch({
-        type:"DELETE_REVIEW",
-        payload:"Eliminado logico"
-      })
+        type: "DELETE_REVIEW",
+        payload: "Eliminado logico",
+      });
     };
     // return async function (dispatch) {
     //   await axios.delete(`${URL}/reviews/${id}`);
@@ -123,6 +124,20 @@ export function getCLient(token) {
     console.log(e);
   }
 }
+export function getAllClients() {
+  try {
+    return async (dispatch) => {
+      const allClients = await axios.get(`${URL}/allClients`);
+      console.log(allClients)
+      return dispatch({
+        type:GET_ALL_CLIENTS,
+        payload:allClients.data
+      })
+    };
+  } catch(e) {
+    console.log(e)
+  }
+}
 export function postClient(body, headers) {
   return async () => {
     try {
@@ -139,11 +154,11 @@ export function postOwner(payload, headers) {
     return data;
   };
 }
-export function getOwner(token){
-  return async function(dispatch){
-    try {      
-      let {data} = await axios.get(`${URL}/owner/get`, {
-        headers: {authorization: `Bearer ${token}`}
+export function getOwner(token) {
+  return async function (dispatch) {
+    try {
+      let { data } = await axios.get(`${URL}/owner/get`, {
+        headers: { authorization: `Bearer ${token}` },
       });
       return dispatch({
         type: GET_OWNER,

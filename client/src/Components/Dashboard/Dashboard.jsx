@@ -6,7 +6,7 @@ import FAQ from "./FAQ";
 import Navbar from "./Navbar"; 
 import Profile from "./Profile";
 import Transfers from "./Transfers";
-import scrollreveal from "scrollreveal";
+// import scrollreveal from "scrollreveal";
 export default function Dashboard() {
   // useEffect(() => {
   //   const sr = scrollreveal({
@@ -37,7 +37,7 @@ export default function Dashboard() {
         </div>
         <div className="row__two">
           <Payments />
-          <Transfers />
+          
           <Profile />
         </div>
       </div>

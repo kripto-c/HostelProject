@@ -5,7 +5,7 @@ const login = require("./login/route");
 const rol = require('./rol/route')
 const reviews = require("./reviews/reviews.js");
 const info = require(".././routes/info/info.js")
-
+const getAllClients = require("../routes/numberClients/getAllClients.js")
 const rooms = require("../routes/rooms/index.js")
 const roomdetail = require("./roomdetail/roomdetail")
 const payment = require("./payments/payment");
@@ -36,6 +36,7 @@ router.use("/info", info);
 router.use("/reviews",reviews);
 router.use("/rooms", rooms);
 router.use("/countries", getCountries)
-router.use("/rent",rent)
+router.use("/owner",checkPermissions(itemPermissos.addDataAdmin),owner)
+router.use("/allClients",getAllClients)
 
 module.exports = router;
