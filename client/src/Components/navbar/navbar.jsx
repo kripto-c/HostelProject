@@ -95,7 +95,7 @@ function Navbars() {
               </div>
             </div>
             <Nav className="nav">
-              <Link className="linkComponent" to="/ownerCrud">
+              <Link className="linkComponent" to="/admin">
                 Tablero
               </Link>
               <Link className="linkComponent" to="/rooms">

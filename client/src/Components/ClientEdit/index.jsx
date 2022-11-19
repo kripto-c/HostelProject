@@ -11,7 +11,6 @@ import { BsFillPencilFill } from "react-icons/bs";
 
 export default function ClientEdit() {
     const info = useSelector(state => state.client);
-    console.log("info: ",info)
     const countries = useSelector(state => state.countries)
     const dispatch = useDispatch();
     const { getAccessTokenSilently } = useAuth0();
