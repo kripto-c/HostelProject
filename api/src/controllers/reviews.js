@@ -1,4 +1,5 @@
 const { Review, Client } = require("../db.js");
+const { find } = require("../Info Hostel/data.js");
 
 const postReviews = async (req, res) => {
   try {
@@ -32,10 +33,14 @@ const getReviews = async (req, res) => {
 };
 const deleteReview = async(req,res)=>{
   try{
-    let {id} = req.body
-    const reviewDelete = Review.build({id})
-    reviewDelete.destroy()
-    res.status(200).json("Review Eliminada")
+    let {id} = req.params
+    console.log("ESTE ID",id)
+    let findId = await Review.findByPk(id)
+    console.log(findId)
+    findId.status = true;
+    await findId.save()
+    // await Review.destroy({where:{id}})
+    res.status(200).json("Review Eliminado logico")
   }catch(e){
     res.status(400).json("No se pudo eliminar")
 

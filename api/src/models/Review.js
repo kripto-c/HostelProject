@@ -14,7 +14,12 @@ module.exports = (sequelize) => {
     },
     description:{
         type:DataTypes.STRING,
-        allowNull:false,
-    }
+        
+    },
+    status:{
+      type:DataTypes.BOOLEAN,
+      defaultValue: false,
+      
+    },
   });
 };
