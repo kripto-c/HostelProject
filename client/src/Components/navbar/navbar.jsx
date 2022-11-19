@@ -3,7 +3,7 @@ import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
 import NavDropdown from "react-bootstrap/NavDropdown";
 import { useAuth0 } from "@auth0/auth0-react";
-import { getCLient } from "../../Redux/actions";
+import { getCLient, getOwner } from "../../Redux/actions";
 import axios from "axios";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
@@ -34,7 +34,7 @@ function Navbars() {
         },
       });
       console.log(info.data);
-      getInfo();
+      getInfoClient();
       localStorage.setItem("IDUser", info.data.id);
     } catch (error) {
       console.log(error);
@@ -51,19 +51,24 @@ function Navbars() {
     }
   };
 
-  async function getInfo() {
+  async function getInfoClient() {
     const token = await getAccessTokenSilently();
     dispatch(getCLient(token));
   }
 
+async function getInfoOwner() {
+    const token = await getAccessTokenSilently();
+    dispatch(getInfoOwner(token))
+}
+
   useEffect(() => {
     let idUser = localStorage.getItem("IDUser");
     if (idUser) {
-      getInfo();
+      getInfoClient();
       setConfirmLog(true);
     }
     if (client.length > 0 && isAuthenticated) {
-      getInfo();
+      getInfoClient();
     }
   }, [dispatch]);
 
@@ -95,9 +100,6 @@ function Navbars() {
               </div>
             </div>
             <Nav className="nav">
-              <Link className="linkComponent" to="/ownerCrud">
-                Tablero
-              </Link>
               <Link className="linkComponent" to="/rooms">
                 Habitaciones
               </Link>
@@ -108,14 +110,9 @@ function Navbars() {
                 Acerca de
               </Link>
               {confirmLog && (
-                <div>
                   <Link className="linkComponent" to="/reviewHostel">
                     Reviews
                   </Link>
-                  <Link className="linkComponent" to="/createRoom">
-                    Crear Habitacion
-                  </Link>
-                </div>
               )}
             </Nav>
           </div>
@@ -130,12 +127,14 @@ function Navbars() {
                 <Nav className="me-auto CuentaLog">
                   <button className="miCuentaOp">Mi Cuenta</button>
                   <div className="LoginOp">
-                    <Link to="/clientEdit" className="clientEdit">
-                      Editar Datos
-                    </Link>
-                    <NavDropdown.Item href="#action/3.2">
-                      Registro
-                    </NavDropdown.Item>
+              
+                    {
+                      (isAuthenticated && user.rol[0] === "menu-admin") ?
+                     <Link to="/setting">configuracion de sitio</Link >:
+                     <Link to="/clientEdit" className="clientEdit">
+                     Editar mi cuenta
+                   </Link>
+                      }
                     <NavDropdown.Divider />
                     <NavDropdown.Item
                       href="#action/3.4"
