@@ -43,7 +43,7 @@ route.get('/setClient', async (req, res)=>{
        headers:{authorization:`Bearer ${accesToken}`}
      })
      const userinfo = responds.data;
-     console.log(responds.data);
+     console.log(userinfo);
         const { email, given_name, family_name, sub } = userinfo;
         const id = sub.split('|')[1];
          if ( email && id ) {

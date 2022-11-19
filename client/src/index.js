@@ -21,10 +21,10 @@ root.render(
         audience="route-protected"
         scope="openid profile email"
       >
-        <App />
-      </Auth0Provider>
+    <App />
+    </Auth0Provider>
     </BrowserRouter>
-  </Provider>
+    </Provider>
 );
 
 // If you want to start measuring performance in your app, pass a function
