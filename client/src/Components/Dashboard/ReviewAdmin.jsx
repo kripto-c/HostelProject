@@ -27,7 +27,7 @@ export default function ReviewAdmin() {
         {reviews.map((r, index) => (
           <tr>
           <th scope="row">{r.id}</th>
-          <td>{String(r.client)}</td>
+          <td>{r.client !== null && r.client?r.client.name:""}</td>
           <td>{r.rating}</td>
           <td>@mdo</td>
         </tr>
