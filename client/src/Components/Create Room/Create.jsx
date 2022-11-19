@@ -108,7 +108,7 @@ const Create = () => {
       <Form onSubmit={(e) => handleSubmit(e)}>
         <div className="form-group">
           <Row className="d-flex justify-content-between">
-            <Form.Group as={Col} md="4">
+            <Form.Group as={Col} md="5">
               <Form.Label>Instertar imagen: </Form.Label>
               <Form.Control
                 name="file"
