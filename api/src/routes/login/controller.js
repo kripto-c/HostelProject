@@ -28,7 +28,7 @@ async function getClient(req, res) {
           email:data.email,
           observation:data.observation,
           countrieId:data.countrieId,
-          country:data.countrie.country
+          country:data.countrie? data.countrie.country : "Argentina"
         });
        } catch (error) {
          res.json({error: error + ""})
