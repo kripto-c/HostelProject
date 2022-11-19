@@ -15,7 +15,7 @@ import Create from "./Components/Create Room/Create";
 //import styled from "styled-components";
 import PanelAdmin from "./Components/Dashboard/PanelAdmin";
 import ReviewAdmin from "./Components/Dashboard/ReviewAdmin.jsx";
-//import Sidebar from "./Components/Dashboard/Sidebar.jsx";
+import Sidebar from "./Components/Dashboard/Sidebar.jsx";
 //-------------------------------------------------------------------->>
 function App() {
   return (
@@ -35,9 +35,10 @@ function App() {
 
       <Routes>
         {/* <Route path="/" element={<Sidebar/>}></Route>      */}
-        <Route path="/admin" element={<PanelAdmin />}>
-          
+        <Route path="/admin/*" element={<PanelAdmin />}>
+          <Route path="reviewsAdmin" element={<ReviewAdmin/>}></Route>
         </Route>
+        
         {/* <Route path="/admin/review" element={<ReviewAdmin/>}/>
       <Route path="/admin/owner" element={<OwnerCrud />} /> */}
       </Routes>

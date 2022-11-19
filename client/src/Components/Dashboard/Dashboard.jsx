@@ -1,4 +1,5 @@
 import React, { useEffect } from "react";
+import {Routes, Route} from "react-router-dom"
 import styled from "styled-components";
 import Analytics from "./Analytics";
 import Payments from "./Payments";
@@ -29,6 +30,9 @@ export default function Dashboard() {
   // }, []);
   return (
     <div className="container-sm mg-10">
+      <Routes>
+                  <Route path="dashboard" element={<Dashboard/>}></Route>
+                </Routes>
       <Navbar />
       <div className="row">
         <div className="col">

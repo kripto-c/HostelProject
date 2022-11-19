@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-
+import { Routes, Route } from "react-router-dom";
 import { MdSpaceDashboard } from "react-icons/md";
 import { RiDashboard2Fill } from "react-icons/ri";
 import { FaAddressCard } from "react-icons/fa";
@@ -12,6 +12,8 @@ import { VscChromeClose } from "react-icons/vsc";
 import scrollreveal from "scrollreveal";
 import logo from "../../images/logo.svg";
 import styled from "styled-components";
+import { Link } from "react-router-dom";
+import Dashboard from "./Dashboard";
 
 export default function Sidebar() {
   const [currentLink, setCurrentLink] = useState(1);
@@ -47,34 +49,108 @@ export default function Sidebar() {
 
   return (
     <div>
-    <div className="container">
-    
-      <Section>
-        
-        <div className="top">
-          <div className="brand">
-            <img className="logo" src={logo} />
-            <span>Project Hostel</span>
+      <div className="container">
+        <Section>
+          <div className="top">
+            <div className="brand">
+              <img className="logo" src={logo} />
+              <span>Project Hostel</span>
+            </div>
+            <div className="toggle">
+              {navbarState ? (
+                <VscChromeClose onClick={() => setNavbarState(false)} />
+              ) : (
+                <GiHamburgerMenu
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    setNavbarState(true);
+                  }}
+                />
+              )}
+            </div>
+            <div className="links">
+              <ul>
+                <li
+                  className={currentLink === 1 ? "active" : "none"}
+                  onClick={() => setCurrentLink(1)}
+                >
+                  {/* <Routes>
+                  <Route path="dashboard" element={<Dashboard/>}></Route>
+                </Routes> */}
+                  <Link to="/admin/dashboard">
+                    <MdSpaceDashboard />
+                    <span> Dashboard</span>
+                  </Link>
+                </li>
+                <li
+                  className={currentLink === 2 ? "active" : "none"}
+                  onClick={() => setCurrentLink(2)}
+                >
+                  <Link to="/admin/reviewsAdmin">
+                    <MdSpaceDashboard />
+                    <span> Reviews</span>
+                  </Link>
+                </li>
+                <li
+                  className={currentLink === 3 ? "active" : "none"}
+                  onClick={() => setCurrentLink(3)}
+                >
+                  {" "}
+                  <Link to="/admin/roomsAdmin">
+                    <MdSpaceDashboard />
+                    <span> Rooms</span>
+                  </Link>
+                </li>
+                <li
+                  className={currentLink === 4 ? "active" : "none"}
+                  onClick={() => setCurrentLink(4)}
+                >
+                  <Link to="/admin/payments">
+                    <MdSpaceDashboard />
+                    <span> Pagos </span>
+                  </Link>
+                </li>
+
+                {/* <li
+                className={currentLink === 5 ? "active" : "none"}
+                onClick={() => setCurrentLink(5)}>
+                <a href="#">
+                  <BsFillChatTextFill />
+                  <span> FAQs</span>
+                </a>
+              </li> */}
+
+                <li
+                  className={currentLink === 6 ? "active" : "none"}
+                  onClick={() => setCurrentLink(6)}
+                >
+                   <Link to="/admin/settings">
+                   <IoSettings />
+                    <span> Settings </span>
+                  </Link>
+                
+                </li>
+              </ul>
+            </div>
           </div>
-          <div className="toggle">
-            {navbarState ? (
-              <VscChromeClose onClick={() => setNavbarState(false)} />
-            ) : (
-              <GiHamburgerMenu
-                onClick={(e) => {
-                  e.stopPropagation();
-                  setNavbarState(true);
-                }}
-              />
-            )}
+          <div className="logout">
+            <a href="#">
+              <FiLogOut />
+              <span className="logout">Logout</span>
+            </a>
           </div>
-          <div className="links">
+        </Section>
+        <ResponsiveNav
+          state={navbarState}
+          className={navbarState ? "show" : ""}
+        >
+          <div className="responsive__links">
             <ul>
               <li
                 className={currentLink === 1 ? "active" : "none"}
                 onClick={() => setCurrentLink(1)}
               >
-                <a href="/admin">
+                <a href="#">
                   <MdSpaceDashboard />
                   <span> Dashboard</span>
                 </a>
@@ -85,7 +161,7 @@ export default function Sidebar() {
               >
                 <a href="#">
                   <RiDashboard2Fill />
-                  <span> Reviews</span>
+                  <span> Riders</span>
                 </a>
               </li>
               <li
@@ -94,7 +170,7 @@ export default function Sidebar() {
               >
                 <a href="#">
                   <FaAddressCard />
-                  <span> Pagos</span>
+                  <span> Payment Details</span>
                 </a>
               </li>
               <li
@@ -103,102 +179,33 @@ export default function Sidebar() {
               >
                 <a href="#">
                   <GiTwirlCenter />
-                  <span> Rooms</span>
+                  <span> Learning Center</span>
                 </a>
               </li>
-
-              {/* <li
+              <li
                 className={currentLink === 5 ? "active" : "none"}
-                onClick={() => setCurrentLink(5)}>
+                onClick={() => setCurrentLink(5)}
+              >
                 <a href="#">
                   <BsFillChatTextFill />
                   <span> FAQs</span>
                 </a>
-              </li> */}
-
-              <li className={currentLink === 6 ? "active" : "none"}
-                onClick={() => setCurrentLink(6)}>
-                <a href="/admin/owner"> <IoSettings />
-                  <span>Settings</span>
+              </li>
+              <li
+                className={currentLink === 6 ? "active" : "none"}
+                onClick={() => setCurrentLink(6)}
+              >
+                <a href="#">
+                  <IoSettings />
+                  <span> Settings</span>
                 </a>
               </li>
-
             </ul>
           </div>
-        </div>
-        <div className="logout">
-          <a href="#">
-            <FiLogOut />
-            <span className="logout">Logout</span>
-          </a>
-        </div>
-      </Section>
-      <ResponsiveNav state={navbarState} className={navbarState ? "show" : ""}>
-        <div className="responsive__links">
-          <ul>
-            <li
-              className={currentLink === 1 ? "active" : "none"}
-              onClick={() => setCurrentLink(1)}
-            >
-              <a href="#">
-                <MdSpaceDashboard />
-                <span> Dashboard</span>
-              </a>
-            </li>
-            <li
-              className={currentLink === 2 ? "active" : "none"}
-              onClick={() => setCurrentLink(2)}
-            >
-              <a href="#">
-                <RiDashboard2Fill />
-                <span> Riders</span>
-              </a>
-            </li>
-            <li
-              className={currentLink === 3 ? "active" : "none"}
-              onClick={() => setCurrentLink(3)}
-            >
-              <a href="#">
-                <FaAddressCard />
-                <span> Payment Details</span>
-              </a>
-            </li>
-            <li
-              className={currentLink === 4 ? "active" : "none"}
-              onClick={() => setCurrentLink(4)}
-            >
-              <a href="#">
-                <GiTwirlCenter />
-                <span> Learning Center</span>
-              </a>
-            </li>
-            <li
-              className={currentLink === 5 ? "active" : "none"}
-              onClick={() => setCurrentLink(5)}
-            >
-              <a href="#">
-                <BsFillChatTextFill />
-                <span> FAQs</span>
-              </a>
-            </li>
-            <li
-              className={currentLink === 6 ? "active" : "none"}
-              onClick={() => setCurrentLink(6)}
-            >
-              <a href="#">
-                <IoSettings />
-                <span> Settings</span>
-              </a>
-            </li>
-          </ul>
-        </div>
-      </ResponsiveNav>
-    
+        </ResponsiveNav>
       </div>
     </div>
-
   );
-
 }
 const Section = styled.section`
   position: fixed;
@@ -212,8 +219,8 @@ const Section = styled.section`
   justify-content: space-between;
   padding: 2rem 0;
   gap: 3rem;
-  .logo{
-    width:60px;
+  .logo {
+    width: 60px;
   }
   .top {
     display: flex;
@@ -226,7 +233,7 @@ const Section = styled.section`
     .brand {
       width: 100%;
       display: flex;
-      
+
       justify-content: center;
       align-items: center;
       gap: 2rem;
