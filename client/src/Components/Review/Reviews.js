@@ -30,7 +30,9 @@ export default function Reviews() {
   return (
     <div className={s.container}>
       {reviews?.map((r) => {
+        
         return (
+          !r.status?
           <div key={r.id} className={s.review}>
             <h1>{r.client?.name ? r.client.name : "usuario anonimo"}</h1>
             <h2>
@@ -38,7 +40,8 @@ export default function Reviews() {
             </h2>
             <h3>{r.description}</h3>
           </div>
-        );
+          :null
+        )
       })}
     </div>
   );

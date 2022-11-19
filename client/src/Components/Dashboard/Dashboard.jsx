@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import styled from "styled-components";
+// import styled from "styled-components";
 import Analytics from "./Analytics";
 import Payments from "./Payments";
 import FAQ from "./FAQ";

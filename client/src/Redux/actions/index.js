@@ -44,12 +44,19 @@ export function getReview() {
 export function deleteReview(id) {
   try {
     return async function (dispatch) {
-      await axios.delete(`${URL}/reviews`,id);
+      await axios.put(`${URL}/reviews/${id}`);
       dispatch({
         type:"DELETE_REVIEW",
-        payload:"Eliminado"
+        payload:"Eliminado logico"
       })
     };
+    // return async function (dispatch) {
+    //   await axios.delete(`${URL}/reviews/${id}`);
+    //   dispatch({
+    //     type:"DELETE_REVIEW",
+    //     payload:"Eliminado"
+    //   })
+    // };
   } catch (e) {
     console.log(e);
   }
