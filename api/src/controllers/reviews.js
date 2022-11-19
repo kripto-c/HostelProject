@@ -30,4 +30,15 @@ const getReviews = async (req, res) => {
     res.status(400).json(e);
   }
 };
-module.exports = { postReviews, getReviews };
+const deleteReview = async(req,res)=>{
+  try{
+    let {id} = req.body
+    const reviewDelete = Review.build({id})
+    reviewDelete.destroy()
+    res.status(200).json("Review Eliminada")
+  }catch(e){
+    res.status(400).json("No se pudo eliminar")
+
+  }
+}
+module.exports = { postReviews, getReviews,deleteReview };

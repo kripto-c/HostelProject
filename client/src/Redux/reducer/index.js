@@ -69,7 +69,12 @@ export default function rootReducer(state = initialState, action) {
         reviews: action.payload,
       };
     }
-
+    case "DELETE_REVIEW":{
+      return{
+        ...state,
+        
+      }
+    }
     case FILTER_TYPE_ROOM: {
       let filterRoom = state.allRooms;
       let roomType

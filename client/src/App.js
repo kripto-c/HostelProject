@@ -11,25 +11,31 @@ import About from "./Components/about/about.jsx";
 import ClientEdit from "./Components/ClientEdit";
 import OwnerCrud from "./Components/OwnerCrud";
 import Create from "./Components/Create Room/Create";
-
+//dashboard --------------------------------------------------------->>
+//import styled from "styled-components";
+import PanelAdmin from "./Components/Dashboard/PanelAdmin";
+import ReviewAdmin from "./Components/Dashboard/ReviewAdmin.jsx"
+//-------------------------------------------------------------------->>
 function App() {
   return (
     <>
-    <Navbars></Navbars>
+      <Navbars></Navbars>
       <Routes>
+        <Route exact path="/admin" element={<PanelAdmin />} />
         <Route path="/" element={<Home />} />
         <Route path="/reviewHostel" element={<ReviewHostel />} />
         <Route exact path="/rooms" element={<Rooms />} />
-        <Route path="/contact" element={<Contact />} />    
-        <Route exact path="/about" element={<About/>}/>
-        <Route path="/feedback" element={<FeedBack/>} />
-        <Route path="/roomdetail/:id" element={<RoomDetail/>} />
+        <Route path="/contact" element={<Contact />} />
+        <Route exact path="/about" element={<About />} />
+        <Route path="/feedback" element={<FeedBack />} />
+        <Route path="/roomdetail/:id" element={<RoomDetail />} />
         <Route path="/clientEdit" element={<ClientEdit />} />
         <Route path="/ownerCrud" element={<OwnerCrud />} />
-        <Route path="createRoom" element={<Create/>}/>
+        <Route path="/createRoom" element={<Create />} />
+        <Route exact path="/ReviewAdmin" element={<ReviewAdmin/>}/>
       </Routes>
     </>
   );
 }
-
+// const Div = styled.div``;
 export default App;
