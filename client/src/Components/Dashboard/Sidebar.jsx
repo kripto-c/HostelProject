@@ -119,7 +119,7 @@ export default function Sidebar() {
               <li className={currentLink === 6 ? "active" : "none"}
                 onClick={() => setCurrentLink(6)}>
                 <a href="/admin/owner"> <IoSettings />
-                  <span> Settings</span>
+                  <span>Settings</span>
                 </a>
               </li>
 
@@ -201,7 +201,6 @@ export default function Sidebar() {
 
 }
 const Section = styled.section`
-
   position: fixed;
   left: 0;
   background-color: #212121;
@@ -221,7 +220,6 @@ const Section = styled.section`
     flex-direction: column;
     gap: 2rem;
     width: 100%;
-
     .toggle {
       display: none;
     }
@@ -275,7 +273,6 @@ const Section = styled.section`
       }
     }
   }
-
   .logout {
     padding: 0.3rem 1rem;
     border-radius: 0.6rem;

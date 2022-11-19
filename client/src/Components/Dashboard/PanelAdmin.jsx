@@ -4,19 +4,14 @@ import Sidebar from "./Sidebar";
 
 export default function PanelAdmin() {
   return (
-    <div className="container">
-      {/* <div className="row">
-        <div className="col-md-12">
-          <Sidebar></Sidebar>
-        </div>
-      </div> */}
+    <React.Fragment>
+      
+      <div>
+        <Sidebar></Sidebar>
 
-      <div className="row">
-        <div className="col-md-12">
         <Dashboard></Dashboard>
         </div>
-        
-      </div>
-    </div>
+       
+    </React.Fragment>
   );
 }
