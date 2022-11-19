@@ -3,6 +3,6 @@ const {postReviews, getReviews,deleteReview} = require("../../controllers/review
 const router = Router();
 router.get("/", getReviews);
 router.post("/", postReviews);
-router.delete("/",deleteReview)
+router.put("/:id",deleteReview)
 
 module.exports = router;
