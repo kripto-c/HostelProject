@@ -10,7 +10,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { useState, useEffect } from "react";
 import "./navbar.css";
 import logo from "../../images/logo.svg";
-
+import MenuUsuario from "./MenuUsuario.jsx";
 function Navbars() {
 
 
@@ -98,7 +98,7 @@ function Navbars() {
   return (
     <>
       <Navbar variant="dark" bg="dark">
-        <Container className="d-flex justify-content-between container-fluid cont">
+        <Container fluid>
           <Link style={{ textDecoration: "none" }} to="/" className="d-block">
             {/* <h2 className="h5">Dinamita Hostel</h2> */}
             {/* <div className="container-fluid "> */}
@@ -114,7 +114,7 @@ function Navbars() {
             </div>
             {/* </div> */}
           </Link>
-          <div className="res">
+          <div className="w-75 mx-auto justify-content-center nav navbar-nav navbar-nav">
             <div className="but">
               <div className="act" onClick={verOptiones}>
                 <span></span>
@@ -122,24 +122,49 @@ function Navbars() {
                 <span></span>
               </div>
             </div>
-            <Nav className="nav">
-              <Link className="linkComponent" to="/rooms">
+            <Nav className="w-75 m-auto nav justify-content-center navbar-nav">
+              <Link className="linkComponent fs-5" to="/admin">
+                Tablero
+              </Link>
+              <Link className="linkComponent fs-5" to="/rooms">
                 Habitaciones
               </Link>
-              <Link className="linkComponent" to="/contact">
+              <Link className="linkComponent fs-5" to="/contact">
                 Contactanos
               </Link>
-              <Link className="linkComponent" to="/about">
+              <Link className="linkComponent fs-5" to="/about">
                 Acerca de
               </Link>
-              {confirmLog && (
-                  <Link className="linkComponent" to="/reviewHostel">
-                    Reviews
-                  </Link>
+              {isAuthenticated && (
+                <Link className="linkComponent fs-5" to="/reviewHostel">
+                  Reviews
+                </Link>
               )}
+              {/* <Link className="linkComponent" to="/createRoom">
+                    Crear Habitacion
+                  </Link> */}
+
+              {/* {confirmLog && (
+                <>
+                  
+                </>
+                
+              )} */}
+
+              {/*-------------------------------------------------------------------------------------- */}
+
+              {/*------------------------------------------------------------------------------------------- */}
             </Nav>
+            
+           
+            
           </div>
-          <>
+          <ul class="navbar-nav ml-auto">
+              <li>
+                <MenuUsuario className="m-5" />
+              </li>
+            </ul>
+          {/* <>
             {isAuthenticated ? (
               <Navbar.Collapse className="loginInfo">
                 <img
@@ -187,7 +212,7 @@ function Navbars() {
                 Login
               </Link>
             )}
-          </>
+          </> */}
         </Container>
       </Navbar>
     </>

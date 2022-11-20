@@ -106,6 +106,7 @@ export default function Filters({ getRooms, setData }) {
   //------------------------------------>>> RENDER --------------------------------------------------------------->>>>>>>>>>>>>>>>
   return (
     <div className={style.Container}>
+      
       <nav className="nav nav-pills d-flex justify-content-center">
     {/* SELECT TIPO DE HABITACION----------------------------------------------->> */}
         <li className="nav-item mx-1">

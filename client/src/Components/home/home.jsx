@@ -7,6 +7,7 @@ import "./Home.css";
 const Home = () => {
   return (
     <div className='home-container'>
+      
     <div className="home-container row ">
       <Carousel className="mt-4 w-75 m-auto carousel">
         <Carousel.Item>
