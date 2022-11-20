@@ -32,10 +32,10 @@ function App() {
         <Route path = "/clientEdit" element={<ClientEdit />} />
         <Route path = "/createRoom" element={<Create />} />
       </Routes>
-      <Sidebar/>
+      {/* <Sidebar/> */}
       <Routes>   
       {/* <Route path="/" element={<Sidebar/>}></Route>      */}
-      <Route path="/admin" element={<PanelAdmin />} />
+      {/* <Route path="/admin" element={<PanelAdmin />} /> */}
       <Route path="/admin/review" element={<ReviewAdmin/>}/>
       <Route path="/admin/owner" element={<OwnerCrud />} />
       </Routes>

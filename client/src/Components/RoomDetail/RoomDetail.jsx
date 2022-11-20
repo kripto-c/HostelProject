@@ -443,14 +443,17 @@ export default function RoomDetail() {
         </Modal>
       }
 
-        {!userLogin.isAuthenticated ? <div className="alertLog" hidden={login}>
-            <div className='bg-dark text-white'>
-                <button onClick={()=>setLogin(true)}>X</button>
-                <p>Para poder hacer reservas debes registrarte primero</p>
-            </div>
-        </div> : null}
-        <h1>Detalle de la habitacion</h1>
-        <Modal show={calendar} onHide={() => {setCalendar(false)}} >
+      {!userLogin.isAuthenticated ? (
+        <div className="alertLog" hidden={login}>
+          <div className="bg-dark text-white">
+            <button onClick={() => setLogin(true)}>X</button>
+            <p>Para poder hacer reservas debes registrarte primero</p>
+          </div>
+        </div>
+      ) : null}
+      <h1>Detalle de la habitacion</h1>
+      
+      <Modal show={calendar} onHide={() => {setCalendar(false)}} >
             <DateRangePicker
                 ranges={[selectionRange]}
                 onChange={handleSelect}
@@ -474,7 +477,7 @@ export default function RoomDetail() {
         <div className='container d-grid gap-2 col-6 mx-auto'>
             <button  className="btn btn-secondary" onClick={() => {setCalendar(true)}} >Seleccione una fecha</button>
         </div>
-      </div>
+      
       <div className="infoRoom">
         <div>
           <h3>{room.name}</h3>

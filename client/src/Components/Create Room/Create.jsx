@@ -8,7 +8,7 @@ import Button from "react-bootstrap/Button";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import { useNavigate } from "react-router-dom";
-import './Create.css'
+import './create.css'
 
 const Create = () => {
   // SETTEAR INFO//
