@@ -2,6 +2,7 @@ const { Router } = require("express");
 const axios = require("axios")
 const express = require("express");
 const login = require("./login/route");
+const rol = require('./rol/route')
 const reviews = require("./reviews/reviews.js");
 const info = require(".././routes/info/info.js")
 
@@ -10,37 +11,23 @@ const roomdetail = require("./roomdetail/roomdetail")
 const payment = require("./payments/payment");
 const feedback = require("./payments/feedback")
 const getCountries = require("./countries")
-//const postOwner = require ("./owner")
 const owner = require("./owner")
 const rent = require("./rent/rent")
 const router = Router();
-const axios = require("axios");
 /////////////permissos
 const checkPermissions  = require("../permisos/permisosCheck");
 const itemPermissos = require('../permisos/permisos')
 //----------------------------------------------------------------------------------
 // auth0 backend
-const jwtCheck = require('../jwtCheck/jwtCheck')
+const jwtCheck = require('../jwtCheck/jwtCheck');
 
-// router.use(jwtCheck);
+router.use(jwtCheck);
 
 router.use(express.json());
 //RUTAS----------------------------------->>
 
-router.get("/", async(req, res)=>{
-   try {
-    const accesToken = req.headers.authorization.split(' ')[1];
-    const responds = await axios.get('https://dev-o7k6sbvjre41wvzb.us.auth0.com/userinfo', {
-       headers:{authorization:`Bearer ${accesToken}`}
-     })
-     const userinfo = responds.data;
-     res.json({rol:userinfo.rol[0]});
-   } catch (error) {
-    console.log(error);
-   }
-})
+router.use("/rol", rol); 
 router.use("/login", checkPermissions(itemPermissos.clientRoute),login);
-// router.use("/login",login);
 router.use("/payment", checkPermissions(itemPermissos.payment),payment);
 router.use("/feedback", feedback);
 router.use(`/getroomdetail`, roomdetail);//------Dejo esto aca porque mas abajo me tira error de authenticacion!!!!NO BORREN--->

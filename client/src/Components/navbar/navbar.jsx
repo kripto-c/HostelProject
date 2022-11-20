@@ -48,21 +48,6 @@ function Navbars() {
     }
   }
 
-  async function getRol() {
-    try {
-      const token = await getAccessTokenSilently();
-      const info = await axios.get("http://localhost:4000/", {
-        headers: {
-          authorization: `Bearer ${token}`,
-        },
-      });
-      if(info.data === "menu-client") return setClient()
-      else return navigate("/admin/owner");
-    } catch (error) {
-      console.log(error);
-    }
-  }
-
   const verOptiones = () => {
     const bar = document.querySelector(".nav");
     if (view) {
@@ -79,12 +64,9 @@ function Navbars() {
     dispatch(getCLient(token));
   }
 
-  const owner = useSelector((state) => state.owner)
-
-    console.log("este es el dueño",owner);
   async function getRol(){
     const token = await getAccessTokenSilently();
-    const info = await axios.get("http://localhost:4000/", {
+    const info = await axios.get("http://localhost:4000/rol", {
       // const info = await axios.get("https://hosteldinamitabackend.herokuapp.com/login/setClient", {
         headers: {
           authorization: `Bearer ${token}`,
@@ -196,7 +178,6 @@ function Navbars() {
                 onClick={async (e) => {
                   e.preventDefault();
                   await loginWithPopup();
-                  // setClient();
                   await getRol();
                   setConfirmLog(true);
                 }}
