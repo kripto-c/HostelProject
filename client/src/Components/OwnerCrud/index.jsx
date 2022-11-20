@@ -40,9 +40,11 @@ export default function OwnerCrud() {
     setValidated(true);
     if (form.checkValidity() === true){
       const token = await getAccessTokenSilently()
-      const authorization = {headers:{
-      authorization:`Bearer ${token}`  
-      }}
+      const authorization = {
+        headers: {
+          authorization: `Bearer ${token}`
+        },
+      }
       await dispatch(postOwner(owner, authorization))
       await getOwnerF()
       alert("Datos guardados")

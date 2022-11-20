@@ -79,7 +79,9 @@ function Navbars() {
         
       }
       else{
-        await dispatch(getOwner())
+        await dispatch(getOwner(
+          token
+        ))
       }
       console.log(info.data.rol[0])
   }
