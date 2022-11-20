@@ -4,6 +4,8 @@ import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 import Modal from "react-bootstrap/Modal";
 import { getCLient, postClient } from "../../Redux/actions";
+import { getRent } from '../../Redux/actions';
+
 import { BsFillPencilFill } from "react-icons/bs";
 /////////////////
 import "./RoomDetail.css";
@@ -13,16 +15,20 @@ import { useDispatch, useSelector } from "react-redux";
 import { useAuth0 } from "@auth0/auth0-react";
 import { getRoomDetail } from "../../Redux/actions";
 import Footer from "../Layout/Footer";
-import ModalHeader from "react-bootstrap/esm/ModalHeader";
+import ModalHeader from 'react-bootstrap/esm/ModalHeader';
+import moment from "moment";
+import {DateRangePicker} from "react-date-range"
+import 'react-date-range/dist/styles.css'; // main style file
+import 'react-date-range/dist/theme/default.css'; // theme css file
 
 export default function RoomDetail() {
-  const room = useSelector((state) => state.roomdetail);
+  
   const client = useSelector((state) => state.client);
   const { getAccessTokenSilently } = useAuth0();
   const [camas, setCamas] = useState(0);
   const [total, setTotal] = useState(0);
-  const [checkIn, setCheckIn] = useState(0);
-  const [checkOut, setCheckOut] = useState(0);
+  const [checkIn, setCheckIn] = useState("");
+  const [checkOut, setCheckOut] = useState("");
   const [pagar, setPagar] = useState("");
   const [cargando, setCargando] = useState(false);
   const [login, setLogin] = useState(false);
@@ -51,38 +57,118 @@ export default function RoomDetail() {
 
   let { id } = useParams();
 
-  useEffect(() => {
-    dispatch(getRoomDetail(id));
-  }, [dispatch]);
+     useEffect(() =>{
+         dispatch(getRoomDetail(id));
+         dispatch(getRent(id))
+     },[dispatch]);
+    const room = useSelector((state) => state.roomdetail);
+    const rent = useSelector((state) => state.rent);
+     
 
-  let arreglo = [];
-  for (let a = 1; a <= room.beds; a++) {
-    arreglo.push(a);
-  }
+    //console.log('detail',entrada, salida);
 
-  const sumres = (e) => {
-    if (e.target.checked) {
-      setCamas(camas + 1);
-      return setTotal(total + room.price);
+    let arreglo = [];
+    for (let a = 1; a <= room.beds; a++) {
+        arreglo.push(a);
     }
-    setCamas(camas - 1);
-    return setTotal(total - room.price);
-  };
+   
+    const sumres = (e)=>{
+        if(e.target.checked) {
+            setCamas(camas+1)
+            return setTotal(total+room.price)
+        }
+        setCamas(camas-1)
+        return setTotal(total-room.price)
+    }
+    const [checkall, setCheckall] = useState(false)
+    const todacama = (e) =>{
+        if(e.target.checked){
+            setCamas(room.beds)
+            return setTotal(total+(room.price*room.beds))    
+        }
+        console.log(camas)
+        setCamas(0)
+        return setTotal(total-(room.price*room.beds))
+    }
 
-  const data = (b, e) => {
-    if (b) return setCheckIn(e.target.value.split("-").reverse().join("-"));
-    return setCheckOut(e.target.value.split("-").reverse().join("-"));
-  };
+    // const data = (b, e)=>{
+    //     console.log(e.target.value)
+    //     if(b) return setCheckIn(e.target.value.split('-').reverse().join('-'));
+    //     return setCheckOut(e.target.value.split('-').reverse().join('-'));
 
-  const pay = async () => {
-    // VERIFICACION DE DATOS DE LA RESERVA
-    if (!userLogin.isAuthenticated) return setVerLogin(true);
-    if (!camas && !checkIn && !checkOut && !pagar) return setAll(true);
-    if (!camas) return setVerRoom(true);
-    if (!checkIn) return setVerCheckIn(true);
-    if (!checkOut) return setVerCheckOut(true);
+    // }
+    const [calendar, setCalendar] = useState(false);
 
-    //CONTROL DE DATOS DEL USUARIO
+    //*******************VALIDACION CALENDARIO */
+    let dateArray = [];
+    const [arrivalDate, setArrivalDate] = useState(new Date("11-11-2022"));
+    const [departureDate, setdepartureDate] = useState(new Date("11-11-2022"));
+    function getDates(startDate, stopDate) {
+        var currentDate = moment(startDate);
+        var stopDatee = moment(stopDate);
+        while (currentDate <= stopDatee) {
+          dateArray.push(moment(currentDate).format("YYYY-MM-DD"));
+          currentDate = moment(currentDate).add(1, "days");
+        }
+        return dateArray;
+    }
+    let reservas = [];
+    // let llegada = rent ? rent.dateIn:'2022-00-00';
+    // let salida = rent ? rent.dateOut:'2022-00-00';
+    // rent.map((e) =>{
+    //     let array;
+    //     reservas.push(
+    //         array = new Array(new Date(e.dateIn.split("-").reverse().join("-")), new Date(e.dateOut.split("-").reverse().join("-")))
+    //         )
+    //     })
+        // llegada = new Date(llegada.split("-").reverse().join("-"));
+        // salida = new Date(salida.split("-").reverse().join("-"));
+        // getDates(reservas[0][0],reservas[0][1])
+        
+        dateArray = dateArray.map((d) =>{
+            return new Date(d)
+          });
+        // getDates(llegada, salida);
+
+        
+
+          const selectionRange = {
+            startDate: arrivalDate,
+            endDate: departureDate,
+            key: 'selection',
+        }
+        const handleSelect = (e)=>{
+            setArrivalDate(e.selection.startDate);
+            setdepartureDate(e.selection.endDate);
+
+            setCheckIn(moment(e.selection.startDate).format("YYYY-MM-DD").split("-").reverse().join("-"));
+            setCheckOut(moment(e.selection.endDate).format("YYYY-MM-DD").split("-").reverse().join("-"));
+
+        }
+        // setArrivalDate(arrivalDate.getDate());
+
+
+        
+        
+
+    
+    const pay = async ()=>{
+
+        // VERIFICACION DE DATOS DE LA RESERVA
+        // setCheckIn(entrada1);
+        // setCheckOut(salida1);
+        console.log("cama", camas)
+        console.log("entrada", checkIn)
+        console.log("salida",checkOut)
+        if(!userLogin.isAuthenticated) return setVerLogin(true);
+        if(!camas && !checkIn && !checkOut && !pagar) return setAll(true);
+        if(!camas) return setVerRoom(true);
+        if(!checkIn) return setVerCheckIn(true);
+        if(!checkOut) return setVerCheckOut(true);
+        
+        
+        
+       //CONTROL DE DATOS DEL USUARIO
 
     if (
       !client.name ||
@@ -164,56 +250,40 @@ export default function RoomDetail() {
     setShow(true);
   }
 
-  return (
-    <div className="detailRoom">
-      {
-        // CONTROL DE DATOS DE USUARIO
-        <Modal show={show} onHide={handleClose}>
-          <Modal.Header closeButton className="bg-primary text-white">
-            <Modal.Title>Datos del Cliente</Modal.Title>
-          </Modal.Header>
-          <Modal.Body className="bg-dark text-white">
-            {(!client.nacionality || !client.phoneNumber || !client.email) && (
-              <p>Por favor complete con los datos faltantes</p>
-            )}
-            <Form onSubmit={(e) => handleSubmit(e)}>
-              <Form.Group
-                className="mb-3"
-                controlId="exampleForm.ControlInput1"
-              >
-                <Form.Label>Nombre</Form.Label>
-                <div className="input-group">
-                  {client.name ? (
-                    <>
-                      <input
-                        type="text"
-                        className="form-control"
-                        name="name"
-                        id="validationCustom01"
-                        disabled={name}
-                        value={name ? client.name : clientInf.name}
-                        onChange={(e) => handleChange(e)}
-                        required
-                      />
-                      <button
-                        className="btn btn-outline-danger"
-                        type="button"
-                        onClick={(e) => handleName(e)}
-                      >
-                        <BsFillPencilFill />
-                      </button>
-                    </>
-                  ) : (
-                    <Form.Control
-                      onChange={(e) => handleChange(e)}
-                      className=" bg-gradient"
-                      type="text"
-                      placeholder="Nombre"
-                      autoFocus
-                      name="name"
-                    />
-                  )}
-                </div>
+    // console.log(room);
+    return (
+    <div className='detailRoom mx-auto'>
+             {
+                // CONTROL DE DATOS DE USUARIO 
+           <Modal show={show} onHide={handleClose}>
+           <Modal.Header closeButton className="bg-primary text-white">
+             <Modal.Title>Datos del Cliente</Modal.Title>
+           </Modal.Header>
+           <Modal.Body className='bg-dark text-white'>
+             {
+                ( !client.nacionality || !client.phoneNumber || !client.email) && 
+                (<p>Por favor complete con los datos faltantes</p>)
+             }
+             <Form onSubmit={e=> handleSubmit(e) }>
+               <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
+                 <Form.Label>Nombre</Form.Label>
+                 <div className="input-group">
+             { client.name ?
+                <>                
+                <input type="text" className="form-control" name='name' id="validationCustom01" disabled={name} value={name ? client.name : clientInf.name }  onChange={e=> handleChange(e)} required />
+                 <button className="btn btn-outline-danger" type='button' onClick={e => handleName(e)}><BsFillPencilFill /></button>
+                </>
+                  :
+                  <Form.Control
+                  onChange={e=> handleChange(e)}
+                   className=' bg-gradient'
+                    type="text"
+                    placeholder="Nombre"
+                    autoFocus
+                    name='name'
+                  />
+                  }
+                  </div>
                 <Form.Label>Apellido</Form.Label>
                 <div className="input-group">
                   {client.lastname ? (
@@ -366,16 +436,32 @@ export default function RoomDetail() {
         </div>
       ) : null}
       <h1>Detalle de la habitacion</h1>
-      <div className="datas">
-        <div>
-          <label>Dia de llegada</label>
-          <input onChange={(e) => data(true, e)} type="date" name="" id="" />
+      
+      <Modal show={calendar} onHide={() => {setCalendar(false)}} >
+            <DateRangePicker
+                ranges={[selectionRange]}
+                onChange={handleSelect}
+                minDate={new Date}
+                disabledDates={dateArray}
+                // excludeDates={disableFinal}
+                // minDate={fecha}
+                // selected={false}
+                // onChange={onChange}
+                // startDate={startDate2}
+                // endDate={endDate2}
+                // selectsRange
+                // inline
+                // onClick={() => disableBoton(fechaBotonArray, fechaBotonMoment)}
+                // monthsShown={3}
+            />
+            <Button onClick={() =>{setCalendar(false)}} >
+            Confirmar
+            </Button>
+        </Modal>
+        <div className='container d-grid gap-2 col-6 mx-auto'>
+            <button  className="btn btn-secondary" onClick={() => {setCalendar(true)}} >Seleccione una fecha</button>
         </div>
-        <div>
-          <label>Dia de salida</label>
-          <input onChange={(e) => data(false, e)} type="date" name="" id="" />
-        </div>
-      </div>
+      
       <div className="infoRoom">
         <div>
           <h3>{room.name}</h3>

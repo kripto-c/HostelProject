@@ -3,14 +3,17 @@ import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
 import NavDropdown from "react-bootstrap/NavDropdown";
 import { useAuth0 } from "@auth0/auth0-react";
-import { getCLient } from "../../Redux/actions";
+import { getCLient, getOwner } from "../../Redux/actions";
 import axios from "axios";
 import { useDispatch, useSelector } from "react-redux";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useState, useEffect } from "react";
 import "./navbar.css";
 import logo from "../../images/logo.svg";
+
 function Navbars() {
+
+
   const {
     loginWithPopup,
     logout,
@@ -20,9 +23,12 @@ function Navbars() {
   } = useAuth0();
   const dispatch = useDispatch();
   const client = useSelector((state) => state.client);
+  const navigate = useNavigate();
   const [view, setView] = useState(true);
   const [confirmLog, setConfirmLog] = useState(false);
   const [Sort, setSort] = useState("");
+
+  
 
   async function setClient() {
     try {
@@ -55,6 +61,30 @@ function Navbars() {
     const token = await getAccessTokenSilently();
     dispatch(getCLient(token));
   }
+
+  const owner = useSelector((state) => state.owner)
+
+    console.log("este es el dueño",owner);
+  async function getRol(){
+    const token = await getAccessTokenSilently();
+    const info = await axios.get("http://localhost:4000/", {
+      // const info = await axios.get("https://hosteldinamitabackend.herokuapp.com/login/setClient", {
+        headers: {
+          authorization: `Bearer ${token}`,
+        },
+      });
+      console.log(token);
+      
+      if(info.data.rol[0] === "menu-client"){
+        setClient();
+        
+      }
+      else{
+        await dispatch(getOwner())
+      }
+      console.log(info.data.rol[0])
+  }
+
 
   useEffect(() => {
     let idUser = localStorage.getItem("IDUser");
@@ -158,7 +188,8 @@ function Navbars() {
                 onClick={async (e) => {
                   e.preventDefault();
                   await loginWithPopup();
-                  setClient();
+                  // setClient();
+                  await getRol();
                   setConfirmLog(true);
                 }}
               >
