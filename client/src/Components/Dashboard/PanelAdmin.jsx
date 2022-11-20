@@ -1,5 +1,5 @@
-import React from "react";
-import { Route, Routes } from "react-router-dom";
+import React, { useEffect } from "react";
+import { Route, Routes, useNavigate } from "react-router-dom";
 import Create from "../Create Room/Create";
 import OwnerCrud from "../OwnerCrud";
 import Dashboard from "./Dashboard";
@@ -8,6 +8,10 @@ import ReviewAdmin from "./ReviewAdmin";
 import Sidebar from "./Sidebar";
 
 export default function PanelAdmin() {
+  const navigate= useNavigate();
+  useEffect(()=>navigate("/admin/dashboard"),[])
+
+  
   return (
     <React.Fragment>
       <div>

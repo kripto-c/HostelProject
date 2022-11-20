@@ -51,12 +51,14 @@ export default function Sidebar() {
     <div>
       <div className="container">
         <Section>
+          {/* //TOP-------------------------------------------->> */}
           <div className="top">
             <div className="brand">
               <img className="logo" src={logo} />
               <span>Project Hostel</span>
             </div>
-            <div className="toggle">
+              {/* //TOGGLE-------------------------------------------->> */}
+            {/* <div className="toggle">
               {navbarState ? (
                 <VscChromeClose onClick={() => setNavbarState(false)} />
               ) : (
@@ -67,7 +69,7 @@ export default function Sidebar() {
                   }}
                 />
               )}
-            </div>
+            </div> */}
             <div className="links">
               <ul>
                 <li
@@ -124,11 +126,10 @@ export default function Sidebar() {
                   className={currentLink === 6 ? "active" : "none"}
                   onClick={() => setCurrentLink(6)}
                 >
-                   <Link to="/admin/settings">
-                   <IoSettings />
+                  <Link to="/admin/settings">
+                    <IoSettings />
                     <span> Settings </span>
                   </Link>
-                
                 </li>
               </ul>
             </div>
@@ -259,7 +260,7 @@ const Section = styled.section`
           padding: 0.6rem 1rem;
           border-radius: 0.6rem;
           &:hover {
-            background-color: #ffc107;
+            background-color: white;
             a {
               color: black;
             }
@@ -272,7 +273,7 @@ const Section = styled.section`
           }
         }
         .active {
-          background-color: #ffc107;
+          background-color: white;
           a {
             color: black;
           }
@@ -329,7 +330,7 @@ const ResponsiveNav = styled.div`
   right: -10vw;
   top: 0;
   z-index: 10;
-  background-color: black;
+  background-color: white;
   height: 100vh;
   width: ${({ state }) => (state ? "60%" : "0%")};
   transition: 0.4s ease-in-out;
@@ -348,20 +349,11 @@ const ResponsiveNav = styled.div`
         padding: 0.6rem 1rem;
         border-radius: 0.6rem;
         &:hover {
-          background-color: #ffc107;
-          a {
-            color: black;
-          }
-        }
-        a {
-          text-decoration: none;
-          display: flex;
-          gap: 1rem;
-          color: white;
+          background-color: white;
         }
       }
       .active {
-        background-color: #ffc107;
+        background-color: white;
         a {
           color: black;
         }
