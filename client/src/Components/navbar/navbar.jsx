@@ -10,7 +10,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { useState, useEffect } from "react";
 import "./navbar.css";
 import logo from "../../images/logo.svg";
-
+import MenuUsuario from "./MenuUsuario.jsx"
 function Navbars() {
 
 
@@ -97,8 +97,9 @@ function Navbars() {
 
   return (
     <>
+    
       <Navbar variant="dark" bg="dark">
-        <Container className="d-flex justify-content-between container-fluid cont">
+        <Container className="">
           <Link style={{ textDecoration: "none" }} to="/" className="d-block">
             {/* <h2 className="h5">Dinamita Hostel</h2> */}
             {/* <div className="container-fluid "> */}
@@ -122,7 +123,10 @@ function Navbars() {
                 <span></span>
               </div>
             </div>
-            <Nav className="nav">
+            <Nav className="nav justify-content-end">
+              <Link className="linkComponent" to="/admin">
+                Tablero
+              </Link>
               <Link className="linkComponent" to="/rooms">
                 Habitaciones
               </Link>
@@ -132,14 +136,32 @@ function Navbars() {
               <Link className="linkComponent" to="/about">
                 Acerca de
               </Link>
-              {confirmLog && (
-                  <Link className="linkComponent" to="/reviewHostel">
+              {isAuthenticated && <Link className="linkComponent" to="/reviewHostel">
                     Reviews
-                  </Link>
-              )}
+                  </Link>}
+                  {/* <Link className="linkComponent" to="/createRoom">
+                    Crear Habitacion
+                  </Link> */}
+                  <MenuUsuario/>
+              {/* {confirmLog && (
+                <>
+                  
+                </>
+                
+              )} */}
+              
+              {/*-------------------------------------------------------------------------------------- */}
+            
+              
+
+            {/*------------------------------------------------------------------------------------------- */}
             </Nav>
+            
           </div>
-          <>
+          
+          
+          
+          {/* <>
             {isAuthenticated ? (
               <Navbar.Collapse className="loginInfo">
                 <img
@@ -187,9 +209,12 @@ function Navbars() {
                 Login
               </Link>
             )}
-          </>
+          </> */}
+          
         </Container>
+        
       </Navbar>
+      
     </>
   );
 }
