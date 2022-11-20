@@ -40,13 +40,13 @@ export function getReview() {
   }
 }
 
-export function deleteReview(headers, id) {
+export function deleteReview(headers,id,recOrDelete) {
   try {
     return async function (dispatch) {
-      await axios.get(`${URL}/deletesAdmin/deleteReview/?id=${id}`, headers);
+      await axios.get(`${URL}/deletesAdmin/deleteReview/?id=${id}&recOrDelete=${recOrDelete}`,headers);
       dispatch({
         type: "DELETE_REVIEW",
-        payload: "Eliminado logico",
+        
       });
     };
     // return async function (dispatch) {
