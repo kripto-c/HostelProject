@@ -70,7 +70,7 @@ function Navbars() {
   return (
     <>
       <Navbar variant="dark" bg="dark">
-        <Container className="d-flex justify-content-between container-fluid">
+        <Container className="d-flex justify-content-between container-fluid cont">
           <Link style={{ textDecoration: "none" }} to="/" className="d-block">
             {/* <h2 className="h5">Dinamita Hostel</h2> */}
             {/* <div className="container-fluid "> */}
