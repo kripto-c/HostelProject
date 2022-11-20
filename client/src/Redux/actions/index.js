@@ -183,18 +183,18 @@ export function getRoomDetail(id) {
     }
   };
 }
-export function getAllCountries(){
-  return async function(dispatch){
+export function getAllCountries() {
+  return async function (dispatch) {
     try {
-      let res = await axios.get(`http://localhost:4000/rent?id=${id}`)
+      let { data } = await axios.get(`${URL}/countries`);
       return dispatch({
-        type: "GET_RENT",
-        payload: res.data
-      })
+        type: GET_ALL_COUNTRIES,
+        payload: data,
+      });
     } catch (error) {
       console.log(error);
     }
-  }
+  };
 }
 
 export function getRent(id){
@@ -210,3 +210,10 @@ export function getRent(id){
     }
   }
 }
+export const createRoom = (payload) => async () => {
+  let res = await axios.post(`${URL}/rooms`, payload);
+  return {
+    type: "CREATE_ROOM",
+    res,
+  };
+};
