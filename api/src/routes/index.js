@@ -15,6 +15,8 @@ const owner = require("./owner")
 const rent = require("./rent/rent")
 const deletesAdmin = require("./deletesAdmin/deletesAdmin.js");
 const router = Router();
+const deleteRoom = require("./deletesAdmin/deletesAdmin.js")
+const activeRoom = require("./deletesAdmin/deletesAdmin.js")
 /////////////permissos
 const checkPermissions  = require("../permisos/permisosCheck");
 const itemPermissos = require('../permisos/permisos')
@@ -37,6 +39,8 @@ router.use(`/getroomdetail`, roomdetail);//------Dejo esto aca porque mas abajo 
 router.use("/info", info);
 router.use("/reviews",reviews);
 router.use("/deletesAdmin",checkPermissions(itemPermissos.delete),deletesAdmin)
+router.use("/deleteRoom", checkPermissions(itemPermissos.delete),deleteRoom)
+router.use("/activeRoom", checkPermissions(itemPermissos.delete),activeRoom)
 router.use("/rooms", rooms);
 router.use("/countries", getCountries)
 router.use("/owner",checkPermissions(itemPermissos.addDataAdmin),owner)
