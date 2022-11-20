@@ -7,11 +7,21 @@ import { FiActivity } from "react-icons/fi";
 import { cardStyles } from "./ReusableStyles";
 import {  useDispatch, useSelector } from "react-redux";
 import { getAllClients } from "../../Redux/actions";
+import { useAuth0 } from "@auth0/auth0-react";
+
 export default function Analytics() {
+  const {  
+    getAccessTokenSilently
+  } = useAuth0();
    const clientes = useSelector((state)=>state.allClients)
+   const protectClients = async ()=>{
+    const token = await getAccessTokenSilently();
+    dispatch(getAllClients(token))
+   } 
   const dispatch = useDispatch();
    useEffect(()=>{
-    dispatch(getAllClients())
+    protectClients()
+    
     console.log("redux clientes",clientes)
   } ,[dispatch])
   return (
