@@ -22,11 +22,11 @@ const itemPermissos = require('../permisos/permisos')
 // auth0 backend
 const jwtCheck = require('../jwtCheck/jwtCheck');
 
-
+//Descomentar para probar. Esto tira error de autorizacion.
 router.use(jwtCheck);
 
 router.use(express.json());
-//RUTAS----------------------------------->>
+//RUTAS--------------------------------------------------------------->>
 
 router.use("/rol", rol); 
 router.use("/login", checkPermissions(itemPermissos.clientRoute),login);
