@@ -40,10 +40,10 @@ export function getReview() {
   }
 }
 
-export function deleteReview(id) {
+export function deleteReview(headers,id) {
   try {
     return async function (dispatch) {
-      await axios.put(`${URL}/reviews/${id}`);
+      await axios.get(`${URL}/deletesAdmin/deleteReview/?id=${id}`,headers);
       dispatch({
         type: "DELETE_REVIEW",
         payload: "Eliminado logico",
@@ -124,10 +124,10 @@ export function getCLient(token) {
     console.log(e);
   }
 }
-export function getAllClients() {
+export function getAllClients(token) {
   try {
     return async (dispatch) => {
-      const allClients = await axios.get(`${URL}/allClients`);
+      const allClients = await axios.get(`${URL}/allClients`,{ headers: { authorization: `Bearer ${token}` }});
       console.log(allClients)
       return dispatch({
         type:GET_ALL_CLIENTS,
