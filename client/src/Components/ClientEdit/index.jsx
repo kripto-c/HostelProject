@@ -21,13 +21,7 @@ export default function ClientEdit() {
     const [phone, setPhone] = useState(true);
     const [client,setClient ]= useState({})
     const [errors, setErrors] = useState({})
-    // const [client, setClient] = useState({
-    //     name: "",
-    //     lastname: "",
-    //     personalID: "",
-    //     nationality: "",
-    //     phoneNumber: "",
-    // })
+  
 
     useEffect(() => {
         dispatch(getAllCountries());

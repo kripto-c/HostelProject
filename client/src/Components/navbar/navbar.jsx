@@ -33,6 +33,7 @@ function Navbars() {
   async function setClient() {
     try {
       const token = await getAccessTokenSilently();
+      console.log(token)
       const info = await axios.get("http://localhost:4000/login/setClient", {
         // const info = await axios.get("https://hosteldinamitabackend.herokuapp.com/login/setClient", {
         headers: {
@@ -40,12 +41,13 @@ function Navbars() {
         },
       });
       console.log(info.data);
-      getInfo();
+      getInfoClient();
       localStorage.setItem("IDUser", info.data.id);
     } catch (error) {
       console.log(error);
     }
   }
+
   const verOptiones = () => {
     const bar = document.querySelector(".nav");
     if (view) {
@@ -57,17 +59,14 @@ function Navbars() {
     }
   };
 
-  async function getInfo() {
+  async function getInfoClient() {
     const token = await getAccessTokenSilently();
     dispatch(getCLient(token));
   }
 
-  const owner = useSelector((state) => state.owner)
-
-    console.log("este es el dueño",owner);
   async function getRol(){
     const token = await getAccessTokenSilently();
-    const info = await axios.get("http://localhost:4000/", {
+    const info = await axios.get("http://localhost:4000/rol", {
       // const info = await axios.get("https://hosteldinamitabackend.herokuapp.com/login/setClient", {
         headers: {
           authorization: `Bearer ${token}`,
@@ -89,12 +88,9 @@ function Navbars() {
   useEffect(() => {
     let idUser = localStorage.getItem("IDUser");
     if (idUser) {
-      getInfo();
+      getInfoClient();
       setConfirmLog(true);
-    }
-    if (client.length > 0 && isAuthenticated) {
-      getInfo();
-    }
+    }  
   }, [dispatch]);
 
   return (
@@ -125,9 +121,6 @@ function Navbars() {
               </div>
             </div>
             <Nav className="nav">
-              <Link className="linkComponent" to="/admin">
-                Tablero
-              </Link>
               <Link className="linkComponent" to="/rooms">
                 Habitaciones
               </Link>
@@ -138,14 +131,9 @@ function Navbars() {
                 Acerca de
               </Link>
               {confirmLog && (
-                <div>
                   <Link className="linkComponent" to="/reviewHostel">
                     Reviews
                   </Link>
-                  <Link className="linkComponent" to="/createRoom">
-                    Crear Habitacion
-                  </Link>
-                </div>
               )}
             </Nav>
           </div>
@@ -160,12 +148,14 @@ function Navbars() {
                 <Nav className="me-auto CuentaLog">
                   <button className="miCuentaOp">Mi Cuenta</button>
                   <div className="LoginOp">
-                    <Link to="/clientEdit" className="clientEdit">
-                      Editar Datos
-                    </Link>
-                    <NavDropdown.Item href="#action/3.2">
-                      Registro
-                    </NavDropdown.Item>
+              
+                    {
+                      (isAuthenticated && user.rol[0] === "menu-admin") ?
+                     <Link to="/setting">configuracion de sitio</Link >:
+                     <Link to="/clientEdit" className="clientEdit">
+                     Editar mi cuenta
+                   </Link>
+                      }
                     <NavDropdown.Divider />
                     <NavDropdown.Item
                       href="#action/3.4"
@@ -188,7 +178,6 @@ function Navbars() {
                 onClick={async (e) => {
                   e.preventDefault();
                   await loginWithPopup();
-                  // setClient();
                   await getRol();
                   setConfirmLog(true);
                 }}
