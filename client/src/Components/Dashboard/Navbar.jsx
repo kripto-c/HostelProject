@@ -7,7 +7,7 @@ export default function Navbar() {
       <div className="title">
         <h4>Hola (ACA VA USUARIO)</h4>
         <h1>
-          Welcome to <span>PROJECT HOSTEL</span>
+          Bienvenido a <span>PROJECT HOSTEL</span>
         </h1>
       </div>
       <div className="search">
@@ -35,18 +35,21 @@ const Nav = styled.nav`
     background-color: #212121;
     display: flex;
     align-items: center;
-    gap: 1rem;
-    padding: 1rem 8rem 1rem 1rem;
-    border-radius: 1rem;
+    gap: 0rem;
+    height:40px;    
+    margin:2px;
+    border-radius: 5px;
     svg {
       color: #ffc107;
     }
     input {
       background-color: transparent;
       border: none;
-      color: #ffc107;
+      color: grey;
       font-family: "Permanent Marker", cursive;
-      letter-spacing: 0.3rem;
+      letter-spacing: 0.5rem;
+      justify-content:center;
+      align-items:center;
       &:focus {
         outline: none;
       }
