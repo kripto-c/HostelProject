@@ -1,22 +1,37 @@
-import React from "react";
+import React, { useEffect } from "react";
+import { Route, Routes, useNavigate } from "react-router-dom";
+import Create from "../Create Room/Create";
+import OwnerCrud from "../OwnerCrud";
 import Dashboard from "./Dashboard";
+import Payments from "./Payments";
+import ReviewAdmin from "./ReviewAdmin";
 import Sidebar from "./Sidebar";
 
 export default function PanelAdmin() {
-  return (
-    <div className="container">
-      {/* <div className="row">
-        <div className="col-md-12">
-          <Sidebar></Sidebar>
-        </div>
-      </div> */}
+  const navigate= useNavigate();
+  useEffect(()=>navigate("/admin/dashboard"),[])
 
-      <div className="row">
-        <div className="col-md-12">
-        <Dashboard></Dashboard>
-        </div>
-        
+  
+  return (
+    <React.Fragment>
+      <div>
+        <Sidebar></Sidebar>
+        <Routes>
+          <Route path="dashboard" element={<Dashboard></Dashboard>}></Route>
+        </Routes>
+        <Routes>
+          <Route path="reviewsAdmin" element={<ReviewAdmin></ReviewAdmin>}></Route>
+        </Routes>
+        <Routes>
+          <Route path="roomsAdmin" element={<Create></Create>}></Route>
+        </Routes>
+        <Routes>
+          <Route path="payments" element={<Payments></Payments>}></Route>
+        </Routes>
+        <Routes>
+          <Route path="settings" element={<OwnerCrud></OwnerCrud>}></Route>
+        </Routes>
       </div>
-    </div>
+    </React.Fragment>
   );
 }

@@ -1,3 +1,4 @@
+
 .res{
     width: max-content;
     display: flex;
@@ -64,6 +65,10 @@
     height: max-content;
     visibility: visible;
 }
+
+
+
+
 @media only screen and (max-width: 770px) {
     .cont{
         display: flex;
@@ -111,5 +116,12 @@
         position: absolute;
         top: 10px;
         right: 10px;
+    }
+    .Login{
+        top: 25px;
+        right: 10px;
+    }
+    .d-block{
+        margin: auto;
     }
 }

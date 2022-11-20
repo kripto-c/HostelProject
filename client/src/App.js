@@ -14,8 +14,8 @@ import Create from "./Components/Dashboard/Create";
 //dashboard --------------------------------------------------------->>
 //import styled from "styled-components";
 import PanelAdmin from "./Components/Dashboard/PanelAdmin";
-import ReviewAdmin from "./Components/Dashboard/ReviewAdmin.jsx"
-import Sidebar from "./Components/Dashboard/Sidebar.jsx";
+import ReviewAdmin from "./Components/Dashboard/ReviewAdmin.jsx";
+
 //-------------------------------------------------------------------->>
 function App() {
   return (

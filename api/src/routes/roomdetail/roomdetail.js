@@ -1,6 +1,6 @@
 const { Router} = require('express');
 const route = Router();
-const {Room} = require("../../db")
+const {Room, Rent} = require("../../db")
 
 
 route.get("/", async (req, res) =>{
@@ -10,13 +10,16 @@ route.get("/", async (req, res) =>{
         let roomdetail = await Room.findOne({
             where: {
                 id: id
+            },
+            include: {
+                model: Rent
             }
         });
 
         res.send(roomdetail);
         
     } catch (error) {
-        console.log(error);
+        console.log("entro", error);
     }
 });
 

@@ -1,11 +1,19 @@
-import React from "react";
+import React, { useEffect } from "react";
 import styled from "styled-components";
 import { BsFillCalendar2WeekFill } from "react-icons/bs";
 import { IoStatsChart } from "react-icons/io5";
 import { BiGroup } from "react-icons/bi";
 import { FiActivity } from "react-icons/fi";
 import { cardStyles } from "./ReusableStyles";
+import {  useDispatch, useSelector } from "react-redux";
+import { getAllClients } from "../../Redux/actions";
 export default function Analytics() {
+   const clientes = useSelector((state)=>state.allClients)
+  const dispatch = useDispatch();
+   useEffect(()=>{
+    dispatch(getAllClients())
+    console.log("redux clientes",clientes)
+  } ,[dispatch])
   return (
     <Section>
       <div className="analytic ">
@@ -31,8 +39,8 @@ export default function Analytics() {
           <BiGroup />
         </div>
         <div className="content">
-          <h5>New clients</h5>
-          <h2>321</h2>
+          <h5>Clientes</h5>
+          <h2>{clientes.length?clientes.length:null}</h2>
         </div>
       </div>
       <div className="analytic ">
