@@ -124,6 +124,7 @@ export function getRoomDetail(id) {
   return async (dispatch) => {
     try {
       let res = await axios.get(`http://localhost:4000/getroomdetail?id=${id}`);
+      console.log('estoy depastch getroomdetail', res);
       return dispatch({
         type: "GET_ROOM_DETAIL",
         payload: res.data,
@@ -143,6 +144,20 @@ export function getAllCountries(){
       })
     } catch (error) {
       console.log(error)
+    }
+  }
+}
+
+export function getRent(id){
+  return async function(dispatch){
+    try {
+      let res = await axios.get(`http://localhost:4000/rent?id=${id}`)
+      return dispatch({
+        type: "GET_RENT",
+        payload: res.data
+      })
+    } catch (error) {
+      console.log(error);
     }
   }
 }

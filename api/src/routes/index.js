@@ -9,6 +9,7 @@ const roomdetail = require("./roomdetail/roomdetail")
 const payment = require("./payments/payment");
 const feedback = require("./payments/feedback")
 const getCountries = require("./countries")
+const rent = require("./rent/rent")
 
 const router = Router();
 
@@ -28,9 +29,9 @@ let jwtCheck = jwt({
   audience: "route-protected",
   issuer: "https://dev-o7k6sbvjre41wvzb.us.auth0.com/",
   algorithms: ["RS256"],
-}).unless({ path: ["/getroomdetail", "/info", "/rooms", '/reviews','/countries',"/feedback"] });
+}).unless({ path: ["/getroomdetail", "/info", "/rooms", '/reviews','/countries',"/feedback", "/rent"] });
 
-router.use(jwtCheck);
+// router.use(jwtCheck);
 
 router.use(express.json());
 //RUTAS----------------------------------->>
@@ -42,5 +43,6 @@ router.use("/info", info)
 router.use("/reviews",reviews)
 router.use("/rooms", rooms)
 router.use("/countries", getCountries)
+router.use("/rent",rent)
 
 module.exports = router;

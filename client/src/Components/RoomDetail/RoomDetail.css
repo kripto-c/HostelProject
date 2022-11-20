@@ -221,3 +221,7 @@
     margin-left: 25%;
     border-radius: 5px;
 }
+button{
+    display: flex;
+    justify-content: center;
+}

@@ -13,7 +13,8 @@ const initialState = {
   reviews: [],
   client: [],
   roomdetail: [],
-  countries:[]
+  countries:[],
+  rent: []
 };
 
 export default function rootReducer(state = initialState, action) {
@@ -113,6 +114,12 @@ export default function rootReducer(state = initialState, action) {
       return {
         ...state,
         roomdetail: action.payload,
+      };
+    }
+    case "GET_RENT":{
+      return{
+        ...state,
+        rent: action.payload
       };
     }
 
