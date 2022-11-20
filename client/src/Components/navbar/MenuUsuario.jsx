@@ -97,10 +97,10 @@ export default function MenuUsuario({ name, ...props }) {
             <Offcanvas.Header closeButton>
               <Offcanvas.Title>Menu</Offcanvas.Title>
             </Offcanvas.Header>
-            <div className="container bg-light">
+            <div className="container bg-light ">
                 
                 
-              <Offcanvas.Body className="d-grid offcanvas-body gap-1 m-5">
+              <Offcanvas.Body className="d-grid offcanvas-body gap-1 mx-auto">
                 <img
                   src={isAuthenticated ? user.picture : ""}
                   alt="foto perfil"
@@ -130,13 +130,15 @@ export default function MenuUsuario({ name, ...props }) {
                       >
                         Editar datos
                       </Link>
+                      
                       <Link
-                        className="list-group-item list-group-item-action"
+                        className="list-group-item list-group-item-action "
                         id="list-messages-list"
                         data-bs-toggle="list"
                         to="/"
                         role="tab"
                         aria-controls="list-messages"
+                        
                       >
                         Reviews
                       </Link>

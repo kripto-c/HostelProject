@@ -10,7 +10,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { useState, useEffect } from "react";
 import "./navbar.css";
 import logo from "../../images/logo.svg";
-import MenuUsuario from "./MenuUsuario.jsx"
+import MenuUsuario from "./MenuUsuario.jsx";
 function Navbars() {
 
 
@@ -97,7 +97,6 @@ function Navbars() {
 
   return (
     <>
-    
       <Navbar variant="dark" bg="dark">
         <Container fluid>
           <Link style={{ textDecoration: "none" }} to="/" className="d-block">
@@ -115,7 +114,7 @@ function Navbars() {
             </div>
             {/* </div> */}
           </Link>
-          <div className="w-75 m-auto justify-content-center nav navbar-nav navbar-nav">
+          <div className="w-75 mx-auto justify-content-center nav navbar-nav navbar-nav">
             <div className="but">
               <div className="act" onClick={verOptiones}>
                 <span></span>
@@ -136,31 +135,35 @@ function Navbars() {
               <Link className="linkComponent fs-5" to="/about">
                 Acerca de
               </Link>
-              {isAuthenticated && <Link className="linkComponent fs-5" to="/reviewHostel">
-                    Reviews
-                  </Link>}
-                  {/* <Link className="linkComponent" to="/createRoom">
+              {isAuthenticated && (
+                <Link className="linkComponent fs-5" to="/reviewHostel">
+                  Reviews
+                </Link>
+              )}
+              {/* <Link className="linkComponent" to="/createRoom">
                     Crear Habitacion
                   </Link> */}
-                  
+
               {/* {confirmLog && (
                 <>
                   
                 </>
                 
               )} */}
-              
-              {/*-------------------------------------------------------------------------------------- */}
-            
-              
 
-            {/*------------------------------------------------------------------------------------------- */}
+              {/*-------------------------------------------------------------------------------------- */}
+
+              {/*------------------------------------------------------------------------------------------- */}
             </Nav>
-            <MenuUsuario className="ms-5"/>
+            
+           
+            
           </div>
-          
-          
-          
+          <ul class="navbar-nav ml-auto">
+              <li>
+                <MenuUsuario className="m-5" />
+              </li>
+            </ul>
           {/* <>
             {isAuthenticated ? (
               <Navbar.Collapse className="loginInfo">
@@ -210,11 +213,8 @@ function Navbars() {
               </Link>
             )}
           </> */}
-          
         </Container>
-        
       </Navbar>
-      
     </>
   );
 }
