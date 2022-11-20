@@ -16,28 +16,23 @@ import { useState, useEffect } from "react";
 import "./MenuUsuario.css";
 import logo from "../../images/logo.svg";
 
-
-
-
-
-
 const options = [
-    {
-      name: 'Enable body scrolling',
-      scroll: true,
-      backdrop: false,
-    },
-    {
-      name: 'Enable backdrop (default)',
-      scroll: false,
-      backdrop: true,
-    },
-    {
-      name: 'Enable both scrolling & backdrop',
-      scroll: true,
-      backdrop: true,
-    },
-  ];
+  {
+    name: "Enable body scrolling",
+    scroll: true,
+    backdrop: false,
+  },
+  {
+    name: "Enable backdrop (default)",
+    scroll: false,
+    backdrop: true,
+  },
+  {
+    name: "Enable both scrolling & backdrop",
+    scroll: true,
+    backdrop: true,
+  },
+];
 
 export default function MenuUsuario({ name, ...props }) {
   const [show, setShow] = useState(false);
@@ -88,70 +83,103 @@ export default function MenuUsuario({ name, ...props }) {
   }, [dispatch]);
   return (
     <>
-    
-      <Button variant="primary" onClick={handleShow} className="me-2">
+      
+      {/* <div className="container bg-dark d-flex" backdrop="true"> */}
+        
+
+          {isAuthenticated ? (
+            <>
+            <Button variant="primary" onClick={handleShow} className="ms-5 w-10">
         Menu
       </Button>
-      <div className="container bg-dark d-flex" backdrop="true">
-      <Offcanvas show={show} placement="end" onHide={handleClose} {...props}>
-        <Offcanvas.Header closeButton>
-          <Offcanvas.Title>Menu</Offcanvas.Title>
-        </Offcanvas.Header>
+            <Offcanvas show={show} placement="end" onHide={handleClose} {...props}>
+                
+            <Offcanvas.Header closeButton>
+              <Offcanvas.Title>Menu</Offcanvas.Title>
+            </Offcanvas.Header>
+            <div className="container bg-light">
+                
+                
+              <Offcanvas.Body className="d-grid offcanvas-body gap-1 m-5">
+                <img
+                  src={isAuthenticated ? user.picture : ""}
+                  alt="foto perfil"
+                  className="rounded-circle profileIMG"
+                />
 
-        {isAuthenticated ? (
-          <div className="container bg-light">
-            <Offcanvas.Body>
-              <img
-                src={isAuthenticated ? user.picture : ""}
-                alt="foto perfil"
-                className="rounded-circle profileIMG"
-              />
-            </Offcanvas.Body>
-
-            <Offcanvas.Body>
-              Mi cuenta
-            </Offcanvas.Body>
-
-            <div className="LoginOp">
-              <Offcanvas.Body>
-                <Link to="/clientEdit" className="clientEdit">
-                  Editar Datos
-                </Link>
-              </Offcanvas.Body>
-              <Offcanvas.Body>
+                <div className="row">
+                  <div className="">
+                    <div className="list-group" id="list-tab" role="tablist">
+                      <Link
+                        to="/"
+                        className="list-group-item list-group-item-action active"
+                        id="list-home-list"
+                        data-bs-toggle="list"
+                        role="tab"
+                        aria-controls="list-home"
+                      >
+                        Mi cuenta
+                      </Link>
+                      <Link
+                        className="list-group-item list-group-item-action"
+                        id="list-profile-list"
+                        data-bs-toggle="list"
+                        to="/"
+                        role="tab"
+                        aria-controls="list-profile"
+                      >
+                        Editar datos
+                      </Link>
+                      <Link
+                        className="list-group-item list-group-item-action"
+                        id="list-messages-list"
+                        data-bs-toggle="list"
+                        to="/"
+                        role="tab"
+                        aria-controls="list-messages"
+                      >
+                        Reviews
+                      </Link>
+                    </div>
+                  </div>
+                </div>
                 <button
+                  type="button"
                   onClick={() => {
                     localStorage.clear();
                     logout();
                     setConfirmLog(false);
                     setSort("deslogueado");
                   }}
-                ></button>
+                  class="btn btn-outline-danger"
+                >
+                  Cerrar Sesion
+                </button>
               </Offcanvas.Body>
-              cerrar sesión
-              <Offcanvas.Body></Offcanvas.Body>
-              <Offcanvas.Body>Registro</Offcanvas.Body>
-              <Offcanvas.Body></Offcanvas.Body>
             </div>
-          </div>
-        ) : (
-          <Offcanvas.Body>
-            <Link
-              className="Login"
-              to="/#login"
-              onClick={async (e) => {
-                e.preventDefault();
-                await loginWithPopup();
-                setClient();
-                setConfirmLog(true);
-              }}
-            >
-              Login
-            </Link>
-          </Offcanvas.Body>
-        )}
-      </Offcanvas>
-      </div>
+            </Offcanvas>
+            </>
+          ) : (
+            
+             
+              <button
+                type="button"
+                className="Login"
+                to="/#login"
+                onClick={async (e) => {
+                  e.preventDefault();
+                  await loginWithPopup();
+                  setClient();
+                  setConfirmLog(true);
+                }}
+                class="btn btn-outline-light"
+              >
+                Login
+              </button>
+            
+          )}
+        
+      {/* </div> */}
     </>
   );
 }

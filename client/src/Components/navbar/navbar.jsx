@@ -99,7 +99,7 @@ function Navbars() {
     <>
     
       <Navbar variant="dark" bg="dark">
-        <Container className="">
+        <Container fluid>
           <Link style={{ textDecoration: "none" }} to="/" className="d-block">
             {/* <h2 className="h5">Dinamita Hostel</h2> */}
             {/* <div className="container-fluid "> */}
@@ -115,7 +115,7 @@ function Navbars() {
             </div>
             {/* </div> */}
           </Link>
-          <div className="res">
+          <div className="w-75 m-auto justify-content-center nav navbar-nav navbar-nav">
             <div className="but">
               <div className="act" onClick={verOptiones}>
                 <span></span>
@@ -123,26 +123,26 @@ function Navbars() {
                 <span></span>
               </div>
             </div>
-            <Nav className="nav justify-content-end">
-              <Link className="linkComponent" to="/admin">
+            <Nav className="w-75 m-auto nav justify-content-center navbar-nav">
+              <Link className="linkComponent fs-5" to="/admin">
                 Tablero
               </Link>
-              <Link className="linkComponent" to="/rooms">
+              <Link className="linkComponent fs-5" to="/rooms">
                 Habitaciones
               </Link>
-              <Link className="linkComponent" to="/contact">
+              <Link className="linkComponent fs-5" to="/contact">
                 Contactanos
               </Link>
-              <Link className="linkComponent" to="/about">
+              <Link className="linkComponent fs-5" to="/about">
                 Acerca de
               </Link>
-              {isAuthenticated && <Link className="linkComponent" to="/reviewHostel">
+              {isAuthenticated && <Link className="linkComponent fs-5" to="/reviewHostel">
                     Reviews
                   </Link>}
                   {/* <Link className="linkComponent" to="/createRoom">
                     Crear Habitacion
                   </Link> */}
-                  <MenuUsuario/>
+                  
               {/* {confirmLog && (
                 <>
                   
@@ -156,7 +156,7 @@ function Navbars() {
 
             {/*------------------------------------------------------------------------------------------- */}
             </Nav>
-            
+            <MenuUsuario className="ms-5"/>
           </div>
           
           
