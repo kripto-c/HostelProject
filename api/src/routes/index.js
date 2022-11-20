@@ -21,7 +21,7 @@ const itemPermissos = require('../permisos/permisos')
 // auth0 backend
 const jwtCheck = require('../jwtCheck/jwtCheck');
 
-router.use(jwtCheck);
+// router.use(jwtCheck);
 
 router.use(express.json());
 //RUTAS----------------------------------->>
