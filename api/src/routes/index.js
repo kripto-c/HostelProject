@@ -19,9 +19,23 @@ const checkPermissions  = require("../permisos/permisosCheck");
 const itemPermissos = require('../permisos/permisos')
 //----------------------------------------------------------------------------------
 // auth0 backend
-const jwtCheck = require('../jwtCheck/jwtCheck')
+const { expressjwt: jwt } = require("express-jwt");
+const jwks = require("jwks-rsa");
 
-router.use(jwtCheck);
+
+let jwtCheck = jwt({
+  secret: jwks.expressJwtSecret({
+    cache: true,
+    rateLimit: true,
+    jwksRequestsPerMinute: 5,
+    jwksUri: "https://dev-o7k6sbvjre41wvzb.us.auth0.com/.well-known/jwks.json",
+  }),
+  audience: "route-protected",
+  issuer: "https://dev-o7k6sbvjre41wvzb.us.auth0.com/",
+  algorithms: ["RS256"],
+}).unless({ path: ["/getroomdetail", "/info", "/rooms", '/reviews','/countries',"/feedback", "/rent"] });
+
+// router.use(jwtCheck);
 
 router.use(express.json());
 //RUTAS----------------------------------->>

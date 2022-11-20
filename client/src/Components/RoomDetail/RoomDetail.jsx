@@ -250,56 +250,40 @@ export default function RoomDetail() {
     setShow(true);
   }
 
-  return (
-    <div className="detailRoom">
-      {
-        // CONTROL DE DATOS DE USUARIO
-        <Modal show={show} onHide={handleClose}>
-          <Modal.Header closeButton className="bg-primary text-white">
-            <Modal.Title>Datos del Cliente</Modal.Title>
-          </Modal.Header>
-          <Modal.Body className="bg-dark text-white">
-            {(!client.nacionality || !client.phoneNumber || !client.email) && (
-              <p>Por favor complete con los datos faltantes</p>
-            )}
-            <Form onSubmit={(e) => handleSubmit(e)}>
-              <Form.Group
-                className="mb-3"
-                controlId="exampleForm.ControlInput1"
-              >
-                <Form.Label>Nombre</Form.Label>
-                <div className="input-group">
-                  {client.name ? (
-                    <>
-                      <input
-                        type="text"
-                        className="form-control"
-                        name="name"
-                        id="validationCustom01"
-                        disabled={name}
-                        value={name ? client.name : clientInf.name}
-                        onChange={(e) => handleChange(e)}
-                        required
-                      />
-                      <button
-                        className="btn btn-outline-danger"
-                        type="button"
-                        onClick={(e) => handleName(e)}
-                      >
-                        <BsFillPencilFill />
-                      </button>
-                    </>
-                  ) : (
-                    <Form.Control
-                      onChange={(e) => handleChange(e)}
-                      className=" bg-gradient"
-                      type="text"
-                      placeholder="Nombre"
-                      autoFocus
-                      name="name"
-                    />
-                  )}
-                </div>
+    // console.log(room);
+    return (
+    <div className='detailRoom mx-auto'>
+             {
+                // CONTROL DE DATOS DE USUARIO 
+           <Modal show={show} onHide={handleClose}>
+           <Modal.Header closeButton className="bg-primary text-white">
+             <Modal.Title>Datos del Cliente</Modal.Title>
+           </Modal.Header>
+           <Modal.Body className='bg-dark text-white'>
+             {
+                ( !client.nacionality || !client.phoneNumber || !client.email) && 
+                (<p>Por favor complete con los datos faltantes</p>)
+             }
+             <Form onSubmit={e=> handleSubmit(e) }>
+               <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
+                 <Form.Label>Nombre</Form.Label>
+                 <div className="input-group">
+             { client.name ?
+                <>                
+                <input type="text" className="form-control" name='name' id="validationCustom01" disabled={name} value={name ? client.name : clientInf.name }  onChange={e=> handleChange(e)} required />
+                 <button className="btn btn-outline-danger" type='button' onClick={e => handleName(e)}><BsFillPencilFill /></button>
+                </>
+                  :
+                  <Form.Control
+                  onChange={e=> handleChange(e)}
+                   className=' bg-gradient'
+                    type="text"
+                    placeholder="Nombre"
+                    autoFocus
+                    name='name'
+                  />
+                  }
+                  </div>
                 <Form.Label>Apellido</Form.Label>
                 <div className="input-group">
                   {client.lastname ? (
