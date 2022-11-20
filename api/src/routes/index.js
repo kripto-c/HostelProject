@@ -36,5 +36,6 @@ router.use("/reviews",reviews);
 router.use("/rooms", rooms);
 router.use("/countries", getCountries)
 router.use("/owner",checkPermissions(itemPermissos.addDataAdmin),owner)
+router.use("/rent",rent)
 
 module.exports = router;

@@ -204,3 +204,17 @@ export const createRoom = (payload) => async () => {
     res,
   };
 };
+
+export function getRent(id){
+  return async function(dispatch){
+    try {
+      let res = await axios.get(`http://localhost:4000/rent?id=${id}`)
+      return dispatch({
+        type: "GET_RENT",
+        payload: res.data
+      })
+    } catch (error) {
+      console.log(error);
+    }
+  }
+}
