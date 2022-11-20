@@ -1,11 +1,14 @@
 .footer-container{
     display: flex;
     width: 100vw;
-    justify-content: space-around;
+    justify-content: space-between;
     background-color: #212529;
     font-size: 15px;
     border-top: 2px solid black;
-    color: white
+    color: white;
+    padding-top:25px;
+
+    margin: 10px auto;
     
 }
 
@@ -17,7 +20,8 @@
 
 .links{
     display: flex;
-    flex-direction: column  ;   
+    flex-direction: column;
+       
 }
 
 .links a{
@@ -32,6 +36,7 @@
 .logos{
     display: flex;
     flex-direction: column;
+    justify-content: flex-end   ;
 }
 
 .logos span{

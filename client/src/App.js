@@ -10,7 +10,7 @@ import RoomDetail from "./Components/RoomDetail/RoomDetail";
 import About from "./Components/about/about.jsx";
 import ClientEdit from "./Components/ClientEdit";
 import OwnerCrud from "./Components/OwnerCrud";
-import Create from "./Components/Create Room/Create";
+import Create from "./Components/Dashboard/Create";
 //dashboard --------------------------------------------------------->>
 //import styled from "styled-components";
 import PanelAdmin from "./Components/Dashboard/PanelAdmin";
@@ -30,7 +30,6 @@ function App() {
         <Route path = "/feedback" element={<FeedBack />} />
         <Route path = "/roomdetail/:id" element={<RoomDetail />} />
         <Route path = "/clientEdit" element={<ClientEdit />} />
-        <Route path = "/createRoom" element={<Create />} />
       </Routes>
       <Sidebar/>
       <Routes>   
@@ -38,6 +37,7 @@ function App() {
       <Route path="/admin" element={<PanelAdmin />} />
       <Route path="/admin/review" element={<ReviewAdmin/>}/>
       <Route path="/admin/owner" element={<OwnerCrud />} />
+      <Route path="/admin/createRoom" element={<Create />} />
       </Routes>
     </>
   );

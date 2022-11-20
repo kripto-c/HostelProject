@@ -8,7 +8,8 @@ import Button from "react-bootstrap/Button";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import { useNavigate } from "react-router-dom";
-import './Create.css'
+import "./Create.css";
+import Edit from "../Dashboard/EditRoom";
 
 const Create = () => {
   // SETTEAR INFO//
@@ -21,7 +22,7 @@ const Create = () => {
     bathroom: "",
     observation: "",
     price: "",
-    type:"",
+    type: "",
   });
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -42,7 +43,7 @@ const Create = () => {
     setLoading(false);
     setRoom({
       ...room,
-      image: file.secure_url
+      image: file.secure_url,
     });
   };
 
@@ -58,14 +59,14 @@ const Create = () => {
   const handlebañoSelect = (e) => {
     setRoom({
       ...room,
-      bathroom: e.target.value
+      bathroom: e.target.value,
     });
   };
 
   const handleTipoSelect = (e) => {
     setRoom({
       ...room,
-      type: e.target.value
+      type: e.target.value,
     });
   };
 
@@ -97,17 +98,16 @@ const Create = () => {
         bathroom: "",
         observation: "",
         price: "",
-        type:"",
+        type: "",
       });
       navigate("/");
     }
   };
 
-
   return (
-    <div className="container-create" >
-      <Form onSubmit={(e) => handleSubmit(e)}>
-        <div className="form-group">
+    <div>
+      <div className="box-create">
+        <Form onSubmit={(e) => handleSubmit(e)}>
           <Row className="d-flex justify-content-between">
             <Form.Group as={Col} md="5">
               <Form.Label>Instertar imagen: </Form.Label>
@@ -132,6 +132,7 @@ const Create = () => {
                     backgroundSize: "cover",
                     marginTop: "5px",
                     border: "3px solid black",
+                    objectFit: "cover",
                   }}
                   alt=""
                   src={image}
@@ -143,12 +144,12 @@ const Create = () => {
             <Form.Group as={Col} md="5">
               <Form.Label>Baño: </Form.Label>
               <Form.Select onChange={(e) => handlebañoSelect(e)}>
-                <option >Elegir tipo de baño</option>
+                <option>Elegir tipo de baño</option>
                 <option value="True">Privado</option>
                 <option value="False">Compartido</option>
               </Form.Select>
             </Form.Group>
-            <Form.Group as={Col} md="1">
+            <Form.Group as={Col} md="2">
               <Form.Label>Camas: </Form.Label>
               <Form.Control
                 type="number"
@@ -162,7 +163,7 @@ const Create = () => {
             <Form.Group as={Col} md="5">
               <Form.Label>Tipo: </Form.Label>
               <Form.Select onChange={(e) => handleTipoSelect(e)}>
-                <option selected>Elegir tipo de Habitacion</option>
+                <option>Elegir tipo de Habitacion</option>
                 <option value="compartida">Compartida</option>
                 <option value="privada">Privada</option>
               </Form.Select>
@@ -203,9 +204,13 @@ const Create = () => {
               />
             </Form.Group>
           </Row>
-        </div>
-        <Button className="submit" type="submit">Crear</Button>
-      </Form>
+
+          <Button className="submit" type="submit">
+            Crear
+          </Button>
+        </Form>
+      </div>
+      <Edit />
     </div>
   );
 };

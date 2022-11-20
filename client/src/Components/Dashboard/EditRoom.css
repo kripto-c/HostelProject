@@ -1,0 +1,7 @@
+.hola{
+display: flex;
+width: 100%;
+margin: 10px auto;
+justify-content: center;
+align-items: center;
+}

@@ -1,5 +1,5 @@
 import React from "react";
-import './Footer.css';
+import "./Footer.css";
 import { Link } from "react-router-dom";
 
 const Footer = () => {
@@ -18,30 +18,34 @@ const Footer = () => {
       <div className="logos">
         <span>NUESTRAS REDES SOCIALES:</span>
         <a href="https://www.facebook.com/" target="blank">
+          Facebook
           <img
             src="https://img.icons8.com/color/48/null/facebook.png"
             alt="logo-facebook"
-          /> Facebook
+          />{" "}
         </a>
-        <a href="https://www.instagram.com/?hl=es-la" target='blank'>
+        <a href="https://www.instagram.com/?hl=es-la" target="blank">
+          Instragram
           <img
             src="https://img.icons8.com/color/48/null/instagram-new--v1.png"
             alt="logo-instagram"
-          /> Instragram
+          />{" "}
         </a>
 
         <a href="https://twitter.com/" tartget="blank">
+          Twitter
           <img
             src="https://img.icons8.com/color/48/null/twitter--v1.png"
             alt="logo-twitter"
-          /> Twitter
+          />{" "}
         </a>
 
-        <a href="https://github.com/" target='blank'>
+        <a href="https://github.com/" target="blank">
+          Github
           <img
             src="https://img.icons8.com/sf-regular/48/null/github.png"
             alt="logo-github"
-          /> Github
+          />
         </a>
       </div>
     </div>

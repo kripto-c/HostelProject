@@ -12,6 +12,7 @@ import { VscChromeClose } from "react-icons/vsc";
 import scrollreveal from "scrollreveal";
 import logo from "../../images/logo.svg";
 import styled from "styled-components";
+import { Link } from "react-router-dom";
 
 export default function Sidebar() {
   const [currentLink, setCurrentLink] = useState(1);
@@ -74,10 +75,7 @@ export default function Sidebar() {
                 className={currentLink === 1 ? "active" : "none"}
                 onClick={() => setCurrentLink(1)}
               >
-                <a href="/admin">
-                  <MdSpaceDashboard />
-                  <span> Dashboard</span>
-                </a>
+                <Link to="/admin">Dashboard  <MdSpaceDashboard /></Link>
               </li>
               <li
                 className={currentLink === 2 ? "active" : "none"}
@@ -101,7 +99,7 @@ export default function Sidebar() {
                 className={currentLink === 4 ? "active" : "none"}
                 onClick={() => setCurrentLink(4)}
               >
-                <a href="#">
+                <a href="/admin/createRoom">
                   <GiTwirlCenter />
                   <span> Rooms</span>
                 </a>

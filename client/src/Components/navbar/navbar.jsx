@@ -112,9 +112,6 @@ function Navbars() {
                   <Link className="linkComponent" to="/reviewHostel">
                     Reviews
                   </Link>
-                  <Link className="linkComponent" to="/createRoom">
-                    Crear Habitacion
-                  </Link>
                 </div>
               )}
             </Nav>
