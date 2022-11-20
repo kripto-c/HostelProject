@@ -15,7 +15,7 @@ import Create from "./Components/Dashboard/Create";
 //import styled from "styled-components";
 import PanelAdmin from "./Components/Dashboard/PanelAdmin";
 import ReviewAdmin from "./Components/Dashboard/ReviewAdmin.jsx";
-
+import Sidebar from "./Components/Dashboard/Sidebar";
 //-------------------------------------------------------------------->>
 function App() {
   return (
@@ -33,11 +33,11 @@ function App() {
       </Routes>
       <Sidebar/>
       <Routes>   
-      {/* <Route path="/" element={<Sidebar/>}></Route>      */}
+      <Route path="/" element={<Sidebar/>}></Route>     
       <Route path="/admin" element={<PanelAdmin />} />
       <Route path="/admin/review" element={<ReviewAdmin/>}/>
       <Route path="/admin/owner" element={<OwnerCrud />} />
-      <Route path="/admin/createRoom" element={<Create />} />
+      <Route path="/admin/roomsAdmin" element={<Create />} />
       </Routes>
     </>
   );

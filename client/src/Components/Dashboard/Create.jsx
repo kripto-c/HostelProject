@@ -9,7 +9,7 @@ import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import { useNavigate } from "react-router-dom";
 import "./Create.css";
-import Edit from "../Dashboard/EditRoom";
+import Edit from "./EditRoom";
 
 const Create = () => {
   // SETTEAR INFO//
