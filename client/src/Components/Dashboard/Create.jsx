@@ -108,60 +108,17 @@ const Create = () => {
     <div>
       <div className="box-create">
         <Form onSubmit={(e) => handleSubmit(e)}>
-          <Row className="d-flex justify-content-between">
-            <Form.Group as={Col} md="5">
-              <Form.Label>Instertar imagen: </Form.Label>
-              <Form.Control
-                name="file"
-                type="file"
-                onChange={(e) => {
-                  uploadImage(e);
-                }}
-              />
-            </Form.Group>
-            <Form.Group as={Col} md="7">
-              {image.length < 1 ? (
-                <div className="no-image">
-                  <h1>no ha seleccionado una imagen</h1>
-                </div>
-              ) : (
-                <img
-                  style={{
-                    width: "450px",
-                    height: "300px",
-                    backgroundSize: "cover",
-                    marginTop: "5px",
-                    border: "3px solid black",
-                    objectFit: "cover",
-                  }}
-                  alt=""
-                  src={image}
-                />
-              )}
-            </Form.Group>
-          </Row>
           <Row>
             <Form.Group as={Col} md="5">
-              <Form.Label>Baño: </Form.Label>
+              <Form.Label>Baño(OBLIGATORIO): </Form.Label>
               <Form.Select onChange={(e) => handlebañoSelect(e)}>
                 <option>Elegir tipo de baño</option>
                 <option value="True">Privado</option>
                 <option value="False">Compartido</option>
               </Form.Select>
             </Form.Group>
-            <Form.Group as={Col} md="2">
-              <Form.Label>Camas: </Form.Label>
-              <Form.Control
-                type="number"
-                name="beds"
-                min="1"
-                max="10"
-                value={room.beds}
-                onChange={handleChange}
-              />
-            </Form.Group>
             <Form.Group as={Col} md="5">
-              <Form.Label>Tipo: </Form.Label>
+              <Form.Label>Tipo(OBLIGATORIO): </Form.Label>
               <Form.Select onChange={(e) => handleTipoSelect(e)}>
                 <option>Elegir tipo de Habitacion</option>
                 <option value="compartida">Compartida</option>
@@ -181,7 +138,7 @@ const Create = () => {
               />
             </Form.Group>
             <Form.Group as={Col} md="5">
-              <Form.Label>Descripcion: </Form.Label>
+              <Form.Label>Descripcion(OBLIGATORIO): </Form.Label>
               <Form.Control
                 as="textarea"
                 name="description"
@@ -191,9 +148,20 @@ const Create = () => {
               />
             </Form.Group>
           </Row>
-          <Row className="d-flex justify-content-center">
+          <Row className="d-flex justify-content-around">
             <Form.Group as={Col} md="2">
-              <Form.Label>Precio: </Form.Label>
+              <Form.Label>Camas(OBLIGATORIO): </Form.Label>
+              <Form.Control
+                type="number"
+                name="beds"
+                min="1"
+                max="10"
+                value={room.beds}
+                onChange={handleChange}
+              />
+            </Form.Group>
+            <Form.Group as={Col} md="2">
+              <Form.Label>Precio(OBLIGATORIO): </Form.Label>
               <Form.Control
                 type="number"
                 min="0"
@@ -201,6 +169,31 @@ const Create = () => {
                 name="price"
                 value={room.price}
                 onChange={handleChange}
+              />
+            </Form.Group>
+          </Row>
+          <Row className="d-flex justify-content-between">
+            <Form.Group as={Col} md="5">
+              <Form.Label>Instertar imagen(OBLIGATORIO): </Form.Label>
+              <Form.Control
+                name="file"
+                type="file"
+                onChange={(e) => {
+                  uploadImage(e);
+                }}
+              />
+            </Form.Group>
+            <Form.Group as={Col} md="7">
+              <img
+                style={{
+                  width: "450px",
+                  height: "300px",
+                  backgroundSize: "cover",
+                  marginTop: "5px",
+                  objectFit: "cover",
+                }}
+                alt=""
+                src={image}
               />
             </Form.Group>
           </Row>
