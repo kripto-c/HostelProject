@@ -33,6 +33,7 @@ function Navbars() {
   async function setClient() {
     try {
       const token = await getAccessTokenSilently();
+      console.log(token)
       const info = await axios.get("http://localhost:4000/login/setClient", {
         // const info = await axios.get("https://hosteldinamitabackend.herokuapp.com/login/setClient", {
         headers: {
@@ -46,6 +47,22 @@ function Navbars() {
       console.log(error);
     }
   }
+
+  async function getRol() {
+    try {
+      const token = await getAccessTokenSilently();
+      const info = await axios.get("http://localhost:4000/", {
+        headers: {
+          authorization: `Bearer ${token}`,
+        },
+      });
+      if(info.data === "menu-client") return setClient()
+      else return navigate("/admin/owner");
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
   const verOptiones = () => {
     const bar = document.querySelector(".nav");
     if (view) {
@@ -91,10 +108,7 @@ function Navbars() {
     if (idUser) {
       getInfoClient();
       setConfirmLog(true);
-    }
-    if (client.length > 0 && isAuthenticated) {
-      getInfoClient();
-    }
+    }  
   }, [dispatch]);
 
   return (
