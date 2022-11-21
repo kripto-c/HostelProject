@@ -9,8 +9,8 @@ export const POST_OWNER = "POST_OWNER";
 export const GET_OWNER = "GET_OWNER";
 export const GET_ALL_CLIENTS = "GET_ALL_CLIENTS";
 
-const URL = "https://dinamitahostel.herokuapp.com";
-// const URL = "http://localhost:4000"; //descomentar para hacer pruebas
+/* const URL = "https://dinamitahostel.herokuapp.com"; */
+const URL = "http://localhost:4000"; //descomentar para hacer pruebas
 
 //ACTION ROOMS ----------------------------------------------------------->>
 export function getRooms() {

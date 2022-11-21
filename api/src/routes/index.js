@@ -26,8 +26,8 @@ const itemPermissos = require('../permisos/permisos')
 const jwtCheck = require('../jwtCheck/jwtCheck');
 
 //Descomentar para probar. Esto tira error de autorizacion.
-/*  router.use(jwtCheck);
- */
+router.use(jwtCheck);
+
 router.use(express.json());
 //RUTAS--------------------------------------------------------------->>
 
