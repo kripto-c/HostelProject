@@ -4,30 +4,30 @@ const fs = require("fs");
 const path = require("path");
 const { DB_USER, DB_PASSWORD, DB_HOST, DB_NAME } = process.env;
 
-// const sequelize = new Sequelize(
-//   `postgres://${DB_USER}:${DB_PASSWORD}@${DB_HOST}/hostelproject`,
-//   {
-//     logging: false, // set to console.log to see the raw SQL queries
-//     native: false, // lets Sequelize know we can use pg-native for ~30% more speed
-//   }
-// );
-const sequelize = new Sequelize({
-  database: "d43c4dk289i1g1",
-  username: DB_USER,
-  password: DB_PASSWORD,
-  host: DB_HOST,
-  port: 5432,
-  dialect: "postgres",
-  //================================//
-  dialectOptions: {
-    ssl: {
-      require: true, // comentar si da error al conectar, config necesaria para deploy
-      rejectUnauthorized: false, //
-    },
-  },
-  //================================//
-  logging: false,
-});
+const sequelize = new Sequelize(
+  `postgres://${DB_USER}:${DB_PASSWORD}@${DB_HOST}/hostelproject`,
+  {
+    logging: false, // set to console.log to see the raw SQL queries
+    native: false, // lets Sequelize know we can use pg-native for ~30% more speed
+  }
+);
+// const sequelize = new Sequelize({
+//   database: "d43c4dk289i1g1",
+//   username: DB_USER,
+//   password: DB_PASSWORD,
+//   host: DB_HOST,
+//   port: 5432,
+//   dialect: "postgres",
+//   //================================//
+//   dialectOptions: {
+//     ssl: {
+//       require: true, // comentar si da error al conectar, config necesaria para deploy
+//       rejectUnauthorized: false, //
+//     },
+//   },
+//   //================================//
+//   logging: false,
+// });
 
 const basename = path.basename(__filename);
 
