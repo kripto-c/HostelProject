@@ -170,6 +170,19 @@ export default function MenuUsuario({ name, ...props }) {
                       >
                         Reviews
                       </button>
+
+                      <button
+                        className="list-group-item list-group-item-action"
+                        onClick={() => {
+                          navigate("/payments");
+                        }}
+                        id="list-profile-list"
+                        data-bs-toggle="list"
+                        role="tab"
+                        aria-controls="list-profile"
+                      >
+                        Pagos
+                      </button>
                     </div>
                   </div>
                 </div>
