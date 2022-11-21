@@ -171,7 +171,7 @@ export default function MenuUsuario({ name, ...props }) {
                         Reviews
                       </button>
 
-                      <button
+                      {/* <button
                         className="list-group-item list-group-item-action"
                         onClick={() => {
                           navigate("/payments");
@@ -182,7 +182,7 @@ export default function MenuUsuario({ name, ...props }) {
                         aria-controls="list-profile"
                       >
                         Pagos
-                      </button>
+                      </button> */}
                     </div>
                   </div>
                 </div>
