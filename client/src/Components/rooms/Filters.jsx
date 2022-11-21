@@ -22,10 +22,11 @@ export default function Filters({ getRooms, setData }) {
   const allRooms = useSelector((state) => state.allRooms);
   //Funcion para devolver el localStorage con TODA la informacion inicial que traemos de la base de datos de las rooms!! Se usa en RECARGAR FILTROS ---->> 
   const putRooms = () => {
-    localStorage.setItem("filtros", JSON.stringify(allRooms));
-    localStorage.setItem("selectType",JSON.stringify(""))
-    localStorage.setItem("selectTypeBatchRoom",JSON.stringify(""))
-    localStorage.setItem("selectPrice",JSON.stringify(""))
+    localStorage.removeItem("filtros")
+    // localStorage.setItem("filtros", JSON.stringify(allRooms));
+     localStorage.setItem("selectType",JSON.stringify(""))
+     localStorage.setItem("selectTypeBatchRoom",JSON.stringify(""))
+     localStorage.setItem("selectPrice",JSON.stringify(""))
   };
   
 
