@@ -164,8 +164,8 @@ const Create = () => {
               <Form.Label>Precio(OBLIGATORIO): </Form.Label>
               <Form.Control
                 type="number"
-                min="0"
-                max="10000"
+                min="1000"
+                max="1000000"
                 name="price"
                 value={room.price}
                 onChange={handleChange}
