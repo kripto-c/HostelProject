@@ -212,8 +212,8 @@ const Section = styled.section`
   position: fixed;
   left: .5%;
   background-color: #212121;
-  height: 100vh;
-  width: 28vw;
+  height: 120vh;
+  width: 32vw;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -342,20 +342,24 @@ const ResponsiveNav = styled.div`
   visibility: hidden;
   padding: 1rem;
   .responsive__links {
+    width: 100%;
     ul {
       list-style-type: none;
       display: flex;
       flex-direction: column;
       gap: 1rem;
       margin-top: 3rem;
+      width: 100%;
       li {
         padding: 0.6rem 1rem;
+        width: 100%;
         border-radius: 0.6rem;
         &:hover {
           background-color: white;
         }
       }
       .active {
+        width: 100%;
         background-color: white;
         a {
           color: black;
