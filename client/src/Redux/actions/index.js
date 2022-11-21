@@ -9,8 +9,8 @@ export const POST_OWNER = "POST_OWNER";
 export const GET_OWNER = "GET_OWNER";
 export const GET_ALL_CLIENTS = "GET_ALL_CLIENTS";
 
-// const URL = "https://hosteldinamitabackend.herokuapp.com";
-const URL = "http://localhost:4000"; //descomentar para hacer pruebas
+const URL = "https://hosteldinamitabackend.herokuapp.com";
+// const URL = "http://localhost:4000"; //descomentar para hacer pruebas
 
 //ACTION ROOMS ----------------------------------------------------------->>
 export function getRooms() {
@@ -40,13 +40,15 @@ export function getReview() {
   }
 }
 
-export function deleteReview(headers,id,recOrDelete) {
+export function deleteReview(headers, id, recOrDelete) {
   try {
     return async function (dispatch) {
-      await axios.get(`${URL}/deletesAdmin/deleteReview/?id=${id}&recOrDelete=${recOrDelete}`,headers);
+      await axios.get(
+        `${URL}/deletesAdmin/deleteReview/?id=${id}&recOrDelete=${recOrDelete}`,
+        headers
+      );
       dispatch({
         type: "DELETE_REVIEW",
-        
       });
     };
     // return async function (dispatch) {
@@ -215,7 +217,7 @@ export function getAllCountries() {
 export function getRent(id) {
   return async function (dispatch) {
     try {
-      let res = await axios.get(`http://localhost:4000/rent?id=${id}`);
+      let res = await axios.get(`${URL}/rent?id=${id}`);
       return dispatch({
         type: "GET_RENT",
         payload: res.data,
