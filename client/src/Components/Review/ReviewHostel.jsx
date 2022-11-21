@@ -87,7 +87,7 @@ function RatingBootstrap() {
             style={{ height: "120px" }}
           />
           <div className="mx-auto mt-5 m-1">
-            <Button type="submit" value="Enviar" className="btn btn-primary btn-md">
+            <Button type="submit" value="Enviar" class="btn btn-primary btn-md">
               Enviar
             </Button>
           </div>

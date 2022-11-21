@@ -3,7 +3,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { getReview } from "../../Redux/actions/index.js";
 //IMPORT DE REACT BOOTSTRAP --------------------------->>
 import { IoIosStar } from "react-icons/io";
-import s from "./Reviews.module.css";
+import "./Reviews.css";
 //----------------------------------------------------------------------
 export default function Reviews() {
   const dispatch = useDispatch();
@@ -25,25 +25,26 @@ export default function Reviews() {
 
     return <span>{fecha}</span>;
   }
-
+  console.log(reviews)
   //RENDER------------------------------------------------------------------->>
-  return (
-    <div className={s.container}>
+  return reviews.length ? (
+    <div className='container1'>
       {reviews?.map((r) => {
         
         return (
           !r.status?
-          <div key={r.id} className={s.review}>
-            <h1>{r.client?.name ? r.client.name : "usuario anonimo"}</h1>
-            <h2>
-              {numberStar(r.rating)}({getFechaHora(r.createdAt)})
-            </h2>
-            <h3>{r.description}</h3>
+          <div key={r.id} className='reviews'>
+            <div className="date">
+              <h3>{r.client?.name ? r.client.name : "usuario anonimo"}</h3>
+              <p className="fechaReview">
+                {numberStar(r.rating)}({getFechaHora(r.createdAt)})
+              </p>
+            </div>
+            <p className="description">{r.description}</p>
           </div>
           :null
-          
         )
       })}
     </div>
-  );
+  ) : <h1 className="sinComentarios">Sin Comentarios Agregados</h1>
 }
