@@ -14,7 +14,7 @@ import logo from "../../images/logo.svg";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
 import Dashboard from "./Dashboard";
-import Payments from "./Payments.jsx"
+import Payments from "./Payments.jsx";
 
 export default function Sidebar() {
   const [currentLink, setCurrentLink] = useState(1);
@@ -58,7 +58,7 @@ export default function Sidebar() {
               <img className="logo" src={logo} />
               <span>Project Hostel</span>
             </div>
-              {/* //TOGGLE-------------------------------------------->> */}
+            {/* //TOGGLE-------------------------------------------->> */}
             {/* <div className="toggle">
               {navbarState ? (
                 <VscChromeClose onClick={() => setNavbarState(false)} />
@@ -108,7 +108,8 @@ export default function Sidebar() {
                   className={currentLink === 4 ? "active" : "none"}
                   onClick={() => setCurrentLink(4)}
                 >
-                  <Link to="/admin/payments">                    
+                  <Link to="/admin/payments">
+                    <MdSpaceDashboard />
                     <span> Pagos </span>
                   </Link>
                 </li>
@@ -210,7 +211,7 @@ export default function Sidebar() {
 }
 const Section = styled.section`
   position: fixed;
-  left: .5%;
+  left: 0.5%;
   background-color: #212121;
   height: 120vh;
   width: 32vw;
@@ -259,7 +260,7 @@ const Section = styled.section`
         gap: 1rem;
         li {
           padding: 0.6rem 1rem;
-          
+
           border-radius: 0.6rem;
           &:hover {
             background-color: white;

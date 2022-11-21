@@ -86,7 +86,7 @@ export default function MenuUsuario({ name, ...props }) {
       });
       console.log(token);
       
-      if(info.data.rol[0] === "menu-client" || info.data.rol.length == 0){
+      if(info.data.rol[0] === "menu-client" ){
         setClient();
         
       }
