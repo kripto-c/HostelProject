@@ -1,13 +1,12 @@
 import React from "react";
 import { useEffect } from "react";
-import  { Link, useNavigate } from "react-router-dom"
+import  { Link } from "react-router-dom"
 import { useDispatch } from "react-redux";
 import { sendFeedback } from "../../Redux/actions";
 import s from "./feedback.module.css"
 export default function FeedBack(){
     const dispatch = useDispatch();
     const queryString = window.location.search;
-    const naviGate = useNavigate();
 
     useEffect(() =>{
 
