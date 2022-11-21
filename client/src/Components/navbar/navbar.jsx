@@ -35,7 +35,7 @@ function Navbars() {
       const token = await getAccessTokenSilently();
       console.log(token)
       // const info = await axios.get("http://localhost:4000/login/setClient", {
-        const info = await axios.get("https://hosteldinamitabackend.herokuapp.com/login/setClient", {
+        const info = await axios.get("https://dinamitahostel.herokuapp.com/login/setClient", {
         headers: {
           authorization: `Bearer ${token}`,
         },
@@ -68,7 +68,7 @@ function Navbars() {
     /// ESTA FUNCION NO ESTA ANDANDO ANDA AL MENUUSUARIO:JSX!!!!!!!!!
     //***************************************************************** */
     const token = await getAccessTokenSilently();
-    const info = await axios.get("http://localhost:4000/rol", {
+    const info = await axios.get("https://dinamitahostel.herokuapp.com/rol", {
       // const info = await axios.get("https://hosteldinamitabackend.herokuapp.com/login/setClient", {
         headers: {
           authorization: `Bearer ${token}`,

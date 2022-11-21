@@ -57,7 +57,7 @@ export default function MenuUsuario({ name, ...props }) {
     try {
       const token = await getAccessTokenSilently();
       // const info = await axios.get("http://localhost:4000/login/setClient", {
-        const info = await axios.get("https://hosteldinamitabackend.herokuapp.com/login/setClient", {
+        const info = await axios.get("https://dinamitahostel.herokuapp.com/login/setClient", {
         headers: {
           authorization: `Bearer ${token}`,
         },
@@ -80,7 +80,7 @@ export default function MenuUsuario({ name, ...props }) {
   const handleShow1 = () => setShow(true);
   async function getRol(){
     const token = await getAccessTokenSilently();
-    const info = await axios.get("http://localhost:4000/rol", {
+    const info = await axios.get("https://dinamitahostel.herokuapp.com/rol", {
       // const info = await axios.get("https://hosteldinamitabackend.herokuapp.com/login/setClient", {
         headers: {
           authorization: `Bearer ${token}`,
