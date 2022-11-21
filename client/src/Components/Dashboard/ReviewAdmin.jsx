@@ -66,7 +66,7 @@ export default function ReviewAdmin() {
 
                   <button
                     type="button"
-                    class="btn btn-danger"
+                    className="btn btn-danger"
                     onClick={async() => {
                       await eliminar(r.id, "eliminar");
                       setEstado(1);
@@ -77,7 +77,7 @@ export default function ReviewAdmin() {
                       width="16"
                       height="16"
                       fill="currentColor"
-                      class="bi bi-x-circle"
+                      className="bi bi-x-circle"
                       viewBox="0 0 16 16"
                     >
                       <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z" />
@@ -87,7 +87,7 @@ export default function ReviewAdmin() {
                   {/* //Segundo boton */}
                   <button
                     type="button"
-                    class="btn btn-danger"
+                    className="btn btn-danger"
                     onClick={async() => {
                       await eliminar(r.id, "recuperar");
                       setEstado(0);
@@ -96,7 +96,7 @@ export default function ReviewAdmin() {
                     Recuperar
                   </button>
                   <span
-                    class={!r?.status ? "badge bg-success" : "badge bg-danger"}
+                    className={!r?.status ? "badge bg-success" : "badge bg-danger"}
                   >
                     Estado
                   </span>
@@ -112,7 +112,7 @@ export default function ReviewAdmin() {
 
   // <div className="container text-center">
   //   {/* CABECERA */}
-  //   <table class="table">
+  //   <table className="table">
   //     <thead>
   //       <tr>
   //         <th scope="col">Id</th>
@@ -131,7 +131,7 @@ export default function ReviewAdmin() {
   //           <td>{r.description ? r.description : "No dejo comentarios"}</td>
   //           <button
   //             type="button"
-  //             class="btn btn-danger"
+  //             className="btn btn-danger"
   //             onClick={(r)=>eliminar(r)}
   //           >
   //             <svg
@@ -139,7 +139,7 @@ export default function ReviewAdmin() {
   //               width="16"
   //               height="16"
   //               fill="currentColor"
-  //               class="bi bi-x-circle"
+  //               className="bi bi-x-circle"
   //               viewBox="0 0 16 16"
   //             >
   //               <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z" />
