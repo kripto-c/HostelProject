@@ -3,6 +3,7 @@ import { useEffect } from "react";
 import  { Link, useNavigate } from "react-router-dom"
 import { useDispatch } from "react-redux";
 import { sendFeedback } from "../../Redux/actions";
+import s from "./feedback.module.css"
 export default function FeedBack(){
     const dispatch = useDispatch();
     const queryString = window.location.search;
@@ -23,10 +24,10 @@ const camas = params.get("camas")
 console.log(email);
 
     return(
-        <div style={{margin: "2%"}}>
-            <div className="container bg-white">
+        <div  style={{margin: "2%"}}>
+            <div className={s.bgWhites}>
 
-                <h1 className="tittle " >Detalles de su reserva</h1>
+                <h1 className="tittle" >Detalles de su reserva</h1>
                 <p className="blockquote">
                     Hola {name}:
                         Haz hecho una reserva en Dinamita Hostel con fecha de ingreso el {check_in}, 

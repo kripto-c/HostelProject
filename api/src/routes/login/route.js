@@ -3,13 +3,16 @@ const { getClient } = require('./controller');
 const axios = require('axios');
 const {  Client } = require('../../db');
 const route = Router();
+const checkPermissions  = require("../../permisos/permisosCheck");
+const itemPermissos = require('../../permisos/permisos')
 
 
-route.get('/client',getClient)
+route.get('/client', checkPermissions(itemPermissos.clientRoute), getClient);
 
 
-route.post('/userEdit',async(req, res)=>{    
+route.post('/userEdit', checkPermissions(itemPermissos.clientRoute), async(req, res)=>{    
   try {
+
           const accesToken = req.headers.authorization.split(' ')[1];
           const responds = await axios.get('https://dev-o7k6sbvjre41wvzb.us.auth0.com/userinfo', {
              headers:{authorization:`Bearer ${accesToken}`}

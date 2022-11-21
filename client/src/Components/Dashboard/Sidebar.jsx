@@ -88,7 +88,7 @@ export default function Sidebar() {
                   className={currentLink === 2 ? "active" : "none"}
                   onClick={() => setCurrentLink(2)}
                 >
-                  <Link to="/admin/reviewsAdmin">
+                  <Link to="/admin/review">
                     <MdSpaceDashboard />
                     <span> Reviews</span>
                   </Link>
@@ -210,10 +210,10 @@ export default function Sidebar() {
 }
 const Section = styled.section`
   position: fixed;
-  left: 0;
+  left: .5%;
   background-color: #212121;
-  height: 100vh;
-  width: 18vw;
+  height: 120vh;
+  width: 32vw;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -249,6 +249,7 @@ const Section = styled.section`
       }
     }
     .links {
+      width: 100%;
       display: flex;
       justify-content: center;
       ul {
@@ -258,6 +259,7 @@ const Section = styled.section`
         gap: 1rem;
         li {
           padding: 0.6rem 1rem;
+          
           border-radius: 0.6rem;
           &:hover {
             background-color: white;
@@ -273,6 +275,7 @@ const Section = styled.section`
           }
         }
         .active {
+          width: 100%;
           background-color: white;
           a {
             color: black;
@@ -339,20 +342,24 @@ const ResponsiveNav = styled.div`
   visibility: hidden;
   padding: 1rem;
   .responsive__links {
+    width: 100%;
     ul {
       list-style-type: none;
       display: flex;
       flex-direction: column;
       gap: 1rem;
       margin-top: 3rem;
+      width: 100%;
       li {
         padding: 0.6rem 1rem;
+        width: 100%;
         border-radius: 0.6rem;
         &:hover {
           background-color: white;
         }
       }
       .active {
+        width: 100%;
         background-color: white;
         a {
           color: black;
