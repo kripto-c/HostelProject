@@ -89,7 +89,7 @@ export default function Sidebar() {
                   className={currentLink === 2 ? "active" : "none"}
                   onClick={() => setCurrentLink(2)}
                 >
-                  <Link to="/admin/review">
+                  <Link to="/admin/reviewsAdmin">
                     <MdSpaceDashboard />
                     <span> Reviews</span>
                   </Link>
@@ -108,8 +108,7 @@ export default function Sidebar() {
                   className={currentLink === 4 ? "active" : "none"}
                   onClick={() => setCurrentLink(4)}
                 >
-                  <Link to="/admin/payments">
-                    <Payments/>
+                  <Link to="/admin/payments">                    
                     <span> Pagos </span>
                   </Link>
                 </li>
