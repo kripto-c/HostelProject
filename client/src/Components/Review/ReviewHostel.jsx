@@ -57,44 +57,46 @@ function RatingBootstrap() {
   }
   return (
     <form onSubmit={(e) => handleSubmit(e)}>
-      <div className="container">
-        {rating.map((r, index) => (
-          <IoIosStar
-            className={r <= current ? style.yellow : style.grey}
-            key={index}
-            name="rating" //No acepta name
-            value={current}
-            onClick={() => handleClick(r)}
-          ></IoIosStar>
-        ))}
+      <div className="container ">
+        <div className="container d-flex justify-content-center  ">
+          {rating.map((r, index) => (
+            <IoIosStar
+              className={r <= current ? style.yellow : style.grey}
+              key={index}
+              name="rating" //No acepta name
+              value={current}
+              onClick={() => handleClick(r)}
+            ></IoIosStar>
+          ))}
+        </div>
+
         <br />
         <FloatingLabel
           name="description"
           controlId="floatingTextarea"
           label="Comments"
-          className="mb-3"
+          className="mb-3 d-flex mx-auto form-floating gap-2"
           onChange={(e) => handleChange(e)}
-          style={{ height: "100px" }}
+          style={{ height: "100px", width:"600px" }}
         >
-          {" "}
           <Form.Control
             as="textarea"
             value={input.description}
             name="description"
             placeholder="Leave a comment here"
-            style={{ height: "100px" }}
+            style={{ height: "120px" }}
           />
+          <div className="mx-auto mt-5 m-1">
+            <Button type="submit" value="Enviar" class="btn btn-primary btn-md">
+              Enviar
+            </Button>
+          </div>
         </FloatingLabel>
-
-        <br />
-        <Button type="submit" value="Enviar">
-          Enviar
-        </Button>
       </div>
     </form>
   );
 }
-
+// mx-auto d-flex justify-content-start w-50
 export default withAuthenticationRequired(RatingBootstrap, {
   onRedirecting: () => (
     <div>
