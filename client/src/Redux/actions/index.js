@@ -9,14 +9,14 @@ export const POST_OWNER = "POST_OWNER";
 export const GET_OWNER = "GET_OWNER";
 export const GET_ALL_CLIENTS = "GET_ALL_CLIENTS";
 
-/* const URL = "https://dinamitahostel.herokuapp.com"; */
-const URL = "http://localhost:4000"; //descomentar para hacer pruebas
+ const URL = "https://dinamitahostel.herokuapp.com"; 
+//const URL = "http://localhost:4000"; //descomentar para hacer pruebas
 
 //ACTION ROOMS ----------------------------------------------------------->>
 export function getRooms() {
   return async function (dispatch) {
     let room = await axios.get(`${URL}/rooms`);
-    console.log("mirar acaaa", typeof room.data[0].price);
+    console.log("mirar acaaaGET ROOMS", typeof room);
     return dispatch({
       type: GET_ROOMS,
       payload: room.data,

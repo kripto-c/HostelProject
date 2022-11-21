@@ -30,6 +30,7 @@ export default function rootReducer(state = initialState, action) {
       };
     case "GET_ROOMS": {
       if (!localStorage.getItem("filtros")) {
+        console.log("NICOOOOOOO",action.payload)
         return {
           ...state,
           rooms: action.payload,
@@ -37,17 +38,12 @@ export default function rootReducer(state = initialState, action) {
         };
       }
       if (localStorage.getItem("filtros")) {
+        console.log("NICO2",localStorage.getItem("filtros"))
         return {
           ...state,
           rooms: JSON.parse(localStorage.getItem("filtros")),
         };
-      } else {
-        return {
-          ...state,
-          rooms: action.payload,
-          allRooms: action.payload,
-        };
-      }
+      } 
     }
 
     case POST_REVIEW: {
