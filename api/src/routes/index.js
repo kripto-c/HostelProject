@@ -31,7 +31,7 @@ router.use(express.json());
 //RUTAS--------------------------------------------------------------->>
 
 router.use("/rol", rol); 
-router.use("/login", checkPermissions(itemPermissos.clientRoute),login);
+router.use("/login", login);
 router.use("/payment", checkPermissions(itemPermissos.payment),payment);
 router.use("/owner",checkPermissions(itemPermissos.addDataAdmin), owner);
 router.use("/feedback", feedback);

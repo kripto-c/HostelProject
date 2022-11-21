@@ -9,12 +9,14 @@ import Navbar from "react-bootstrap/Navbar";
 import NavDropdown from "react-bootstrap/NavDropdown";
 import { useAuth0 } from "@auth0/auth0-react";
 import { getCLient } from "../../Redux/actions";
+import { getOwner } from "../../Redux/actions";
 import axios from "axios";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
 import { useState, useEffect } from "react";
 import "./MenuUsuario.css";
 import logo from "../../images/logo.svg";
+import Sidebar from "../Dashboard/Sidebar";
 
 const options = [
   {
@@ -71,6 +73,32 @@ export default function MenuUsuario({ name, ...props }) {
     const token = await getAccessTokenSilently();
     dispatch(getCLient(token));
   }
+  const [show1, setShow1] = useState(false);
+  
+  const owner = useSelector((state) => state.owner);
+
+  const handleShow1 = () => setShow(true);
+  async function getRol(){
+    const token = await getAccessTokenSilently();
+    const info = await axios.get("http://localhost:4000/rol", {
+      // const info = await axios.get("https://hosteldinamitabackend.herokuapp.com/login/setClient", {
+        headers: {
+          authorization: `Bearer ${token}`,
+        },
+      });
+      console.log(token);
+      
+      if(info.data.rol[0] === "menu-client" || info.data.rol.length == 0){
+        setClient();
+        
+      }
+      else{
+        await dispatch(getOwner(
+          token
+        ))
+      }
+      console.log(info.data.rol[0])
+  }
   useEffect(() => {
     let idUser = localStorage.getItem("IDUser");
     if (idUser) {
@@ -84,18 +112,18 @@ export default function MenuUsuario({ name, ...props }) {
   return (
     <>
       {/* <div className="container bg-dark d-flex" backdrop="true"> */}
+        
 
-      {isAuthenticated ? (
-        <>
-          <Button variant="primary" onClick={handleShow} className="ms-5 w-10">
-            Menu
-          </Button>
-          <Offcanvas
-            show={show}
-            placement="end"
-            onHide={handleClose}
-            {...props}
-          >
+          {isAuthenticated ? (
+            <>
+            <Offcanvas show={show1} onHide={() =>{setShow1(false)}} style={{backgroundColor: "#212121"}}>
+              <Sidebar></Sidebar>
+            </Offcanvas>
+            <Button variant="primary" onClick={handleShow} className="ms-5 w-10">
+        Menu
+      </Button>
+            <Offcanvas show={show} placement="end" onHide={handleClose} {...props}>
+                
             <Offcanvas.Header closeButton>
               <Offcanvas.Title>Menu</Offcanvas.Title>
             </Offcanvas.Header>
@@ -146,6 +174,19 @@ export default function MenuUsuario({ name, ...props }) {
                     </div>
                   </div>
                 </div>
+                {
+                owner.name &&  <button
+                    type="button"
+                    onClick={() => {
+                      localStorage.clear();
+                      setShow1(true);
+                      console.log(show1)
+                    }}
+                    class="btn btn-outline-danger"
+                  >
+                    Sidebar
+                  </button>
+                }
                 <button
                   type="button"
                   onClick={() => {
@@ -160,24 +201,28 @@ export default function MenuUsuario({ name, ...props }) {
                 </button>
               </Offcanvas.Body>
             </div>
-          </Offcanvas>
-        </>
-      ) : (
-        <button
-          type="button"
-          className="btn btn-outline-light"
-          to="/#login"
-          onClick={async (e) => {
-            e.preventDefault();
-            await loginWithPopup();
-            setClient();
-            setConfirmLog(true);
-          }}
-        >
-          Login
-        </button>
-      )}
-
+            </Offcanvas>
+            </>
+          ) : (
+            
+             
+              <button
+                type="button"
+                className="Login"
+                to="/#login"
+                onClick={async (e) => {
+                  e.preventDefault();
+                  await loginWithPopup();
+                  await getRol();
+                  setConfirmLog(true);
+                }}
+                class="btn btn-outline-light"
+              >
+                Login
+              </button>
+            
+          )}
+        
       {/* </div> */}
     </>
   );
