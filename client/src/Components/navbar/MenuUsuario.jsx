@@ -74,10 +74,8 @@ export default function MenuUsuario({ name, ...props }) {
     dispatch(getCLient(token));
   }
   const [show1, setShow1] = useState(false);
+  const[sidebar, setSidebar] = useState(false);
   
-  const owner = useSelector((state) => state.owner);
-
-  const handleShow1 = () => setShow(true);
   async function getRol(){
     const token = await getAccessTokenSilently();
     const info = await axios.get("https://dinamitahostel.herokuapp.com/rol", {
@@ -96,6 +94,7 @@ export default function MenuUsuario({ name, ...props }) {
         await dispatch(getOwner(
           token
         ))
+        setSidebar(true);
       }
       console.log(info.data.rol[0])
   }
@@ -175,7 +174,7 @@ export default function MenuUsuario({ name, ...props }) {
                   </div>
                 </div>
                 {
-                owner.name &&  <button
+                sidebar &&  <button
                     type="button"
                     onClick={() => {
                       localStorage.clear();
