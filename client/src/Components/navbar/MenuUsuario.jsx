@@ -86,7 +86,7 @@ export default function MenuUsuario({ name, ...props }) {
       });
       console.log(token);
       
-      if(info.data.rol[0] === "menu-client" || info.data.rol.length == 0){
+      if(info.data.rol[0] === "menu-client" ){
         setClient();
         
       }
@@ -171,7 +171,7 @@ export default function MenuUsuario({ name, ...props }) {
                         Reviews
                       </button>
 
-                      <button
+                      {/* <button
                         className="list-group-item list-group-item-action"
                         onClick={() => {
                           navigate("/payments");
@@ -182,7 +182,7 @@ export default function MenuUsuario({ name, ...props }) {
                         aria-controls="list-profile"
                       >
                         Pagos
-                      </button>
+                      </button> */}
                     </div>
                   </div>
                 </div>
