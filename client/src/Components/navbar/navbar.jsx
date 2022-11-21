@@ -124,9 +124,6 @@ function Navbars() {
               </div>
             </div>
             <Nav className="w-75 m-auto nav justify-content-center navbar-nav">
-              <Link className="linkComponent fs-5" to="/admin">
-                Tablero
-              </Link>
               <Link className="linkComponent fs-5" to="/rooms">
                 Habitaciones
               </Link>
