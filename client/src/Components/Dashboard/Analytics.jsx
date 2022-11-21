@@ -8,6 +8,7 @@ import { cardStyles } from "./ReusableStyles";
 import {  useDispatch, useSelector } from "react-redux";
 import { getAllClients } from "../../Redux/actions";
 import { useAuth0 } from "@auth0/auth0-react";
+import { getRents } from "../../Redux/actions";
 
 export default function Analytics() {
   const {  
@@ -24,6 +25,23 @@ export default function Analytics() {
     
     console.log("redux clientes",clientes)
   } ,[dispatch])
+
+  // Esto es para mostrar las earnings
+  useEffect(() => {
+    dispatch(getRents())
+  }, [])
+ 
+  const allRents = useSelector((state) => state.rents)
+ 
+  var sum = 0
+  function suma (){
+ 
+    const aux = allRents.map(e => {
+      sum = sum + e.price
+    })
+    return aux
+  }
+  suma()
   return (
     <Section>
       <div className="analytic ">
@@ -41,7 +59,7 @@ export default function Analytics() {
         </div>
         <div className="content">
           <h5>Earnings</h5>
-          <h2>$350.40</h2>
+          <h2>${suma}</h2>
         </div>
       </div>
       <div className="analytic">

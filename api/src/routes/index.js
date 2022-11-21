@@ -17,6 +17,7 @@ const deletesAdmin = require("./deletesAdmin/deletesAdmin.js");
 const router = Router();
 const deleteRoom = require("./deletesAdmin/deletesAdmin.js")
 const activeRoom = require("./deletesAdmin/deletesAdmin.js")
+const rents = require("../routes/rents/index.js")
 /////////////permissos
 const checkPermissions  = require("../permisos/permisosCheck");
 const itemPermissos = require('../permisos/permisos')
@@ -25,8 +26,8 @@ const itemPermissos = require('../permisos/permisos')
 const jwtCheck = require('../jwtCheck/jwtCheck');
 
 //Descomentar para probar. Esto tira error de autorizacion.
- router.use(jwtCheck);
-
+/*  router.use(jwtCheck);
+ */
 router.use(express.json());
 //RUTAS--------------------------------------------------------------->>
 
@@ -45,5 +46,6 @@ router.use("/rooms", rooms);
 router.use("/countries", getCountries)
 router.use("/owner",checkPermissions(itemPermissos.addDataAdmin),owner)
 router.use("/allClients",checkPermissions(itemPermissos.getAllClients),getAllClients)
+router.use("/rents", rents);
 
 module.exports = router;

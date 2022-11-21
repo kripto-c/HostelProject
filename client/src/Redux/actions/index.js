@@ -257,3 +257,19 @@ export function deleteRoom(headers, id) {
 //     }
 //   }
 // }
+
+//ACTIONS RENTS ----------------------------------------------------------->>
+export function getRents() {
+  try {
+    return async function (dispatch) {
+      const json = await axios.get(`${URL}/rents`);
+      dispatch({
+        type: "GET_RENTS",
+        payload: json.data,
+      });
+    };
+  } catch (error) {
+    console.log(error);
+  }
+}
+

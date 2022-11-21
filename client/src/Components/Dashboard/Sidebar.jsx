@@ -14,6 +14,7 @@ import logo from "../../images/logo.svg";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
 import Dashboard from "./Dashboard";
+import Payments from "./Payments.jsx"
 
 export default function Sidebar() {
   const [currentLink, setCurrentLink] = useState(1);
@@ -108,7 +109,7 @@ export default function Sidebar() {
                   onClick={() => setCurrentLink(4)}
                 >
                   <Link to="/admin/payments">
-                    <MdSpaceDashboard />
+                    <Payments/>
                     <span> Pagos </span>
                   </Link>
                 </li>
