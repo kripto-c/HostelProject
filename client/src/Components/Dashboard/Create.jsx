@@ -22,7 +22,7 @@ const Create = () => {
     bathroom: "",
     observation: "",
     price: "",
-    type: "",
+    typeId: "",
   });
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -66,7 +66,7 @@ const Create = () => {
   const handleTipoSelect = (e) => {
     setRoom({
       ...room,
-      type: e.target.value,
+      typeId: e.target.value,
     });
   };
 
@@ -79,7 +79,7 @@ const Create = () => {
       !room.image ||
       !room.observation ||
       !room.price ||
-      !room.type
+      !room.typeId
     ) {
       Swal.fire({
         icon: "error",
@@ -121,8 +121,8 @@ const Create = () => {
               <Form.Label>Tipo(OBLIGATORIO): </Form.Label>
               <Form.Select onChange={(e) => handleTipoSelect(e)}>
                 <option>Elegir tipo de Habitacion</option>
-                <option value="compartida">Compartida</option>
-                <option value="privada">Privada</option>
+                <option value="1">Compartida</option>
+                <option value="2">Privada</option>
               </Form.Select>
             </Form.Group>
           </Row>

@@ -14,10 +14,10 @@ router.get("/", (req, res) => {
 });
 //RUTA PARA POSTEAR DATOS DE LAS HABITACIONES A LA DB
 router.post("/", (req, res) => {
-  let { beds, description, image, bathroom, price, observation } = req.body;
+  let { beds, description, image, bathroom, price, observation, typeId } = req.body;
   try {
     return controllers
-      .postRoomInfo(beds, description, image, bathroom, price, observation)
+      .postRoomInfo(beds, description, image, bathroom, price, observation,typeId)
       .then(() => {
         return res.send("Room created");
       });

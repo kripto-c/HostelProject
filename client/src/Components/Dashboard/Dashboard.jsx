@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { Routes, Route, Navigate } from "react-router-dom";
+
 import Analytics from "./Analytics";
 import Payments from "./Payments";
 import FAQ from "./FAQ";
@@ -10,7 +10,6 @@ import Transfers from "./Transfers";
 export default function Dashboard() {
   return (
     <div className="container-sm mg-10">
-     
       <Navbar />
       <div className="row">
         <div className="col">
