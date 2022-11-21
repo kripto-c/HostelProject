@@ -257,3 +257,10 @@ export function deleteRoom(headers, id) {
 //     }
 //   }
 // }
+
+export function inactiveRooms(payload){
+  return{
+    payload,
+    type: "INACTIVE_ROOMS"
+  }
+}

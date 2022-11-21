@@ -172,6 +172,14 @@ export default function rootReducer(state = initialState, action) {
         rent: action.payload,
       };
     }
+    case "INACTIVE_ROOMS":{
+      let activeRoom = state.allRooms
+      activeRoom.filter(room => room === false)
+      return{
+        ...state,
+        rooms: activeRoom
+      }
+    }
 
     default:
       return state;

@@ -40,44 +40,42 @@ const Edit = () => {
           </tr>
         </thead>
         <tbody>
-          {rooms.map((room) =>
-       
-              <>
-                <tr>
-                  <td>{room.id}</td>
-                  <td>
-                    <img
-                      src={room.image}
-                      style={{
-                        width: "40px",
-                        height: "40px",
-                        objectFit: "cover",
-                      }}
-                      alt=""
-                    ></img>
-                  </td>
-                  <td>{room.description}</td>
-                  <td>{room?.status ? "inactivo" : "activo"}</td>
-                  <td>
-                    <button
-                      type="button"
+          {rooms.map((room) => (
+            <>
+              <tr>
+                <td>{room.id}</td>
+                <td>
+                  <img
+                    src={room.image}
+                    style={{
+                      width: "40px",
+                      height: "40px",
+                      objectFit: "cover",
+                    }}
+                    alt=""
+                  ></img>
+                </td>
+                <td>{room.description}</td>
+                <td>{room?.status ? "inactivo" : "activo"}</td>
+                <td>
+                  <label class="botoncito">
+                    <input
+                      type="checkbox"
                       onClick={() => {
                         handleDelete(room.id);
                       }}
-                    >
-                      <RiDeleteBin5Line></RiDeleteBin5Line>
-                    </button>
-                  </td>
-                  <td>
-                    <label class="botoncito">
-                      <input type="checkbox" />
-                      <span class="deslizadora"></span>
-                    </label>
-                  </td>
-                </tr>
-              </>
-        
-          )}
+                    />
+                    <span class="deslizadora"></span>
+                  </label>
+                </td>
+                <td>
+                  <button type="button">
+                    <RiDeleteBin5Line></RiDeleteBin5Line>
+                  </button>
+                </td>
+              </tr>
+            </>
+          ))}
         </tbody>
       </table>
     </div>
