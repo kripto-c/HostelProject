@@ -210,10 +210,10 @@ export default function Sidebar() {
 }
 const Section = styled.section`
   position: fixed;
-  left: 0;
+  left: .5%;
   background-color: #212121;
   height: 100vh;
-  width: 18vw;
+  width: 28vw;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -249,6 +249,7 @@ const Section = styled.section`
       }
     }
     .links {
+      width: 100%;
       display: flex;
       justify-content: center;
       ul {
@@ -258,6 +259,7 @@ const Section = styled.section`
         gap: 1rem;
         li {
           padding: 0.6rem 1rem;
+          
           border-radius: 0.6rem;
           &:hover {
             background-color: white;
@@ -273,6 +275,7 @@ const Section = styled.section`
           }
         }
         .active {
+          width: 100%;
           background-color: white;
           a {
             color: black;

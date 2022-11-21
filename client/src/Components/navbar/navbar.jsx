@@ -65,6 +65,8 @@ function Navbars() {
   }
 
   async function getRol(){
+    /// ESTA FUNCION NO ESTA ANDANDO ANDA AL MENUUSUARIO:JSX!!!!!!!!!
+    //***************************************************************** */
     const token = await getAccessTokenSilently();
     const info = await axios.get("http://localhost:4000/rol", {
       // const info = await axios.get("https://hosteldinamitabackend.herokuapp.com/login/setClient", {
@@ -74,9 +76,8 @@ function Navbars() {
       });
       console.log(token);
       
-      if(info.data.rol[0] === "menu-client"){
+      if(info.data.rol[0] === "menu-client" || info.data.rol.length == 0){
         setClient();
-        
       }
       else{
         await dispatch(getOwner(
@@ -214,7 +215,11 @@ function Navbars() {
             )}
           </> */}
         </Container>
+
       </Navbar>
+      {/* {
+       isAuthenticated && <pre style={{textAlign: 'start'}}>{JSON.stringify(user, null, 2)}</pre>
+      } */}
     </>
   );
 }
