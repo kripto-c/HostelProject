@@ -15,11 +15,11 @@ const initialState = {
   reviews: [],
   client: [],
   roomdetail: [],
-  countries:[],
-  owner:[],
+  countries: [],
+  owner: [],
   rent: [],
   allClients: [],
-}
+};
 export default function rootReducer(state = initialState, action) {
   switch (action.type) {
     case GET_ALL_COUNTRIES:
@@ -72,6 +72,11 @@ export default function rootReducer(state = initialState, action) {
       };
     }
     case "DELETE_REVIEW": {
+      return {
+        ...state,
+      };
+    }
+    case "DELETE_ROOM": {
       return {
         ...state,
       };
@@ -161,10 +166,10 @@ export default function rootReducer(state = initialState, action) {
         roomdetail: action.payload,
       };
     }
-    case "GET_RENT":{
-      return{
+    case "GET_RENT": {
+      return {
         ...state,
-        rent: action.payload
+        rent: action.payload,
       };
     }
 

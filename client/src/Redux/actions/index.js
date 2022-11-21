@@ -7,7 +7,7 @@ export const GET_ROOMS = "GET_ROOMS";
 export const GET_ALL_COUNTRIES = "GET_ALL_COUNTRIES";
 export const POST_OWNER = "POST_OWNER";
 export const GET_OWNER = "GET_OWNER";
-export const GET_ALL_CLIENTS = "GET_ALL_CLIENTS"
+export const GET_ALL_CLIENTS = "GET_ALL_CLIENTS";
 
 // const URL = "https://hosteldinamitabackend.herokuapp.com";
 const URL = "http://localhost:4000"; //descomentar para hacer pruebas
@@ -40,10 +40,10 @@ export function getReview() {
   }
 }
 
-export function deleteReview(headers,id) {
+export function deleteReview(headers, id) {
   try {
     return async function (dispatch) {
-      await axios.get(`${URL}/deletesAdmin/deleteReview/?id=${id}`,headers);
+      await axios.get(`${URL}/deletesAdmin/deleteReview/?id=${id}`, headers);
       dispatch({
         type: "DELETE_REVIEW",
         payload: "Eliminado logico",
@@ -127,15 +127,17 @@ export function getCLient(token) {
 export function getAllClients(token) {
   try {
     return async (dispatch) => {
-      const allClients = await axios.get(`${URL}/allClients`,{ headers: { authorization: `Bearer ${token}` }});
-      console.log(allClients)
+      const allClients = await axios.get(`${URL}/allClients`, {
+        headers: { authorization: `Bearer ${token}` },
+      });
+      console.log(allClients);
       return dispatch({
-        type:GET_ALL_CLIENTS,
-        payload:allClients.data
-      })
+        type: GET_ALL_CLIENTS,
+        payload: allClients.data,
+      });
     };
-  } catch(e) {
-    console.log(e)
+  } catch (e) {
+    console.log(e);
   }
 }
 export function postClient(body, headers) {
@@ -210,18 +212,18 @@ export function getAllCountries() {
   };
 }
 
-export function getRent(id){
-  return async function(dispatch){
+export function getRent(id) {
+  return async function (dispatch) {
     try {
-      let res = await axios.get(`http://localhost:4000/rent?id=${id}`)
+      let res = await axios.get(`http://localhost:4000/rent?id=${id}`);
       return dispatch({
         type: "GET_RENT",
-        payload: res.data
-      })
+        payload: res.data,
+      });
     } catch (error) {
       console.log(error);
     }
-  }
+  };
 }
 export const createRoom = (payload) => async () => {
   let res = await axios.post(`${URL}/rooms`, payload);
@@ -230,3 +232,25 @@ export const createRoom = (payload) => async () => {
     res,
   };
 };
+
+export function deleteRoom(headers, id) {
+  try {
+    return async function (dispatch) {
+      await axios.get(`${URL}/deletesAdmin/deleteRoom/?id=${id}`, headers);
+      dispatch({
+        type: "DELETE_ROOM",
+        payload: "eliminado logico",
+      });
+    };
+  } catch (e) {
+    console.log(e);
+  }
+}
+
+// export function activeRoom(headers, id){
+//   try{
+//     return async function(dispatch){
+//       await axios.get(`${URL}`)
+//     }
+//   }
+// }

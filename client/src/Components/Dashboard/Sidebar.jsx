@@ -178,7 +178,7 @@ export default function Sidebar() {
                 className={currentLink === 4 ? "active" : "none"}
                 onClick={() => setCurrentLink(4)}
               >
-                <a href="#">
+                <a href="/admin/createRoom">
                   <GiTwirlCenter />
                   <span> Learning Center</span>
                 </a>

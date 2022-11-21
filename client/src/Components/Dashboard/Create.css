@@ -1,11 +1,11 @@
-.container-create {
+.box-create {
   display: flex;
   background-color: rgba(228, 235, 245, 0.4);
   border-radius: 10px;
   width: 85vw;
   align-items: center;
   justify-content: center;
-  margin: 10px auto;
+  margin: 5px auto;
   padding: 0;
 }
 

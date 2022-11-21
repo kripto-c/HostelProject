@@ -24,6 +24,7 @@
   height:68vh;
   object-fit: fill;
   border-radius: 6px;
+  object-fit: cover;
   /* max-width: 500px;
   max-height: 500px;
   min-width: 650px;
@@ -34,24 +35,25 @@
 
 
 .collage {
-  width: 100%;
+  width: 55%;
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
+  margin: 10px auto;
+  
 }
 
 .collage img{
   margin: 0 auto;
-  width: 33%;
+  width: 100%;
   margin: 10px 10px 0;
-  max-width: 500px;
-  max-height: 500px;
-  position: relative;
-  left: 0;
-  bottom:0.3px;
-  border: 2px solid black;
+  max-width: 300px;
+  max-height: 300px;
   border-radius: 3px;
-  box-shadow: 2px 2px 2px 3px rgba(0, 0, 0, .5);
+  box-shadow: 4px 10px 5px 0px rgba(0,0,0,0.75);
+  object-fit: cover;
+  margin-top: 16px;
+  justify-content: center;
 }
 
 /*Review css*/

@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import { Route, Routes, useNavigate } from "react-router-dom";
-import Create from "../Create Room/Create";
+import Create from "./Create";
 import OwnerCrud from "../OwnerCrud";
 import Dashboard from "./Dashboard";
 import Payments from "./Payments";
