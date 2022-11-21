@@ -16,7 +16,8 @@ const Footer = () => {
       <div className="cont">
         <p className="interes title">Te podria interesar</p>
         <Link to="contact">Preguntas Frecuentes</Link>
-        <Link to="Habitaciones">Vistazo rapido</Link>
+        <Link to="rooms">Vistazo rapido</Link>
+        <Link to="reviewHostel">Dejanos tu review</Link>
       </div>
       <div className="cont">
         <p className="redes title">Nuestras Redes</p>

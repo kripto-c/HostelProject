@@ -272,4 +272,3 @@ export function getRents() {
     console.log(error);
   }
 }
-
