@@ -88,7 +88,7 @@ export default function Sidebar() {
                   className={currentLink === 2 ? "active" : "none"}
                   onClick={() => setCurrentLink(2)}
                 >
-                  <Link to="/admin/reviewsAdmin">
+                  <Link to="/admin/review">
                     <MdSpaceDashboard />
                     <span> Reviews</span>
                   </Link>

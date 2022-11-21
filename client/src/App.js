@@ -31,7 +31,6 @@ function App() {
         <Route path = "/roomdetail/:id" element={<RoomDetail />} />
         <Route path = "/clientEdit" element={<ClientEdit />} />
       </Routes>
-      <Sidebar/>
       <Routes>   
       <Route path="/" element={<Sidebar/>}></Route>     
       <Route path="/admin" element={<PanelAdmin />} />

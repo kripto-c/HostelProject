@@ -36,18 +36,18 @@ const deleteRoom = async (req, res) => {
     res.status(400).json("No se pudo eliminar");
   }
 };
-
-// const activeRoom = async (req,res) =>{
-//   try{
-//     let {id} = req.query;
-//     let findId = await Room.findByPk(id)
-//     await findId.update({status: false});
-//     await findId.save()
-//     res.status(200).json("Habitacion Actualizada")
+//esto estaba comentado
+const activeRoom = async (req,res) =>{
+  try{
+    let {id} = req.query;
+    let findId = await Room.findByPk(id)
+    await findId.update({status: false});
+    await findId.save()
+    res.status(200).json("Habitacion Actualizada")
   
-//   }catch(e){
-//     res.status(400).json("No se pudo actualizar")
-//   }
-// }
+  }catch(e){
+    res.status(400).json("No se pudo actualizar")
+  }
+}
 
 module.exports = { deleteReview, deleteRoom , activeRoom};

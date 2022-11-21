@@ -184,7 +184,7 @@ export default function MenuUsuario({ name, ...props }) {
                       setShow1(true);
                       console.log(show1)
                     }}
-                    class="btn btn-outline-danger"
+                    className="btn btn-outline-danger"
                   >
                     Sidebar
                   </button>
@@ -197,7 +197,7 @@ export default function MenuUsuario({ name, ...props }) {
                     setConfirmLog(false);
                     setSort("deslogueado");
                   }}
-                  class="btn btn-outline-danger"
+                  className="btn btn-outline-danger"
                 >
                   Cerrar Sesion
                 </button>
@@ -210,7 +210,7 @@ export default function MenuUsuario({ name, ...props }) {
              
               <button
                 type="button"
-                className="Login"
+                className="Login btn btn-outline-light"
                 to="/#login"
                 onClick={async (e) => {
                   e.preventDefault();
@@ -218,7 +218,6 @@ export default function MenuUsuario({ name, ...props }) {
                   await getRol();
                   setConfirmLog(true);
                 }}
-                class="btn btn-outline-light"
               >
                 Login
               </button>
