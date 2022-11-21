@@ -214,9 +214,6 @@ function Navbars() {
         </Container>
 
       </Navbar>
-      {/* {
-       isAuthenticated && <pre style={{textAlign: 'start'}}>{JSON.stringify(user, null, 2)}</pre>
-      } */}
     </>
   );
 }
