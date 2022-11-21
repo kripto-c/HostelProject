@@ -63,9 +63,9 @@ export default function Filters({ getRooms, setData }) {
       return setTypeBatchroom(e.target.value);
     }
     if (e.target.name === "price") {
-      
+      console.log("holaasd")
       localStorage.setItem("selectPrice",JSON.stringify(e.target.value)) //asdasdasdasdasd - - -- - - - -- - - - - -- - (-)
-      JSON.parse(localStorage.getItem("selectPrice"))? setType(JSON.parse(localStorage.getItem("selectPrice"))):setType(e.target.value)
+      JSON.parse(localStorage.getItem("selectPrice"))? setPrice(JSON.parse(localStorage.getItem("selectPrice"))):setPrice(e.target.value)
      
       return setPrice(e.target.value);
     }
@@ -96,6 +96,7 @@ export default function Filters({ getRooms, setData }) {
   //FUNCION PARA RECARGAR FILTROS!!! ------------------------------------------>>
   function recargarFiltros(e) {
     e.preventDefault();
+    
     setType("");
     setTypeBatchroom("");
     setPrice("");
