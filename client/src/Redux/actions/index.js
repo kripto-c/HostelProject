@@ -29,6 +29,7 @@ export function getReview() {
     return async function (dispatch) {
       const dataDb = await axios.get(`${URL}/reviews`);
       console.log(dataDb);
+      console.log("AWJDOAWID");
       dispatch({
         type: GET_REVIEW,
         payload: dataDb.data,
