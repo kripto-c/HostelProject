@@ -135,11 +135,11 @@ function Navbars() {
               <Link className="linkComponent fs-5" to="/about">
                 Acerca de
               </Link>
-              {isAuthenticated && (
+              {/* {isAuthenticated && (
                 <Link className="linkComponent fs-5" to="/reviewHostel">
                   Reviews
                 </Link>
-              )}
+              )} */}
               {/* <Link className="linkComponent" to="/createRoom">
                     Crear Habitacion
                   </Link> */}
@@ -159,7 +159,7 @@ function Navbars() {
            
             
           </div>
-          <ul class="navbar-nav ml-auto">
+          <ul className="navbar-nav ml-auto">
               <li>
                 <MenuUsuario className="m-5" />
               </li>

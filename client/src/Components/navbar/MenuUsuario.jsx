@@ -11,7 +11,7 @@ import { useAuth0 } from "@auth0/auth0-react";
 import { getCLient } from "../../Redux/actions";
 import axios from "axios";
 import { useDispatch, useSelector } from "react-redux";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useState, useEffect } from "react";
 import "./MenuUsuario.css";
 import logo from "../../images/logo.svg";
@@ -36,7 +36,7 @@ const options = [
 
 export default function MenuUsuario({ name, ...props }) {
   const [show, setShow] = useState(false);
-
+  const navigate = useNavigate();
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
   const {
@@ -83,23 +83,23 @@ export default function MenuUsuario({ name, ...props }) {
   }, [dispatch]);
   return (
     <>
-      
       {/* <div className="container bg-dark d-flex" backdrop="true"> */}
-        
 
-          {isAuthenticated ? (
-            <>
-            <Button variant="primary" onClick={handleShow} className="ms-5 w-10">
-        Menu
-      </Button>
-            <Offcanvas show={show} placement="end" onHide={handleClose} {...props}>
-                
+      {isAuthenticated ? (
+        <>
+          <Button variant="primary" onClick={handleShow} className="ms-5 w-10">
+            Menu
+          </Button>
+          <Offcanvas
+            show={show}
+            placement="end"
+            onHide={handleClose}
+            {...props}
+          >
             <Offcanvas.Header closeButton>
               <Offcanvas.Title>Menu</Offcanvas.Title>
             </Offcanvas.Header>
             <div className="container bg-light ">
-                
-                
               <Offcanvas.Body className="d-grid offcanvas-body gap-1 mx-auto">
                 <img
                   src={isAuthenticated ? user.picture : ""}
@@ -110,7 +110,7 @@ export default function MenuUsuario({ name, ...props }) {
                 <div className="row">
                   <div className="">
                     <div className="list-group" id="list-tab" role="tablist">
-                      <Link
+                      <button
                         to="/"
                         className="list-group-item list-group-item-action active"
                         id="list-home-list"
@@ -119,29 +119,30 @@ export default function MenuUsuario({ name, ...props }) {
                         aria-controls="list-home"
                       >
                         Mi cuenta
-                      </Link>
-                      <Link
+                      </button>
+                      <button
                         className="list-group-item list-group-item-action"
+                        onClick={() => {
+                          navigate("/clientEdit");
+                        }}
                         id="list-profile-list"
                         data-bs-toggle="list"
-                        to="/"
                         role="tab"
                         aria-controls="list-profile"
                       >
                         Editar datos
-                      </Link>
-                      
-                      <Link
+                      </button>
+
+                      <button
                         className="list-group-item list-group-item-action "
                         id="list-messages-list"
                         data-bs-toggle="list"
-                        to="/"
+                        onClick={() => navigate("/reviewHostel")}
                         role="tab"
                         aria-controls="list-messages"
-                        
                       >
                         Reviews
-                      </Link>
+                      </button>
                     </div>
                   </div>
                 </div>
@@ -153,34 +154,30 @@ export default function MenuUsuario({ name, ...props }) {
                     setConfirmLog(false);
                     setSort("deslogueado");
                   }}
-                  class="btn btn-outline-danger"
+                  className="btn btn-outline-danger"
                 >
                   Cerrar Sesion
                 </button>
               </Offcanvas.Body>
             </div>
-            </Offcanvas>
-            </>
-          ) : (
-            
-             
-              <button
-                type="button"
-                className="Login"
-                to="/#login"
-                onClick={async (e) => {
-                  e.preventDefault();
-                  await loginWithPopup();
-                  setClient();
-                  setConfirmLog(true);
-                }}
-                class="btn btn-outline-light"
-              >
-                Login
-              </button>
-            
-          )}
-        
+          </Offcanvas>
+        </>
+      ) : (
+        <button
+          type="button"
+          className="btn btn-outline-light"
+          to="/#login"
+          onClick={async (e) => {
+            e.preventDefault();
+            await loginWithPopup();
+            setClient();
+            setConfirmLog(true);
+          }}
+        >
+          Login
+        </button>
+      )}
+
       {/* </div> */}
     </>
   );

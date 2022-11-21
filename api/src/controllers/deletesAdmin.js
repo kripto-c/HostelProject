@@ -50,4 +50,4 @@ const deleteRoom = async (req, res) => {
 //   }
 // }
 
-module.exports = { deleteReview, deleteRoom , activeRoom};
+module.exports = { deleteReview, deleteRoom };
