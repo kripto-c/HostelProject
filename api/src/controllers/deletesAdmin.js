@@ -2,13 +2,22 @@ const { Review, Room } = require("../db.js");
 
 const deleteReview = async (req, res) => {
   try {
-    let { id } = req.query;
-    console.log("ESTE ID", id);
+    let { id,recOrDelete } = req.query;
+    
     let findId = await Review.findByPk(id);
-    await findId.update({ status: true });
+    if(recOrDelete==="eliminar"){
+      await findId.update({ status: true });
+      await findId.save();
+    }
+    else{
+      if(recOrDelete==="recuperar")
+      await findId.update({ status: false });
+      await findId.save();
+    }
+   
     // console.log(findId)
     // findId.status = true;
-    await findId.save();
+   
     // await Review.destroy({where:{id}})
     res.status(200).json("Review Eliminado logico");
   } catch (e) {
