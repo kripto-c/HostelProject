@@ -16,7 +16,7 @@ export default function Dashboard() {
           <Analytics />
         </div>
         <div className="row__two">
-          <Payments />
+          
 
           <Profile />
         </div>

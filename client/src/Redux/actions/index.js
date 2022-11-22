@@ -9,8 +9,8 @@ export const POST_OWNER = "POST_OWNER";
 export const GET_OWNER = "GET_OWNER";
 export const GET_ALL_CLIENTS = "GET_ALL_CLIENTS";
 
-const URL = "https://dinamitahostel.herokuapp.com";
-// const URL = "http://localhost:4000"; //descomentar para hacer pruebas
+/* const URL = "https://dinamitahostel.herokuapp.com"; */
+const URL = "http://localhost:4000"; //descomentar para hacer pruebas
 
 //ACTION ROOMS ----------------------------------------------------------->>
 export function getRooms() {
@@ -264,3 +264,18 @@ export function inactiveRooms(payload){
     type: "INACTIVE_ROOMS"
   }
 }
+//ACTIONS RENTS ----------------------------------------------------------->>
+export function getRents() {
+  try {
+    return async function (dispatch) {
+      const json = await axios.get(`${URL}/rents`);
+      dispatch({
+        type: "GET_RENTS",
+        payload: json.data,
+      });
+    };
+  } catch (error) {
+    console.log(error);
+  }
+}
+

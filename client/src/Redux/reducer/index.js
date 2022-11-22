@@ -19,6 +19,7 @@ const initialState = {
   owner: [],
   rent: [],
   allClients: [],
+  rents: [],
 };
 export default function rootReducer(state = initialState, action) {
   switch (action.type) {
@@ -180,6 +181,13 @@ export default function rootReducer(state = initialState, action) {
         rooms: activeRoom
       }
     }
+    case "GET_RENTS": {
+      return {
+        ...state,
+        rents: action.payload
+      }
+    }
+
 
     default:
       return state;

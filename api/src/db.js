@@ -12,19 +12,19 @@ const { DB_USER, DB_PASSWORD, DB_HOST, DB_NAME } = process.env;
 //   }
 // );
 const sequelize = new Sequelize({
-  database: "d43c4dk289i1g1",
+  // database: "d43c4dk289i1g1",
   username: DB_USER,
   password: DB_PASSWORD,
   host: DB_HOST,
   port: 5432,
   dialect: "postgres",
   //================================//
-  dialectOptions: {
+/*   dialectOptions: {
     ssl: {
       require: true, // comentar si da error al conectar, config necesaria para deploy
       rejectUnauthorized: false, //
     },
-  },
+  }, */
   //================================//
   logging: false,
 });

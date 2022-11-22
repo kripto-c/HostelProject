@@ -16,6 +16,7 @@ import Create from "./Components/Dashboard/Create";
 import PanelAdmin from "./Components/Dashboard/PanelAdmin";
 import ReviewAdmin from "./Components/Dashboard/ReviewAdmin.jsx";
 import Sidebar from "./Components/Dashboard/Sidebar";
+import Payments from "./Components/Dashboard/Payments";
 //-------------------------------------------------------------------->>
 function App() {
   return (
@@ -31,11 +32,13 @@ function App() {
       <Route path="/roomdetail/:id" element={<RoomDetail />} />
       <Route path="/clientEdit" element={<ClientEdit />} />
       <Route path="/createRoom" element={<Create />} />
+      <Route path="/payments" element={<Payments />}></Route>
     </Routes>
 
     <Routes>
       <Route path="/admin/*" element={<PanelAdmin />}>
         <Route path="reviewsAdmin" element={<ReviewAdmin />}></Route>
+        
       </Route>
     </Routes>
   </>
