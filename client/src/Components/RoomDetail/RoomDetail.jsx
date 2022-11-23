@@ -20,10 +20,13 @@ import moment from "moment";
 import {DateRangePicker} from "react-date-range"
 import 'react-date-range/dist/styles.css'; // main style file
 import 'react-date-range/dist/theme/default.css'; // theme css file
+import "bootstrap/dist/css/bootstrap.min.css";
+
 
 export default function RoomDetail() {
   
   const client = useSelector((state) => state.client);
+  const room = useSelector((state) => state.roomdetail);
   const { getAccessTokenSilently } = useAuth0();
   const [camas, setCamas] = useState(0);
   const [total, setTotal] = useState(0);
@@ -43,7 +46,6 @@ export default function RoomDetail() {
   // const client =  useSelector(state=> state.client);
   const [show, setShow] = useState(false);
   const handleClose = () => setShow(false);
-  // const handleShow = () => setShow(true);
   const [name, setName] = useState(true);
   const [lastname, setLastname] = useState(true);
 
@@ -56,39 +58,48 @@ export default function RoomDetail() {
   const userLogin = useAuth0();
 
   let { id } = useParams();
-
-     useEffect(() =>{
-         dispatch(getRoomDetail(id));
-         dispatch(getRent(id))
-     },[dispatch]);
-    const room = useSelector((state) => state.roomdetail);
-    const rent = useSelector((state) => state.rent);
-     
-
+  let arreglo = [];
+  for (let a = 1; a <= room.beds; a++) {
+    arreglo.push({name: "cama"+a});
+  }
+  
+  
+  
+  
+  useEffect(async () =>{
+    dispatch(getRoomDetail(id));
+    dispatch(getRent(id));
+  },[dispatch]);
+  
+  const rent = useSelector((state) => state.rent);
     //console.log('detail',entrada, salida);
-
-    let arreglo = [];
-    for (let a = 1; a <= room.beds; a++) {
-        arreglo.push(a);
-    }
-   
     const sumres = (e)=>{
         if(e.target.checked) {
             setCamas(camas+1)
             return setTotal(total+room.price)
         }
-        setCamas(camas-1)
-        return setTotal(total-room.price)
-    }
-    const [checkall, setCheckall] = useState(false)
-    const todacama = (e) =>{
-        if(e.target.checked){
-            setCamas(room.beds)
-            return setTotal(total+(room.price*room.beds))    
+        else{
+          setCamas(camas-1)
+          return setTotal(total-room.price)
         }
-        console.log(camas)
-        setCamas(0)
-        return setTotal(total-(room.price*room.beds))
+    }
+    const[des, setDes] = useState(false);
+    const todacama = (e) =>{
+      if(e.target.name === "todo" && e.target.checked){
+        setCamas(camas+room.beds);
+        setDes(true)
+        return setTotal(room.price*room.beds);
+      }
+      else if(e.target.name === "todo"&& !e.target.checked){
+        setCamas(0);
+        setDes(false)
+        return setTotal(0);
+      }
+      else{
+        sumres(e);
+
+      }
+
     }
 
     // const data = (b, e)=>{
@@ -153,6 +164,7 @@ export default function RoomDetail() {
 
     
     const pay = async ()=>{
+      
 
         // VERIFICACION DE DATOS DE LA RESERVA
         // setCheckIn(entrada1);
@@ -480,11 +492,25 @@ export default function RoomDetail() {
       <p className="Ac">
         <b>Alojamientos</b>
       </p>
+      <div className="listBeds">
+      <label>Todas</label>{" "}
+      <input className="form-check-input"
+      name="todo"
+      type="checkbox"
+      disabled={total > 0 && (total !== room.price*room.beds)}
+      onClick={todacama}
+      />
+      </div>
       {arreglo.map((e) => {
         return (
-          <div key={e} className="listBeds">
+          <div key={e.name} className="listBeds">
             <label>Cama</label>{" "}
-            <input disabled={room.status} onClick={sumres} type="checkbox" />
+            <input className="form-check-input" 
+            disabled={room.status} 
+            onClick={todacama}
+            name={e.name}
+            disabled={des}
+            type="checkbox" />
           </div>
         );
       })}
