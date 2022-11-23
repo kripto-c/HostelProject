@@ -2,7 +2,9 @@ import React from 'react'
 import { useEffect } from 'react';
 import Table from 'react-bootstrap/Table';
 import { useDispatch, useSelector } from 'react-redux';
-import {getRents, updateStatusRents} from "../../Redux/actions/index.js"
+import {getRents, 
+  // updateStatusRents,
+} from "../../Redux/actions/index.js"
  
 
 function Payments() {

@@ -51,10 +51,10 @@ export default function Contact() {
                     </div>
                 </form>                
             </div>
-            {/* <div className={``} >
-              
-                <p className=></p>
-                <p className=></p>
+            <div className={`${style.bgWhites} container my-4`} >
+                <h2>Preguntas frecuentes</h2>
+                <p className={style.question}>¿Puedo llevar mi mascota?</p>
+                <p className={style.response}>Actualmente no aceptamos mascotas.</p>
                 <hr/>
                 <p className={style.question}>¿Puedo alquilar varias o todas las camas en una habitación?</p>
                 <p className={style.response}>Sí, de ser necesario se pueden alquilar todas las camas dentro de la habitación.</p>
@@ -98,46 +98,7 @@ export default function Contact() {
                 <p className={style.question}>¿La cama viene con almohada y sabanas?</p>
                 <p className={style.response}>Sí, dependiendo de la epoca del año se les provee alcochado aunque el inquilino es libre de solicitar más, si así lo desea.</p>
 
-            </div> */}
-<div className={`accordion container ${style.bgWhites}  my-4`} id="accordionExample">
- <h2>Preguntas frecuentes</h2>
-  <div className="accordion-item">
-    <h2 className="accordion-header" id="headingOne">
-      <button className={`accordion-button ${style.question}`} type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-      ¿Puedo llevar mi mascota?
-      </button>
-    </h2>
-    <div id="collapseOne" className="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
-      <div className={`accordion-body ${style.response}` }>
-         Actualmente no aceptamos mascotas.
-      </div>
-    </div>
-  </div>
-  <div className="accordion-item">
-    <h2 className="accordion-header" id="headingOne">
-      <button className={`accordion-button ${style.question}`} type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-      ¿Puedo llevar mi mascota?
-      </button>
-    </h2>
-    <div id="collapseOne" className="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
-      <div className={`accordion-body ${style.response}` }>
-         Actualmente no aceptamos mascotas.
-      </div>
-    </div>
-  </div>
-  <div className="accordion-item">
-    <h2 className="accordion-header" id="headingOne">
-      <button className={`accordion-button ${style.question}`} type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-      ¿Puedo llevar mi mascota?
-      </button>
-    </h2>
-    <div id="collapseOne" className="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
-      <div className={`accordion-body ${style.response}` }>
-         Actualmente no aceptamos mascotas.
-      </div>
-    </div>
-  </div>
-</div>
+            </div>
         </div>
         
     )
