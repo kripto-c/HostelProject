@@ -8,8 +8,7 @@ import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
 import NavDropdown from "react-bootstrap/NavDropdown";
 import { useAuth0 } from "@auth0/auth0-react";
-import { getCLient } from "../../Redux/actions";
-import { getOwner } from "../../Redux/actions";
+import { getCLient,getOwner, setClient, getRolUser } from "../../Redux/actions";
 import axios from "axios";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
@@ -53,18 +52,12 @@ export default function MenuUsuario({ name, ...props }) {
   const [view, setView] = useState(true);
   const [confirmLog, setConfirmLog] = useState(false);
   const [Sort, setSort] = useState("");
-  async function setClient() {
+  
+  async function saveClient() {
     try {
       const token = await getAccessTokenSilently();
-      // const info = await axios.get("http://localhost:4000/login/setClient", {
-        const info = await axios.get("https://dinamitahostel.herokuapp.com/login/setClient", {
-        headers: {
-          authorization: `Bearer ${token}`,
-        },
-      });
-      console.log(info.data);
-      getInfo();
-      localStorage.setItem("IDUser", info.data.id);
+     await dispatch(setClient(token))
+     await getInfo();
     } catch (error) {
       console.log(error);
     }
@@ -78,25 +71,16 @@ export default function MenuUsuario({ name, ...props }) {
   
   async function getRol(){
     const token = await getAccessTokenSilently();
-    const info = await axios.get("https://dinamitahostel.herokuapp.com/rol", {
-      // const info = await axios.get("https://hosteldinamitabackend.herokuapp.com/login/setClient", {
-        headers: {
-          authorization: `Bearer ${token}`,
-        },
-      });
-      console.log(token);
-      
-      if(info.data.rol[0] === "menu-client" ){
-        setClient();
+     await dispatch(getRolUser(token))
+    let rol = localStorage.getItem("Rol");
+      if(rol === "menu-client" ){
+        saveClient();
         
       }
       else{
-        await dispatch(getOwner(
-          token
-        ))
+        await dispatch(getOwner(token))
         setSidebar(true);
       }
-      console.log(info.data.rol[0])
   }
   useEffect(() => {
     let idUser = localStorage.getItem("IDUser");
@@ -104,15 +88,9 @@ export default function MenuUsuario({ name, ...props }) {
       getInfo();
       setConfirmLog(true);
     }
-    if (client.length > 0 && isAuthenticated) {
-      getInfo();
-    }
   }, [dispatch]);
   return (
     <>
-      {/* <div className="container bg-dark d-flex" backdrop="true"> */}
-        
-
           {isAuthenticated ? (
             <>
             <Offcanvas show={show1} onHide={() =>{setShow1(false)}} style={{backgroundColor: "#212121"}}>
@@ -170,19 +148,6 @@ export default function MenuUsuario({ name, ...props }) {
                       >
                         Reviews
                       </button>
-
-                      {/* <button
-                        className="list-group-item list-group-item-action"
-                        onClick={() => {
-                          navigate("/payments");
-                        }}
-                        id="list-profile-list"
-                        data-bs-toggle="list"
-                        role="tab"
-                        aria-controls="list-profile"
-                      >
-                        Pagos
-                      </button> */}
                     </div>
                   </div>
                 </div>
@@ -190,9 +155,7 @@ export default function MenuUsuario({ name, ...props }) {
                 sidebar &&  <button
                     type="button"
                     onClick={() => {
-                      localStorage.clear();
                       setShow1(true);
-                      console.log(show1)
                     }}
                     className="btn btn-outline-danger"
                   >
@@ -234,54 +197,8 @@ export default function MenuUsuario({ name, ...props }) {
             
           )}
         
-      {/* </div> */}
     </>
   );
 }
 
 <Offcanvas.Body></Offcanvas.Body>;
-// {isAuthenticated ? (
-//     <Navbar.Collapse className="loginInfo">
-//       <img
-//         src={isAuthenticated ? user.picture : ""}
-//         alt="foto perfil"
-//         className="rounded-circle profileIMG"
-//       />
-//       <Nav className="me-auto CuentaLog">
-//         <button className="miCuentaOp">Mi Cuenta</button>
-//         <div className="LoginOp">
-//           <Link to="/clientEdit" className="clientEdit">
-//             Editar Datos
-//           </Link>
-//           <NavDropdown.Item href="#action/3.2">
-//             Registro
-//           </NavDropdown.Item>
-//           <NavDropdown.Divider />
-//           <NavDropdown.Item
-//             href="#action/3.4"
-//             onClick={() => {
-//               localStorage.clear();
-//               logout();
-//               setConfirmLog(false);
-//               setSort("deslogueado");
-//             }}
-//           >
-//             cerrar sesión
-//           </NavDropdown.Item>
-//         </div>
-//       </Nav>
-//     </Navbar.Collapse>
-//   ) : (
-//     <Link
-//       className="Login"
-//       to="/#login"
-//       onClick={async (e) => {
-//         e.preventDefault();
-//         await loginWithPopup();
-//         setClient();
-//         setConfirmLog(true);
-//       }}
-//     >
-//       Login
-//     </Link>
-//   )}

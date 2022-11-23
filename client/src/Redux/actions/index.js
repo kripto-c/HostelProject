@@ -9,8 +9,8 @@ export const POST_OWNER = "POST_OWNER";
 export const GET_OWNER = "GET_OWNER";
 export const GET_ALL_CLIENTS = "GET_ALL_CLIENTS";
 
-const URL = "https://dinamitahostel.herokuapp.com";
-//const URL = "http://localhost:4000"; //descomentar para hacer pruebas
+// const URL = "https://dinamitahostel.herokuapp.com";
+const URL = "http://localhost:4000"; //descomentar para hacer pruebas
 
 //ACTION ROOMS ----------------------------------------------------------->>
 export function getRooms() {
@@ -28,8 +28,6 @@ export function getReview() {
   try {
     return async function (dispatch) {
       const dataDb = await axios.get(`${URL}/reviews`);
-      console.log(dataDb);
-      console.log("AWJDOAWID");
       dispatch({
         type: GET_REVIEW,
         payload: dataDb.data,
@@ -153,6 +151,33 @@ export function postClient(body, headers) {
     }
   };
 }
+
+export function setClient(token){
+  try{
+   return async function(){
+    let res = await axios.get(`${URL}/login/setClient`, {headers:{authorization:`Bearer ${token}`}})
+    localStorage.setItem("IDUser", res.data.id);
+    console.log(res.data.id);
+   }
+  } catch(e){
+    console.log(e)
+  }
+}
+
+export function getRolUser(token){
+  try{
+   return async function(){
+    let res = await axios.get(`${URL}/rol`, {headers:{authorization:`Bearer ${token}`}})
+    localStorage.setItem("Rol", res.data.rol[0]);
+    console.log(res.data);
+   }
+  } catch(e){
+    console.log(e)
+  }
+}
+
+
+// ---------------------------------------------------------
 export function postOwner(payload, headers) {
   return async function () {
     const { data } = await axios.post(`${URL}/owner/post`, payload, headers);
@@ -175,19 +200,6 @@ export function getOwner(token) {
   };
 }
 
-// export function setClient(payload){
-//   try{
-//    return async function(){
-//     let res = await axios('http://localhost:4000/login/setClient', {headers:{authorization:`Bearer ${payload}`}})
-//       return {
-//         payload: res.data,
-//         type: GET_CLIENT
-//       }
-//    }
-//   } catch(e){
-//     console.log(e)
-//   }
-// }
 export function getRoomDetail(id) {
   return async (dispatch) => {
     try {
@@ -201,6 +213,7 @@ export function getRoomDetail(id) {
     }
   };
 }
+
 export function getAllCountries() {
   return async function (dispatch) {
     try {
