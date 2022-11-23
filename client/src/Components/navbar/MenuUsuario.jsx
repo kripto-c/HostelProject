@@ -67,7 +67,7 @@ export default function MenuUsuario({ name, ...props }) {
     dispatch(getCLient(token));
   }
   const [show1, setShow1] = useState(false);
-  const[sidebar, setSidebar] = useState(false);
+  // const[sidebar, setSidebar] = useState(false);
   
   async function getRol(){
     const token = await getAccessTokenSilently();
@@ -79,7 +79,7 @@ export default function MenuUsuario({ name, ...props }) {
       }
       else{
         await dispatch(getOwner(token))
-        setSidebar(true);
+        // setSidebar(true);
       }
   }
   useEffect(() => {
@@ -152,7 +152,8 @@ export default function MenuUsuario({ name, ...props }) {
                   </div>
                 </div>
                 {
-                sidebar &&  <button
+                 (localStorage.getItem("Rol") === "menu-admin" )
+                  &&  <button
                     type="button"
                     onClick={() => {
                       setShow1(true);
