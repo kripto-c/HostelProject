@@ -12,12 +12,12 @@ const payment = require("./payments/payment");
 const feedback = require("./payments/feedback")
 const getCountries = require("./countries")
 const owner = require("./owner")
-const rent = require("./rent/rent")
 const deletesAdmin = require("./deletesAdmin/deletesAdmin.js");
 const router = Router();
 const deleteRoom = require("./deletesAdmin/deletesAdmin.js")
 const activeRoom = require("./deletesAdmin/deletesAdmin.js")
 const rents = require("../routes/rents/index.js")
+const faq = require('./faqs/route')
 /////////////permissos
 const checkPermissions  = require("../permisos/permisosCheck");
 const itemPermissos = require('../permisos/permisos')
@@ -26,11 +26,11 @@ const itemPermissos = require('../permisos/permisos')
 const jwtCheck = require('../jwtCheck/jwtCheck');
 
 //Descomentar para probar. Esto tira error de autorizacion.
-router.use(jwtCheck);
+// router.use(jwtCheck);
 
 router.use(express.json());
 //RUTAS--------------------------------------------------------------->>
-
+router.use("/faq", faq)
 router.use("/rol", rol); 
 router.use("/login", login);
 router.use("/payment", checkPermissions(itemPermissos.payment),payment);
