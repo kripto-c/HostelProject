@@ -6,31 +6,32 @@ import { cardStyles } from "./ReusableStyles";
 
 export default function Transfers() {
   //NO ESTA HECHO, ADAPTEN COMO QUIERAN
- const transactions = []
+  const transactions = [];
   return (
     <Section>
       <div className="title">
         <h2>Your Transfers</h2>
       </div>
       <div className="transactions">
-        {transactions && transactions.map((transaction) => {
-          return (
-            <div className="transaction">
-              <div className="transaction__title">
-                <div className="transaction__title__image">
-                  <img src={transaction.image} alt="" />
+        {transactions &&
+          transactions.map((transaction) => {
+            return (
+              <div className="transaction">
+                <div className="transaction__title">
+                  <div className="transaction__title__image">
+                    <img src={transaction.image} alt="" />
+                  </div>
+                  <div className="transaction__title__details">
+                    <h3>{transaction.name}</h3>
+                    <h5>{transaction.time}</h5>
+                  </div>
                 </div>
-                <div className="transaction__title__details">
-                  <h3>{transaction.name}</h3>
-                  <h5>{transaction.time}</h5>
+                <div className="transaction__amount">
+                  <span>{transaction.amount}</span>
                 </div>
               </div>
-              <div className="transaction__amount">
-                <span>{transaction.amount}</span>
-              </div>
-            </div>
-          );
-        })}
+            );
+          })}
       </div>
       <a className="view" href="#">
         View all <HiArrowNarrowRight />

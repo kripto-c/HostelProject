@@ -45,4 +45,3 @@ export default function PanelAdmin() {
     </React.Fragment>
   );
 }
-

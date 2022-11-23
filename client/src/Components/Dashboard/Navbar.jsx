@@ -36,8 +36,8 @@ const Nav = styled.nav`
     display: flex;
     align-items: center;
     gap: 0rem;
-    height:40px;    
-    margin:2px;
+    height: 40px;
+    margin: 2px;
     border-radius: 5px;
     svg {
       color: #ffc107;
@@ -48,8 +48,8 @@ const Nav = styled.nav`
       color: grey;
       font-family: "Permanent Marker", cursive;
       letter-spacing: 0.5rem;
-      justify-content:center;
-      align-items:center;
+      justify-content: center;
+      align-items: center;
       &:focus {
         outline: none;
       }
