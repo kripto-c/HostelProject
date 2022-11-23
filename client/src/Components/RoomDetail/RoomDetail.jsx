@@ -509,7 +509,7 @@ export default function RoomDetail() {
             disabled={room.status} 
             onClick={todacama}
             name={e.name}
-            disabled={des}
+            // disabled={des}
             type="checkbox" />
           </div>
         );
