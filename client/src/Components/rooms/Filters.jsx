@@ -2,8 +2,7 @@ import {  filterTypeRoom } from "../../Redux/actions";
 import { useDispatch, useSelector } from "react-redux";
 import { useState } from "react";
 import style from "./Filters.module.css";
-
-const Swal = require('sweetalert2')
+import Swal from 'sweetalert2'
 
 
 
