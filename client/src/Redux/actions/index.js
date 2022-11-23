@@ -272,6 +272,12 @@ export function changeStatusRoom(headers,id,statusRoom){
 //   }
 // }
 
+export function inactiveRooms(payload){
+  return{
+    payload,
+    type: "INACTIVE_ROOMS"
+  }
+}
 //ACTIONS RENTS ----------------------------------------------------------->>
 export function getRents() {
   try {
