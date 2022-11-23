@@ -58,50 +58,20 @@ export default function RoomDetail() {
   const userLogin = useAuth0();
 
   let { id } = useParams();
-  let arreglo = [];
-  for (let a = 1; a <= room.beds; a++) {
-    arreglo.push({name: "cama"+a});
-  }
+ 
   
-  
-  
-  
-  useEffect(async () =>{
+  useEffect(() =>{
     dispatch(getRoomDetail(id));
     dispatch(getRent(id));
   },[dispatch]);
   
   const rent = useSelector((state) => state.rent);
     //console.log('detail',entrada, salida);
-    const sumres = (e)=>{
-        if(e.target.checked) {
-            setCamas(camas+1)
-            return setTotal(total+room.price)
-        }
-        else{
-          setCamas(camas-1)
-          return setTotal(total-room.price)
-        }
+  
+    const handleRange = (e) =>{
+      setCamas(e.target.value)
+      setTotal(e.target.value*room.price)
     }
-    const[des, setDes] = useState(false);
-    const todacama = (e) =>{
-      if(e.target.name === "todo" && e.target.checked){
-        setCamas(camas+room.beds);
-        setDes(true)
-        return setTotal(room.price*room.beds);
-      }
-      else if(e.target.name === "todo"&& !e.target.checked){
-        setCamas(0);
-        setDes(false)
-        return setTotal(0);
-      }
-      else{
-        sumres(e);
-
-      }
-
-    }
-
     // const data = (b, e)=>{
     //     console.log(e.target.value)
     //     if(b) return setCheckIn(e.target.value.split('-').reverse().join('-'));
@@ -256,12 +226,6 @@ export default function RoomDetail() {
     setName(true);
     setLastname(true);
   }
-
-  function active(e) {
-    e.preventDefault();
-    setShow(true);
-  }
-
     // console.log(room);
     return (
     <div className='detailRoom mx-auto'>
@@ -490,30 +454,22 @@ export default function RoomDetail() {
         />
       </div>
       <p className="Ac">
-        <b>Alojamientos</b>
+        <b>Camas a reservar: {camas}</b>
       </p>
-      <div className="listBeds">
-      <label>Todas</label>{" "}
-      <input className="form-check-input"
-      name="todo"
-      type="checkbox"
-      disabled={total > 0 && (total !== room.price*room.beds)}
-      onClick={todacama}
-      />
+      <div className="rangebeds">
+        <input
+        id="customRange3"
+        className="form-range"
+        type= "range"
+        min="0"
+        max= {room.beds} 
+        onChange={handleRange}
+        defaultValue= "0"
+        disabled={room.status}
+        step="1"
+        />
       </div>
-      {arreglo.map((e) => {
-        return (
-          <div key={e.name} className="listBeds">
-            <label>Cama</label>{" "}
-            <input className="form-check-input" 
-            disabled={room.status} 
-            onClick={todacama}
-            name={e.name}
-            // disabled={des}
-            type="checkbox" />
-          </div>
-        );
-      })}
+      
       {room.status && (
         <div className="disponibilidad">No hay camas disponibles</div>
       )}
