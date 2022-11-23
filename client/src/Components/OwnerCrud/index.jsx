@@ -34,7 +34,7 @@ export default function OwnerCrud() {
   async function handleSubmit (event) {
     const form = event.currentTarget;
     event.preventDefault();
-    if (form.checkValidity() === false) {      
+    if (form.checkValidity() === false) {
       event.stopPropagation();
     }
     setValidated(true);
