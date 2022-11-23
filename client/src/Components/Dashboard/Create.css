@@ -6,7 +6,7 @@
   align-items: center;
   justify-content: center;
   margin: 5px auto;
-  padding: 0;
+  padding: 0 0 24px 0;
 }
 
 .no-image {

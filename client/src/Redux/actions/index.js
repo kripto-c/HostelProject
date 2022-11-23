@@ -9,8 +9,8 @@ export const POST_OWNER = "POST_OWNER";
 export const GET_OWNER = "GET_OWNER";
 export const GET_ALL_CLIENTS = "GET_ALL_CLIENTS";
 
-const URL = "https://dinamitahostel.herokuapp.com";
-//const URL = "http://localhost:4000"; //descomentar para hacer pruebas
+// const URL = "https://dinamitahostel.herokuapp.com";
+const URL = "http://localhost:4000"; //descomentar para hacer pruebas
 
 //ACTION ROOMS ----------------------------------------------------------->>
 export function getRooms() {
@@ -250,6 +250,20 @@ export function deleteRoom(headers, id) {
   }
 }
 
+export function changeStatusRoom(headers,id,statusRoom){
+  try{
+    return async function(dispatch){
+      await axios(`${URL}/changeStatusRoom/?id=${id}&statusRoom=${statusRoom}`, headers)
+      dispatch({
+        type: "CHANGE_STATUS",
+        payload: "status changed",
+      })  
+    }
+  }catch(e){
+    console.log(e)
+  }
+}
+
 // export function activeRoom(headers, id){
 //   try{
 //     return async function(dispatch){
@@ -270,5 +284,12 @@ export function getRents() {
     };
   } catch (error) {
     console.log(error);
+  }
+}
+
+export function inactiveRooms(payload){
+  return{
+    payload,
+    type: "INACTIVE_ROOMS"
   }
 }
