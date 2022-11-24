@@ -5,8 +5,14 @@ import Review from '../Review/Reviews';
 import "./Home.css";
 import { Link } from "react-router-dom";
 import { addObserver } from "./observer";
+import { getOwner } from "../../Redux/actions";
+import {useDispatch, useSelector} from "react-redux"
+import { useAuth0 } from "@auth0/auth0-react";
 
 const Home = () => {
+  const {isAuthenticated, getAccessTokenSilently} = useAuth0();
+  const info = useSelector(state => state.owner);
+  const dispatch = useDispatch()
 
   const ref1 = React.useRef();
   const ref2 = React.useRef();
@@ -18,6 +24,15 @@ const Home = () => {
     addObserver(ref3.current)
   })
 
+  async function getOwnerF(){
+    const token = await  getAccessTokenSilently()
+    dispatch(getOwner(token))
+  }
+
+  React.useEffect(() => {
+    if (!info.length) getOwnerF()
+  }, [dispatch]);
+
   return (
     <div className='home-container'>      
     <div className="home-container row ">
@@ -28,7 +43,7 @@ const Home = () => {
               src="https://upload.wikimedia.org/wikipedia/commons/e/e8/Hostel_Dormitory.jpg"
               alt="first-item"
             />
-            <h1 className="Bienvenido">Bienvenidos al Hostel Dinamita</h1>
+            <h1 className="Bienvenido">Bienvenidos al {info.hostelName}</h1>
           </div>
         </Carousel.Item>
         <Carousel.Item>
@@ -37,10 +52,7 @@ const Home = () => {
               src="https://media-cdn.tripadvisor.com/media/photo-s/15/bc/d3/19/ideal-social-hostel.jpg"
               alt="second-item"
             />
-            <p className="infoHome">Lorem ipsum dolor sit amet consectetur adipisicing elit. Fugiat recusandae,
-               totam ab officiis delectus dicta dolores. Minus tenetur esse ad voluptates facere ut natus nesciunt optio
-                accusamus at dolorem, saepe, eveniet corrupti deserunt veniam repellendus blanditiis fugiat eos,
-                 obcaecati iste! (Cambiar por informacion y sobre que hace la pagina)</p>
+            <p className="infoHome">{info.aboutUs}</p>
           </div>
         </Carousel.Item>
         <Carousel.Item>
@@ -86,10 +98,7 @@ const Home = () => {
               />
               <div className="data">
                 <p>SOBRE NOSOTROS</p>
-                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                  Dolores est perferendis deleniti sapiente officia inventore adipisci exercitationem voluptas unde necessitatibus
-                    vitae voluptatem voluptate, sed accusamus obcaecati reiciendis iusto qui! Vitae velit error dignissimos
-                    reprehenderit deleniti qui, eum quasi voluptatum aliquid?</p>
+                <p>{info.aboutUs}</p>
               </div>
             </div>
             <div className="demo2 demo11 " ref={ref2}>
@@ -99,10 +108,7 @@ const Home = () => {
               />
               <div className="data data2">
                 <p>POR QUE ELEGIRNOS</p>
-                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                   Dolores est perferendis deleniti sapiente officia inventore adipisci exercitationem voluptas unde necessitatibus
-                   vitae voluptatem voluptate, sed accusamus obcaecati reiciendis iusto qui! Vitae velit error dignissimos
-                   reprehenderit deleniti qui, eum quasi voluptatum aliquid?</p>
+                <p>{info.chooseUs}</p>
               </div>
             </div>
             <div className="demo1 demo11" ref={ref3}>
@@ -112,10 +118,7 @@ const Home = () => {
               />
               <div className="data">
                 <p>EXTRAS</p>
-                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                  Dolores est perferendis deleniti sapiente officia inventore adipisci exercitationem voluptas unde necessitatibus
-                    vitae voluptatem voluptate, sed accusamus obcaecati reiciendis iusto qui! Vitae velit error dignissimos
-                    reprehenderit deleniti qui, eum quasi voluptatum aliquid?</p>
+                <p>{info.extra}</p>
               </div>
             </div>
           </div>

@@ -19,7 +19,7 @@ function Navbars() {
   const [view, setView] = useState(true);
   const [confirmLog, setConfirmLog] = useState(false);
   const [Sort, setSort] = useState("");
-
+  const info = useSelector(state => state.owner);
   
 
   const verOptiones = () => {
@@ -38,12 +38,17 @@ function Navbars() {
     dispatch(getCLient(token));
   }
 
+  async function getOwnerF(){
+    const token = await  getAccessTokenSilently()
+    dispatch(getOwner(token))
+  }
   useEffect(() => {
     let idUser = localStorage.getItem("IDUser");
     if (idUser) {
       getInfoClient();
       setConfirmLog(true);
     }  
+    if (!info.length) getOwnerF()
   }, [dispatch]);
 
   return (
@@ -59,7 +64,7 @@ function Navbars() {
                 height="50"
                 className="d-inline-block align-text-top bg-light rounded-1"
               />
-              <p className="m-auto ms-3">Dinamita Hostel</p>
+              <p className="m-auto ms-3">{info.hostelName}</p>
             </div>
             {/* </div> */}
           </Link>
