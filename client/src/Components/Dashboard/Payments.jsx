@@ -1,10 +1,11 @@
 import React from 'react'
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import Table from 'react-bootstrap/Table';
 import { useDispatch, useSelector } from 'react-redux';
 import {getRents, 
   // updateStatusRents,
 } from "../../Redux/actions/index.js"
+import PaginationPayments from './PaginationPayments.jsx';
  
 
 function Payments() {
@@ -26,12 +27,57 @@ function Payments() {
     return aux
   }
   suma()
+
+  // PAGINADO --------------------->>
+  const allPayments = useSelector((state) => state.rents)
+  const [currentPage, setCurrentPage] = useState(1)
+  const [paymentsPerPage, setPaymentsPerPage] = useState(10)
+  const indexOfLastPayment = currentPage * paymentsPerPage
+  const indexOfFirstPayment = indexOfLastPayment - paymentsPerPage
+  const currentPayments = allPayments?.slice(indexOfFirstPayment, indexOfLastPayment)
  
+  const paginado = (pageNumbers) => {
+    setCurrentPage(pageNumbers)
+  } 
+  // ------------------------------>>
+
+ 
+  // FILTROS --------------------->>
+  const months = allRents.map(e => e.dateIn.slice(0, 7))
+  console.log(months)
+
+
+
+
+  // ----------------------------->>
  
  
   return (
     <div className='container'>
     <div className='row'>
+      <div>
+        <nav>
+          <li>
+            <select>
+              <option value="all" hidden>
+                Filtrar por mes
+              </option>
+              {allRents.map(e => {
+                return(<option value={e}></option>)
+              })
+
+              }
+            </select>
+          </li>
+        </nav>
+      </div>
+    <PaginationPayments
+      paymentsPerPage={paymentsPerPage}
+      allPayments={allPayments}
+      paginado={paginado}
+      currentPage={currentPage}
+     />
+
     <Table striped bordered hover className="col-md-9">
       <thead>
         <tr>
@@ -43,7 +89,7 @@ function Payments() {
       </thead>
       <tbody>
         {
-          allRents && allRents.map(e => {
+          currentPayments && currentPayments.map(e => {
             let auxIn = e.dateIn.slice(0, 10)
             let auxOut = e.dateOut.slice(0, 10)
             return (

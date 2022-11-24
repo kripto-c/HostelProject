@@ -11,7 +11,8 @@ import { useState } from "react";
 import Offcanvas from "react-bootstrap/Offcanvas";
 export default function PanelAdmin() {
   const navigate= useNavigate();
-  useEffect(()=>navigate("/admin/dashboard"),[])
+  /* useEffect(()=>navigate("/admin/dashboard"),[]) */
+  /* useEffect(()=>navigate("/admin/"),[]) */
   const [show, setShow] = useState(false);
   const handleShow = () => setShow(true);
   return (
@@ -34,7 +35,7 @@ export default function PanelAdmin() {
             <Route path="roomsAdmin" element={<Create></Create>}></Route>
           </Routes>
           <Routes>
-            <Route path="payments" element={<Payments></Payments>}></Route>
+             <Route path="payments" element={<Payments></Payments>}></Route> 
           </Routes>
           <Routes>
             <Route path="settings" element={<OwnerCrud></OwnerCrud>}></Route>

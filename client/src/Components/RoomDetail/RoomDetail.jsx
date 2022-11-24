@@ -22,6 +22,7 @@ import 'react-date-range/dist/styles.css'; // main style file
 import 'react-date-range/dist/theme/default.css'; // theme css file
 import "bootstrap/dist/css/bootstrap.min.css";
 
+import SweetAlert from 'react-bootstrap-sweetalert';
 
 export default function RoomDetail() {
   
@@ -342,72 +343,74 @@ export default function RoomDetail() {
       }
       {/* //CONTROL DE LA RESERVA DE LA HABITACION!  */}
       {
-        <Modal
-          show={all}
-          onHide={() => {
-            setAll(false);
-          }}
-        >
-          <ModalHeader closeButton className="bg-dark text-white">
-            Por favor llene complete los datos de la reserva.
-          </ModalHeader>
-        </Modal>
+          <SweetAlert
+            show={all}
+            error
+            title="Oops...!"
+            onConfirm={() => {
+              setAll(false);
+            }}
+          >
+          Por favor, complete todos los datos de la reserva.
+          </SweetAlert>
       }
       {
-        <Modal
+        <SweetAlert
           show={verRoom}
-          onHide={() => {
+          error
+          title="Oops...!"
+          onConfirm={() => {
             setVerRoom(false);
           }}
         >
-          <ModalHeader closeButton className="bg-dark text-white">
-            Seleccione al menos una cama para pedir reserva.
-          </ModalHeader>
-        </Modal>
+        Seleccione al menos una cama para pedir reserva.
+        </SweetAlert>
       }
       {
-        <Modal
+        <SweetAlert
           show={verCheckIn}
-          onHide={() => {
+          error
+          title="Oops...!"
+          onConfirm={() => {
             setVerCheckIn(false);
           }}
         >
-          <ModalHeader closeButton className="bg-dark text-white">
-            Por favor ingrese una fecha de ingreso.
-          </ModalHeader>
-        </Modal>
+        Por favor, seleccione una fecha de ingreso.
+        </SweetAlert>
       }
       {
-        <Modal
+        <SweetAlert
           show={verCheckOut}
-          onHide={() => {
+          error
+          title="Oops...!"
+          onConfirm={() => {
             setVerCheckOut(false);
           }}
         >
-          <ModalHeader closeButton className="bg-dark text-white">
-            Por favor ingrese una fecha de salida.
-          </ModalHeader>
-        </Modal>
+        Por favor, ingrese una fecha de salida.
+        </SweetAlert>
       }
       {
-        <Modal
+        <SweetAlert
           show={verLogin}
-          onHide={() => {
+          error
+          title="Oops...!"
+          onConfirm={() => {
             setVerLogin(false);
           }}
         >
-          <ModalHeader closeButton className="bg-dark text-white">
-            Debe estar registrado para reservar.
-          </ModalHeader>
-        </Modal>
+        Debe estar registrado para reservar.
+        </SweetAlert>
       }
 
       {!userLogin.isAuthenticated ? (
-        <div className="alertLog" hidden={login}>
-          <div className="bg-dark text-white">
-            <button onClick={() => setLogin(true)}>X</button>
-            <p>Para poder hacer reservas debes registrarte primero</p>
-          </div>
+        <div hidden={login} >
+        <SweetAlert
+          warning
+          onConfirm={() => {setLogin(true)}}
+        >
+        <span>Para poder hacer reservas debes registrarte primero</span>
+        </SweetAlert>
         </div>
       ) : null}
       <h1>Detalle de la habitacion</h1>
