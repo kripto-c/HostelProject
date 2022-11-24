@@ -1,4 +1,4 @@
-
+import React from "react"
 import { Route, Routes } from "react-router-dom";
 import Create from "./Create";
 import OwnerCrud from "../OwnerCrud";
@@ -9,8 +9,10 @@ import Sidebar from "./Sidebar";
 import { useState } from "react";
 import Offcanvas from "react-bootstrap/Offcanvas";
 import Faqs from "./Faqs";
+
+
 export default function PanelAdmin() {
-  const navigate= useNavigate();
+  // const navigate= useNavigate();
   /* useEffect(()=>navigate("/admin/dashboard"),[]) */
   /* useEffect(()=>navigate("/admin/"),[]) */
   const [show, setShow] = useState(false);
@@ -18,9 +20,6 @@ export default function PanelAdmin() {
   return (
     <React.Fragment>
       <div>
-        {
-          console.log(show)
-        }
         <Offcanvas show={show} onHide={() =>{setShow(false)}} style={{backgroundColor: "#212121"}}>
           <Sidebar></Sidebar>
         </Offcanvas>
