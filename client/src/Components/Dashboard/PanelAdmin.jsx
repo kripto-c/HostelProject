@@ -1,19 +1,18 @@
-import React, { useEffect } from "react";
-import { Route, Routes, useNavigate } from "react-router-dom";
+
+import { Route, Routes } from "react-router-dom";
 import Create from "./Create";
 import OwnerCrud from "../OwnerCrud";
 import Dashboard from "./Dashboard";
 import Payments from "./Payments";
 import ReviewAdmin from "./ReviewAdmin";
 import Sidebar from "./Sidebar";
-import Button from "react-bootstrap/Button";
 import { useState } from "react";
 import Offcanvas from "react-bootstrap/Offcanvas";
 export default function PanelAdmin() {
-  const navigate= useNavigate();
-  useEffect(()=>navigate("/admin/dashboard"),[])
-  const [show, setShow] = useState(false);
-  const handleShow = () => setShow(true);
+  // const navigate= useNavigate();
+  // useEffect(()=>navigate("/admin/dashboard"),[])
+  // const [show, setShow] = useState(false);
+  // const handleShow = () => setShow(true);
   return (
     <React.Fragment>
       <div>
