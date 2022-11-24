@@ -1,5 +1,5 @@
-import React, { useEffect } from "react";
-import { Route, Routes, useNavigate } from "react-router-dom";
+
+import { Route, Routes } from "react-router-dom";
 import Create from "./Create";
 import OwnerCrud from "../OwnerCrud";
 import Dashboard from "./Dashboard";
@@ -18,7 +18,6 @@ export default function PanelAdmin() {
   return (
     <React.Fragment>
       <div>
-      
         {
           console.log(show)
         }

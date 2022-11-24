@@ -464,7 +464,7 @@ export default function RoomDetail() {
         className="form-range"
         type= "range"
         min="0"
-        max= {room.beds} 
+        max= {room.beds_avalaibles} 
         onChange={handleRange}
         defaultValue= "0"
         disabled={room.status}
