@@ -90,11 +90,7 @@ function Navbars() {
            
             
           </div>
-          <ul className="navbar-nav ml-auto">
-              <li>
                 <MenuUsuario className="m-5" />
-              </li>
-            </ul>
         </Container>
 
       </Navbar>

@@ -43,7 +43,6 @@ export default function RoomDetail() {
   const [verLogin, setVerLogin] = useState(false);
   /////ventana emergente
   const dispatch = useDispatch();
-  // const client =  useSelector(state=> state.client);
   const [show, setShow] = useState(false);
   const handleClose = () => setShow(false);
   const [name, setName] = useState(true);
@@ -164,7 +163,7 @@ export default function RoomDetail() {
             const body = {}
             body.items = [{
                 title: room.description,
-                quantity: camas,
+                quantity:  parseInt(camas),
                 unit_price: room.price,
                 check_in: checkIn,
                 check_out: checkOut,
@@ -469,7 +468,7 @@ export default function RoomDetail() {
         step="1"
         />
       </div>
-      
+      {console.log(camas)}
       {room.status && (
         <div className="disponibilidad">No hay camas disponibles</div>
       )}
