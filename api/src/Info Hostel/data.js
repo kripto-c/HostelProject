@@ -504,7 +504,6 @@ module.exports = [
         question:"¿La cama viene con almohada y sabanas?",
         anwser:"Sí, dependiendo de la epoca del año se les provee alcochado aunque el inquilino es libre de solicitar más, si así lo desea."
       }
-
     ]
   },
 ];
