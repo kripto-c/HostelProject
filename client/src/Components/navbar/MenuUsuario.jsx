@@ -9,9 +9,8 @@ import Navbar from "react-bootstrap/Navbar";
 import NavDropdown from "react-bootstrap/NavDropdown";
 import { useAuth0 } from "@auth0/auth0-react";
 import { getCLient,getOwner, setClient, getRolUser } from "../../Redux/actions";
-import axios from "axios";
-import { useDispatch, useSelector } from "react-redux";
-import { Link, useNavigate } from "react-router-dom";
+import { useDispatch} from "react-redux";
+import { useNavigate } from "react-router-dom";
 import { useState, useEffect } from "react";
 import "./MenuUsuario.css";
 import logo from "../../images/logo.svg";
@@ -48,7 +47,6 @@ export default function MenuUsuario({ name, ...props }) {
     getAccessTokenSilently,
   } = useAuth0();
   const dispatch = useDispatch();
-  const client = useSelector((state) => state.client);
   const [view, setView] = useState(true);
   const [confirmLog, setConfirmLog] = useState(false);
   const [Sort, setSort] = useState("");

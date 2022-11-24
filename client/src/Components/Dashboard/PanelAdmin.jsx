@@ -6,9 +6,9 @@ import Dashboard from "./Dashboard";
 import Payments from "./Payments";
 import ReviewAdmin from "./ReviewAdmin";
 import Sidebar from "./Sidebar";
-import Button from "react-bootstrap/Button";
 import { useState } from "react";
 import Offcanvas from "react-bootstrap/Offcanvas";
+import Faqs from "./Faqs";
 export default function PanelAdmin() {
   const navigate= useNavigate();
   useEffect(()=>navigate("/admin/dashboard"),[])
@@ -38,6 +38,9 @@ export default function PanelAdmin() {
           </Routes>
           <Routes>
             <Route path="settings" element={<OwnerCrud></OwnerCrud>}></Route>
+          </Routes>
+          <Routes>
+            <Route path="faqs" element={<Faqs/>}></Route>
           </Routes>
       </div>
     </React.Fragment>

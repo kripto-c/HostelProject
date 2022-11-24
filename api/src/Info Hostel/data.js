@@ -308,6 +308,62 @@ module.exports = [
       {country:"Zambia"},
       {country:"Zimbabue"}
         
+    ],
+
+    faq:[
+      {
+        question:"¿Puedo alquilar varias o todas las camas en una habitación?",
+        anwser:"Sí, de ser necesario se pueden alquilar todas las camas dentro de la habitación."
+      },
+      {
+        question:"¿Cualquier persona puede ser admitada en el Hostel?",
+        anwser:"No hay restricción de generos ni ningún tipo de descriminación hacia una persona sin importar su procedencia."
+      },
+      {
+        question:"¿Cual es la diferencia entre un Hostel y un Hotel?",
+        anwser:"En un Hostel podés alquilar una cama, en vez de una habitación completa, ahorrando bastante dinero."
+      },
+      {
+        question:"¿Tienen cuartos privados?",
+        anwser:"Sí, en la sección de habitaciones puede encontrarlos, también puede verlos más rápido si utiliza el filtro de tipo de habitación."
+      },
+      {
+        question:"¿Cuantas personas pueden haber en un cuarto a la vez?",
+        anwser:"El número correspondiente a la cantidad de camas dentro de una habitación."
+      },
+      {
+        question:"¿Dos (2) personas pueden compartir una cama?",
+        anwser:"No, solo se permite una (1) persona por cama, ah no ser que sea una cama de dos plazas."
+      },
+      {
+        question:"¿Su Hostel cuenta con seguridad?",
+        anwser:"Sí, Nuestro hostel cuenta con 2 guardias con turnos rotativos que vigilan la entrada y están a disposicion de cualquier inquietud con respecto a la seguridad de todos de los inquilinos. Tambíen contamos con camaras de seguridad en areas comunitarias y afuera."
+      },
+      {
+        question:"¿Donde puedo guardar mis cosas?",
+        anwser:"Contamos con lockers individuales dentro de todas las habitaciónes con candados incluidos."
+      },
+
+      {
+        question:"¿Puedo hacer la reserva en persona?",
+        anwser:"Si, se puede hacer"
+      },
+      {
+        question:"¿Tengo que traer una toalla?",
+        anwser:"No, a cada inquilino se le provee con una toalla."
+      },
+      {
+        question:"¿El hostel cuenta con WIFI?",
+        anwser:"Sí, contamos con servicio de WIFI y con una buena velocidad de internet, aparte de varios repetidores WIFI para que la señal llegue a todos los rincones del Hostel sin preocuparse por el rango de WIFI."
+      },
+      {
+        question:"¿Hay toque de queda?",
+        anwser:"No, los inquilinos pueden diambular por el hostel entre los horarios que ellos quieran, siempre y cuando no disturben el silencio general durante horarios de descanso."
+      },
+      {
+        question:"¿La cama viene con almohada y sabanas?",
+        anwser:"Sí, dependiendo de la epoca del año se les provee alcochado aunque el inquilino es libre de solicitar más, si así lo desea."
+      }
     ]
   },
 ];

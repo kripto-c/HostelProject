@@ -118,10 +118,19 @@ export default function Sidebar() {
                 className={currentLink === 5 ? "active" : "none"}
                 onClick={() => setCurrentLink(5)}>
                 <a href="#">
-                  <BsFillChatTextFill />
+         
                   <span> FAQs</span>
                 </a>
               </li> */}
+                      <li
+                  className={currentLink === 5 ? "active" : "none"}
+                  onClick={() => setCurrentLink(5)}
+                >
+                  <Link to="/admin/faqs">
+                  <BsFillChatTextFill />
+                    <span> FaQs</span>
+                  </Link>
+                </li>
 
                 <li
                   className={currentLink === 6 ? "active" : "none"}
