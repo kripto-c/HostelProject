@@ -20,10 +20,13 @@ import moment from "moment";
 import {DateRangePicker} from "react-date-range"
 import 'react-date-range/dist/styles.css'; // main style file
 import 'react-date-range/dist/theme/default.css'; // theme css file
+import "bootstrap/dist/css/bootstrap.min.css";
+
 
 export default function RoomDetail() {
   
   const client = useSelector((state) => state.client);
+  const room = useSelector((state) => state.roomdetail);
   const { getAccessTokenSilently } = useAuth0();
   const [camas, setCamas] = useState(0);
   const [total, setTotal] = useState(0);
@@ -40,10 +43,8 @@ export default function RoomDetail() {
   const [verLogin, setVerLogin] = useState(false);
   /////ventana emergente
   const dispatch = useDispatch();
-  // const client =  useSelector(state=> state.client);
   const [show, setShow] = useState(false);
   const handleClose = () => setShow(false);
-  // const handleShow = () => setShow(true);
   const [name, setName] = useState(true);
   const [lastname, setLastname] = useState(true);
 
@@ -56,41 +57,20 @@ export default function RoomDetail() {
   const userLogin = useAuth0();
 
   let { id } = useParams();
-
-     useEffect(() =>{
-         dispatch(getRoomDetail(id));
-         dispatch(getRent(id))
-     },[dispatch]);
-    const room = useSelector((state) => state.roomdetail);
-    const rent = useSelector((state) => state.rent);
-     
-
+ 
+  
+  useEffect(() =>{
+    dispatch(getRoomDetail(id));
+    dispatch(getRent(id));
+  },[dispatch]);
+  
+  const rent = useSelector((state) => state.rent);
     //console.log('detail',entrada, salida);
-
-    let arreglo = [];
-    for (let a = 1; a <= room.beds; a++) {
-        arreglo.push(a);
+  
+    const handleRange = (e) =>{
+      setCamas(e.target.value)
+      setTotal(e.target.value*room.price)
     }
-   
-    const sumres = (e)=>{
-        if(e.target.checked) {
-            setCamas(camas+1)
-            return setTotal(total+room.price)
-        }
-        setCamas(camas-1)
-        return setTotal(total-room.price)
-    }
-    const [checkall, setCheckall] = useState(false)
-    const todacama = (e) =>{
-        if(e.target.checked){
-            setCamas(room.beds)
-            return setTotal(total+(room.price*room.beds))    
-        }
-        console.log(camas)
-        setCamas(0)
-        return setTotal(total-(room.price*room.beds))
-    }
-
     // const data = (b, e)=>{
     //     console.log(e.target.value)
     //     if(b) return setCheckIn(e.target.value.split('-').reverse().join('-'));
@@ -153,6 +133,7 @@ export default function RoomDetail() {
 
     
     const pay = async ()=>{
+      
 
         // VERIFICACION DE DATOS DE LA RESERVA
         // setCheckIn(entrada1);
@@ -182,7 +163,7 @@ export default function RoomDetail() {
             const body = {}
             body.items = [{
                 title: room.description,
-                quantity: camas,
+                quantity:  parseInt(camas),
                 unit_price: room.price,
                 check_in: checkIn,
                 check_out: checkOut,
@@ -244,12 +225,6 @@ export default function RoomDetail() {
     setName(true);
     setLastname(true);
   }
-
-  function active(e) {
-    e.preventDefault();
-    setShow(true);
-  }
-
     // console.log(room);
     return (
     <div className='detailRoom mx-auto'>
@@ -478,16 +453,22 @@ export default function RoomDetail() {
         />
       </div>
       <p className="Ac">
-        <b>Alojamientos</b>
+        <b>Camas a reservar: {camas}</b>
       </p>
-      {arreglo.map((e) => {
-        return (
-          <div key={e} className="listBeds">
-            <label>Cama</label>{" "}
-            <input disabled={room.status} onClick={sumres} type="checkbox" />
-          </div>
-        );
-      })}
+      <div className="rangebeds">
+        <input
+        id="customRange3"
+        className="form-range"
+        type= "range"
+        min="0"
+        max= {room.beds} 
+        onChange={handleRange}
+        defaultValue= "0"
+        disabled={room.status}
+        step="1"
+        />
+      </div>
+      {console.log(camas)}
       {room.status && (
         <div className="disponibilidad">No hay camas disponibles</div>
       )}

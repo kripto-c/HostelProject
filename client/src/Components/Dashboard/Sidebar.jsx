@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react";
-import { Routes, Route } from "react-router-dom";
 import { MdSpaceDashboard } from "react-icons/md";
 import { RiDashboard2Fill } from "react-icons/ri";
 import { FaAddressCard } from "react-icons/fa";
@@ -7,14 +6,9 @@ import { GiTwirlCenter } from "react-icons/gi";
 import { BsFillChatTextFill } from "react-icons/bs";
 import { IoSettings } from "react-icons/io5";
 import { FiLogOut } from "react-icons/fi";
-import { GiHamburgerMenu } from "react-icons/gi";
-import { VscChromeClose } from "react-icons/vsc";
-import scrollreveal from "scrollreveal";
 import logo from "../../images/logo.svg";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
-import Dashboard from "./Dashboard";
-import Payments from "./Payments.jsx";
 
 export default function Sidebar() {
   const [currentLink, setCurrentLink] = useState(1);
@@ -55,7 +49,7 @@ export default function Sidebar() {
           {/* //TOP-------------------------------------------->> */}
           <div className="top">
             <div className="brand">
-              <img className="logo" src={logo} />
+              <img className="logo" src={logo} style={{backgroundColor: "white", borderRadius: "6.5px"}} />
               <span>Project Hostel</span>
             </div>
             {/* //TOGGLE-------------------------------------------->> */}
@@ -211,8 +205,9 @@ export default function Sidebar() {
 }
 const Section = styled.section`
   position: fixed;
+  width: 100%;
   left: 0.5%;
-  background-color: #212121;
+  background-color: dark;
   height: 120vh;
   width: 32vw;
   display: flex;
@@ -235,24 +230,20 @@ const Section = styled.section`
     .brand {
       width: 100%;
       display: flex;
-
       justify-content: center;
-      align-items: center;
-      gap: 2rem;
+      gap: 1.3rem;
       svg {
         color: #ffc107;
         font-size: 2rem;
       }
       span {
         font-size: 2rem;
-        color: #ffc107;
+        color: #FFF9;
         font-family: "Permanent Marker", cursive;
       }
     }
     .links {
-      width: 100%;
-      display: flex;
-      justify-content: center;
+      width: 90%;
       ul {
         list-style-type: none;
         display: flex;
@@ -260,7 +251,7 @@ const Section = styled.section`
         gap: 1rem;
         li {
           padding: 0.6rem 1rem;
-
+          margin: 1%;
           border-radius: 0.6rem;
           &:hover {
             background-color: white;

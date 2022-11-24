@@ -34,11 +34,13 @@ route.get("/", async (req, res) => {
         room.beds = 0;
         room.status = true;
       }
+      console.log("cliente",client)
+      console.log("factura",pagado)
       client.addRent(pagado);
       pagado.addRoom(room);
       await room.save();
 
-      res.send(room);
+      res.send("bien");
     } else {
       res.send("nada");
     }

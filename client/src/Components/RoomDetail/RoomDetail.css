@@ -30,6 +30,13 @@
     max-width: 900px;
     min-width: 300px;
 }
+.rangebeds{
+    display: flex;
+    padding-top: 2vh;
+    padding-bottom: 2vh;
+    width: 40vw;
+    margin: auto;
+}
 
 .infoRoom div{
     margin: 0 30px;
@@ -106,10 +113,7 @@
     }
 
 
-    .listBeds{
-        width: 300px;
-        margin: auto;
-    }
+    
     .listBeds label{
         text-align: left;
         width: 200px;
