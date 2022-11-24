@@ -18,7 +18,6 @@ export default function PanelAdmin() {
   return (
     <React.Fragment>
       <div>
-      
         {
           console.log(show)
         }
