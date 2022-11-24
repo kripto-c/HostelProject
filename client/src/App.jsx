@@ -17,6 +17,9 @@ import PanelAdmin from "./Components/Dashboard/PanelAdmin";
 import ReviewAdmin from "./Components/Dashboard/ReviewAdmin.jsx";
 import Payments from "./Components/Dashboard/Payments";
 
+import {io} from 'socket.io-client'
+
+export const socket = io('http://localhost:4000')
 //-------------------------------------------------------------------->>
 function App() {
   return (

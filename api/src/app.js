@@ -2,7 +2,9 @@ const express = require('express');
 const cookieParser = require('cookie-parser');
 const bodyParser = require('body-parser');
 const morgan = require('morgan');
-const routes = require('./routes/index.js'); 
+const routes = require('./routes/index.js');
+const { Server } = require('socket.io')
+const { createServer } = require('http')
 
 // require('./db.js');
 
@@ -33,4 +35,37 @@ server.use((err, req, res, next) => { // eslint-disable-line no-unused-vars
   res.status(status).send(message);
 });
 
-module.exports = server;
+const serverHttp = createServer(server);
+const io = new Server(serverHttp, {
+  cors: {
+    header: '*'
+  }
+})
+
+let roomArr = [];
+
+io.on('connection', (socket) => {
+  socket.on('roomView', (roomID) => {
+    socket.join(roomID)
+    const filter = roomArr.filter((e) => e.id == roomID);
+    if (!filter.length) roomArr.push({ id: roomID, status: true })
+    const result = roomArr.filter((e) => e.id == roomID);
+    io.to(roomID).emit('payRoom', result[0]);
+  })
+
+  socket.on('userPayRoom', (roomID, userEmail) => {
+    roomArr.map((e) => { if (e.id == roomID) e.status = false })
+    const result = roomArr.filter((e) => e.id == roomID);
+    result[0].user = userEmail;
+    io.to(roomID).emit('userPay', result[0]);
+  })
+
+  socket.on('cancelPay', (roomID) => {
+    roomArr.map((e) => { if (e.id == roomID) e.status = true })
+    const result = roomArr.filter((e) => e.id == roomID);
+    io.to(roomID).emit('userPayC', result[0]);
+
+  })
+})
+
+module.exports = serverHttp;
