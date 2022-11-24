@@ -80,6 +80,11 @@
     padding: 5px 50px;
     border-radius: 20px;
 }
+.pay input:disabled{
+    background-color: #23574c;
+    color: #727272;
+    cursor: no-drop;
+}
 @media only screen and (max-width: 837px){
     .listBeds{
         width: 300px;

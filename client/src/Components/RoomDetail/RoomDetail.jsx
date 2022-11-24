@@ -23,6 +23,7 @@ import 'react-date-range/dist/theme/default.css'; // theme css file
 import "bootstrap/dist/css/bootstrap.min.css";
 
 import SweetAlert from 'react-bootstrap-sweetalert';
+import {socket} from '../../App'
 
 export default function RoomDetail() {
   
@@ -36,6 +37,7 @@ export default function RoomDetail() {
   const [pagar, setPagar] = useState("");
   const [cargando, setCargando] = useState(false);
   const [login, setLogin] = useState(false);
+  const [payAvalible, setPayAvalible] = useState(true);
   //CONTROL DEL FORM ////////////////////
   const [all, setAll] = useState(false);
   const [verRoom, setVerRoom] = useState(false);
@@ -63,6 +65,12 @@ export default function RoomDetail() {
   useEffect(() =>{
     dispatch(getRoomDetail(id));
     dispatch(getRent(id));
+    socket.emit('roomView', id)
+    socket.on('payRoom',(data)=> setPayAvalible(data.status))
+    socket.on('userPay',(data)=>{
+      if(data.user != userLogin.user.email) setPayAvalible(data.status)
+    })
+    socket.on('userPayC',(data)=> setPayAvalible(data.status))
   },[dispatch]);
   
   const rent = useSelector((state) => state.rent);
@@ -180,7 +188,8 @@ export default function RoomDetail() {
                     number: client.personalID
                 }
             };
-
+            socket.emit('userPayRoom',id, userLogin.user.email)
+            setCargando(!cargando);
             const token = await getAccessTokenSilently();
             
             const result = await axios.post("http://localhost:4000/payment", body,
@@ -192,7 +201,11 @@ export default function RoomDetail() {
             );
             setPagar(result.data.init);
         }
-
+    const cancelarPago = ()=>{
+      setCargando(!cargando);
+      setPagar("")
+      socket.emit('cancelPay', id)
+    }
   ///handle ventana emergente
 
   function handleChange(e) {
@@ -482,12 +495,13 @@ export default function RoomDetail() {
         <input
           onClick={pay}
           type="submit"
+          disabled={!payAvalible}
           value={cargando ? "Cargando..." : "Pagar"}
         />
       </div>
       {!pagar.length ? null : (
         <div className="IframeDiv">
-          <button onClick={() => setPagar("")}>X</button>
+          <button onClick={cancelarPago}>X</button>
           <iframe className="PagarIframe" src={pagar} frameborder="0"></iframe>
         </div>
       )}
