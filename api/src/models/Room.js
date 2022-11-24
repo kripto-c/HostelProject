@@ -35,6 +35,9 @@ module.exports = (sequelize) => {
         type: DataTypes.BOOLEAN,
         allowNull: false,
         defaultValue: false,
+    },
+    beds_avalaibles:{
+      type: DataTypes.INTEGER
     }
   },
   {

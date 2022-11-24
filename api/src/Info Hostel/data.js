@@ -126,6 +126,7 @@ module.exports = [
         observation: "",
         status: true,
         typeId: 1,
+        beds_avalaibles: 10
       },
       {
         beds: 4,
@@ -133,11 +134,11 @@ module.exports = [
         image:
           "https://milhousehostel.com/wp-content/uploads/2021/03/4476180-1394672_702_0_3538_2829_1000_800-605x605.jpg",
         bathroom: true,
-
         price: 1995.5,
         observation: "",
         status: false,
         typeId: 1,
+        beds_avalaibles: 4
       },
 
       {
@@ -150,6 +151,7 @@ module.exports = [
         observation: "",
         status: false,
         typeId: 1,
+        beds_avalaibles: 6
       },
       {
         beds: 1,
@@ -161,6 +163,7 @@ module.exports = [
         observation: "",
         status: false,
         typeId: 2,
+        beds_avalaibles: 1
       },
       {
         beds: 2,
@@ -172,6 +175,7 @@ module.exports = [
         observation: "",
         status: true,
         typeId: 2,
+        beds_avalaibles: 2
       },
       {
         beds: 1,
@@ -183,6 +187,7 @@ module.exports = [
         observation: "",
         status: true,
         typeId: 2,
+        beds_avalaibles: 1
       },
       {
         beds: 3,
@@ -194,6 +199,7 @@ module.exports = [
         observation: "",
         status: true,
         typeId: 2,
+        beds_avalaibles: 3
       },
       {
         beds: 6,
@@ -205,6 +211,7 @@ module.exports = [
         observation: "",
         status: true,
         typeId: 2,
+        beds_avalaibles: 6
       },
       {
         beds: 6,
@@ -216,6 +223,7 @@ module.exports = [
         observation: "",
         status: true,
         typeId: 2,
+        beds_avalaibles: 6
       },
       {
         beds: 4,
@@ -227,6 +235,7 @@ module.exports = [
         observation: "",
         status: true,
         typeId: 2,
+        beds_avalaibles: 4
       },
       {
         beds: 6,
@@ -238,6 +247,7 @@ module.exports = [
         observation: "",
         status: true,
         typeId: 2,
+        beds_avalaibles: 6
       },
       {
         beds: 2,
@@ -249,6 +259,7 @@ module.exports = [
         observation: "",
         status: true,
         typeId: 2,
+        beds_avalaibles: 2
       },
     ],
     country: [

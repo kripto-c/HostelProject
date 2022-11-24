@@ -50,7 +50,7 @@ route.post("/", async (req, res, next) => {
       },
       payer: user,
 
-      auto_return: "approved",
+      auto_return: "all",
     };
 
     try {
