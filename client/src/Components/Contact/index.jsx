@@ -2,13 +2,18 @@ import React from "react";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import style from './style.module.css'
 import emailjs from 'emailjs-com'
+import Swal from 'sweetalert2'
 
 export default function Contact() {
     function enviarMail(e){
         e.preventDefault()
         emailjs.sendForm('service_30dmxpw','template_ph17gpe',e.target,'RI99fLwUMn1TTaBI2')
         .then(res =>{
-        alert('Se ha enviado correctamente')
+        Swal.fire({
+            icon: 'success',
+            title: 'Success...',
+            text: 'Se ha enviado correctamente',
+          })
         console.log(res)
         })//serviceId,TemplateId,objeto,key
     }
