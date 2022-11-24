@@ -33,22 +33,22 @@ async function getFaq(req, res) {
     }
 }
 
-async function updateFaq(req, res) {
-     const  {id} = req.query;
-     const {question, anwser} = req.body;
-     try {
-        const faq = await Faq.findOne({where: {id: id}});
-        await faq.update({
-          question,
-          anwser
-       });
-        await faq.save();
-        res.send(faq)
+// async function updateFaq(req, res) {
+//      const  {id} = req.query;
+//      const {question, anwser} = req.body;
+//      try {
+//         const faq = await Faq.findOne({where: {id: id}});
+//         await faq.update({
+//           question,
+//           anwser
+//        });
+//         await faq.save();
+//         res.send(faq)
 
-     } catch (error) {
-        res.status(400).json({error: error + ""})
-     } 
-}
+//      } catch (error) {
+//         res.status(400).json({error: error + ""})
+//      } 
+// }
 
 
 async function deleteFaq(req, res) {
@@ -62,9 +62,10 @@ async function deleteFaq(req, res) {
 }
 
 
+
 module.exports =  {
     postFaq,
     getFaq,
-    updateFaq,
-    deleteFaq
+    deleteFaq,
+
 };

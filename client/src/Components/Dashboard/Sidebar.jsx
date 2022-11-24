@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { Routes, Route } from "react-router-dom";
 import { MdSpaceDashboard } from "react-icons/md";
 import { RiDashboard2Fill } from "react-icons/ri";
 import { FaAddressCard } from "react-icons/fa";
@@ -6,9 +7,14 @@ import { GiTwirlCenter } from "react-icons/gi";
 import { BsFillChatTextFill } from "react-icons/bs";
 import { IoSettings } from "react-icons/io5";
 import { FiLogOut } from "react-icons/fi";
+import { GiHamburgerMenu } from "react-icons/gi";
+import { VscChromeClose } from "react-icons/vsc";
+import scrollreveal from "scrollreveal";
 import logo from "../../images/logo.svg";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
+import Dashboard from "./Dashboard";
+import Payments from "./Payments.jsx";
 
 export default function Sidebar() {
   const [currentLink, setCurrentLink] = useState(1);
@@ -49,7 +55,7 @@ export default function Sidebar() {
           {/* //TOP-------------------------------------------->> */}
           <div className="top">
             <div className="brand">
-              <img className="logo" src={logo} style={{backgroundColor: "white", borderRadius: "6.5px"}} />
+              <img className="logo" src={logo} />
               <span>Project Hostel</span>
             </div>
             {/* //TOGGLE-------------------------------------------->> */}
@@ -112,10 +118,19 @@ export default function Sidebar() {
                 className={currentLink === 5 ? "active" : "none"}
                 onClick={() => setCurrentLink(5)}>
                 <a href="#">
-                  <BsFillChatTextFill />
+         
                   <span> FAQs</span>
                 </a>
               </li> */}
+                      <li
+                  className={currentLink === 5 ? "active" : "none"}
+                  onClick={() => setCurrentLink(5)}
+                >
+                  <Link to="/admin/faqs">
+                  <BsFillChatTextFill />
+                    <span> FaQs</span>
+                  </Link>
+                </li>
 
                 <li
                   className={currentLink === 6 ? "active" : "none"}
@@ -205,9 +220,8 @@ export default function Sidebar() {
 }
 const Section = styled.section`
   position: fixed;
-  width: 100%;
   left: 0.5%;
-  background-color: dark;
+  background-color: #212121;
   height: 120vh;
   width: 32vw;
   display: flex;
@@ -230,20 +244,24 @@ const Section = styled.section`
     .brand {
       width: 100%;
       display: flex;
+
       justify-content: center;
-      gap: 1.3rem;
+      align-items: center;
+      gap: 2rem;
       svg {
         color: #ffc107;
         font-size: 2rem;
       }
       span {
         font-size: 2rem;
-        color: #FFF9;
+        color: #ffc107;
         font-family: "Permanent Marker", cursive;
       }
     }
     .links {
-      width: 90%;
+      width: 100%;
+      display: flex;
+      justify-content: center;
       ul {
         list-style-type: none;
         display: flex;
@@ -251,7 +269,7 @@ const Section = styled.section`
         gap: 1rem;
         li {
           padding: 0.6rem 1rem;
-          margin: 1%;
+
           border-radius: 0.6rem;
           &:hover {
             background-color: white;

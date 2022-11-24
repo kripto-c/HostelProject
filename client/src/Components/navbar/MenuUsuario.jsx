@@ -8,6 +8,8 @@ import { useAuth0 } from "@auth0/auth0-react";
 import { getCLient,getOwner, setClient, getRolUser } from "../../Redux/actions";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
+
+
 import { useState, useEffect } from "react";
 import "./MenuUsuario.css";
 import Sidebar from "../Dashboard/Sidebar";
@@ -43,7 +45,6 @@ export default function MenuUsuario({ name, ...props }) {
     getAccessTokenSilently,
   } = useAuth0();
   const dispatch = useDispatch();
-  const client = useSelector((state) => state.client);
   const [view, setView] = useState(true);
   const [confirmLog, setConfirmLog] = useState(false);
   const [Sort, setSort] = useState("");
