@@ -34,7 +34,7 @@ export default function OwnerCrud() {
   async function handleSubmit (event) {
     const form = event.currentTarget;
     event.preventDefault();
-    if (form.checkValidity() === false) {      
+    if (form.checkValidity() === false) {
       event.stopPropagation();
     }
     setValidated(true);
@@ -103,7 +103,7 @@ export default function OwnerCrud() {
         </Row>
         <Row className="mb-3">
           <h2>Datos del hotel</h2>
-          <Form.Group as={Col} md="12" controlId="validationCustom01">
+          <Form.Group as={Col} md="8" controlId="validationCustom01">
               <Form.Label>Nombre del hotel (obligatorio)</Form.Label>
               <Form.Control
                 required
@@ -112,6 +112,18 @@ export default function OwnerCrud() {
                 placeholder="Nombre del hotel"
                 onChange={e=> handleChange(e)}
                 defaultValue = {info.hostelName}
+              />
+              <Form.Control.Feedback>Genial!</Form.Control.Feedback>
+            </Form.Group>
+            <Form.Group as={Col} md="4" controlId="validationCustom01">
+              <Form.Label>Correo electronico</Form.Label>
+              <Form.Control
+                required
+                name="mail"
+                type="text"
+                placeholder="E-mail"
+                onChange={e=> handleChange(e)}
+                defaultValue = {info.mail}
               />
               <Form.Control.Feedback>Genial!</Form.Control.Feedback>
             </Form.Group>
@@ -198,6 +210,51 @@ export default function OwnerCrud() {
                 aria-describedby="inputGroupPrepend"
                 onChange={e=> handleChange(e)}
                 defaultValue = {info.twitter}
+                />
+                <Form.Control.Feedback>Genial!</Form.Control.Feedback>
+            </InputGroup>
+          </Form.Group>
+        </Row>
+        <Row className="mb-3">
+          <h2>Informacion para el cliente</h2>
+          <Form.Group as={Col} md="12" controlId="validationCustomUsername">
+            <Form.Label>Sobre nosotros</Form.Label>
+            <InputGroup hasValidation>
+              <Form.Control
+                name="aboutUs"
+                type="textarea"
+                placeholder="Acerca de..."
+                aria-describedby="inputGroupPrepend"
+                onChange={e=> handleChange(e)}
+                defaultValue = {info.aboutUs}
+                />
+                <Form.Control.Feedback>Genial!</Form.Control.Feedback>
+            </InputGroup>
+          </Form.Group>
+          <Form.Group as={Col} md="12" controlId="validationCustomUsername">
+            <Form.Label>Porque elegirnos?</Form.Label>
+            <InputGroup hasValidation>
+              <Form.Control
+                name="chooseUs"
+                type="textarea"
+                placeholder="Porque elegirnos?"
+                aria-describedby="inputGroupPrepend"
+                onChange={e=> handleChange(e)}
+                defaultValue = {info.chooseUs}
+                />
+                <Form.Control.Feedback>Genial!</Form.Control.Feedback>
+            </InputGroup>
+          </Form.Group>
+          <Form.Group as={Col} md="12" controlId="validationCustomUsername">
+            <Form.Label>Extras</Form.Label>
+            <InputGroup hasValidation>
+              <Form.Control
+                name="extra"
+                type="textarea"
+                placeholder="Extras..."
+                aria-describedby="inputGroupPrepend"
+                onChange={e=> handleChange(e)}
+                defaultValue = {info.extra}
                 />
                 <Form.Control.Feedback>Genial!</Form.Control.Feedback>
             </InputGroup>

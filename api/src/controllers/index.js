@@ -27,7 +27,8 @@ module.exports = {
     },
     postOwner: async function(data){
         const {name, lastName, user, hostelName, city ,
-               country, zip, instagram, facebook, twitter} = data
+               country, zip, instagram, facebook, twitter, 
+               mail, aboutUs, chooseUs, extra} = data
         let owner = await Owner.findAll()
         if (!owner.length){
             let newOwner = await Owner.create({
@@ -40,11 +41,14 @@ module.exports = {
                 zip, 
                 instagram, 
                 facebook, 
-                twitter
+                twitter,
+                mail,
+                aboutUs,
+                chooseUs,
+                extra
              })
              return newOwner
         }else{
-            console.log("Back: Actualizacion")
             let updateOwner = await Owner.findByPk(1)
             await updateOwner.update({
                name:name, 
@@ -56,7 +60,11 @@ module.exports = {
                zip:zip, 
                instagram:instagram, 
                facebook:facebook, 
-               twitter:twitter
+               twitter:twitter,
+               mail:mail,
+               aboutUs:aboutUs,
+               chooseUs:chooseUs,
+               extra:extra
             })
             await updateOwner.save()
             return updateOwner

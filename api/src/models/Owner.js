@@ -35,7 +35,18 @@ module.exports =(sequelize)=>{
         },
         twitter:{
             type:DataTypes.STRING
+        },
+        mail:{
+            type:DataTypes.STRING
+        },
+        aboutUs:{
+            type:DataTypes.TEXT
+        },
+        chooseUs:{
+            type:DataTypes.TEXT
+        },
+        extra:{
+            type:DataTypes.TEXT
         }
-
     });
 }
