@@ -6,13 +6,10 @@ import { IconContext } from "react-icons";
 //----
 import { useAuth0 } from "@auth0/auth0-react";
 import { getCLient,getOwner, setClient, getRolUser } from "../../Redux/actions";
-<<<<<<< HEAD
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
-=======
-import { useDispatch} from "react-redux";
-import { useNavigate } from "react-router-dom";
->>>>>>> 6c4d1c3 (add component Faqs admin)
+
+
 import { useState, useEffect } from "react";
 import "./MenuUsuario.css";
 import Sidebar from "../Dashboard/Sidebar";
