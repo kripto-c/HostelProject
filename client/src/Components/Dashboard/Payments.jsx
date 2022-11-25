@@ -30,11 +30,13 @@ function Payments() {
 
   // PAGINADO --------------------->>
   const allPayments = useSelector((state) => state.rents)
+  let rentsCurrent = JSON.parse(localStorage.getItem("filters")) || allPayments
   const [currentPage, setCurrentPage] = useState(1)
   const [paymentsPerPage, setPaymentsPerPage] = useState(10)
   const indexOfLastPayment = currentPage * paymentsPerPage
   const indexOfFirstPayment = indexOfLastPayment - paymentsPerPage
-  const currentPayments = allPayments?.slice(indexOfFirstPayment, indexOfLastPayment)
+  const currentPayments = rentsCurrent?.slice(indexOfFirstPayment, indexOfLastPayment)
+  const totalPages = Math.ceil(allPayments.length / 10)
  
   const paginado = (pageNumbers) => {
     setCurrentPage(pageNumbers)
@@ -43,6 +45,12 @@ function Payments() {
 
  
   // FILTROS --------------------->>
+  const [data, setData] = useState(true)
+  useEffect(() => {
+    JSON.parse(localStorage.getItem("filters"))
+    setData(false)
+  }, [data])
+
   const months = allRents.map(e => e.dateIn.slice(0, 7))
   console.log(months)
 
@@ -56,16 +64,31 @@ function Payments() {
   console.log(months2)
 
 
-  const [date, setDate] = useState("")
-  const [month, setMonth] = useState("")
+  const [date, setDate] = useState(JSON.parse(localStorage.getItem("selectDate"))||"")
+  const [month, setMonth] = useState(JSON.parse(localStorage.getItem("selectMonth")) || "")
   const [orden, setOrden] = useState('')
+  
+
+  
+
+  const putRents = () => {
+    localStorage.removeItem("filters")
+    localStorage.setItem("selectDate", JSON.stringify(""))
+    localStorage.setItem("selectMonth", JSON.stringify(""))
+  }
+
+
   function rentsHandler(e) {
     e.preventDefault()
 
     if(e.target.name === "filterByMonth") {
+      localStorage.setItem("selectMonth", JSON.stringify(e.target.value))
+      JSON.parse(localStorage.getItem("selectMonth"))? setMonth(JSON.parse(localStorage.getItem("selectMonth"))):setMonth(e.target.value)
       return setMonth(e.target.value)
     } 
     if(e.target.name === "sortByDate") {
+      localStorage.setItem("selectDate", JSON.stringify(e.target.value))
+      JSON.parse(localStorage.getItem("selectDate"))? setDate(JSON.parse(localStorage.getItem("selectDate"))):setDate(e.target.value)
       return setDate(e.target.value)
     }
   }
@@ -80,6 +103,7 @@ function Payments() {
     } else {
       dispatch(filterRents(month, date))
       setOrden(`Ordenado ${e.target.value}`)
+      setData(true)
       setCurrentPage(1)
     }
   }
@@ -89,29 +113,18 @@ function Payments() {
 
     setDate("")
     setMonth("")
+    putRents()
+    setData(true)
     dispatch(getRents())
   
-    if(e.target.name === "filterByMonth") {
+    /* if(e.target.name === "filterByMonth") {
       return setMonth(e.target.value)
     } 
     if(e.target.name === "sortByDate") {
       return setDate(e.target.value)
-    }
+    } */
   }
-  function handleSubmitFilters(e) {
-    e.preventDefault()
-    if(!date && !month) {
-      Swal.fire({
-        icon: 'error',
-        title: 'Oops...',
-        text: 'No hay filtros a aplicar',
-      })
-    } else {
-      dispatch(filterRents(month, date))
-      setOrden(`Ordenado ${e.target.value}`)
-      setCurrentPage(1)
-    }
-  }
+  
   // ----------------------------->>
  
  
@@ -121,7 +134,11 @@ function Payments() {
       <div>
         <nav>
           <li>
-            <select name="filterByMonth" onChange={e => {rentsHandler(e)}}>
+            <select 
+              name="filterByMonth" 
+              defaultValue="all"
+              value={JSON.parse(localStorage.getItem("selectMonth"))}
+              onChange={e => {rentsHandler(e)}}>
               <option value="all" hidden>
                 Filtrar por mes
               </option>
@@ -131,7 +148,11 @@ function Payments() {
             </select>
           </li>
           <li>
-            <select name="sortByDate" onChange={e => {rentsHandler(e)}}>
+            <select 
+              name="sortByDate" 
+              defaultValue="all"
+              value={JSON.parse(localStorage.getItem("selectDate"))}
+              onChange={e => {rentsHandler(e)}}>
               <option value="all" hidden>
                 Ordenar por precio
               </option>
@@ -156,6 +177,7 @@ function Payments() {
       allPayments={allPayments}
       paginado={paginado}
       currentPage={currentPage}
+      totalPages={totalPages}
      />
 
     <Table striped bordered hover className="col-md-9">

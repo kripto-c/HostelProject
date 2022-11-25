@@ -258,6 +258,7 @@ export default function rootReducer(state = initialState, action) {
       } else if(action.payloadOne && action.payloadTwo) {
         let aux = filter()
         let cosa3 = sort(aux)
+        localStorage.setItem("filters", JSON.stringify(cosa3))
         return {
           ...state,
           rents: cosa3

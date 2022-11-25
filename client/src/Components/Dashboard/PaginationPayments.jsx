@@ -1,16 +1,27 @@
 import React from "react"
  
-export default function PaginationPayments({ paymentsPerPage, allPayments, paginado, currentPage }) {
+export default function PaginationPayments({ paymentsPerPage, allPayments, paginado, currentPage, totalPages }) {
     const pageNumbers = []
     
     for(let i=1; i<=Math.ceil(allPayments.length/paymentsPerPage); i++) {
         pageNumbers.push(i)
     }
  
+    const nextHandler = () => {
+        if(currentPage < totalPages) {
+        return paginado(currentPage + 1)}
+    }
+    const prevHandler = () => {
+        if(currentPage > 1)
+        return paginado(currentPage - 1)
+    }
+    console.log(totalPages)
+    console.log(currentPage)
+    
     return (
         <nav>
             <button>
-                <a onClick={() => paginado(currentPage-1)}>Prev</a>
+                <a onClick={() => prevHandler()}>Prev</a>
             </button>
             <ul>
                 {pageNumbers &&
@@ -31,7 +42,7 @@ export default function PaginationPayments({ paymentsPerPage, allPayments, pagin
                
             </ul>
             <button>
-                <a onClick={() => paginado(currentPage+1)}>Next</a>
+                <a onClick={() => nextHandler()}>Next</a>
             </button>
         </nav>
     )
