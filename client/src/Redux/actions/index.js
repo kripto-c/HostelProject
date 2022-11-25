@@ -321,3 +321,11 @@ export function delteFaq(token, id) {
     }
 }
 
+
+export function filterRents(payloadOne, payloadTwo) {
+  return {
+    type: "FILTER_RENTS",
+    payloadOne,
+    payloadTwo,
+  };
+}

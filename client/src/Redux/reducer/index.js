@@ -182,7 +182,80 @@ export default function rootReducer(state = initialState, action) {
       };
     }
 
+    case "FILTER_RENTS": {
+      const allRents = state.rents
 
+      //FILTRO LAS RENTS SEGÚN EL MES
+      function filter () {
+        const boolean = []
+
+        const dateInReduced = allRents.map(e => e.dateIn.slice(0, 7))
+
+        dateInReduced.forEach(e => {
+          if(e === action.payloadOne) {
+            boolean.push(1)
+          } else {
+            boolean.push(0)
+          }
+        })
+
+        const rentFilter = []
+        for(let i = 0; boolean.length > i; i++) {
+          if(boolean[i] === 1) {
+            rentFilter.push(allRents[i])
+          }
+        }
+        return rentFilter
+      }
+      //ORDENO LAS RENTS SEGÚN LA DATE
+      function sort(algo) {
+        let sortedArr = action.payloadTwo === "asc" ?
+        algo.sort(function(a, b) {
+          var c = new Date(a.dateIn).getTime();
+          var d = new Date(b.dateIn).getTime()
+          if(c > d) {
+            return 1
+          }
+          if(d > c) {
+            return -1
+          }
+          return 0
+        }) :
+        algo.sort(function(a, b) {
+          var c = new Date(a.dateIn).getTime();
+          var d = new Date(b.dateIn).getTime()
+          if(c > d) {
+            return -1
+          }
+          if(d > c) {
+            return 1
+          }
+          return 0 
+        })
+        return sortedArr
+      }
+      
+      if(action.payloadOne && !action.payloadTwo) {
+        let cosa = filter()
+        return {
+          ...state,
+          rents: cosa
+        }
+      } else if(!action.payloadOne && action.payloadTwo) {
+        let cosa2 = sort(allRents)
+        return {
+          ...state,
+          rents: cosa2
+        }
+      } else if(action.payloadOne && action.payloadTwo) {
+        let aux = filter()
+        let cosa3 = sort(aux)
+        return {
+          ...state,
+          rents: cosa3
+        }
+      }
+  }
     default:
       return state;
   }
