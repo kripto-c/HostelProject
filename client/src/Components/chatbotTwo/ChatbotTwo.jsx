@@ -29,10 +29,10 @@ export default function BotChat() {
       id: "preguntaNombre",
       user: true,
       validator: (value) => {
-        if (/^[a-zA-Z ]{2,30}$/.test(value)) {
+        if (/^[a-zA-Z ]{5,30}$/.test(value) ) {
           return true;
         } else {
-          return "Su nombre solo puede incluir letras";
+          return "Solo letras y almenos 5 caracteres";
         }
       },
       trigger: "respuesta-nombre",
