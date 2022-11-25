@@ -321,3 +321,23 @@ export function delteFaq(token, id) {
     }
 }
 
+
+/* export function filterRentsByMonth(payload) {
+  return {
+    type: "FILTER_RENTS_BY_MONTH",
+    payload
+  }
+}
+export function sortRentsByDate(payload) {
+  return {
+    type: "SORT_RENTS_BY_DATE",
+    payload
+  }
+} */
+export function filterRents(payloadOne, payloadTwo) {
+  return {
+    type: "FILTER_RENTS",
+    payloadOne,
+    payloadTwo,
+  };
+}
