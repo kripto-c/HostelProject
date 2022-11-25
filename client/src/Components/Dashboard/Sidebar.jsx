@@ -220,8 +220,9 @@ export default function Sidebar() {
 }
 const Section = styled.section`
   position: fixed;
+  width: 100%;
   left: 0.5%;
-  background-color: #212121;
+  background-color: dark;
   height: 120vh;
   width: 32vw;
   display: flex;
@@ -244,24 +245,20 @@ const Section = styled.section`
     .brand {
       width: 100%;
       display: flex;
-
       justify-content: center;
-      align-items: center;
-      gap: 2rem;
+      gap: 1.3rem;
       svg {
         color: #ffc107;
         font-size: 2rem;
       }
       span {
         font-size: 2rem;
-        color: #ffc107;
+        color: #FFF9;
         font-family: "Permanent Marker", cursive;
       }
     }
     .links {
-      width: 100%;
-      display: flex;
-      justify-content: center;
+      width: 90%;
       ul {
         list-style-type: none;
         display: flex;
@@ -269,7 +266,7 @@ const Section = styled.section`
         gap: 1rem;
         li {
           padding: 0.6rem 1rem;
-
+          margin: 1%;
           border-radius: 0.6rem;
           &:hover {
             background-color: white;
