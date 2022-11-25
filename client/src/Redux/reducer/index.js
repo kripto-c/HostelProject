@@ -182,98 +182,35 @@ export default function rootReducer(state = initialState, action) {
       };
     }
 
-
-    case "FILTER_RENTS_BY_MONTH": {
-      const allRents = state.rents
-      const boolean = []
-
-      const dateInReduced = allRents.map(e => e.dateIn.slice(0, 7))
-
-      dateInReduced.forEach(e => {
-        if(e === action.payload) {
-          boolean.push(1)
-        } else {
-          boolean.push(0)
-        }
-      })
-
-      const rentFilter = []
-      for(let i = 0; boolean.length > i; i++) {
-        if(boolean[i] === 1) {
-          rentFilter.push(allRents[i])
-        }
-      }
-      return {
-        ...state,
-        rents: rentFilter
-      }
-    }
-    case "SORT_RENTS_BY_DATE": {
-      let sortedArr = action.payload === "asc" ?
-        state.rents.sort(function(a, b) {
-          var c = new Date(a.dateIn).getTime();
-          var d = new Date(b.dateIn).getTime()
-          if(c > d) {
-            return 1
-          }
-          if(d > c) {
-            return -1
-          }
-          return 0
-        }) :
-        state.rents.sort(function(a, b) {
-          var c = new Date(a.dateIn).getTime();
-          var d = new Date(b.dateIn).getTime()
-          if(c > d) {
-            return -1
-          }
-          if(d > c) {
-            return 1
-          }
-          return 0 
-        })
-        console.log(sortedArr)
-        return {
-          ...state,
-          rents:  action.payload === "all" ?
-            state.rents : 
-            sortedArr
-            
-        }
-    }
     case "FILTER_RENTS": {
-      //FILTRO LAS RENTS SEGÚN EL MES
-
       const allRents = state.rents
-      if(action.payloadOne) {
-      
-      const boolean = []
 
-      const dateInReduced = allRents.map(e => e.dateIn.slice(0, 7))
+      //FILTRO LAS RENTS SEGÚN EL MES
+      function filter () {
+        const boolean = []
 
-      dateInReduced.forEach(e => {
-        if(e === action.payloadOne) {
-          boolean.push(1)
-        } else {
-          boolean.push(0)
+        const dateInReduced = allRents.map(e => e.dateIn.slice(0, 7))
+
+        dateInReduced.forEach(e => {
+          if(e === action.payloadOne) {
+            boolean.push(1)
+          } else {
+            boolean.push(0)
+          }
+        })
+
+        const rentFilter = []
+        for(let i = 0; boolean.length > i; i++) {
+          if(boolean[i] === 1) {
+            rentFilter.push(allRents[i])
+          }
         }
-      })
-
-      const rentFilter = []
-      for(let i = 0; boolean.length > i; i++) {
-        if(boolean[i] === 1) {
-          rentFilter.push(allRents[i])
-        }
+        return rentFilter
       }
-      return {
-        ...state,
-        rents: rentFilter
-      }
-      } else if(action.payloadTwo) {
-        console.log(action.payloadTwo)
-      //ORDENO LAS RENTS SEGÚN FECHA
-      let sortedArr = action.payloadTwo === "asc" ?
-        state.rents.sort(function(a, b) {
+      //ORDENO LAS RENTS SEGÚN LA DATE
+      function sort(algo) {
+        let sortedArr = action.payloadTwo === "asc" ?
+        algo.sort(function(a, b) {
           var c = new Date(a.dateIn).getTime();
           var d = new Date(b.dateIn).getTime()
           if(c > d) {
@@ -284,7 +221,7 @@ export default function rootReducer(state = initialState, action) {
           }
           return 0
         }) :
-        state.rents.sort(function(a, b) {
+        algo.sort(function(a, b) {
           var c = new Date(a.dateIn).getTime();
           var d = new Date(b.dateIn).getTime()
           if(c > d) {
@@ -295,17 +232,30 @@ export default function rootReducer(state = initialState, action) {
           }
           return 0 
         })
-        console.log(sortedArr)
+        return sortedArr
+      }
+      
+      if(action.payloadOne && !action.payloadTwo) {
+        let cosa = filter()
         return {
           ...state,
-          rents:  action.payloadTwo === "all" ?
-            state.rents : 
-            [...sortedArr]
-            
+          rents: cosa
+        }
+      } else if(!action.payloadOne && action.payloadTwo) {
+        let cosa2 = sort(allRents)
+        return {
+          ...state,
+          rents: cosa2
+        }
+      } else if(action.payloadOne && action.payloadTwo) {
+        let aux = filter()
+        let cosa3 = sort(aux)
+        return {
+          ...state,
+          rents: cosa3
         }
       }
-    }
-
+  }
     default:
       return state;
   }
