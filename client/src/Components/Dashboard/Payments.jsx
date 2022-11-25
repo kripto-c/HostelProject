@@ -55,6 +55,18 @@ function Payments() {
   }
   console.log(months2)
 
+  /* function hanleFilterRentsByMonth(e) {
+    e.preventDefault()
+    dispatch(filterRentsByMonth(e.target.value))
+    setCurrentPage(1)
+  }
+  const [orden, setOrden] = useState('')
+  function handleSortRentsByDate(e) {
+    e.preventDefault()
+    dispatch(sortRentsByDate(e.target.value))
+    setCurrentPage(1)
+    setOrden(`Ordenado ${e.target.value}`)
+  } */
 
   const [date, setDate] = useState("")
   const [month, setMonth] = useState("")
@@ -90,6 +102,27 @@ function Payments() {
     setDate("")
     setMonth("")
     dispatch(getRents())
+  
+    if(e.target.name === "filterByMonth") {
+      return setMonth(e.target.value)
+    } 
+    if(e.target.name === "sortByDate") {
+      return setDate(e.target.value)
+    }
+  }
+  function handleSubmitFilters(e) {
+    e.preventDefault()
+    if(!date && !month) {
+      Swal.fire({
+        icon: 'error',
+        title: 'Oops...',
+        text: 'No hay filtros a aplicar',
+      })
+    } else {
+      dispatch(filterRents(month, date))
+      setOrden(`Ordenado ${e.target.value}`)
+      setCurrentPage(1)
+    }
   }
   // ----------------------------->>
  
