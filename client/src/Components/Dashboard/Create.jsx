@@ -16,13 +16,15 @@ const Create = () => {
   const [image, setImage] = useState("");
   const [loading, setLoading] = useState(false);
   const [room, setRoom] = useState({
-    beds: "",
+    beds: "5",
     description: "",
     image: "",
     bathroom: "",
     observation: "",
     price: "",
     typeId: "",
+    cuchetas: "",
+    simples: "",
   });
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -59,13 +61,6 @@ const Create = () => {
     });
   };
 
-  const handlebañoSelect = (e) => {
-    setRoom({
-      ...room,
-      bathroom: e.target.value,
-    });
-  };
-
   const handleTipoSelect = (e) => {
     setRoom({
       ...room,
@@ -73,10 +68,17 @@ const Create = () => {
     });
   };
 
-  const handleCucheta = (e) => {
+  const handlebañoSelect = (e) => {
     setRoom({
       ...room,
-      beds: e.target.value * 2,
+      bathroom: e.target.value,
+    });
+  };
+
+  const handleCuchetas = (e) => {
+    setRoom({
+      ...room,
+      cuchetas: e.target.value * 2,
     });
   };
 
@@ -166,11 +168,20 @@ const Create = () => {
               <Form.Label>Camas(OBLIGATORIO): </Form.Label>
               <Form.Control
                 type="number"
-                name="beds"
+                name="simples"
                 min="1"
                 max="10"
-                value={room.beds}
-                onChange={handleChange}
+                value={room.simples}
+                onChange={handleCuchetas}
+              />
+            </Form.Group>
+            <Form.Group as={Col} md="3">
+              <Form.Label>Camas Totales:</Form.Label>
+              <Form.Control
+              disabled
+              tpye="number"
+              name="beds"
+              value={room.beds}
               />
             </Form.Group>
             <Form.Group as={Col} md="3">
@@ -180,21 +191,23 @@ const Create = () => {
                 name="cuchetas"
                 min="0"
                 max="10"
-                value={room.beds}
-                onChange={handleCucheta}
-              />
-            </Form.Group>
-            <Form.Group as={Col} md="3" style={{ marginLeft: "8px" }}>
-              <Form.Label>Precio(OBLIGATORIO): </Form.Label>
-              <Form.Control
-                type="number"
-                min="1000"
-                max="1000000"
-                name="price"
-                value={room.price}
+                value={room.cuchetas}
                 onChange={handleChange}
               />
             </Form.Group>
+            <Row className="justify-content-center">
+              <Form.Group as={Col} md="5" style={{ marginLeft: "8px" }}>
+                <Form.Label>Precio(OBLIGATORIO): </Form.Label>
+                <Form.Control
+                  type="number"
+                  min="1000"
+                  max="1000000"
+                  name="price"
+                  value={room.price}
+                  onChange={handleChange}
+                />
+              </Form.Group>
+            </Row>
           </Row>
           <Row className="d-flex justify-content-between padding-left-2">
             <Form.Group as={Col} md="5">
