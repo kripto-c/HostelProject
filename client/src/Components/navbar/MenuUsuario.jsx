@@ -4,8 +4,9 @@ import Offcanvas from "react-bootstrap/Offcanvas";
 import {BiCog} from "react-icons/bi";
 import { IconContext } from "react-icons";
 //----
+import Swal from 'sweetalert2'
 import { useAuth0 } from "@auth0/auth0-react";
-import { getCLient,getOwner, setClient, getRolUser } from "../../Redux/actions";
+import { getCLient,getOwner, setClient, getRolUser, getStatus } from "../../Redux/actions";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
 
@@ -33,6 +34,7 @@ const options = [
 ];
 
 export default function MenuUsuario({ name, ...props }) {
+  const client = useSelector(state=> state.client)
   const [show, setShow] = useState(false);
   const navigate = useNavigate();
   const handleClose = () => setShow(false);
@@ -53,6 +55,7 @@ export default function MenuUsuario({ name, ...props }) {
     try {
       const token = await getAccessTokenSilently();
      await dispatch(setClient(token))
+     await dispatch(getStatus(token))
      await getInfo();
     } catch (error) {
       console.log(error);
@@ -63,21 +66,35 @@ export default function MenuUsuario({ name, ...props }) {
     dispatch(getCLient(token));
   }
   const [show1, setShow1] = useState(false);
-  // const[sidebar, setSidebar] = useState(false);
   
   async function getRol(){
     const token = await getAccessTokenSilently();
      await dispatch(getRolUser(token))
     let rol = localStorage.getItem("Rol");
-      if(rol === "menu-client" ){
-        saveClient();
-        
+    if(rol === "menu-client" || !rol ){
+         saveClient();
       }
       else{
         await dispatch(getOwner(token))
-        // setSidebar(true);
       }
   }
+
+async function statusUser() {
+ if(localStorage.getItem("status") == "disabled"){
+   Swal.fire({
+           position: 'center',
+           icon: 'error',
+           title: 'Su cuenta ha sido bloqueada. Consulte con el administrador en la seccion Contactanos',
+           showConfirmButton: false,
+           timer: 6000
+         })
+         setTimeout(() => {
+           logout()
+          }, 2000);
+        }
+      
+}
+
   useEffect(() => {
     let idUser = localStorage.getItem("IDUser");
     if (idUser) {
@@ -186,6 +203,7 @@ export default function MenuUsuario({ name, ...props }) {
                   e.preventDefault();
                   await loginWithPopup();
                   await getRol();
+                  await statusUser();
                   setConfirmLog(true);
                 }}
               >

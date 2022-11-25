@@ -58,7 +58,7 @@ route.get('/setClient', async (req, res)=>{
              name:given_name,
              lastname:family_name,
              email,
-             idAuth:id 
+             idAuth:id
           }) 
           res.json({message:"usuario registrado correctamente ", user:id});
          }else res.send('faltan datos requeridos')
@@ -67,6 +67,44 @@ route.get('/setClient', async (req, res)=>{
         }
 })
 
+route.get('/status', async (req, res)=>{
+       
+     try {
+      const accesToken = req.headers.authorization.split(' ')[1];
+      const responds = await axios.get('https://dev-o7k6sbvjre41wvzb.us.auth0.com/userinfo', {
+         headers:{authorization:`Bearer ${accesToken}`}
+       })
+       const userinfo = responds.data;
+       const { sub } = userinfo;
+       const id = sub.split('|')[1];
+       const faq = await Client.findOne({where: {idAuth: id}});
+        res.send(faq.status)
+     } catch (error) {
+        res.status(400).json({error: error + ""})
+     } 
+    
+})
+
+route.get('/banner', async(req, res)=>{
+    try {
+      
+      const accesToken = req.headers.authorization.split(' ')[1];
+      const responds = await axios.get('https://dev-o7k6sbvjre41wvzb.us.auth0.com/userinfo', {
+         headers:{authorization:`Bearer ${accesToken}`}
+       })
+       const userinfo = responds.data;
+       const { sub } = userinfo;
+      const id = sub.split('|')[1];
+      const client = await Client.findOne({where: {idAuth: id}});
+       await client.update({
+         status:"disabled"
+      });
+       await client.save();
+       res.send(client)
+    } catch (error) {
+      res.json({error: error + ""})
+    }
+})
 
 
 module.exports = route;
