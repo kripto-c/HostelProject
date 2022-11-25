@@ -6,6 +6,6 @@ const router = Router();
 
 router.get("/deleteReview", deleteReview);
 router.get("/deleteRoom", deleteRoom);
-router.get("/changeStatusRoom", changeStatusRoom)
+router.get("/", changeStatusRoom)
 
 module.exports = router;

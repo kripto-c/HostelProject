@@ -25,13 +25,13 @@ const deleteReview = async (req, res) => {
 
 const changeStatusRoom = async (req, res) => {
   try {
-    let { id, statusRoom } = req.params;
+    let { id, statusRoom } = req.query;
     let findId = await Room.findByPk(id);
-    if (statusRoom) {
+    if (statusRoom === "activo") {
       await findId.update({ status: false });
       await findId.save();
     } else {
-      if (!statusRoom) {
+      if (statusRoom === "inactivo") {
         await findId.update({ status: true });
         await findId.save();
       }
@@ -41,6 +41,7 @@ const changeStatusRoom = async (req, res) => {
     res.status(400).json("No se pudo actualizar");
   }
 };
+
 const deleteRoom = async (req, res) => {
   try {
     let { id } = req.query;
