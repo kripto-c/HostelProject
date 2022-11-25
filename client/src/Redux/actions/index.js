@@ -305,10 +305,3 @@ export function getRents() {
     console.log(error);
   }
 }
-
-export function inactiveRooms(payload){
-  return{
-    payload,
-    type: "INACTIVE_ROOMS"
-  }
-}

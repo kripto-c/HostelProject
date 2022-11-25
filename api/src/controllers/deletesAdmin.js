@@ -25,7 +25,7 @@ const deleteReview = async (req, res) => {
 
 const changeStatusRoom = async (req, res) => {
   try {
-    let { id, statusRoom } = req.query;
+    let { id, statusRoom } = req.params;
     let findId = await Room.findByPk(id);
     if (statusRoom) {
       await findId.update({ status: false });
@@ -46,7 +46,6 @@ const deleteRoom = async (req, res) => {
     let { id } = req.query;
     let findId = await Room.findByPk(id);
     await findId.destroy();
-    await findId.save();
     res.status(200).json("Habitacion Borrada");
   } catch (e) {
     res.status(400).json("No se pudo eliminar");

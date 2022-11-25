@@ -38,6 +38,7 @@ const Edit = () => {
         authorization: `Bearer ${token}`,
       },
     };
+
     dispatch(changeStatusRoom(authorization, room, statusRoom));
   };
 
@@ -78,10 +79,7 @@ const Edit = () => {
                     <input
                       type="checkbox"
                       defaultChecked={room.status}
-                      onClick={async () => {
-                        await handleChangeStatus(room.id, !room.status);
-                        setEstado(false);
-                      }}
+                      onClick={() => handleChangeStatus(room.id, room.status)}
                     ></input>
                     <span className="deslizadora"></span>
                   </label>

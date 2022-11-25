@@ -5,43 +5,38 @@ import { IoStatsChart } from "react-icons/io5";
 import { BiGroup } from "react-icons/bi";
 import { FiActivity } from "react-icons/fi";
 import { cardStyles } from "./ReusableStyles";
-import {  useDispatch, useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { getAllClients } from "../../Redux/actions";
 import { useAuth0 } from "@auth0/auth0-react";
 import { getRents } from "../../Redux/actions";
 
 export default function Analytics() {
-  const {  
-    getAccessTokenSilently
-  } = useAuth0();
-   const clientes = useSelector((state)=>state.allClients)
-   const protectClients = async ()=>{
+  const { getAccessTokenSilently } = useAuth0();
+  const clientes = useSelector((state) => state.allClients);
+  const protectClients = async () => {
     const token = await getAccessTokenSilently();
-    dispatch(getAllClients(token))
-   } 
+    dispatch(getAllClients(token));
+  };
   const dispatch = useDispatch();
-   useEffect(()=>{
-    protectClients()
-    
-    console.log("redux clientes",clientes)
-  } ,[dispatch])
+  useEffect(() => {
+    protectClients();
+  }, [dispatch]);
 
   // Esto es para mostrar las earnings
   useEffect(() => {
-    dispatch(getRents())
-  }, [])
- 
-  const allRents = useSelector((state) => state.rents)
- 
-  var sum = 0
-  function suma (){
- 
-    const aux = allRents.map(e => {
-      sum = sum + e.price
-    })
-    return aux
+    dispatch(getRents());
+  }, []);
+
+  const allRents = useSelector((state) => state.rents);
+
+  var sum = 0;
+  function suma() {
+    const aux = allRents.map((e) => {
+      sum = sum + e.price;
+    });
+    return aux;
   }
-  suma()
+  suma();
   return (
     <Section>
       <div className="analytic ">
@@ -68,7 +63,7 @@ export default function Analytics() {
         </div>
         <div className="content">
           <h5>Clientes</h5>
-          <h2>{clientes.length?clientes.length:null}</h2>
+          <h2>{clientes.length ? clientes.length : null}</h2>
         </div>
       </div>
       <div className="analytic ">
