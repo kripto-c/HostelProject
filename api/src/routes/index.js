@@ -27,7 +27,6 @@ const jwtCheck = require('../jwtCheck/jwtCheck');
 
 router.use(jwtCheck);
 
-
 router.use(express.json());
 //RUTAS--------------------------------------------------------------->>
 router.use("/faq", faq)
