@@ -1,20 +1,17 @@
-import React, { useState, useEffect } from "react";
-import { Routes, Route } from "react-router-dom";
-import { MdSpaceDashboard } from "react-icons/md";
+import React, { useState } from "react";
+import { MdSpaceDashboard, MdRateReview } from "react-icons/md";
 import { RiDashboard2Fill } from "react-icons/ri";
 import { FaAddressCard } from "react-icons/fa";
 import { GiTwirlCenter } from "react-icons/gi";
+import { TbReportMoney } from "react-icons/tb";
 import { BsFillChatTextFill } from "react-icons/bs";
 import { IoSettings } from "react-icons/io5";
+import { IoIosCreate} from "react-icons/io";
+
 import { FiLogOut } from "react-icons/fi";
-import { GiHamburgerMenu } from "react-icons/gi";
-import { VscChromeClose } from "react-icons/vsc";
-import scrollreveal from "scrollreveal";
 import logo from "../../images/logo.svg";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
-import Dashboard from "./Dashboard";
-import Payments from "./Payments.jsx";
 
 export default function Sidebar() {
   const [currentLink, setCurrentLink] = useState(1);
@@ -55,7 +52,7 @@ export default function Sidebar() {
           {/* //TOP-------------------------------------------->> */}
           <div className="top">
             <div className="brand">
-              <img className="logo" src={logo} />
+              <img className="logo" src={logo} style={{backgroundColor: "white", borderRadius: "10px"}} />
               <span>Project Hostel</span>
             </div>
             {/* //TOGGLE-------------------------------------------->> */}
@@ -90,7 +87,7 @@ export default function Sidebar() {
                   onClick={() => setCurrentLink(2)}
                 >
                   <Link to="/admin/reviewsAdmin">
-                    <MdSpaceDashboard />
+                    <MdRateReview />
                     <span> Reviews</span>
                   </Link>
                 </li>
@@ -100,7 +97,7 @@ export default function Sidebar() {
                 >
                   {" "}
                   <Link to="/admin/roomsAdmin">
-                    <MdSpaceDashboard />
+                    <IoIosCreate />
                     <span> Rooms</span>
                   </Link>
                 </li>
@@ -109,7 +106,7 @@ export default function Sidebar() {
                   onClick={() => setCurrentLink(4)}
                 >
                   <Link to="/admin/payments">
-                    <MdSpaceDashboard />
+                    <TbReportMoney />
                     <span> Pagos </span>
                   </Link>
                 </li>
@@ -220,10 +217,11 @@ export default function Sidebar() {
 }
 const Section = styled.section`
   position: fixed;
+  width: 100%;
   left: 0.5%;
-  background-color: #212121;
-  height: 120vh;
-  width: 32vw;
+  background-color: dark;
+  height: 100vh;
+  width: 28vw;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -242,34 +240,33 @@ const Section = styled.section`
       display: none;
     }
     .brand {
+      margin-left: 1%;
       width: 100%;
       display: flex;
-
-      justify-content: center;
-      align-items: center;
-      gap: 2rem;
+      justify-content: flex-start;
+      gap: 1.3rem;
       svg {
         color: #ffc107;
         font-size: 2rem;
       }
       span {
         font-size: 2rem;
-        color: #ffc107;
+        color: #FFF9;
         font-family: "Permanent Marker", cursive;
       }
     }
     .links {
-      width: 100%;
-      display: flex;
-      justify-content: center;
+      width: 90%;
       ul {
+        width: 83%;
         list-style-type: none;
         display: flex;
         flex-direction: column;
         gap: 1rem;
         li {
+          width: 95%;
           padding: 0.6rem 1rem;
-
+          margin: 1%;
           border-radius: 0.6rem;
           &:hover {
             background-color: white;
@@ -285,7 +282,6 @@ const Section = styled.section`
           }
         }
         .active {
-          width: 100%;
           background-color: white;
           a {
             color: black;
@@ -295,6 +291,7 @@ const Section = styled.section`
     }
   }
   .logout {
+    display: flex;
     padding: 0.3rem 1rem;
     border-radius: 0.6rem;
     &:hover {

@@ -12,7 +12,7 @@ import { Link, useNavigate } from "react-router-dom";
 
 
 import { useState, useEffect } from "react";
-import "./MenuUsuario.css";
+import style from "./MenuUsuario.module.css";
 import Sidebar from "../Dashboard/Sidebar";
 
 const options = [
@@ -128,23 +128,23 @@ async function statusUser() {
             <Button variant="outline-light" onClick={handleShow} className="ms-5 w-10">
         Menu
       </Button>
-            <Offcanvas show={show} placement="end" onHide={handleClose} {...props}>
-            <Offcanvas.Header closeButton>
-              <Offcanvas.Title>Menu</Offcanvas.Title>
-            </Offcanvas.Header>
-            <div className="container bg-light ">
-              <Offcanvas.Body className="d-grid offcanvas-body gap-1 mx-auto">
+            <Offcanvas show={show} placement="end" onHide={handleClose} {...props} style={{backgroundColor: "#212121", borderRadius: "5px"}} >
+              <Offcanvas.Header closeButton>
                 <img
                   src={isAuthenticated ? user.picture : ""}
                   alt="foto perfil"
                   className="rounded-circle profileIMG"
                 />
-                <div className="row">
+                <Offcanvas.Title className={style.tittle} >Menu</Offcanvas.Title>
+              </Offcanvas.Header>
+            <div className="container hx-auto">
+              <Offcanvas.Body className="d-grid offcanvas-body gap-1 mx-auto">
+                <div className="row mx-auto">
                   <div className="">
                     <div className="list-group" id="list-tab" role="tablist">
                       <button
                         to="/"
-                        className="list-group-item list-group-item-action active"
+                        className={`list-group-item list-group-item-action ${style.botones}`}
                         id="list-home-list"
                         data-bs-toggle="list"
                         role="tab"
@@ -153,7 +153,7 @@ async function statusUser() {
                         Mi cuenta
                       </button>
                       <button
-                        className="list-group-item list-group-item-action"
+                        className={`list-group-item list-group-item-action ${style.botones}`}
                         onClick={() => {
                           navigate("/clientEdit");
                         }}
@@ -164,9 +164,9 @@ async function statusUser() {
                       >
                         Editar datos
                       </button>
-
+                        
                       <button
-                        className="list-group-item list-group-item-action "
+                        className={`list-group-item list-group-item-action ${style.botones}`}
                         id="list-messages-list"
                         data-bs-toggle="list"
                         onClick={() => navigate("/reviewHostel")}
@@ -178,6 +178,8 @@ async function statusUser() {
                     </div>
                   </div>
                 </div>
+              </Offcanvas.Body>
+            </div>
                 <button
                   type="button"
                   onClick={() => {
@@ -186,12 +188,10 @@ async function statusUser() {
                     setConfirmLog(false);
                     setSort("deslogueado");
                   }}
-                  className="btn btn-outline-danger"
+                  className={`${style.cerrarSesion} btn btn-outline-danger `}
                 >
                   Cerrar Sesion
                 </button>
-              </Offcanvas.Body>
-            </div>
             </Offcanvas>
             </>
           ) : (
