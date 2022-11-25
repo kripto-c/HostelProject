@@ -1,0 +1,10 @@
+.button-chatbot {
+    position: fixed;
+    bottom: 0px;
+    right: 0px;
+   margin: 12px;
+   background-color:#292b2c;
+  }
+  .popover{
+    max-width:400px;
+  }

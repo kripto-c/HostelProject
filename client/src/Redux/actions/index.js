@@ -168,10 +168,20 @@ export function getRolUser(token){
    return async function(){
     let res = await axios.get(`${URL}/rol`, {headers:{authorization:`Bearer ${token}`}})
     localStorage.setItem("Rol", res.data.rol[0]);
-    console.log(res.data);
    }
   } catch(e){
     console.log(e)
+  }
+}
+
+export function getStatus(token){
+  try {
+    return async function() {
+      let res = await axios.get(`${URL}/login/status`, {headers:{authorization:`Bearer ${token}`}})
+      localStorage.setItem("status", res.data);
+    }
+  } catch (error) {
+    console.log(e);
   }
 }
 
@@ -341,3 +351,11 @@ export function delteFaq(token, id) {
     }
 }
 
+
+export function filterRents(payloadOne, payloadTwo) {
+  return {
+    type: "FILTER_RENTS",
+    payloadOne,
+    payloadTwo,
+  };
+}
