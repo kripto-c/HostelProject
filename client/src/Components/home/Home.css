@@ -272,15 +272,17 @@
 }
 
 .miraReviews a{
-  color: #646464;
+  color: #232121;
   text-decoration: none;
   font-size: 2vh;
   text-shadow: none;
+  background-color: #e7e7e7;
+  padding: 1.5vh 2vh;
+  border-radius: 3vh;
 }
 
 .miraReviews a:hover{
-  text-decoration: underline;
-  color: #747373;
+  color: #535151;
 }
 
 .ejemplosIMG{

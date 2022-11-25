@@ -1,5 +1,5 @@
 import React from "react";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 //import BOOTSTRAP --------------------------------------------->>
 import FloatingLabel from "react-bootstrap/FloatingLabel";
@@ -12,13 +12,18 @@ import { postReview } from "../../Redux/actions/index.js";
 // const Swal = require("sweetalert2");
 import Swal from "sweetalert2";
 import { withAuthenticationRequired } from "@auth0/auth0-react";
+import {useAuth0} from '@auth0/auth0-react'
+import {useNavigate} from 'react-router-dom';
 
 function RatingBootstrap() {
   const client = useSelector((state) => state.client);
   // eslint-disable-next-line no-unused-vars
   const [rating, setRating] = useState([1, 2, 3, 4, 5]);
   const [current, setCurrent] = useState(0);
+  const navigate = useNavigate();
   // const [description, setDescription] = useState("");
+  console.log(client)
+
   const [input, setInput] = useState({
     usuario: client.name,
     rating: 0,
@@ -44,6 +49,14 @@ function RatingBootstrap() {
           })
         : null;
     } else {
+      if(!client.name) {
+        Swal.fire({
+          icon: "warning",
+          title: "Oops...",
+          text: "Por favor, Complete sus datos antes de dejar una reseña.",
+        })
+        return navigate("/clientEdit")
+      }
       dispatch(postReview(input));
       setInput({ usuario: client.name, rating: 0, description: "" });
       setCurrent(0);
