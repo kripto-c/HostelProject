@@ -55,18 +55,6 @@ function Payments() {
   }
   console.log(months2)
 
-  /* function hanleFilterRentsByMonth(e) {
-    e.preventDefault()
-    dispatch(filterRentsByMonth(e.target.value))
-    setCurrentPage(1)
-  }
-  const [orden, setOrden] = useState('')
-  function handleSortRentsByDate(e) {
-    e.preventDefault()
-    dispatch(sortRentsByDate(e.target.value))
-    setCurrentPage(1)
-    setOrden(`Ordenado ${e.target.value}`)
-  } */
 
   const [date, setDate] = useState("")
   const [month, setMonth] = useState("")
@@ -94,6 +82,14 @@ function Payments() {
       setOrden(`Ordenado ${e.target.value}`)
       setCurrentPage(1)
     }
+  }
+
+  function handleResetFilters(e) {
+    e.preventDefault()
+
+    setDate("")
+    setMonth("")
+    dispatch(getRents())
   }
   // ----------------------------->>
  
@@ -125,6 +121,11 @@ function Payments() {
           <li>
             <button type="button" onClick={e => handleSubmitFilter(e)}>
               Filtrar
+            </button>
+          </li>
+          <li>
+            <button type="button" onClick={e => handleResetFilters(e)}>
+              Borrar filtros
             </button>
           </li>
         </nav>
