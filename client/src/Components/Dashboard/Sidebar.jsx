@@ -1,20 +1,17 @@
-import React, { useState, useEffect } from "react";
-import { Routes, Route } from "react-router-dom";
-import { MdSpaceDashboard } from "react-icons/md";
+import React, { useState } from "react";
+import { MdSpaceDashboard, MdRateReview } from "react-icons/md";
 import { RiDashboard2Fill } from "react-icons/ri";
 import { FaAddressCard } from "react-icons/fa";
 import { GiTwirlCenter } from "react-icons/gi";
+import { TbReportMoney } from "react-icons/tb";
 import { BsFillChatTextFill } from "react-icons/bs";
 import { IoSettings } from "react-icons/io5";
+import { IoIosCreate} from "react-icons/io";
+
 import { FiLogOut } from "react-icons/fi";
-import { GiHamburgerMenu } from "react-icons/gi";
-import { VscChromeClose } from "react-icons/vsc";
-import scrollreveal from "scrollreveal";
 import logo from "../../images/logo.svg";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
-import Dashboard from "./Dashboard";
-import Payments from "./Payments.jsx";
 
 export default function Sidebar() {
   const [currentLink, setCurrentLink] = useState(1);
@@ -55,7 +52,7 @@ export default function Sidebar() {
           {/* //TOP-------------------------------------------->> */}
           <div className="top">
             <div className="brand">
-              <img className="logo" src={logo} />
+              <img className="logo" src={logo} style={{backgroundColor: "white", borderRadius: "10px"}} />
               <span>Project Hostel</span>
             </div>
             {/* //TOGGLE-------------------------------------------->> */}
@@ -90,7 +87,7 @@ export default function Sidebar() {
                   onClick={() => setCurrentLink(2)}
                 >
                   <Link to="/admin/reviewsAdmin">
-                    <MdSpaceDashboard />
+                    <MdRateReview />
                     <span> Reviews</span>
                   </Link>
                 </li>
@@ -100,7 +97,7 @@ export default function Sidebar() {
                 >
                   {" "}
                   <Link to="/admin/roomsAdmin">
-                    <MdSpaceDashboard />
+                    <IoIosCreate />
                     <span> Rooms</span>
                   </Link>
                 </li>
@@ -109,7 +106,7 @@ export default function Sidebar() {
                   onClick={() => setCurrentLink(4)}
                 >
                   <Link to="/admin/payments">
-                    <MdSpaceDashboard />
+                    <TbReportMoney />
                     <span> Pagos </span>
                   </Link>
                 </li>
