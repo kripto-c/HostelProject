@@ -35,6 +35,10 @@ module.exports = (sequelize) => {
         type: DataTypes.STRING,
         allowNull: true,
     },
+    status:{
+       type:DataTypes.STRING,
+       defaultValue: "active",
+    }
   },
   {
     timestamps: false
