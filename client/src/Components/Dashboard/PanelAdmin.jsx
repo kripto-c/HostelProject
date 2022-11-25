@@ -6,7 +6,7 @@ import Dashboard from "./Dashboard";
 import Payments from "./Payments";
 import ReviewAdmin from "./ReviewAdmin";
 import Sidebar from "./Sidebar";
-import { useState } from "react";
+import React, { useState } from "react";
 import Offcanvas from "react-bootstrap/Offcanvas";
 import Faqs from "./Faqs";
 

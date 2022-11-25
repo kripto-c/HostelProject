@@ -1,83 +1,85 @@
 import React, { useEffect } from "react";
 import styled from "styled-components";
 import { BsFillCalendar2WeekFill } from "react-icons/bs";
+import { FaBed } from "react-icons/fa";
 import { IoStatsChart } from "react-icons/io5";
 import { BiGroup } from "react-icons/bi";
 import { FiActivity } from "react-icons/fi";
 import { cardStyles } from "./ReusableStyles";
-import {  useDispatch, useSelector } from "react-redux";
-import { getAllClients } from "../../Redux/actions";
+import { useDispatch, useSelector } from "react-redux";
+import { getAllClients, getRooms } from "../../Redux/actions";
 import { useAuth0 } from "@auth0/auth0-react";
 import { getRents } from "../../Redux/actions";
+import { BiBed } from "react-icons/bi";
 
 export default function Analytics() {
-  const {  
-    getAccessTokenSilently
-  } = useAuth0();
-   const clientes = useSelector((state)=>state.allClients)
-   const protectClients = async ()=>{
-    const token = await getAccessTokenSilently();
-    dispatch(getAllClients(token))
-   } 
+  const {getAccessTokenSilently} = useAuth0();
   const dispatch = useDispatch();
-   useEffect(()=>{
-    protectClients()
-    
-    console.log("redux clientes",clientes)
+
+  const clientes = useSelector((state)=>state.allClients)
+  const rents = useSelector((state) => state.rents)  
+  const rooms = useSelector(state=>state.rooms)
+
+  const protectClients = async ()=>{
+  const token = await getAccessTokenSilently();
+  dispatch(getAllClients(token))
+  } 
+  
+  useEffect(()=>{
+  protectClients()  
   } ,[dispatch])
 
-  // Esto es para mostrar las earnings
+  // Esto es para mostrar las ganancias
   useEffect(() => {
     dispatch(getRents())
-  }, [])
+    dispatch(getRooms());
+  }, [])  
  
-  const allRents = useSelector((state) => state.rents)
- 
-  var sum = 0
-  function suma (){
- 
-    const aux = allRents.map(e => {
-      sum = sum + e.price
-    })
-    return aux
+  
+  function totalRent(){
+    let totalR = rents.map(rent => rent.price).reduce((a,b)=>a+b,0)
+    return Math.ceil(totalR)    
   }
-  suma()
+  function totalBeds(){
+    let totalB = rooms.map(room => room.beds).reduce((a,b)=>a+b,0)
+    return totalB
+  }
+  function totalBedsAvalaibles(){
+    let totalBa = rooms.map(room => room.beds_avalaibles).reduce((a,b)=>a+b,0)
+    return totalBa
+  }
+
   return (
     <Section>
       <div className="analytic ">
+        <div className="logo"><BiGroup /></div>
         <div className="content">
-          <h5>Spent this month</h5>
-          <h2>$682.5</h2>
-        </div>
-        <div className="logo">
-          <BsFillCalendar2WeekFill />
+          <h5>Clientes registrados:</h5>
+          <h2>{clientes.length}</h2>
         </div>
       </div>
+      
       <div className="analytic">
-        <div className="logo">
-          <IoStatsChart />
-        </div>
+        <div className="logo"><IoStatsChart /></div>
         <div className="content">
-          <h5>Earnings</h5>
-          <h2>${suma}</h2>
+          <h5>Ingresos</h5>
+          <h2>${totalRent()}</h2>
         </div>
       </div>
+
       <div className="analytic">
-        <div className="logo">
-          <BiGroup />
-        </div>
+        <div className="logo"><BiBed /></div>
         <div className="content">
-          <h5>Clientes</h5>
-          <h2>{clientes.length?clientes.length:null}</h2>
+          <h5>Total de camas</h5>
+          <h2>{totalBeds()}</h2>
         </div>
       </div>
+
       <div className="analytic ">
+        <div className="logo"><FaBed /></div>
         <div className="content">
-          <h5>Activity</h5>
-          <h2>$540.50</h2>
-        </div>
-        <div className="logo">
-          <FiActivity />
+          <h5>Camas disponibles:</h5>
+          <h2>{totalBedsAvalaibles()}</h2>
         </div>
       </div>
     </Section>

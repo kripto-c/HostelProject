@@ -10,15 +10,14 @@ import Transfers from "./Transfers";
 export default function Dashboard() {
   return (
     <div className="container-sm mg-10">
-      <Navbar />
+      {/* <Navbar /> */}
       <div className="row">
         <div className="col">
+          <br />
           <Analytics />
         </div>
         <div className="row__two">
-          
-
-          <Profile />
+          {/* <Profile /> */}
         </div>
       </div>
     </div>
