@@ -7,6 +7,7 @@ import {
   POST_OWNER,
   GET_OWNER,
   GET_ALL_CLIENTS,
+  GET_FAQ
 } from "../actions/index.js";
 
 const initialState = {
@@ -20,6 +21,7 @@ const initialState = {
   rent: [],
   allClients: [],
   rents: [],
+  faq:[]
 };
 export default function rootReducer(state = initialState, action) {
   switch (action.type) {
@@ -179,6 +181,12 @@ export default function rootReducer(state = initialState, action) {
       return {
         ...state,
         rents: action.payload,
+      };
+    }
+    case GET_FAQ: {
+      return {
+        ...state,
+        faq: action.payload,
       };
     }
 

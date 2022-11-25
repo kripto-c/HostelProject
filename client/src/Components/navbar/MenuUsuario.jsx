@@ -1,20 +1,17 @@
 import React from "react";
 import Button from "react-bootstrap/Button";
 import Offcanvas from "react-bootstrap/Offcanvas";
-
+import {BiCog} from "react-icons/bi";
+import { IconContext } from "react-icons";
 //----
-import Container from "react-bootstrap/Container";
-import Nav from "react-bootstrap/Nav";
-import Navbar from "react-bootstrap/Navbar";
-import NavDropdown from "react-bootstrap/NavDropdown";
 import { useAuth0 } from "@auth0/auth0-react";
 import { getCLient,getOwner, setClient, getRolUser } from "../../Redux/actions";
-import axios from "axios";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
+
+
 import { useState, useEffect } from "react";
 import "./MenuUsuario.css";
-import logo from "../../images/logo.svg";
 import Sidebar from "../Dashboard/Sidebar";
 
 const options = [
@@ -48,7 +45,6 @@ export default function MenuUsuario({ name, ...props }) {
     getAccessTokenSilently,
   } = useAuth0();
   const dispatch = useDispatch();
-  const client = useSelector((state) => state.client);
   const [view, setView] = useState(true);
   const [confirmLog, setConfirmLog] = useState(false);
   const [Sort, setSort] = useState("");
@@ -91,16 +87,31 @@ export default function MenuUsuario({ name, ...props }) {
   }, [dispatch]);
   return (
     <>
+            {
+              (localStorage.getItem("Rol") === "menu-admin" )
+               &&  <button
+                 type="button"
+                 onClick={() => {
+                   setShow1(true);
+                 }}
+                 style={{position: "fixed", top: "8.5%", left: ".5%", width: "55px", height: "50px", padding: "5px" }}
+                className="btn btn-dark fas fa-cog"
+               >
+                <IconContext.Provider value={{ size: "30"}}>
+                <BiCog />
+                </IconContext.Provider>
+               </button>
+             }
+
           {isAuthenticated ? (
             <>
             <Offcanvas show={show1} onHide={() =>{setShow1(false)}} style={{backgroundColor: "#212121"}}>
               <Sidebar></Sidebar>
             </Offcanvas>
-            <Button variant="primary" onClick={handleShow} className="ms-5 w-10">
+            <Button variant="outline-light" onClick={handleShow} className="ms-5 w-10">
         Menu
       </Button>
             <Offcanvas show={show} placement="end" onHide={handleClose} {...props}>
-                
             <Offcanvas.Header closeButton>
               <Offcanvas.Title>Menu</Offcanvas.Title>
             </Offcanvas.Header>
@@ -111,7 +122,6 @@ export default function MenuUsuario({ name, ...props }) {
                   alt="foto perfil"
                   className="rounded-circle profileIMG"
                 />
-
                 <div className="row">
                   <div className="">
                     <div className="list-group" id="list-tab" role="tablist">
@@ -151,18 +161,6 @@ export default function MenuUsuario({ name, ...props }) {
                     </div>
                   </div>
                 </div>
-                {
-                 (localStorage.getItem("Rol") === "menu-admin" )
-                  &&  <button
-                    type="button"
-                    onClick={() => {
-                      setShow1(true);
-                    }}
-                    className="btn btn-outline-danger"
-                  >
-                    Sidebar
-                  </button>
-                }
                 <button
                   type="button"
                   onClick={() => {
@@ -180,12 +178,10 @@ export default function MenuUsuario({ name, ...props }) {
             </Offcanvas>
             </>
           ) : (
-            
-             
-              <button
-                type="button"
-                className="Login btn btn-outline-light"
+              <Button
+                variant="outline-light"
                 to="/#login"
+                className="ms-5 w-10"
                 onClick={async (e) => {
                   e.preventDefault();
                   await loginWithPopup();
@@ -194,12 +190,9 @@ export default function MenuUsuario({ name, ...props }) {
                 }}
               >
                 Login
-              </button>
-            
+              </Button>
           )}
-        
     </>
   );
 }
-
 <Offcanvas.Body></Offcanvas.Body>;

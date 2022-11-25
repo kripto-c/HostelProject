@@ -8,6 +8,7 @@ export const GET_ALL_COUNTRIES = "GET_ALL_COUNTRIES";
 export const POST_OWNER = "POST_OWNER";
 export const GET_OWNER = "GET_OWNER";
 export const GET_ALL_CLIENTS = "GET_ALL_CLIENTS";
+export const GET_FAQ = "GET_FAQ";
 
 // const URL = "https://dinamitahostel.herokuapp.com";
 const URL = "http://localhost:4000"; //descomentar para hacer pruebas
@@ -145,7 +146,6 @@ export function postClient(body, headers) {
   return async () => {
     try {
       const res = await axios.post(`${URL}/login/userEdit`, body, headers);
-      console.log(res.data);
     } catch (error) {
       console.log(error);
     }
@@ -157,7 +157,6 @@ export function setClient(token){
    return async function(){
     let res = await axios.get(`${URL}/login/setClient`, {headers:{authorization:`Bearer ${token}`}})
     localStorage.setItem("IDUser", res.data.id);
-    console.log(res.data.id);
    }
   } catch(e){
     console.log(e)
@@ -305,3 +304,40 @@ export function getRents() {
     console.log(error);
   }
 }
+// FAQs ADMIN------------------------------------------------
+export function getFaq() {
+  try {
+    return async function (dispatch) {
+      const response = await axios.get(`${URL}/faq`);
+      dispatch({
+        type: GET_FAQ,
+        payload: response.data,
+      });
+    };
+  } catch (error) {
+    console.log(error);
+  }
+}
+
+export function postFaq(token, payload) {
+  try {
+    return async function (dispatch) {
+      const response = await axios.post(`${URL}/faq/new`, payload,{headers:{authorization:`Bearer ${token}`}});
+    };
+  } catch (error) {
+    console.log(error);
+  }
+}
+
+
+export function delteFaq(token, id) {
+    try {
+      return async function (dispatch){
+         const response = await axios.get(`${URL}/faq/deleteFaq?id=${id}`,{headers:{authorization:`Bearer ${token}`}})
+
+      }
+    } catch (error) {
+      console.log(error);
+    }
+}
+

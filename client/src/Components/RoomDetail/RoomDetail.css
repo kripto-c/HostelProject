@@ -30,6 +30,13 @@
     max-width: 900px;
     min-width: 300px;
 }
+.rangebeds{
+    display: flex;
+    padding-top: 2vh;
+    padding-bottom: 2vh;
+    width: 40vw;
+    margin: auto;
+}
 
 .infoRoom div{
     margin: 0 30px;
@@ -73,6 +80,11 @@
     padding: 5px 50px;
     border-radius: 20px;
 }
+.pay input:disabled{
+    background-color: #23574c;
+    color: #727272;
+    cursor: no-drop;
+}
 @media only screen and (max-width: 837px){
     .listBeds{
         width: 300px;
@@ -106,10 +118,7 @@
     }
 
 
-    .listBeds{
-        width: 300px;
-        margin: auto;
-    }
+    
     .listBeds label{
         text-align: left;
         width: 200px;

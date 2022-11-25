@@ -1,13 +1,13 @@
 const { Router} = require('express');
-const { postFaq, getFaq, updateFaq, deleteFaq } = require('./controller');
+const { postFaq, getFaq, deleteFaq} = require('./controller');
+const checkPermissions = require("../../permisos/permisosCheck");
+const itemPermissos = require('../../permisos/permisos')
 const route = Router();
-
-route.post('/', postFaq);
 
 route.get('/', getFaq)
 
-route.post('/faqEdit', updateFaq)
+route.post('/new', checkPermissions(itemPermissos.faq),postFaq);
 
-route.get('/deleteFaq', deleteFaq)
+route.get('/deleteFaq', checkPermissions(itemPermissos.faqDelete),deleteFaq)
 
 module.exports = route;

@@ -15,13 +15,17 @@ import Create from "./Components/Dashboard/Create";
 //import styled from "styled-components";
 import PanelAdmin from "./Components/Dashboard/PanelAdmin";
 import ReviewAdmin from "./Components/Dashboard/ReviewAdmin.jsx";
-import Sidebar from "./Components/Dashboard/Sidebar";
 import Payments from "./Components/Dashboard/Payments";
+
+import {io} from 'socket.io-client'
+
+export const socket = io('http://localhost:4000')
 //-------------------------------------------------------------------->>
 function App() {
   return (
     <>
     <Navbars></Navbars>
+ 
     <Routes>
       <Route exact path="/" element={<Home />} />
       <Route path="/reviewHostel" element={<ReviewHostel />} />
@@ -34,11 +38,9 @@ function App() {
       <Route path="/createRoom" element={<Create />} />
       <Route path="/payments" element={<Payments />}></Route>
     </Routes>
-
     <Routes>
       <Route path="/admin/*" element={<PanelAdmin />}>
         <Route path="reviewsAdmin" element={<ReviewAdmin />}></Route>
-        
       </Route>
     </Routes>
   </>

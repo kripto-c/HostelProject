@@ -20,10 +20,15 @@ import moment from "moment";
 import {DateRangePicker} from "react-date-range"
 import 'react-date-range/dist/styles.css'; // main style file
 import 'react-date-range/dist/theme/default.css'; // theme css file
+import "bootstrap/dist/css/bootstrap.min.css";
+
+import SweetAlert from 'react-bootstrap-sweetalert';
+import {socket} from '../../App'
 
 export default function RoomDetail() {
   
   const client = useSelector((state) => state.client);
+  const room = useSelector((state) => state.roomdetail);
   const { getAccessTokenSilently } = useAuth0();
   const [camas, setCamas] = useState(0);
   const [total, setTotal] = useState(0);
@@ -32,6 +37,7 @@ export default function RoomDetail() {
   const [pagar, setPagar] = useState("");
   const [cargando, setCargando] = useState(false);
   const [login, setLogin] = useState(false);
+  const [payAvalible, setPayAvalible] = useState(true);
   //CONTROL DEL FORM ////////////////////
   const [all, setAll] = useState(false);
   const [verRoom, setVerRoom] = useState(false);
@@ -40,10 +46,8 @@ export default function RoomDetail() {
   const [verLogin, setVerLogin] = useState(false);
   /////ventana emergente
   const dispatch = useDispatch();
-  // const client =  useSelector(state=> state.client);
   const [show, setShow] = useState(false);
   const handleClose = () => setShow(false);
-  // const handleShow = () => setShow(true);
   const [name, setName] = useState(true);
   const [lastname, setLastname] = useState(true);
 
@@ -56,41 +60,26 @@ export default function RoomDetail() {
   const userLogin = useAuth0();
 
   let { id } = useParams();
-
-     useEffect(() =>{
-         dispatch(getRoomDetail(id));
-         dispatch(getRent(id))
-     },[dispatch]);
-    const room = useSelector((state) => state.roomdetail);
-    const rent = useSelector((state) => state.rent);
-     
-
+ 
+  
+  useEffect(() =>{
+    dispatch(getRoomDetail(id));
+    dispatch(getRent(id));
+    socket.emit('roomView', id)
+    socket.on('payRoom',(data)=> setPayAvalible(data.status))
+    socket.on('userPay',(data)=>{
+      if(data.user != userLogin.user.email) setPayAvalible(data.status)
+    })
+    socket.on('userPayC',(data)=> setPayAvalible(data.status))
+  },[dispatch]);
+  
+  const rent = useSelector((state) => state.rent);
     //console.log('detail',entrada, salida);
-
-    let arreglo = [];
-    for (let a = 1; a <= room.beds; a++) {
-        arreglo.push(a);
+  
+    const handleRange = (e) =>{
+      setCamas(e.target.value)
+      setTotal(e.target.value*room.price)
     }
-   
-    const sumres = (e)=>{
-        if(e.target.checked) {
-            setCamas(camas+1)
-            return setTotal(total+room.price)
-        }
-        setCamas(camas-1)
-        return setTotal(total-room.price)
-    }
-    const [checkall, setCheckall] = useState(false)
-    const todacama = (e) =>{
-        if(e.target.checked){
-            setCamas(room.beds)
-            return setTotal(total+(room.price*room.beds))    
-        }
-        console.log(camas)
-        setCamas(0)
-        return setTotal(total-(room.price*room.beds))
-    }
-
     // const data = (b, e)=>{
     //     console.log(e.target.value)
     //     if(b) return setCheckIn(e.target.value.split('-').reverse().join('-'));
@@ -153,6 +142,7 @@ export default function RoomDetail() {
 
     
     const pay = async ()=>{
+      
 
         // VERIFICACION DE DATOS DE LA RESERVA
         // setCheckIn(entrada1);
@@ -182,7 +172,7 @@ export default function RoomDetail() {
             const body = {}
             body.items = [{
                 title: room.description,
-                quantity: camas,
+                quantity:  parseInt(camas),
                 unit_price: room.price,
                 check_in: checkIn,
                 check_out: checkOut,
@@ -198,7 +188,8 @@ export default function RoomDetail() {
                     number: client.personalID
                 }
             };
-
+            socket.emit('userPayRoom',id, userLogin.user.email)
+            setCargando(!cargando);
             const token = await getAccessTokenSilently();
             
             const result = await axios.post("http://localhost:4000/payment", body,
@@ -210,7 +201,11 @@ export default function RoomDetail() {
             );
             setPagar(result.data.init);
         }
-
+    const cancelarPago = ()=>{
+      setCargando(!cargando);
+      setPagar("")
+      socket.emit('cancelPay', id)
+    }
   ///handle ventana emergente
 
   function handleChange(e) {
@@ -244,12 +239,6 @@ export default function RoomDetail() {
     setName(true);
     setLastname(true);
   }
-
-  function active(e) {
-    e.preventDefault();
-    setShow(true);
-  }
-
     // console.log(room);
     return (
     <div className='detailRoom mx-auto'>
@@ -367,72 +356,74 @@ export default function RoomDetail() {
       }
       {/* //CONTROL DE LA RESERVA DE LA HABITACION!  */}
       {
-        <Modal
-          show={all}
-          onHide={() => {
-            setAll(false);
-          }}
-        >
-          <ModalHeader closeButton className="bg-dark text-white">
-            Por favor llene complete los datos de la reserva.
-          </ModalHeader>
-        </Modal>
+          <SweetAlert
+            show={all}
+            error
+            title="Oops...!"
+            onConfirm={() => {
+              setAll(false);
+            }}
+          >
+          Por favor, complete todos los datos de la reserva.
+          </SweetAlert>
       }
       {
-        <Modal
+        <SweetAlert
           show={verRoom}
-          onHide={() => {
+          error
+          title="Oops...!"
+          onConfirm={() => {
             setVerRoom(false);
           }}
         >
-          <ModalHeader closeButton className="bg-dark text-white">
-            Seleccione al menos una cama para pedir reserva.
-          </ModalHeader>
-        </Modal>
+        Seleccione al menos una cama para pedir reserva.
+        </SweetAlert>
       }
       {
-        <Modal
+        <SweetAlert
           show={verCheckIn}
-          onHide={() => {
+          error
+          title="Oops...!"
+          onConfirm={() => {
             setVerCheckIn(false);
           }}
         >
-          <ModalHeader closeButton className="bg-dark text-white">
-            Por favor ingrese una fecha de ingreso.
-          </ModalHeader>
-        </Modal>
+        Por favor, seleccione una fecha de ingreso.
+        </SweetAlert>
       }
       {
-        <Modal
+        <SweetAlert
           show={verCheckOut}
-          onHide={() => {
+          error
+          title="Oops...!"
+          onConfirm={() => {
             setVerCheckOut(false);
           }}
         >
-          <ModalHeader closeButton className="bg-dark text-white">
-            Por favor ingrese una fecha de salida.
-          </ModalHeader>
-        </Modal>
+        Por favor, ingrese una fecha de salida.
+        </SweetAlert>
       }
       {
-        <Modal
+        <SweetAlert
           show={verLogin}
-          onHide={() => {
+          error
+          title="Oops...!"
+          onConfirm={() => {
             setVerLogin(false);
           }}
         >
-          <ModalHeader closeButton className="bg-dark text-white">
-            Debe estar registrado para reservar.
-          </ModalHeader>
-        </Modal>
+        Debe estar registrado para reservar.
+        </SweetAlert>
       }
 
       {!userLogin.isAuthenticated ? (
-        <div className="alertLog" hidden={login}>
-          <div className="bg-dark text-white">
-            <button onClick={() => setLogin(true)}>X</button>
-            <p>Para poder hacer reservas debes registrarte primero</p>
-          </div>
+        <div hidden={login} >
+        <SweetAlert
+          warning
+          onConfirm={() => {setLogin(true)}}
+        >
+        <span>Para poder hacer reservas debes registrarte primero</span>
+        </SweetAlert>
         </div>
       ) : null}
       <h1>Detalle de la habitacion</h1>
@@ -478,16 +469,22 @@ export default function RoomDetail() {
         />
       </div>
       <p className="Ac">
-        <b>Alojamientos</b>
+        <b>Camas a reservar: {camas}</b>
       </p>
-      {arreglo.map((e) => {
-        return (
-          <div key={e} className="listBeds">
-            <label>Cama</label>{" "}
-            <input disabled={room.status} onClick={sumres} type="checkbox" />
-          </div>
-        );
-      })}
+      <div className="rangebeds">
+        <input
+        id="customRange3"
+        className="form-range"
+        type= "range"
+        min="0"
+        max= {room.beds_avalaibles} 
+        onChange={handleRange}
+        defaultValue= "0"
+        disabled={room.status}
+        step="1"
+        />
+      </div>
+      {console.log(camas)}
       {room.status && (
         <div className="disponibilidad">No hay camas disponibles</div>
       )}
@@ -498,12 +495,13 @@ export default function RoomDetail() {
         <input
           onClick={pay}
           type="submit"
+          disabled={!payAvalible}
           value={cargando ? "Cargando..." : "Pagar"}
         />
       </div>
       {!pagar.length ? null : (
         <div className="IframeDiv">
-          <button onClick={() => setPagar("")}>X</button>
+          <button onClick={cancelarPago}>X</button>
           <iframe className="PagarIframe" src={pagar} frameborder="0"></iframe>
         </div>
       )}
