@@ -37,7 +37,7 @@ export default function Reviews() {
             <div className="date">
               <h3>{r.client?.name ? r.client.name : "usuario anonimo"}</h3>
               <p className="fechaReview">
-                {numberStar(r.rating)}({getFechaHora(r.createdAt)})
+                <label>{numberStar(r.rating)}</label><label>({getFechaHora(r.createdAt)})</label>
               </p>
             </div>
             <p className="description">{r.description}</p>
@@ -46,5 +46,5 @@ export default function Reviews() {
         )
       })}
     </div>
-  ) : <h1 className="sinComentarios">Sin Comentarios Agregados</h1>
+  ) : <h1 className="sinComentarios">Sin Comentarios Agregados :(</h1>
 }

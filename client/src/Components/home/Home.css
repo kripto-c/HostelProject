@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
+
 .home-container {
   background-color: rgba(228, 235, 245, );
 }
@@ -7,6 +9,7 @@
   padding-top: 10px;
   display: flex;
   justify-content: center;
+  font-size: 4vh;
   align-items: center;
  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
 }
@@ -21,12 +24,6 @@
   height:68vh;
   object-fit: fill;
   border-radius: 6px;
-  /* max-width: 500px;
-  max-height: 500px;
-  min-width: 650px;
-  min-height: 500px;
-  border-radius: 7px;
-  justify-content: center; */
 }
 
 
@@ -35,26 +32,60 @@
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
+  background-color: #292b2c;
+}
+
+.collage .img{
+  width: 35vh;
+  height: 23vh;
+  margin: 2vh;
+  z-index: 200;
+  position: relative;
+  overflow: hidden;
+}
+
+.collage  p{
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(to left, #000000c6, #00000000);
+  top: 0;
+  right: -100%;
+  z-index: 1;
+  opacity: 0;
+  transition: all 0.5s;
+  display: flex;
+  align-items: flex-end;
+  padding: 0 10% 13% 0;
+  color: #fff;
+  font-weight: 500;
+  font-size: 3vh;
+  justify-content: flex-end;
+}
+.collage .img::after{
+  content: '';
+  position: absolute;
+  top: 0;
+  right: 0;
+  opacity: 0;
+  background-color: #0000005b;
+  width: 100%;
+  height: 100%;
+  transition: all 0.5s;
 }
 
 .collage img{
-  margin: 0 auto;
-  width: 33%;
-  margin: 10px 10px 0;
-  max-width: 200px;
-  max-height: 140px;
-  position: relative;
-  left: 0;
-  bottom:0.3px;
-  border: 2px solid black;
-  border-radius: 3px;
-  box-shadow: 2px 2px 2px 3px rgba(0, 0, 0, .5);
-  transition: 0.3s ease-in-out all;
+  width: 100%;
+  height: 100%;
+  transition: all 0.5s;
 }
 
-.collage img:hover{
-  transform: rotate(3deg) scale(1.1);
+.collage .img:hover::after, .img:hover p, .img:hover img{
+  transform: scale(1.1);
+  opacity: 1;
+  right: 0;
 }
+
 
 .xd, .xd2, .xd3{
   position: relative;
@@ -108,10 +139,11 @@
   text-align: center;
 }
 
+
 .infoHome{
   top: 30%;
-  font-size: 20px;
-  width: 500px;
+  font-size: 3vh;
+  width: 700px;
 }
 
 .infoHome2{
@@ -122,19 +154,19 @@
 }
 
 .infoHome2 p{
-  font-size: 40px;
+  font-size: 4vh;
   font-weight: 500;
 }
 
 .infoHome2 ul li{
-  font-size: 15px;
+  font-size: 3vh;
   list-style: none;
   margin: 3px 0;
 }
 
 .infoHome2 ul li img{
-  width: 20px;
-  height: 20px;
+  width: 3vh;
+  height: 3vh;
 }
 
 .infoHome2 a{
@@ -161,8 +193,12 @@
 }
 
 .data{
-  margin-left: 30px;
-  width: 450px;
+  margin: 0 30px;
+  max-width: 90vh;
+  width: max-content;
+  background-color: #cccccc71;
+  min-width: 300px;
+  width: auto;
   position: relative;
 }
 
@@ -187,14 +223,20 @@
 }
 
 .demo1 img, .demo2 img, .demo3 img{
-  width: 350px;
-  height: 250px;
+  width: 38vh;
+  height: 30vh;
+}
+
+.data p{
+  font-size: 1.7vh;
+  padding: 10px 15px;
 }
 
 .data p:nth-child(1){
   font-weight: 700;
-  font-size: 25px;
+  font-size: 3vh;
 }
+
 
 .demo2{
   margin-right: 7%;
@@ -203,7 +245,8 @@
 }
 
 .demo11{
-  margin: 15px 0;
+  margin: 15px;
+  /* 30px 0 0; */
   opacity: 0;
   display: flex;
 }
@@ -211,14 +254,83 @@
 /*Review css*/
 .review{
   display: flex;
-  justify-content: center;
+  padding: 5vh  0 5vh 10vh;
+  background-color: #292b2c;
   align-items: center;
+}
+
+.miraReviews{
+  margin: auto;
+  width: max-content;
+  color: #fff;
+  text-shadow: 0px 0px 3px #fff;
+  font-size: 5vh;
+  margin: auto;
+  /* width: 80%; */
+  text-align: center;
+  font-family: 'Roboto', sans-serif;
+}
+
+.miraReviews a{
+  color: #646464;
+  text-decoration: none;
+  font-size: 2vh;
+  text-shadow: none;
+}
+
+.miraReviews a:hover{
+  text-decoration: underline;
+  color: #747373;
+}
+
+.ejemplosIMG{
+  font-size: 4vh;
+  font-weight: 700;
+  text-decoration: underline;
+  padding: 3vh 0 0 2vh;
+  transition: all 1s;
 }
 
 
 
-hr.clear {
-  clear: both;
-  border: 1px solid transparent;
-  height: 0px;
+@media only screen and (max-width: 780px) {
+  .imagenDemo img{
+    margin: auto;
+    width: 300px;
+    height: 230px;
+  }
+
+  .data::after{
+    left: 0;
+    width: 100%;
+    height: 1px;
+    top: 10px;
+    margin: auto;
+  }
+  .data2, .data{
+    /* background-color: red; */
+    padding-top: 10px;
+    margin: auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+    width: 300px;
+  }
+  .demo1, .demo2{
+    flex-direction: column;
+  }
+
+  .review{
+    flex-direction: column;
+    padding: 3vh 0;
+  }
+  .review .miraReviews{
+    width: 100%;
+  }
+  .review .miraReviews .mira{
+    padding: 30px 0;
+    width: 100%;
+    font-size: 3vh;
+  }
 }

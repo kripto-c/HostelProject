@@ -8,6 +8,7 @@ import { addObserver } from "./observer";
 import { getOwner } from "../../Redux/actions";
 import {useDispatch, useSelector} from "react-redux"
 import { useAuth0 } from "@auth0/auth0-react";
+import wave from './wave.svg';
 
 const Home = () => {
   const {isAuthenticated, getAccessTokenSilently} = useAuth0();
@@ -43,7 +44,8 @@ const Home = () => {
               src="https://upload.wikimedia.org/wikipedia/commons/e/e8/Hostel_Dormitory.jpg"
               alt="first-item"
             />
-            <h1 className="Bienvenido">Bienvenidos al {info.hostelName}</h1>
+            {/* <h1 className="Bienvenido">Bienvenidos al {info.hostelName}</h1> */}
+            <h1 className="Bienvenido">Bienvenidos al Hostel Dinamita</h1>
           </div>
         </Carousel.Item>
         <Carousel.Item>
@@ -52,7 +54,8 @@ const Home = () => {
               src="https://media-cdn.tripadvisor.com/media/photo-s/15/bc/d3/19/ideal-social-hostel.jpg"
               alt="second-item"
             />
-            <p className="infoHome">{info.aboutUs}</p>
+            {/* <p className="infoHome">{info.aboutUs}</p> */}
+            <p className="infoHome">Lorem ipsum dolor sit amet consectetur adipisicing elit. Pariatur, quis dolorum. Possimus explicabo incidunt velit! Vitae qui repudiandae et. Pariatur obcaecati, non a rem fuga alias porro esse assumenda maxime.</p>
           </div>
         </Carousel.Item>
         <Carousel.Item>
@@ -98,7 +101,8 @@ const Home = () => {
               />
               <div className="data">
                 <p>SOBRE NOSOTROS</p>
-                <p>{info.aboutUs}</p>
+                {/* <p>{info.aboutUs}</p> */}
+                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Praesentium omnis at dolorum amet quaerat voluptatem laboriosam. Assumenda deleniti delectus non soluta sequi quis saepe in, facere dicta laudantium illum quisquam doloribus incidunt qui natus esse, earum unde, facilis deserunt voluptatibus voluptates dolores provident magni? Provident pariatur ab cum harum eius.</p>
               </div>
             </div>
             <div className="demo2 demo11 " ref={ref2}>
@@ -108,7 +112,8 @@ const Home = () => {
               />
               <div className="data data2">
                 <p>POR QUE ELEGIRNOS</p>
-                <p>{info.chooseUs}</p>
+                {/* <p>{info.chooseUs}</p> */}
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Eum voluptate commodi eos excepturi! Odio, facilis quae consequuntur, inventore quos perspiciatis quia eius ea sequi veritatis, nemo quibusdam quam? Omnis maxime hic fugit, dolore ab quisquam ipsam saepe voluptate? Tempora, aut!</p>
               </div>
             </div>
             <div className="demo1 demo11" ref={ref3}>
@@ -118,94 +123,172 @@ const Home = () => {
               />
               <div className="data">
                 <p>EXTRAS</p>
-                <p>{info.extra}</p>
+                {/* <p>{info.extra}</p> */}
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Mollitia doloribus, at ipsa quaerat, saepe culpa perferendis quibusdam et magni aliquam eos dolor tenetur ducimus vitae? Voluptatem, tempore. Nam, eius non!</p>
               </div>
             </div>
           </div>
+      <p className="ejemplosIMG">Algunas Imagenes de muesta:</p>
+      <img src={wave} alt="wave" />
         <div className="collage">
-          <img 
-            src="https://firebasestorage.googleapis.com/v0/b/imgs-b915c.appspot.com/o/hostelEjemplo4.png?alt=media&token=264fd2d1-82ac-4e24-8675-7aeb9e791f0c" 
-            alt="collage-5" 
-          />
-          <img 
-            src="https://firebasestorage.googleapis.com/v0/b/imgs-b915c.appspot.com/o/hostelEjemplo5.png?alt=media&token=2545fd82-f81b-4601-9b72-fbf02f12afdf" 
-            alt="collage-6" 
-          />
-          <img
-            src="https://cf.bstatic.com/xdata/images/xphoto/max1440/48357258.jpg?k=035ac71dc8cf908f6b770ec79bf034f5891a734d172c80159a0ac713ff2a1a7c&o="
-            alt="collage-7"
-          />
-          <img
-            src="https://i0.wp.com/www.disfrutarosario.com/wp-content/uploads/2020/10/Como-construir-una-pileta-en-casa-2.jpg?resize=640%2C480&ssl=1"
-            alt="collage-8"
-          />
-          <img
-            src="https://hqbeds.com/wp-content/uploads/2019/11/hostel1-e1573156979842.jpg"
-            alt="collage-9"
-          />
-          <img
-            src="https://www.elcalafate.tur.ar/img/anunciantes/724/matices-hostel-2-.jpg"
-            alt="collage-10"
-          />
-          <img
-            src="https://viajeros-17f81.kxcdn.com/wp-content/uploads/2020/10/DSC_0310-scaled.jpg"
-            alt="collage-11"
-          />
-          <img 
-            src="https://firebasestorage.googleapis.com/v0/b/imgs-b915c.appspot.com/o/hostelejemplo6.png?alt=media&token=a06a610e-a24c-4947-9274-e89fd5b15cf8" 
-            alt="collage-12" 
-          />
-          <img 
-            src="https://firebasestorage.googleapis.com/v0/b/imgs-b915c.appspot.com/o/hostelEjemplo7.png?alt=media&token=1eb9d25f-e227-4372-974a-03936755e6a9" 
-            alt="collage-13" 
-          />
-          <img 
-            src="https://firebasestorage.googleapis.com/v0/b/imgs-b915c.appspot.com/o/hostelEjemplo8.png?alt=media&token=1a436ffc-6f10-41bb-a0a7-e22ab40daf87" 
-            alt="collage-14" 
-          />
-          <img 
-            src="https://firebasestorage.googleapis.com/v0/b/imgs-b915c.appspot.com/o/hostelEjemplo9.png?alt=media&token=fb2fa7ac-2d64-42b5-a359-62a7eaa72fbc" 
-            alt="collage-15" 
-          />
-          <img 
-            src="https://firebasestorage.googleapis.com/v0/b/imgs-b915c.appspot.com/o/hostelEjemplo10.png?alt=media&token=1b94150c-a13c-4d30-9634-227d2f803200" 
-            alt="collage-16" 
-          />
-          <img 
-            src="https://firebasestorage.googleapis.com/v0/b/imgs-b915c.appspot.com/o/hostelEjemplo11.png?alt=media&token=40bb1bee-0d7b-4b07-b1a7-7defc17cea3c" 
-            alt="collage-17" 
-          />
-          <img 
-            src="https://firebasestorage.googleapis.com/v0/b/imgs-b915c.appspot.com/o/hostelEjemplo12.png?alt=media&token=1ad420e7-761a-4939-aa74-1a1f551558aa" 
-            alt="collage-18" 
-          />
-          <img 
-            src="https://firebasestorage.googleapis.com/v0/b/imgs-b915c.appspot.com/o/hostelEjemplo13.png?alt=media&token=3d77598d-538d-42d0-8003-a718d57cdaa7" 
-            alt="collage-19" 
-          />
-          <img 
-            src="https://firebasestorage.googleapis.com/v0/b/imgs-b915c.appspot.com/o/hostelEjemplo14.png?alt=media&token=635e0ca3-8bcd-44cc-a4ee-20e2c1dc8a64" 
-            alt="collage-20" 
-          />
-          <img 
-            src="https://firebasestorage.googleapis.com/v0/b/imgs-b915c.appspot.com/o/hostelEjemplo15.png?alt=media&token=5832c9a7-76e2-42f0-851d-252f45a2f665" 
-            alt="collage-21" 
-          />
-          <img 
-            src="https://firebasestorage.googleapis.com/v0/b/imgs-b915c.appspot.com/o/hostelEjemplo16.png?alt=media&token=0fc62769-41f6-4e40-a6dd-351cabe18b14" 
-            alt="collage-22" 
-          />
+            <div className="img">
+              <img 
+                src="https://firebasestorage.googleapis.com/v0/b/imgs-b915c.appspot.com/o/hostelEjemplo4.png?alt=media&token=264fd2d1-82ac-4e24-8675-7aeb9e791f0c" 
+                alt="collage-5" 
+              />
+            <p>Ejemplo Imagen 1</p>
+            </div>
+          
+          
+            <div className="img">
+              <img 
+                src="https://firebasestorage.googleapis.com/v0/b/imgs-b915c.appspot.com/o/hostelEjemplo5.png?alt=media&token=2545fd82-f81b-4601-9b72-fbf02f12afdf" 
+                alt="collage-6" 
+                />
+            <p>ejemplo Imagen 2</p>
+            </div>
+          
+
+            <div className="img">
+              <img
+                src="https://cf.bstatic.com/xdata/images/xphoto/max1440/48357258.jpg?k=035ac71dc8cf908f6b770ec79bf034f5891a734d172c80159a0ac713ff2a1a7c&o="
+                alt="collage-7"
+                />
+            <p>ejemplo Imagen 3</p>
+            </div>
+          
+
+          <div className="img">
+            <img
+              src="https://i0.wp.com/www.disfrutarosario.com/wp-content/uploads/2020/10/Como-construir-una-pileta-en-casa-2.jpg?resize=640%2C480&ssl=1"
+              alt="collage-8"
+              />
+            <p>ejemplo Imagen 4</p>
+            </div>
+          
+            <div className="img">
+              <img
+                src="https://hqbeds.com/wp-content/uploads/2019/11/hostel1-e1573156979842.jpg"
+                alt="collage-9"
+                />
+            <p>ejemplo Imagen 5</p>
+            </div>
+          
+            <div className="img">
+              <img
+                src="https://www.elcalafate.tur.ar/img/anunciantes/724/matices-hostel-2-.jpg"
+                alt="collage-10"
+                />
+            <p>ejemplo Imagen 6</p>
+            </div>
+          
+            <div className="img">
+              <img
+                src="https://viajeros-17f81.kxcdn.com/wp-content/uploads/2020/10/DSC_0310-scaled.jpg"
+                alt="collage-11"
+                />
+            <p>ejemplo Imagen 7</p>
+            </div>
+          
+            <div className="img">
+              <img 
+                src="https://firebasestorage.googleapis.com/v0/b/imgs-b915c.appspot.com/o/hostelejemplo6.png?alt=media&token=a06a610e-a24c-4947-9274-e89fd5b15cf8" 
+                alt="collage-12" 
+                />
+            <p>ejemplo Imagen 18</p>
+            </div>
+          
+            <div className="img">
+              <img 
+                src="https://firebasestorage.googleapis.com/v0/b/imgs-b915c.appspot.com/o/hostelEjemplo7.png?alt=media&token=1eb9d25f-e227-4372-974a-03936755e6a9" 
+                alt="collage-13" 
+                />
+            <p>ejemplo Imagen 8</p>
+            </div>
+          
+            <div className="img">
+              <img 
+                src="https://firebasestorage.googleapis.com/v0/b/imgs-b915c.appspot.com/o/hostelEjemplo8.png?alt=media&token=1a436ffc-6f10-41bb-a0a7-e22ab40daf87" 
+                alt="collage-14" 
+                />
+            <p>ejemplo Imagen 9</p>
+            </div>
+          
+            <div className="img">
+              <img 
+                src="https://firebasestorage.googleapis.com/v0/b/imgs-b915c.appspot.com/o/hostelEjemplo9.png?alt=media&token=fb2fa7ac-2d64-42b5-a359-62a7eaa72fbc" 
+                alt="collage-15" 
+                />
+            <p>ejemplo Imagen 10</p>
+            </div>
+          
+            <div className="img">
+              <img 
+                src="https://firebasestorage.googleapis.com/v0/b/imgs-b915c.appspot.com/o/hostelEjemplo10.png?alt=media&token=1b94150c-a13c-4d30-9634-227d2f803200" 
+                alt="collage-16" 
+                />
+            <p>ejemplo Imagen 11</p>
+            </div>
+          
+            <div className="img">
+              <img 
+                src="https://firebasestorage.googleapis.com/v0/b/imgs-b915c.appspot.com/o/hostelEjemplo11.png?alt=media&token=40bb1bee-0d7b-4b07-b1a7-7defc17cea3c" 
+                alt="collage-17" 
+                />
+            <p>ejemplo Imagen 12</p>
+            </div>
+          
+            <div className="img">
+              <img 
+                src="https://firebasestorage.googleapis.com/v0/b/imgs-b915c.appspot.com/o/hostelEjemplo12.png?alt=media&token=1ad420e7-761a-4939-aa74-1a1f551558aa" 
+                alt="collage-18" 
+                />
+            <p>ejemplo Imagen 13</p>
+            </div>
+          
+            <div className="img">
+              <img 
+                src="https://firebasestorage.googleapis.com/v0/b/imgs-b915c.appspot.com/o/hostelEjemplo13.png?alt=media&token=3d77598d-538d-42d0-8003-a718d57cdaa7" 
+                alt="collage-19" 
+                />
+            <p>ejemplo Imagen 14</p>
+            </div>
+          
+            <div className="img">
+              <img 
+                src="https://firebasestorage.googleapis.com/v0/b/imgs-b915c.appspot.com/o/hostelEjemplo14.png?alt=media&token=635e0ca3-8bcd-44cc-a4ee-20e2c1dc8a64" 
+                alt="collage-20" 
+                />
+            <p>ejemplo Imagen 15</p>
+            </div>
+          
+            <div className="img">
+              <img 
+                src="https://firebasestorage.googleapis.com/v0/b/imgs-b915c.appspot.com/o/hostelEjemplo15.png?alt=media&token=5832c9a7-76e2-42f0-851d-252f45a2f665" 
+                alt="collage-21" 
+                />
+            <p>ejemplo Imagen 16</p>
+            </div>
+          
+            <div className="img">
+              <img 
+                src="https://firebasestorage.googleapis.com/v0/b/imgs-b915c.appspot.com/o/hostelEjemplo16.png?alt=media&token=0fc62769-41f6-4e40-a6dd-351cabe18b14" 
+                alt="collage-22" 
+                />
+            <p>ejemplo Imagen 17</p>
+            </div>
+          
+          </div>
         </div>
+
+        <div className="review">
+          <Review />
+          <div className="miraReviews">
+            <p className="mira">Mira lo que los demas usuarios opinan de nosotros</p>
+            <Link to='/reviewHostel'>Dejanos tu review</Link>
+          </div>
       </div>
 
-      <br />
-      <div className="review">
-        <Review />
-      </div>
-
-      <br />
-
-      <hr></hr>
      
 
       <Footer></Footer>
