@@ -102,7 +102,7 @@ export default function ReviewAdmin() {
   }
   //----------------------------------------------------------------------------------------------
   function filtros(){
-    
+
   }
 
   return (
@@ -185,16 +185,7 @@ export default function ReviewAdmin() {
               );
             })}
           </tbody>
-          <div class="dropdown">
-  <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
-    Botón Dropdown
-  </button>
-  <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-    <li><a class="dropdown-item" href="#">Acción</a></li>
-    <li><a class="dropdown-item" href="#">Otra acción</a></li>
-    <li><a class="dropdown-item" href="#">Algo más aqui</a></li>
-  </ul>
-</div>
+          
         </table>
         
       </div>
