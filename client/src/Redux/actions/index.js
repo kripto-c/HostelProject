@@ -275,7 +275,7 @@ export function deleteRoom(headers, id) {
 export function changeStatusRoom(headers,id,statusRoom){
   try{
     return async function(dispatch){
-      await axios(`${URL}/changeStatusRoom/?id=${id}&statusRoom=${statusRoom}`, headers)
+      await axios.get(`${URL}/changeStatusRoom/?id=${id}&statusRoom=${statusRoom}`, headers)
       dispatch({
         type: "CHANGE_STATUS",
         payload: "status changed",
