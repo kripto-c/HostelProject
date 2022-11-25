@@ -136,9 +136,6 @@ export default function RoomDetail() {
 
 
         
-        
-
-    
     const pay = async ()=>{
         // VERIFICACION DE DATOS DE LA RESERVA
         console.log("cama", camas)
