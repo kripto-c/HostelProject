@@ -121,6 +121,7 @@ export default function ReviewAdmin() {
             </tr>
           </thead>
           <tbody>
+            {/* //LOS DATOS A RENDERIZAR */}
             {currentReviews.map((r, index) => {
               return (
                 <>
