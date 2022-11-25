@@ -4,8 +4,5 @@ import React from "react";
 import { HiOutlineLocationMarker } from "react-icons/hi";
 import { cardStyles } from "./ReusableStyles";
 export default function Profile() {
-  return (
-    <div></div>
-  );
+  return <div></div>;
 }
-

@@ -9,22 +9,21 @@ import PaginationPayments from './PaginationPayments.jsx';
  
 
 function Payments() {
-  const dispatch = useDispatch()
- 
+  const dispatch = useDispatch();
+
   useEffect(() => {
-    dispatch(getRents())
-  }, [])
- 
-  const allRents = useSelector((state) => state.rents)
-  console.log(allRents)
- 
-  var sum = 0
-  function suma (){
- 
-    const aux = allRents.map(e => {
-      sum = sum + e.price
-    })
-    return aux
+    dispatch(getRents());
+  }, []);
+
+  const allRents = useSelector((state) => state.rents);
+  console.log(allRents);
+
+  var sum = 0;
+  function suma() {
+    const aux = allRents.map((e) => {
+      sum = sum + e.price;
+    });
+    return aux;
   }
   suma()
 
@@ -113,5 +112,5 @@ function Payments() {
     </div>
   );
 }
- 
+
 export default Payments;
