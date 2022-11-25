@@ -15,13 +15,11 @@ import { useDispatch, useSelector } from "react-redux";
 import { useAuth0 } from "@auth0/auth0-react";
 import { getRoomDetail } from "../../Redux/actions";
 import Footer from "../Layout/Footer";
-import ModalHeader from 'react-bootstrap/esm/ModalHeader';
 import moment from "moment";
 import {DateRangePicker} from "react-date-range"
 import 'react-date-range/dist/styles.css'; // main style file
 import 'react-date-range/dist/theme/default.css'; // theme css file
 import "bootstrap/dist/css/bootstrap.min.css";
-
 import SweetAlert from 'react-bootstrap-sweetalert';
 
 export default function RoomDetail() {
@@ -134,11 +132,7 @@ export default function RoomDetail() {
 
     
     const pay = async ()=>{
-      
-
         // VERIFICACION DE DATOS DE LA RESERVA
-        // setCheckIn(entrada1);
-        // setCheckOut(salida1);
         console.log("cama", camas)
         console.log("entrada", checkIn)
         console.log("salida",checkOut)
@@ -147,8 +141,6 @@ export default function RoomDetail() {
         if(!camas) return setVerRoom(true);
         if(!checkIn) return setVerCheckIn(true);
         if(!checkOut) return setVerCheckOut(true);
-        
-        
         
        //CONTROL DE DATOS DEL USUARIO
 
@@ -226,7 +218,7 @@ export default function RoomDetail() {
     setName(true);
     setLastname(true);
   }
-    // console.log(room);
+
     return (
     <div className='detailRoom mx-auto'>
              {
@@ -471,7 +463,6 @@ export default function RoomDetail() {
         step="1"
         />
       </div>
-      {console.log(camas)}
       {room.status && (
         <div className="disponibilidad">No hay camas disponibles</div>
       )}
