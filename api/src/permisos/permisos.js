@@ -5,5 +5,6 @@ module.exports = itemPermissos ={
  payment:"payment:reserve-hostel",
  getAllClients:"getAllClient:admin-client",
  delete:"delete-element:delete-admin",
- 
+ faq:"created:newFaq",
+ faqDelete:"deleted:Faq"
 }
