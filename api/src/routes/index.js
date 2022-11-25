@@ -12,15 +12,15 @@ const payment = require("./payments/payment");
 const feedback = require("./payments/feedback")
 const getCountries = require("./countries")
 const owner = require("./owner")
-const rent = require("./rent/rent")
 const deletesAdmin = require("./deletesAdmin/deletesAdmin.js");
 const router = Router();
 const deleteRoom = require("./deletesAdmin/deletesAdmin.js")
 const activeRoom = require("./deletesAdmin/deletesAdmin.js")
 const rents = require("../routes/rents/index.js")
 const changeStatusRoom = require("./deletesAdmin/deletesAdmin.js")
+const faq = require('./faqs/route')
 /////////////permissos
-const checkPermissions  = require("../permisos/permisosCheck");
+const checkPermissions = require("../permisos/permisosCheck");
 const itemPermissos = require('../permisos/permisos')
 //----------------------------------------------------------------------------------
 // auth0 backend
@@ -31,11 +31,11 @@ const itemPermissos = require('../permisos/permisos')
 
 router.use(express.json());
 //RUTAS--------------------------------------------------------------->>
-
-router.use("/rol", rol); 
+router.use("/faq", faq)
+router.use("/rol", rol);
 router.use("/login", login);
-router.use("/payment", checkPermissions(itemPermissos.payment),payment);
-router.use("/owner",checkPermissions(itemPermissos.addDataAdmin), owner);
+router.use("/payment", checkPermissions(itemPermissos.payment), payment);
+router.use("/owner", checkPermissions(itemPermissos.addDataAdmin), owner);
 router.use("/feedback", feedback);
 router.use(`/getroomdetail`, roomdetail);//------Dejo esto aca porque mas abajo me tira error de authenticacion!!!!NO BORREN--->
 router.use("/info", info);
@@ -46,8 +46,8 @@ router.use("/activeRoom", checkPermissions(itemPermissos.delete),activeRoom)
 router.use("/changeStatusRoom", checkPermissions(itemPermissos.delete),changeStatusRoom)
 router.use("/rooms", rooms);
 router.use("/countries", getCountries)
-router.use("/owner",checkPermissions(itemPermissos.addDataAdmin),owner)
-router.use("/allClients",checkPermissions(itemPermissos.getAllClients),getAllClients)
+router.use("/owner", checkPermissions(itemPermissos.addDataAdmin), owner)
+router.use("/allClients", checkPermissions(itemPermissos.getAllClients), getAllClients)
 router.use("/rents", rents);
 
 module.exports = router;
