@@ -4,31 +4,32 @@ import { ThemeProvider } from "styled-components";
 import { useNavigate } from "react-router-dom";
 import Faq from "./Faq";
 import Reservas from "./Reservas";
-import Reviews from "./Reviews";
+import ReviewChat from "./ReviewChat"
 import Contactanos from "./Contactanos";
 import RedesSociales from "./RedesSociales";
+import MensajeInicial from "./MensajeInicial";
 export default function BotChat() {
   const theme = {
-    background: "#f5f8fb",
-    headerBgColor: "blue",
-    headerFontColor: "#fff",
+    background: "#292B2C",
+    headerBgColor: "#0275D8",
+    headerFontColor: "#FFFFFF",
     headerFontSize: "20px",
-    botBubbleColor: "#eb3449",
-    botFontColor: "#fff",
-    userBubbleColor: "#0cb3c9",
+    botBubbleColor: "#0275D8",
+    botFontColor: "#FFFFFF",
+    userBubbleColor: "#5F5F5F",
     userFontColor: "#fff",
   };
   const steps = [
     {
       id: "0",
       message: "Bienvenido a Project Hostel. Por favor indiquenos su nombre",
-      trigger: "pregunta-nombre",
+      trigger: "preguntaNombre",
     },
     {
-      id: "pregunta-nombre",
+      id: "preguntaNombre",
       user: true,
       validator: (value) => {
-        if (/^[a-zA-Z ]{2,20}$/.test(value)) {
+        if (/^[a-zA-Z ]{2,30}$/.test(value)) {
           return true;
         } else {
           return "Su nombre solo puede incluir letras";
@@ -38,9 +39,15 @@ export default function BotChat() {
     },
     {
       id: "respuesta-nombre",
-      message: `Hola {previousValue}, Bienvenido a Project Hostel!, en que le podemos ayudar?`,
+      component:<MensajeInicial></MensajeInicial>,
+      asMessage:true,
       trigger: "seleccionOpcion",
     },
+    // {
+    //   id: "respuesta-nombre",
+    //   message: `Hola {previousValue}, Bienvenido a Project Hostel!, en que le podemos ayudar?`,
+    //   trigger: "seleccionOpcion",
+    // },
     {
       id: "seleccionOpcion",
       message: "Seleccione la opcion",
@@ -87,7 +94,7 @@ export default function BotChat() {
     },
     {
       id: "mostrar-reviews",
-      component: <Reviews />,
+      component: <ReviewChat />,
       asMessage: true,
       trigger: "volver",
     },

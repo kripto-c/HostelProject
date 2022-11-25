@@ -11,9 +11,12 @@ function PopoverPositionedExample() {
         trigger="click"
         className="button-chatbot"
         key="left"
-        placement="left"
+        placement="top-start"
+
+        
         overlay={
           <Popover id={`popover-positioned-left`}>
+            
             <ChatbotTwo />
           </Popover>
         }
