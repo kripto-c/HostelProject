@@ -6,7 +6,6 @@ import {filterRents, /* filterRentsByMonth, */ getRents, /* sortRentsByDate,  */
   // updateStatusRents,
 } from "../../Redux/actions/index.js"
 import PaginationPayments from './PaginationPayments.jsx';
-import Swal from 'sweetalert2'
  
 
 function Payments() {
