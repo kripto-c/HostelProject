@@ -101,9 +101,7 @@ export default function ReviewAdmin() {
     );
   }
   //----------------------------------------------------------------------------------------------
-  function filtros(){
-
-  }
+  
 
   return (
     <div className="container-fluid">
