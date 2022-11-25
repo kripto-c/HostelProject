@@ -1,48 +1,54 @@
 import { useSelector, useDispatch } from "react-redux";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import Footer from "../Layout/Footer";
-
 import { getRooms } from "../../Redux/actions/index.js";
+import Paginate from "../Paginate/Paginate";
 import RoomCard from "./RoomCard.jsx";
 import Filters from "./Filters";
-import { useState } from "react";
 
 export default function Rooms() {
   const dispatch = useDispatch();
-  
+  //Almacenamos estado rooms de redux en variable allRooms ---------------------------------------->>
+  let allRooms = useSelector((state) => state.allRooms);
+
+  const [page, setPage] = useState(1);
+  const [roomsPerPage, setRoomsPerPage] = useState(7);
+  const lastPage = page * roomsPerPage;
+  const firstPage = lastPage - roomsPerPage;
+  const currentPage = allRooms?.slice(firstPage, lastPage);
+
+  const paginate = (pages) => {
+    setPage(pages);
+  };
+
   //Se carga base de datos al entrar a ROOMS!!---------------------------------------------->> Carga BASE DE DATOS
   useEffect(() => {
     dispatch(getRooms());
-    
   }, []);
 
-   //Almacenamos estado rooms de redux en variable allRooms ---------------------------------------->>
-   let allRooms = useSelector((state) => state.allRooms);
+  //DATA ES TRUE CUANDO HAGO CAMBIOS EN LOS FILTROS ---------------------------->>
+  const [data, setData] = useState(true);
 
-   //DATA ES TRUE CUANDO HAGO CAMBIOS EN LOS FILTROS ---------------------------->>
-   const [data, setData] = useState(true);
- 
-   //VARIABLE CON LAS ROOMS ACTUALES QUE SE VAN A RENDERIZAR !!! ------------->>
-   let roomsCurrent = JSON.parse(localStorage.getItem("filtros")) || allRooms;
- 
-   //-------------------------------------------------------------------------
-   //Renderizo componente cada vez que obtengo informacion de localStorage!!.Se ejecuita ante cada cambio en data, que se cambia a true al hacer un SUBMIT de los filtros
-   useEffect(() => {
-     // getData();
-     JSON.parse(localStorage.getItem("filtros"));
-     setData(false);
-   }, [data]);
- 
-   //--------------------------------------------------------------RENDER---------------------------------------------------------->> <<<<<<<render>>>>>>
-  
-  
+  //VARIABLE CON LAS ROOMS ACTUALES QUE SE VAN A RENDERIZAR !!! ------------->>
+  let roomsCurrent = JSON.parse(localStorage.getItem("filtros")) || currentPage;
+
+  //-------------------------------------------------------------------------
+  //Renderizo componente cada vez que obtengo informacion de localStorage!!.Se ejecuita ante cada cambio en data, que se cambia a true al hacer un SUBMIT de los filtros
+  useEffect(() => {
+    // getData();
+    JSON.parse(localStorage.getItem("filtros"));
+    setData(false);
+  }, [data]);
+
+  //--------------------------------------------------------------RENDER---------------------------------------------------------->> <<<<<<<render>>>>>>
+
   return (
     <div>
       <Filters getRooms={getRooms} setData={setData} />
 
       <div className="container">
         <div className="row">
-        {roomsCurrent &&
+          {roomsCurrent &&
             roomsCurrent.map((e) => {
               return (
                 <div key={e.id} className="view overlay">
@@ -58,6 +64,14 @@ export default function Rooms() {
                 </div>
               );
             })}
+          <div >
+            <Paginate
+              roomsPerPage={roomsPerPage}
+              allRooms={allRooms?.length}
+              paginate={paginate}
+              page={page}
+            />
+          </div>
         </div>
       </div>
       <Footer />

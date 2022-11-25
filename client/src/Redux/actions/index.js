@@ -272,6 +272,20 @@ export function deleteRoom(headers, id) {
   }
 }
 
+export function changeStatusRoom(headers,id,statusRoom){
+  try{
+    return async function(dispatch){
+      await axios.get(`${URL}/changeStatusRoom/?id=${id}&statusRoom=${statusRoom}`, headers)
+      dispatch({
+        type: "CHANGE_STATUS",
+        payload: "status changed",
+      })  
+    }
+  }catch(e){
+    console.log(e)
+  }
+}
+
 // export function activeRoom(headers, id){
 //   try{
 //     return async function(dispatch){
@@ -280,6 +294,12 @@ export function deleteRoom(headers, id) {
 //   }
 // }
 
+export function inactiveRooms(payload){
+  return{
+    payload,
+    type: "INACTIVE_ROOMS"
+  }
+}
 //ACTIONS RENTS ----------------------------------------------------------->>
 export function getRents() {
   try {

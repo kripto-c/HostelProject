@@ -16,13 +16,15 @@ const Create = () => {
   const [image, setImage] = useState("");
   const [loading, setLoading] = useState(false);
   const [room, setRoom] = useState({
-    beds: "",
+    beds: "5",
     description: "",
     image: "",
     bathroom: "",
     observation: "",
     price: "",
     typeId: "",
+    cuchetas: "",
+    simples: "",
   });
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -34,10 +36,13 @@ const Create = () => {
     data.append("file", files[0]);
     data.append("upload_preset", "hostelImage");
     setLoading(true);
-    const res = await fetch("https://api.cloudinary.com/v1_1/drw5h95um/upload", {
-      method: "POST",
-      body: data,
-    });
+    const res = await fetch(
+      "https://api.cloudinary.com/v1_1/drw5h95um/upload",
+      {
+        method: "POST",
+        body: data,
+      }
+    );
     const file = await res.json();
     setImage(file.secure_url.toString());
     setLoading(false);
@@ -56,6 +61,13 @@ const Create = () => {
     });
   };
 
+  const handleTipoSelect = (e) => {
+    setRoom({
+      ...room,
+      typeId: e.target.value,
+    });
+  };
+
   const handlebañoSelect = (e) => {
     setRoom({
       ...room,
@@ -63,10 +75,10 @@ const Create = () => {
     });
   };
 
-  const handleTipoSelect = (e) => {
+  const handleCuchetas = (e) => {
     setRoom({
       ...room,
-      typeId: e.target.value,
+      cuchetas: e.target.value * 2,
     });
   };
 
@@ -107,8 +119,11 @@ const Create = () => {
   return (
     <div>
       <div className="box-create">
-        <Form onSubmit={(e) => handleSubmit(e)}>
-          <Row>
+        <Form
+          onSubmit={(e) => handleSubmit(e)}
+          style={{ width: "80%", display: "flex", flexDirection: "column" }}
+        >
+          <Row className="d-flex justify-content-between">
             <Form.Group as={Col} md="5">
               <Form.Label>Baño(OBLIGATORIO): </Form.Label>
               <Form.Select onChange={(e) => handlebañoSelect(e)}>
@@ -126,17 +141,7 @@ const Create = () => {
               </Form.Select>
             </Form.Group>
           </Row>
-          <Row className="d-flex justify-content-around">
-            <Form.Group as={Col} md="5">
-              <Form.Label>Observaciones: </Form.Label>
-              <Form.Control
-                as="textarea"
-                name="observation"
-                placeholder="Escribir una observacion acerca de la habitacion"
-                value={room.observation}
-                onChange={handleChange}
-              />
-            </Form.Group>
+          <Row className="d-flex justify-content-between">
             <Form.Group as={Col} md="5">
               <Form.Label>Descripcion(OBLIGATORIO): </Form.Label>
               <Form.Control
@@ -147,32 +152,64 @@ const Create = () => {
                 onChange={handleChange}
               />
             </Form.Group>
-          </Row>
-          <Row className="d-flex justify-content-around">
-            <Form.Group as={Col} md="2">
-              <Form.Label>Camas(OBLIGATORIO): </Form.Label>
+            <Form.Group as={Col} md="5">
+              <Form.Label>Observaciones: </Form.Label>
               <Form.Control
-                type="number"
-                name="beds"
-                min="1"
-                max="10"
-                value={room.beds}
-                onChange={handleChange}
-              />
-            </Form.Group>
-            <Form.Group as={Col} md="2">
-              <Form.Label>Precio(OBLIGATORIO): </Form.Label>
-              <Form.Control
-                type="number"
-                min="1000"
-                max="1000000"
-                name="price"
-                value={room.price}
+                as="textarea"
+                name="observation"
+                placeholder="Escribir una observacion acerca de la habitacion"
+                value={room.observation}
                 onChange={handleChange}
               />
             </Form.Group>
           </Row>
           <Row className="d-flex justify-content-between">
+            <Form.Group as={Col} md="3">
+              <Form.Label>Camas(OBLIGATORIO): </Form.Label>
+              <Form.Control
+                type="number"
+                name="simples"
+                min="1"
+                max="10"
+                value={room.simples}
+                onChange={handleCuchetas}
+              />
+            </Form.Group>
+            <Form.Group as={Col} md="3">
+              <Form.Label>Camas Totales:</Form.Label>
+              <Form.Control
+              disabled
+              tpye="number"
+              name="beds"
+              value={room.beds}
+              />
+            </Form.Group>
+            <Form.Group as={Col} md="3">
+              <Form.Label>Cuchetas: </Form.Label>
+              <Form.Control
+                type="number"
+                name="cuchetas"
+                min="0"
+                max="10"
+                value={room.cuchetas}
+                onChange={handleChange}
+              />
+            </Form.Group>
+            <Row className="justify-content-center">
+              <Form.Group as={Col} md="5" style={{ marginLeft: "8px" }}>
+                <Form.Label>Precio(OBLIGATORIO): </Form.Label>
+                <Form.Control
+                  type="number"
+                  min="1000"
+                  max="1000000"
+                  name="price"
+                  value={room.price}
+                  onChange={handleChange}
+                />
+              </Form.Group>
+            </Row>
+          </Row>
+          <Row className="d-flex justify-content-between padding-left-2">
             <Form.Group as={Col} md="5">
               <Form.Label>Instertar imagen(OBLIGATORIO): </Form.Label>
               <Form.Control
@@ -189,8 +226,9 @@ const Create = () => {
                   width: "450px",
                   height: "300px",
                   backgroundSize: "cover",
-                  marginTop: "5px",
+                  marginTop: "30px",
                   objectFit: "cover",
+                  display: image ? "block" : "none",
                 }}
                 alt=""
                 src={image}
@@ -198,7 +236,15 @@ const Create = () => {
             </Form.Group>
           </Row>
 
-          <Button className="submit" type="submit">
+          <Button
+            className="submit"
+            type="submit"
+            style={{
+              alignSelf: "flex-end",
+              justifySelf: "flex-end",
+              marginTop: "24px",
+            }}
+          >
             Crear
           </Button>
         </Form>

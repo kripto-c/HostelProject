@@ -43,7 +43,7 @@ export default function rootReducer(state = initialState, action) {
           ...state,
           rooms: JSON.parse(localStorage.getItem("filtros")),
         };
-      } 
+      }
     }
 
     case POST_REVIEW: {
@@ -169,11 +169,19 @@ export default function rootReducer(state = initialState, action) {
         rent: action.payload,
       };
     }
+    case "INACTIVE_ROOMS": {
+      let activeRoom = state.allRooms;
+      activeRoom.filter((room) => room === false);
+      return {
+        ...state,
+        rooms: activeRoom,
+      };
+    }
     case "GET_RENTS": {
       return {
         ...state,
-        rents: action.payload
-      }
+        rents: action.payload,
+      };
     }
     case GET_FAQ: {
       return {
