@@ -220,8 +220,8 @@ const Section = styled.section`
   width: 100%;
   left: 0.5%;
   background-color: dark;
-  height: 120vh;
-  width: 32vw;
+  height: 100vh;
+  width: 28vw;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -240,9 +240,10 @@ const Section = styled.section`
       display: none;
     }
     .brand {
+      margin-left: 1%;
       width: 100%;
       display: flex;
-      justify-content: center;
+      justify-content: flex-start;
       gap: 1.3rem;
       svg {
         color: #ffc107;
@@ -257,11 +258,13 @@ const Section = styled.section`
     .links {
       width: 90%;
       ul {
+        width: 83%;
         list-style-type: none;
         display: flex;
         flex-direction: column;
         gap: 1rem;
         li {
+          width: 95%;
           padding: 0.6rem 1rem;
           margin: 1%;
           border-radius: 0.6rem;
@@ -279,7 +282,6 @@ const Section = styled.section`
           }
         }
         .active {
-          width: 100%;
           background-color: white;
           a {
             color: black;
@@ -289,6 +291,7 @@ const Section = styled.section`
     }
   }
   .logout {
+    display: flex;
     padding: 0.3rem 1rem;
     border-radius: 0.6rem;
     &:hover {
