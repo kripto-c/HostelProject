@@ -12,6 +12,6 @@ let jwtCheck = jwt({
   audience: "route-protected",
   issuer: "https://dev-o7k6sbvjre41wvzb.us.auth0.com/",
   algorithms: ["RS256"],
-}).unless({ path: ["/getroomdetail", "/info", "/rooms",'/countries',"/feedback","/reviews" /* "/rents" */, "/faq"] });
+}).unless({ path: ["/getroomdetail", "/info", "/rooms",'/countries',"/feedback","/reviews", "/faq"] });
 
 module.exports = jwtCheck;
