@@ -16,7 +16,6 @@ const Create = () => {
   const [image, setImage] = useState("");
   const [loading, setLoading] = useState(false);
   const [room, setRoom] = useState({
-    beds: "5",
     description: "",
     image: "",
     bathroom: "",
@@ -25,6 +24,7 @@ const Create = () => {
     typeId: "",
     cuchetas: "",
     simples: "",
+    beds: "0",
   });
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -75,12 +75,31 @@ const Create = () => {
     });
   };
 
+  const handleSimples = (e) => {
+    setRoom({
+      ...room,
+      simples: e.target.value,
+    });
+  };
+
   const handleCuchetas = (e) => {
     setRoom({
       ...room,
-      cuchetas: e.target.value * 2,
+      cuchetas: e.target.value,
     });
   };
+
+  const sumarCamas = () => {
+    let totales = room.simples + room.cuchetas;
+    setRoom({
+      ...room,
+      beds: totales,
+    });
+    console.log(totales);
+  };
+  {
+    console.log(room.beds, room.cuchetas, room.simples);
+  }
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -172,16 +191,19 @@ const Create = () => {
                 min="1"
                 max="10"
                 value={room.simples}
-                onChange={handleCuchetas}
+                onChange={async (e) => {
+                  await handleSimples(e);
+                  await sumarCamas(e);
+                }}
               />
             </Form.Group>
             <Form.Group as={Col} md="3">
               <Form.Label>Camas Totales:</Form.Label>
               <Form.Control
-              disabled
-              tpye="number"
-              name="beds"
-              value={room.beds}
+                disabled
+                tpye="number"
+                name="beds"
+                value={room.beds}
               />
             </Form.Group>
             <Form.Group as={Col} md="3">
@@ -192,7 +214,10 @@ const Create = () => {
                 min="0"
                 max="10"
                 value={room.cuchetas}
-                onChange={handleChange}
+                onChange={async (e) => {
+                  await handleCuchetas(e);
+                  await sumarCamas(e);
+                }}
               />
             </Form.Group>
             <Row className="justify-content-center">
