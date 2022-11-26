@@ -9,6 +9,7 @@ import { getOwner,getOwnerSp } from "../../Redux/actions";
 import {useDispatch, useSelector} from "react-redux"
 import { useAuth0 } from "@auth0/auth0-react";
 import wave from './wave.svg';
+import Servicios from "./servicios/Servicios";
 
 const Home = () => {
   const {isAuthenticated, getAccessTokenSilently} = useAuth0();
@@ -130,6 +131,7 @@ const Home = () => {
               </div>
             </div>
           </div>
+          <Servicios></Servicios>
       <p className="ejemplosIMG">Algunas Imagenes de muesta:</p>
       <img src={wave} alt="wave" />
         <div className="collage">
