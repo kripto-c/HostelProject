@@ -368,3 +368,17 @@ export function filterRents(payloadOne, payloadTwo) {
     payloadTwo,
   };
 }
+
+export function logicalDraft(id) {
+  try {
+    return async function(dispatch) {
+      const json = await axios.put(`${URL}/rents/${id}`, { status: true } )
+      return dispatch({
+        type: "LOGICAL_DRAFT",
+        payload: json.data,
+      });
+    }
+  } catch (error) {
+    
+  }
+}

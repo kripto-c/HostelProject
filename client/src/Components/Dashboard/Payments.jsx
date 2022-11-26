@@ -2,7 +2,7 @@ import React from 'react'
 import { useEffect, useState } from 'react';
 import Table from 'react-bootstrap/Table';
 import { useDispatch, useSelector } from 'react-redux';
-import {filterRents, /* filterRentsByMonth, */ getRents, /* sortRentsByDate,  */
+import {filterRents,  getRents, logicalDraft,
   // updateStatusRents,
 } from "../../Redux/actions/index.js"
 import PaginationPayments from './PaginationPayments.jsx';
@@ -117,15 +117,17 @@ function Payments() {
     putRents()
     setData(true)
     dispatch(getRents())
-  
-    /* if(e.target.name === "filterByMonth") {
-      return setMonth(e.target.value)
-    } 
-    if(e.target.name === "sortByDate") {
-      return setDate(e.target.value)
-    } */
   }
-  
+  // ----------------------------->>
+
+
+  // BORRADOR LÓGICO ------------->>
+  function handleLogicalDraft(e, id) {
+    e.preventDefault()
+
+    dispatch(logicalDraft(id))
+    dispatch(getRents())
+  }
   // ----------------------------->>
  
  
@@ -188,6 +190,7 @@ function Payments() {
           <th>Check-In</th>
           <th>Check-Out</th>
           <th>Payment</th>
+          <th>Borrador</th>
         </tr>
       </thead>
       <tbody>
@@ -195,12 +198,14 @@ function Payments() {
           currentPayments && currentPayments.map(e => {
             let auxIn = e.dateIn.slice(0, 10)
             let auxOut = e.dateOut.slice(0, 10)
+            let id = e.id
             return (
               <tr>
-                <td>{e.id}</td>
+                <td>{id}</td>
                 <td>{auxIn}</td>
                 <td>{auxOut}</td>
                 <td>${e.price}</td>
+                <td><button onClick={(e) => handleLogicalDraft(e, id)}>Borrar</button></td>
               </tr>
             )  
           })
