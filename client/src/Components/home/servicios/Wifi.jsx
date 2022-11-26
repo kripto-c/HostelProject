@@ -10,7 +10,7 @@ export default function Wifi() {
        {/* //WIFI ---------------------------------------------------->> */}
        
           <Button onClick={() => setLgShow(true)}>
-            <FaWifi />
+            <FaWifi size={80} />
           </Button>
           <Modal
             size="lg"

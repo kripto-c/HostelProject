@@ -9,7 +9,7 @@ export default function Recepcion() {
   return (
     <div>
      
-          <Button onClick={() => setLgShow(true)}><MdPerson/></Button>
+          <Button onClick={() => setLgShow(true)}><MdPerson size={80}/></Button>
           <Modal
             size="lg"
             show={lgShow}
