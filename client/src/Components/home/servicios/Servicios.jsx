@@ -3,29 +3,26 @@ import Lavanderia from "./Lavanderia";
 import Recepcion from "./Recepcion";
 import "./servicios.css";
 import Wifi from "./Wifi";
+import Container from 'react-bootstrap/Container';
+import Row from 'react-bootstrap/Row';
+import Col from 'react-bootstrap/Col';
 
 export default function Servicios() {
   return (
     <div className="container-fluid">
-      <div>
         <h1>Servicios</h1>
-      </div>
-      {/*------------------------------ WIFI -------------------------------------------------------------------->> */}
-      <div className="row">
-        <div className="col-md-4">
-          <Wifi></Wifi>
-        </div>
-
-        {/* Recepcion -------------------------------------------------------------------->> */}
-        <div className="col-md-4">
-          <Recepcion></Recepcion>
-        </div>
-
-        {/* Lavanderia -------------------------------------------------------------------------------->> */}
-        <div className="col-md-4">
-          <Lavanderia></Lavanderia>
-        </div>
-      </div>
+        <Container>
+      <Row>
+        <Col> <Wifi></Wifi></Col>
+        <Col><Recepcion></Recepcion></Col>
+      </Row>
+      <Row>
+        <Col><Lavanderia></Lavanderia></Col>
+        <Col>2 of 3</Col>
+        <Col>3 of 3</Col>
+      </Row>
+    </Container>
+     
     </div>
   );
 }

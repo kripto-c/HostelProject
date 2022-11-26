@@ -9,7 +9,7 @@ export default function Lavanderia() {
   return (
     <div>
       <div className="col-md-4">
-        <Button onClick={() => setLgShow(true)}>< MdOutlineLocalLaundryService/></Button>
+        <Button onClick={() => setLgShow(true)}>< MdOutlineLocalLaundryService size={80}/></Button>
         <Modal
           size="lg"
           show={lgShow}
