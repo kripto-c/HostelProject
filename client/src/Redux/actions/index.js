@@ -372,7 +372,7 @@ export function filterRents(payloadOne, payloadTwo) {
 export function logicalDraft(id, token) {
   try {
     return async function() {
-      const json = await axios.get(`${URL}/rents/${id}`, {headers:{authorization:`Bearer ${token}`}} )
+      const json = await axios.get(`${URL}/rents/draft?id=${id}`, {headers:{authorization:`Bearer ${token}`}} )
     }
   } catch (error) {
     
