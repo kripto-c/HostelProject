@@ -178,9 +178,13 @@ export default function rootReducer(state = initialState, action) {
       };
     }
     case "GET_RENTS": {
+      const activeRents = action.payload
+      console.log(activeRents)
+      let b = activeRents.filter(e => e.status === false)
+      console.log(b) 
       return {
         ...state,
-        rents: action.payload,
+        rents: b
       };
     }
     case GET_FAQ: {
