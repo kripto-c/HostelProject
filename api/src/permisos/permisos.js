@@ -6,5 +6,6 @@ module.exports = itemPermissos ={
  getAllClients:"getAllClient:admin-client",
  delete:"delete-element:delete-admin",
  faq:"created:newFaq",
- faqDelete:"deleted:Faq"
+ faqDelete:"deleted:Faq",
+ statusModifict:"status:client"
 }

@@ -1,5 +1,4 @@
 const { Router } = require("express");
-const axios = require("axios")
 const express = require("express");
 const login = require("./login/route");
 const rol = require('./rol/route')
