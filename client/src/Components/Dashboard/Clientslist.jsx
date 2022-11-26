@@ -16,9 +16,6 @@ export default function Clientlist() {
         dispatch(getAllClients(token))
     } 
 
-// useEffect(()=>{
-// protectClients()  
-// } ,[dispatch])
     return(
         <div className="container-fluid mt-3">
         <div className="mx-auto m-3 table-responsive-lg ">

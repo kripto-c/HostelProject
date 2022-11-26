@@ -5,7 +5,7 @@ import { getFaq, postFaq, delteFaq } from "../../Redux/actions";
 import { useAuth0 } from '@auth0/auth0-react';
 import { BsFillPencilFill } from "react-icons/bs";
 import style from '../Contact/style.module.css'
-
+import Swal from 'sweetalert2'
 
 
 export default function Faqs (){
@@ -32,13 +32,38 @@ export default function Faqs (){
         await dispatch(postFaq(token, faqs))
         dispatch(getFaq())
         setFaqs({question:"", anwser:""})
+        Swal.fire({
+          position: 'center',
+          icon: 'success',
+          title: 'Tu pregunta frecuente se añadio a la lista',
+          showConfirmButton: false,
+          timer: 1500
+        })
     }
 
 async function handleDelete(e){
       e.preventDefault()
       const token = await getAccessTokenSilently();
-       await dispatch(delteFaq(token, e.target.id))
-       dispatch(getFaq());
+       Swal.fire({
+        title: 'Eliminar pregunta frecuente',
+        text: "¡No podrás revertir esto!",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: '¡Sí, bórralo!'
+      }).then((result) => {
+        if (result.isConfirmed) {
+          dispatch(delteFaq(token, e.target.id))
+          Swal.fire(
+            '¡Eliminado!',
+            'tu pregunta frecuente han sido eliminadas de la lista',
+            'success'
+          )
+        }
+        dispatch(getFaq());
+      })
+
     } 
 
     
