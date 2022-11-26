@@ -23,11 +23,6 @@ function Payments() {
     dispatch(getRents());
   }, []);
 
-  const protectClients = async () => {
-    const token = await getAccessTokenSilently();
-    dispatch(getRents(token))
-  }
-
   const allRents = useSelector((state) => state.rents);
   console.log(allRents);
 
@@ -128,9 +123,9 @@ function Payments() {
 
     setDate("")
     setMonth("")
-    putRents()
+    putRents()   
     setData(true)
-
+    protectClients2()
     
   }
  
