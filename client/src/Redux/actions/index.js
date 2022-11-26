@@ -323,10 +323,10 @@ export function inactiveRooms(payload){
   }
 }
 //ACTIONS RENTS ----------------------------------------------------------->>
-export function getRents() {
+export function getRents(token) {
   try {
     return async function (dispatch) {
-      const json = await axios.get(`${URL}/rents`);
+      const json = await axios.get(`${URL}/rents`, {headers:{authorization:`Bearer ${token}`}});
       dispatch({
         type: "GET_RENTS",
         payload: json.data,
@@ -382,14 +382,10 @@ export function filterRents(payloadOne, payloadTwo) {
   };
 }
 
-export function logicalDraft(id) {
+export function logicalDraft(id, token) {
   try {
-    return async function(dispatch) {
-      const json = await axios.put(`${URL}/rents/${id}`, { status: true } )
-      return dispatch({
-        type: "LOGICAL_DRAFT",
-        payload: json.data,
-      });
+    return async function() {
+      const json = await axios.get(`${URL}/rents/${id}`, {headers:{authorization:`Bearer ${token}`}} )
     }
   } catch (error) {
     

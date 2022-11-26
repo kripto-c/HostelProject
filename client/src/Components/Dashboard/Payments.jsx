@@ -7,15 +7,26 @@ import {filterRents,  getRents, logicalDraft,
 } from "../../Redux/actions/index.js"
 import PaginationPayments from './PaginationPayments.jsx';
 import Swal from 'sweetalert2'
+import style from './Payments.module.css'
+import { useAuth0 } from "@auth0/auth0-react";
 
  
 
 function Payments() {
   const dispatch = useDispatch();
 
+  const {
+    getAccessTokenSilently
+  } = useAuth0();
+
   useEffect(() => {
     dispatch(getRents());
   }, []);
+
+  const protectClients = async () => {
+    const token = await getAccessTokenSilently();
+    dispatch(getRents(token))
+  }
 
   const allRents = useSelector((state) => state.rents);
   console.log(allRents);
@@ -108,7 +119,10 @@ function Payments() {
       setCurrentPage(1)
     }
   }
-
+    const protectClients2 = async () => {
+      const token = await getAccessTokenSilently();
+      dispatch(getRents(token))
+    }
   function handleResetFilters(e) {
     e.preventDefault()
 
@@ -116,32 +130,40 @@ function Payments() {
     setMonth("")
     putRents()
     setData(true)
-    dispatch(getRents())
+
+    
   }
+ 
   // ----------------------------->>
 
+  
 
   // BORRADOR LÓGICO ------------->>
-  function handleLogicalDraft(e, id) {
+  async function handleLogicalDraft(e, id) {
+    const token = await getAccessTokenSilently();
+  
     e.preventDefault()
-
-    dispatch(logicalDraft(id))
-    dispatch(getRents())
+    
+    await dispatch(logicalDraft(id, token))
+    /* dispatch(getRents()) */
+    protectClients2()
   }
   // ----------------------------->>
  
  
   return (
-    <div className='container'>
-    <div className='row'>
-      <div>
-        <nav>
-          <li>
+    <div >
+   
+      <div className={style.ContainerFilters}>
+        <nav className="nav nav-pills d-flex justify-content-center">
+          <li className="nav-item mx-1">
             <select 
               name="filterByMonth" 
               defaultValue="all"
               value={JSON.parse(localStorage.getItem("selectMonth"))}
-              onChange={e => {rentsHandler(e)}}>
+              onChange={e => {rentsHandler(e)}}
+              className="form-select"
+            >
               <option value="all" hidden>
                 Filtrar por mes
               </option>
@@ -150,31 +172,36 @@ function Payments() {
               })}
             </select>
           </li>
-          <li>
+          <li className="nav-item mx-1">
             <select 
               name="sortByDate" 
               defaultValue="all"
               value={JSON.parse(localStorage.getItem("selectDate"))}
-              onChange={e => {rentsHandler(e)}}>
+              onChange={e => {rentsHandler(e)}}
+              className="form-select"
+            >
               <option value="all" hidden>
-                Ordenar por precio
+                Ordenar por fecha
               </option>
-              <option value="asc">De menor a mayor</option>
-              <option value="desc">De mayor a menor</option>
+              <option value="asc">Más reciente</option>
+              <option value="desc">Menos reciente</option>
             </select>
           </li>
-          <li>
-            <button type="button" onClick={e => handleSubmitFilter(e)}>
+          <li className="nav-item mx-1">
+            <button type="button" onClick={e => handleSubmitFilter(e)} className="nav-item  btn btn-primary">
               Filtrar
             </button>
           </li>
-          <li>
-            <button type="button" onClick={e => handleResetFilters(e)}>
+          <li className="nav-item mx-1">
+            <button type="button" onClick={e => handleResetFilters(e)} className="nav-item  btn btn-primary">
               Borrar filtros
             </button>
           </li>
         </nav>
+        
       </div>
+    <div className='container'>
+    <div className='row'>
     <PaginationPayments
       paymentsPerPage={paymentsPerPage}
       allPayments={allPayments}
@@ -182,10 +209,10 @@ function Payments() {
       currentPage={currentPage}
       totalPages={totalPages}
      />
-
-    <Table striped bordered hover className="col-md-9">
+    
+    <Table striped bordered hover variant="dark" className="col-md-9 bg-dark">
       <thead>
-        <tr>
+        <tr className='text-center'>
           <th>id</th>
           <th>Check-In</th>
           <th>Check-Out</th>
@@ -200,24 +227,26 @@ function Payments() {
             let auxOut = e.dateOut.slice(0, 10)
             let id = e.id
             return (
-              <tr>
+              <tr text-center>
                 <td>{id}</td>
                 <td>{auxIn}</td>
                 <td>{auxOut}</td>
                 <td>${e.price}</td>
-                <td><button onClick={(e) => handleLogicalDraft(e, id)}>Borrar</button></td>
+                <td><button onClick={(e) => handleLogicalDraft(e, id)} className="btn btn-light">Borrar</button></td>
               </tr>
             )  
           })
         }
         <tr>
           <td></td>
-          <td colSpan={2}>Total:</td>
+          <td colSpan={2}><b>Total:</b></td>
           <td>${Math.floor(sum)}</td>
         </tr>
       </tbody>
     </Table>
     </div>
+    </div>
+
     </div>
   );
 }
