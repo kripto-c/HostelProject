@@ -34,7 +34,7 @@ router.use("/faq", faq)
 router.use("/rol", rol);
 router.use("/login", login);
 router.use("/payment", checkPermissions(itemPermissos.payment), payment);
-router.use("/owner", checkPermissions(itemPermissos.addDataAdmin), owner);
+router.use("/owner", owner);
 router.use("/feedback", feedback);
 router.use(`/getroomdetail`, roomdetail);//------Dejo esto aca porque mas abajo me tira error de authenticacion!!!!NO BORREN--->
 router.use("/info", info);
@@ -44,7 +44,6 @@ router.use("/deleteRoom", checkPermissions(itemPermissos.delete), deleteRoom)
 router.use("/activeRoom", checkPermissions(itemPermissos.delete), activeRoom)
 router.use("/rooms", rooms);
 router.use("/countries", getCountries)
-router.use("/owner", checkPermissions(itemPermissos.addDataAdmin), owner)
 router.use("/allClients", checkPermissions(itemPermissos.getAllClients), getAllClients)
 router.use("/rents", rents);
 

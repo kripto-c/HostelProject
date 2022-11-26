@@ -199,6 +199,19 @@ export function getOwner(token) {
   };
 }
 
+export function getOwnerSp() {
+  return async function (dispatch) {
+    try {
+      let { data } = await axios.get(`${URL}/owner/gethome`);
+      return dispatch({
+        type: GET_OWNER,
+        payload: data,
+      });
+    } catch (error) {
+      console.log(error);
+    }
+  };
+}
 export function getRoomDetail(id) {
   return async (dispatch) => {
     try {

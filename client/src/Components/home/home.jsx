@@ -5,7 +5,7 @@ import Review from '../Review/Reviews';
 import "./Home.css";
 import { Link } from "react-router-dom";
 import { addObserver } from "./observer";
-import { getOwner } from "../../Redux/actions";
+import { getOwner,getOwnerSp } from "../../Redux/actions";
 import {useDispatch, useSelector} from "react-redux"
 import { useAuth0 } from "@auth0/auth0-react";
 
@@ -26,11 +26,13 @@ const Home = () => {
 
   async function getOwnerF(){
     const token = await  getAccessTokenSilently()
-    dispatch(getOwner(token))
+    dispatch(getOwnerSp(token))
   }
 
   React.useEffect(() => {
-    if (!info.length) getOwnerF()
+    //if (!info.length) getOwnerF()    
+    if (!info.length) dispatch(getOwnerSp())
+    console.log("entre",info)
   }, [dispatch]);
 
   return (
