@@ -180,11 +180,20 @@ export function getStatus(token){
       let res = await axios.get(`${URL}/login/status`, {headers:{authorization:`Bearer ${token}`}})
       localStorage.setItem("status", res.data);
     }
-  } catch (error) {
+  } catch (e) {
     console.log(e);
   }
 }
 
+export function setStatus(token, body){
+   try {
+    return async function() {
+      let res = await axios.post(`${URL}/login/banner`,body, {headers:{authorization:`Bearer ${token}`}})      
+    }
+   } catch (e) {
+    console.log(e);
+   }
+}
 
 // ---------------------------------------------------------
 export function postOwner(payload, headers) {

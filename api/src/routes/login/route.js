@@ -85,20 +85,11 @@ route.get('/status', async (req, res)=>{
     
 })
 
-route.get('/banner', async(req, res)=>{
-    try {
-      
-      const accesToken = req.headers.authorization.split(' ')[1];
-      const responds = await axios.get('https://dev-o7k6sbvjre41wvzb.us.auth0.com/userinfo', {
-         headers:{authorization:`Bearer ${accesToken}`}
-       })
-       const userinfo = responds.data;
-       const { sub } = userinfo;
-      const id = sub.split('|')[1];
-      const client = await Client.findOne({where: {idAuth: id}});
-       await client.update({
-         status:"disabled"
-      });
+route.post('/banner', checkPermissions(itemPermissos.statusModifict),async(req, res)=>{
+       const { status, id } = req.body;  
+  try {
+      const client = await Client.findOne({where: {id: id}});
+       await client.update({ status });
        await client.save();
        res.send(client)
     } catch (error) {
