@@ -10,6 +10,7 @@ import Col from "react-bootstrap/Col";
 import { useNavigate } from "react-router-dom";
 import "./Create.css";
 import Edit from "./EditRoom";
+import { useEffect } from "react";
 
 const Create = () => {
   // SETTEAR INFO//
@@ -22,9 +23,9 @@ const Create = () => {
     observation: "",
     price: "",
     typeId: "",
-    cuchetas: "",
-    simples: "",
-    beds: "0",
+    cuchetas: 0,
+    simples: 0,
+    beds: 0,
   });
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -71,35 +72,33 @@ const Create = () => {
   const handlebañoSelect = (e) => {
     setRoom({
       ...room,
-      bathroom: e.target.value,
+      bathroom: parseInt(e.target.value),
     });
   };
 
   const handleSimples = (e) => {
     setRoom({
       ...room,
-      simples: e.target.value,
+      simples: parseInt(e.target.value),
     });
   };
 
   const handleCuchetas = (e) => {
     setRoom({
       ...room,
-      cuchetas: e.target.value,
+      cuchetas: parseInt(e.target.value),
     });
   };
 
+
   const sumarCamas = () => {
-    let totales = room.simples + room.cuchetas;
+    let totales = room.simples + (room.cuchetas * 2);
     setRoom({
       ...room,
       beds: totales,
     });
-    console.log(totales);
+    
   };
-  {
-    console.log(room.beds, room.cuchetas, room.simples);
-  }
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -134,7 +133,9 @@ const Create = () => {
       navigate("/");
     }
   };
-
+  useEffect(() =>{
+    sumarCamas()
+  },[room.simples, room.cuchetas])
   return (
     <div>
       <div className="box-create">
@@ -193,7 +194,7 @@ const Create = () => {
                 value={room.simples}
                 onChange={async (e) => {
                   await handleSimples(e);
-                  await sumarCamas(e);
+
                 }}
               />
             </Form.Group>
@@ -201,9 +202,12 @@ const Create = () => {
               <Form.Label>Camas Totales:</Form.Label>
               <Form.Control
                 disabled
-                tpye="number"
+                type="number"
                 name="beds"
                 value={room.beds}
+                onChange={()=>{
+                  console.log(e.target.value)
+                }}
               />
             </Form.Group>
             <Form.Group as={Col} md="3">
@@ -216,7 +220,6 @@ const Create = () => {
                 value={room.cuchetas}
                 onChange={async (e) => {
                   await handleCuchetas(e);
-                  await sumarCamas(e);
                 }}
               />
             </Form.Group>

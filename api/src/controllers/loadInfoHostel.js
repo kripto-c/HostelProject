@@ -23,6 +23,7 @@ const loadInfoHostel = async (req, res) => {
       let dataRent = await Rent.bulkCreate(rent);
 
       let room = data.map((e) => e.room).flat();
+      console.log(room);
       let dataRoom = await Room.bulkCreate(room);
      
       let countries = data.map((e) => e.country).flat();
@@ -49,6 +50,7 @@ const loadInfoHostel = async (req, res) => {
 
     return res.status(200).json("Base de datos completa");
   } catch (e) {
+    console.log(e)
     res.status(400).json(e);
   }
 };

@@ -8,7 +8,7 @@ export default function RoomCard({beds, description, image, bathroom, type, id,p
     } else if(type === "Privado") {
         typeRoom = "privada"
     }
-
+    console.log(image);
     return (
         <div className="container bg-dark my-3" >
             {/* <Link style={{ textDecoration: 'none' }} to={`/roomdetail/${id}`}> */}
