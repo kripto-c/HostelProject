@@ -12,7 +12,7 @@ router.get("/", (req, res) => {
         return res.status(400).send(error)
     }
 })
- router.put("/:id", (req, res) => {
+ router.get("/draft/:id", (req, res) => { 
     const {id} = req.params
     try {
         return controllers.updateRent(id)
