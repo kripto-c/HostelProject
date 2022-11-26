@@ -12,7 +12,7 @@ router.get("/", (req, res) => {
         return res.status(400).send(error)
     }
 })
-/* router.put("/:id", (req, res) => {
+ router.put("/:id", (req, res) => {
     const {id} = req.params
     try {
         return controllers.updateRent(id)
@@ -22,6 +22,6 @@ router.get("/", (req, res) => {
     } catch (error) {
         return res.status(400).send(error)
     }
-}) */
+})
  
 module.exports = router;
