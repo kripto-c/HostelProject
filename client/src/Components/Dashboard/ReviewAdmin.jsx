@@ -107,9 +107,9 @@ export default function ReviewAdmin() {
   function getFechaHora(createdAt) {
     let data = createdAt.replace(/\./g, "").slice(0, -7).split("T");
     let fecha = data[0];
-    let hora = data[1];
+    
 
-    return <span>{fecha} a las {hora}</span>;
+    return <span>{fecha}</span>;
   }
 
   return (
