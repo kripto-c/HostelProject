@@ -71,7 +71,7 @@ export default function Rooms() {
               allRooms={allRooms?.length}
               paginate={paginate}
               page={page}
-            /> */}
+            /> 
           </div>
         </div>
       </div>
