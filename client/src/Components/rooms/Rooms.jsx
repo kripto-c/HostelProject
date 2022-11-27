@@ -60,6 +60,7 @@ export default function Rooms() {
                     id={e.id}
                     type={e.type?.type}
                     price={e.price}
+                    beds_avalaibles={e.beds_avalaibles}
                   />
                 </div>
               );

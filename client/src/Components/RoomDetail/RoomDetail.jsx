@@ -23,6 +23,8 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import SweetAlert from 'react-bootstrap-sweetalert';
 import {socket} from '../../App'
 
+import Carousel from "react-bootstrap/Carousel";
+
 export default function RoomDetail() {
   
   const client = useSelector((state) => state.client);
@@ -53,7 +55,7 @@ export default function RoomDetail() {
     nationality: "",
   });
   ///////
-
+  const [imagenes, setImagenes] = useState([]);
   //========DATOS DE EJEMPLOS======//
   const userLogin = useAuth0();
 
@@ -69,7 +71,9 @@ export default function RoomDetail() {
       if(data.user != userLogin.user.email) setPayAvalible(data.status)
     })
     socket.on('userPayC',(data)=> setPayAvalible(data.status))
+    setImagenes(room.image)
   },[dispatch]);
+
   
   const rent = useSelector((state) => state.rent);
     //console.log('detail',entrada, salida);
@@ -228,6 +232,9 @@ export default function RoomDetail() {
     setName(true);
     setLastname(true);
   }
+    useEffect(() =>{
+      console.log(room)
+    },[])
 
     return (
     <div className='detailRoom mx-auto'>
@@ -439,16 +446,16 @@ export default function RoomDetail() {
             </Button>
         </Modal>
         <div className='container d-grid gap-2 col-6 mx-auto'>
-            <button  className="btn btn-secondary" onClick={() => {setCalendar(true)}} >Seleccione una fecha</button>
+            <button disabled={room.status} className="btn btn-secondary" onClick={() => {setCalendar(true)}} >Seleccione una fecha</button>
         </div>
       
       <div className="infoRoom">
-        <div>
+        {/* <div>
           <h3>{room.name}</h3>
           <p>{room.description}</p>
           <br />
           <h4>${room.price} por cama</h4>
-        </div>
+        </div> */}
         <img
           className="image"
           width="600"
@@ -456,6 +463,23 @@ export default function RoomDetail() {
           src={room.image}
           alt="habitacion de Hostel"
         />
+        {console.log(imagenes)}
+        {/* <Carousel>
+          {
+            room.image.map((img) =>{
+              return(
+                <Carousel.Item>
+                  <img
+                  className="d-block w-100"
+                  src={img}
+                  alt="habitacion de Hostel"
+                  />
+                </Carousel.Item>
+              )
+            })
+          }
+        </Carousel> */}
+
       </div>
       <p className="Ac">
         <b>Camas a reservar: {camas}</b>
