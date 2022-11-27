@@ -20,11 +20,7 @@
 const serverHttp = require("./src/app");
 const { conn } = require("./src/db.js");
 
-<<<<<<< HEAD
-conn.sync({ force: true }).then(() => {
-=======
 conn.sync({ force:false }).then(() => {
->>>>>>> ec47b519de7edf494cb3c28ae32d996ccf4df22d
   serverHttp.listen(process.env.PORT || 4000, () => {
     console.log(`server ready en el puerto ${process.env.PORT || 4000}`);
   });
