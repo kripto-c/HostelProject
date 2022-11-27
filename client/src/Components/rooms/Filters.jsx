@@ -47,7 +47,7 @@ export default function Filters({ getRooms, setData }) {
     e.preventDefault();
      //SI EL CAMBIO FUE EN EL SELECT DE TIPO DE HABITACION, GUARDO SU VALOR EN EL ESTADO LOCAL DE TYPE!!-------->
     if (e.target.name === "filterRoomType") {
-      console.log("CAMBIO TYPE ROOM");
+     
       
       localStorage.setItem("selectType",JSON.stringify(e.target.value)) //asdasdasdasdasd - - -- - - - -- - - - - -- - (-)
       JSON.parse(localStorage.getItem("selectType"))? setType(JSON.parse(localStorage.getItem("selectType"))):setType(e.target.value)
@@ -62,7 +62,7 @@ export default function Filters({ getRooms, setData }) {
       return setTypeBatchroom(e.target.value);
     }
     if (e.target.name === "price") {
-      console.log("holaasd")
+      
       localStorage.setItem("selectPrice",JSON.stringify(e.target.value)) //asdasdasdasdasd - - -- - - - -- - - - - -- - (-)
       JSON.parse(localStorage.getItem("selectPrice"))? setPrice(JSON.parse(localStorage.getItem("selectPrice"))):setPrice(e.target.value)
      
