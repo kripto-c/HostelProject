@@ -88,7 +88,6 @@ export function sendFeedback(data) {
 }
 
 export function filterTypeRoom(payloadOne, payloadTwo, payloadThree) {
-  console.log("TYPE ROOM FILTRO ACCIONADO", payloadOne);
   return {
     type: FILTER_TYPE_ROOM,
     payloadOne,
@@ -131,7 +130,6 @@ export function getAllClients(token) {
       const allClients = await axios.get(`${URL}/allClients`, {
         headers: { authorization: `Bearer ${token}` },
       });
-      console.log(allClients);
       return dispatch({
         type: GET_ALL_CLIENTS,
         payload: allClients.data,
