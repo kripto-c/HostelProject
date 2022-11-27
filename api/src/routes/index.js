@@ -57,6 +57,6 @@ router.use(
   checkPermissions(itemPermissos.getAllClients),
   getAllClients
 );
-router.use("/rents", rents);
+router.use("/rents", checkPermissions(itemPermissos.getPaymentAdmin), rents);
 
 module.exports = router;

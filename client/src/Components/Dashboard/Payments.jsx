@@ -14,16 +14,23 @@ import { useAuth0 } from "@auth0/auth0-react";
 
 function Payments() {
   const dispatch = useDispatch();
+  const allRents = useSelector((state) => state.rents);
+  
 
   const {
     getAccessTokenSilently
   } = useAuth0();
 
+const protectClients2 = async () => {
+    const token = await getAccessTokenSilently();
+    dispatch(getRents(token))
+  }
+
   useEffect(() => {
-    dispatch(getRents());
+    protectClients2();
   }, []);
 
-  const allRents = useSelector((state) => state.rents);
+  
   console.log(allRents);
 
   var sum = 0;
@@ -114,10 +121,8 @@ function Payments() {
       setCurrentPage(1)
     }
   }
-    const protectClients2 = async () => {
-      const token = await getAccessTokenSilently();
-      dispatch(getRents(token))
-    }
+    
+    
   function handleResetFilters(e) {
     e.preventDefault()
 
