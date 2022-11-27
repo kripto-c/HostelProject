@@ -51,8 +51,18 @@ router.use(
   changeStatusRoom
 );
 router.use("/rooms", rooms);
+<<<<<<< HEAD
 router.use("/countries", getCountries)
 router.use("/allClients", checkPermissions(itemPermissos.getAllClients), getAllClients)
 router.use("/rents", rents);
+=======
+router.use("/countries", getCountries);
+router.use(
+  "/allClients",
+  checkPermissions(itemPermissos.getAllClients),
+  getAllClients
+);
+router.use("/rents", checkPermissions(itemPermissos.getPaymentAdmin), rents);
+>>>>>>> d8f7729 (permisos)
 
 module.exports = router;

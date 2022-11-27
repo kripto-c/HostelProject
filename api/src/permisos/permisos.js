@@ -7,5 +7,6 @@ module.exports = itemPermissos ={
  delete:"delete-element:delete-admin",
  faq:"created:newFaq",
  faqDelete:"deleted:Faq",
- statusModifict:"status:client"
+ statusModifict:"status:client",
+ getPaymentAdmin:"get-payment-and-delete"
 }
