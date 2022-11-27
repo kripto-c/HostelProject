@@ -92,7 +92,7 @@ module.exports = {
         let rents = await Rent.findAll({})
         return rents
     },
-/*     
+     
     updateRent: async function(id) {
         console.log(id)
         let updateRent = await Rent.findByPk(id)
@@ -100,6 +100,4 @@ module.exports = {
         await updateRent.save()
         return updateRent
     }
- 
-*/
 }
