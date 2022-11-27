@@ -100,6 +100,4 @@ module.exports = {
         await updateRent.save()
         return updateRent
     }
- 
-*/
 }
