@@ -101,5 +101,5 @@ module.exports = {
     //     return updateRent
     // }
  
-*/
+
 }
