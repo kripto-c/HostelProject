@@ -180,11 +180,20 @@ export function getStatus(token){
       let res = await axios.get(`${URL}/login/status`, {headers:{authorization:`Bearer ${token}`}})
       localStorage.setItem("status", res.data);
     }
-  } catch (error) {
+  } catch (e) {
     console.log(e);
   }
 }
 
+export function setStatus(token, body){
+   try {
+    return async function() {
+      let res = await axios.post(`${URL}/login/banner`,body, {headers:{authorization:`Bearer ${token}`}})      
+    }
+   } catch (e) {
+    console.log(e);
+   }
+}
 
 // ---------------------------------------------------------
 export function postOwner(payload, headers) {
@@ -209,6 +218,19 @@ export function getOwner(token) {
   };
 }
 
+export function getOwnerSp() {
+  return async function (dispatch) {
+    try {
+      let { data } = await axios.get(`${URL}/owner/gethome`);
+      return dispatch({
+        type: GET_OWNER,
+        payload: data,
+      });
+    } catch (error) {
+      console.log(error);
+    }
+  };
+}
 export function getRoomDetail(id) {
   return async (dispatch) => {
     try {
@@ -358,4 +380,18 @@ export function filterRents(payloadOne, payloadTwo) {
     payloadOne,
     payloadTwo,
   };
+}
+
+export function logicalDraft(id) {
+  try {
+    return async function(dispatch) {
+      const json = await axios.put(`${URL}/rents/${id}`, { status: true } )
+      return dispatch({
+        type: "LOGICAL_DRAFT",
+        payload: json.data,
+      });
+    }
+  } catch (error) {
+    
+  }
 }

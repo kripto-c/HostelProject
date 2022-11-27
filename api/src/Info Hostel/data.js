@@ -229,7 +229,13 @@ module.exports = [
         beds: 4,
         description: "Habitacion con 2 camas cuchetas",
         image:
+<<<<<<< HEAD
           ["https://firebasestorage.googleapis.com/v0/b/imgs-b915c.appspot.com/o/hostelEjemplo12.png?alt=media&token=1ad420e7-761a-4939-aa74-1a1f551558aa"],
+=======
+          ["https://firebasestorage.googleapis.com/v0/b/imgs-b915c.appspot.com/o/hostelEjemplo12.png?alt=media&token=1ad420e7-761a-4939-aa74-1a1f551558aa", 
+          "https://firebasestorage.googleapis.com/v0/b/imgs-b915c.appspot.com/o/hostelEjemplo16.png?alt=media&token=0fc62769-41f6-4e40-a6dd-351cabe18b14",
+          "https://firebasestorage.googleapis.com/v0/b/imgs-b915c.appspot.com/o/hostelEjemplo13.png?alt=media&token=3d77598d-538d-42d0-8003-a718d57cdaa7"],
+>>>>>>> ec47b519de7edf494cb3c28ae32d996ccf4df22d
         bathroom: false,
         price: 3600,
         observation: "",

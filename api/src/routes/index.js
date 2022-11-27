@@ -1,5 +1,4 @@
 const { Router } = require("express");
-const axios = require("axios");
 const express = require("express");
 const login = require("./login/route");
 const rol = require("./rol/route");
@@ -26,7 +25,7 @@ const itemPermissos = require("../permisos/permisos");
 // auth0 backend
 const jwtCheck = require("../jwtCheck/jwtCheck");
 
-router.use(jwtCheck);
+router.use(jwtCheck); 
 
 router.use(express.json());
 //RUTAS--------------------------------------------------------------->>
@@ -34,7 +33,7 @@ router.use("/faq", faq);
 router.use("/rol", rol);
 router.use("/login", login);
 router.use("/payment", checkPermissions(itemPermissos.payment), payment);
-router.use("/owner", checkPermissions(itemPermissos.addDataAdmin), owner);
+router.use("/owner", owner);
 router.use("/feedback", feedback);
 router.use(`/getroomdetail`, roomdetail); //------Dejo esto aca porque mas abajo me tira error de authenticacion!!!!NO BORREN--->
 router.use("/info", info);
@@ -52,12 +51,8 @@ router.use(
   changeStatusRoom
 );
 router.use("/rooms", rooms);
-router.use("/countries", getCountries);
-router.use(
-  "/allClients",
-  checkPermissions(itemPermissos.getAllClients),
-  getAllClients
-);
+router.use("/countries", getCountries)
+router.use("/allClients", checkPermissions(itemPermissos.getAllClients), getAllClients)
 router.use("/rents", rents);
 
 module.exports = router;

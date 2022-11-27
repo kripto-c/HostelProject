@@ -74,17 +74,32 @@ module.exports = {
         let dataOwner = await Owner.findAll()
         return dataOwner[0]
     },
+    getOwnerHome: async function(){
+        let dataOwner = await Owner.findAll()
+        let{hostelName, instagram, facebook, twitter, mail, aboutUs, chooseUs, extra} = dataOwner[0]
+        let dataHome = {hostelName, 
+                        instagram, 
+                        facebook, 
+                        twitter, 
+                        mail, 
+                        aboutUs, 
+                        chooseUs, 
+                        extra}
+        //return dataOwner[0]
+        return dataHome
+    },
     getRentsInfo: async function() {
         let rents = await Rent.findAll({})
         return rents
     },
-/*     updateRent: async function(id) {
+/*     
+    updateRent: async function(id) {
         console.log(id)
         let updateRent = await Rent.findByPk(id)
         await updateRent.update({ status: true })
         await updateRent.save()
         return updateRent
     }
- */
-
+ 
+*/
 }

@@ -12,7 +12,7 @@ import { Link, useNavigate } from "react-router-dom";
 
 
 import { useState, useEffect } from "react";
-import "./MenuUsuario.css";
+import style from "./MenuUsuario.module.css";
 import Sidebar from "../Dashboard/Sidebar";
 
 const options = [
@@ -94,7 +94,6 @@ async function statusUser() {
         }
       
 }
-
   useEffect(() => {
     let idUser = localStorage.getItem("IDUser");
     if (idUser) {
@@ -104,6 +103,60 @@ async function statusUser() {
   }, [dispatch]);
   return (
     <>
+      <Offcanvas show={show} placement="end" onHide={handleClose} {...props} style={{backgroundColor: "#212121", borderRadius: "5px"}} >
+              <Offcanvas.Header closeButton>
+                <img
+                  src={isAuthenticated ? user.picture : ""}
+                  alt="foto perfil"
+                  className="rounded-circle profileIMG"
+                />
+                <Offcanvas.Title className={style.tittle} >Menu</Offcanvas.Title>
+              </Offcanvas.Header>
+            <div className="container hx-auto">
+              <Offcanvas.Body className="d-grid offcanvas-body gap-1 mx-auto">
+                <div className="row mx-auto">
+                  <div className="">
+                    <div className="list-group" id="list-tab" role="tablist">
+                      <button
+                        className={`list-group-item list-group-item-action ${style.botones}`}
+                        onClick={() => {
+                          navigate("/clientEdit");
+                        }}
+                        id="list-profile-list"
+                        data-bs-toggle="list"
+                        role="tab"
+                        aria-controls="list-profile"
+                      >
+                        Editar datos
+                      </button>
+                      <button
+                        className={`list-group-item list-group-item-action ${style.botones}`}
+                        id="list-messages-list"
+                        data-bs-toggle="list"
+                        onClick={() => navigate("/reviewHostel")}
+                        role="tab"
+                        aria-controls="list-messages"
+                      >
+                        Reviews
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </Offcanvas.Body>
+            </div>
+                <button
+                  type="button"
+                  onClick={() => {
+                    localStorage.clear();
+                    logout();
+                    setConfirmLog(false);
+                    setSort("deslogueado");
+                  }}
+                  className={`${style.cerrarSesion} btn btn-outline-danger `}
+                >
+                  Cerrar Sesion
+                </button>
+            </Offcanvas>
             {
               (localStorage.getItem("Rol") === "menu-admin" )
                &&  <button
@@ -125,74 +178,13 @@ async function statusUser() {
             <Offcanvas show={show1} onHide={() =>{setShow1(false)}} style={{backgroundColor: "#212121"}}>
               <Sidebar></Sidebar>
             </Offcanvas>
+            {
+              (isAuthenticated && localStorage.getItem("Rol") === "menu-client" ) &&
             <Button variant="outline-light" onClick={handleShow} className="ms-5 w-10">
-        Menu
-      </Button>
-            <Offcanvas show={show} placement="end" onHide={handleClose} {...props}>
-            <Offcanvas.Header closeButton>
-              <Offcanvas.Title>Menu</Offcanvas.Title>
-            </Offcanvas.Header>
-            <div className="container bg-light ">
-              <Offcanvas.Body className="d-grid offcanvas-body gap-1 mx-auto">
-                <img
-                  src={isAuthenticated ? user.picture : ""}
-                  alt="foto perfil"
-                  className="rounded-circle profileIMG"
-                />
-                <div className="row">
-                  <div className="">
-                    <div className="list-group" id="list-tab" role="tablist">
-                      <button
-                        to="/"
-                        className="list-group-item list-group-item-action active"
-                        id="list-home-list"
-                        data-bs-toggle="list"
-                        role="tab"
-                        aria-controls="list-home"
-                      >
-                        Mi cuenta
-                      </button>
-                      <button
-                        className="list-group-item list-group-item-action"
-                        onClick={() => {
-                          navigate("/clientEdit");
-                        }}
-                        id="list-profile-list"
-                        data-bs-toggle="list"
-                        role="tab"
-                        aria-controls="list-profile"
-                      >
-                        Editar datos
-                      </button>
-
-                      <button
-                        className="list-group-item list-group-item-action "
-                        id="list-messages-list"
-                        data-bs-toggle="list"
-                        onClick={() => navigate("/reviewHostel")}
-                        role="tab"
-                        aria-controls="list-messages"
-                      >
-                        Reviews
-                      </button>
-                    </div>
-                  </div>
-                </div>
-                <button
-                  type="button"
-                  onClick={() => {
-                    localStorage.clear();
-                    logout();
-                    setConfirmLog(false);
-                    setSort("deslogueado");
-                  }}
-                  className="btn btn-outline-danger"
-                >
-                  Cerrar Sesion
-                </button>
-              </Offcanvas.Body>
-            </div>
-            </Offcanvas>
+              Menu
+            </Button>
+            }
+            
             </>
           ) : (
               <Button

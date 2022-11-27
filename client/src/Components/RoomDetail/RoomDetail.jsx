@@ -15,15 +15,15 @@ import { useDispatch, useSelector } from "react-redux";
 import { useAuth0 } from "@auth0/auth0-react";
 import { getRoomDetail } from "../../Redux/actions";
 import Footer from "../Layout/Footer";
-import ModalHeader from 'react-bootstrap/esm/ModalHeader';
 import moment from "moment";
 import {DateRangePicker} from "react-date-range"
 import 'react-date-range/dist/styles.css'; // main style file
 import 'react-date-range/dist/theme/default.css'; // theme css file
 import "bootstrap/dist/css/bootstrap.min.css";
-
 import SweetAlert from 'react-bootstrap-sweetalert';
 import {socket} from '../../App'
+
+import Carousel from "react-bootstrap/Carousel";
 
 export default function RoomDetail() {
   
@@ -55,7 +55,7 @@ export default function RoomDetail() {
     nationality: "",
   });
   ///////
-
+  const [imagenes, setImagenes] = useState([]);
   //========DATOS DE EJEMPLOS======//
   const userLogin = useAuth0();
 
@@ -71,7 +71,9 @@ export default function RoomDetail() {
       if(data.user != userLogin.user.email) setPayAvalible(data.status)
     })
     socket.on('userPayC',(data)=> setPayAvalible(data.status))
+    setImagenes(room.image)
   },[dispatch]);
+
   
   const rent = useSelector((state) => state.rent);
     //console.log('detail',entrada, salida);
@@ -138,15 +140,8 @@ export default function RoomDetail() {
 
 
         
-        
-
-    
     const pay = async ()=>{
-      
-
         // VERIFICACION DE DATOS DE LA RESERVA
-        // setCheckIn(entrada1);
-        // setCheckOut(salida1);
         console.log("cama", camas)
         console.log("entrada", checkIn)
         console.log("salida",checkOut)
@@ -155,8 +150,6 @@ export default function RoomDetail() {
         if(!camas) return setVerRoom(true);
         if(!checkIn) return setVerCheckIn(true);
         if(!checkOut) return setVerCheckOut(true);
-        
-        
         
        //CONTROL DE DATOS DEL USUARIO
 
@@ -239,7 +232,10 @@ export default function RoomDetail() {
     setName(true);
     setLastname(true);
   }
-    // console.log(room);
+    useEffect(() =>{
+      console.log(room)
+    },[])
+
     return (
     <div className='detailRoom mx-auto'>
              {
@@ -450,16 +446,16 @@ export default function RoomDetail() {
             </Button>
         </Modal>
         <div className='container d-grid gap-2 col-6 mx-auto'>
-            <button  className="btn btn-secondary" onClick={() => {setCalendar(true)}} >Seleccione una fecha</button>
+            <button disabled={room.status} className="btn btn-secondary" onClick={() => {setCalendar(true)}} >Seleccione una fecha</button>
         </div>
       
       <div className="infoRoom">
-        <div>
+        {/* <div>
           <h3>{room.name}</h3>
           <p>{room.description}</p>
           <br />
           <h4>${room.price} por cama</h4>
-        </div>
+        </div> */}
         <img
           className="image"
           width="600"
@@ -467,6 +463,23 @@ export default function RoomDetail() {
           src={room.image}
           alt="habitacion de Hostel"
         />
+        {console.log(imagenes)}
+        {/* <Carousel>
+          {
+            room.image.map((img) =>{
+              return(
+                <Carousel.Item>
+                  <img
+                  className="d-block w-100"
+                  src={img}
+                  alt="habitacion de Hostel"
+                  />
+                </Carousel.Item>
+              )
+            })
+          }
+        </Carousel> */}
+
       </div>
       <p className="Ac">
         <b>Camas a reservar: {camas}</b>
@@ -484,7 +497,6 @@ export default function RoomDetail() {
         step="1"
         />
       </div>
-      {console.log(camas)}
       {room.status && (
         <div className="disponibilidad">No hay camas disponibles</div>
       )}

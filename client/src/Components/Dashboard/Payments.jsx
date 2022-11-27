@@ -2,11 +2,12 @@ import React from 'react'
 import { useEffect, useState } from 'react';
 import Table from 'react-bootstrap/Table';
 import { useDispatch, useSelector } from 'react-redux';
-import {filterRents, /* filterRentsByMonth, */ getRents, /* sortRentsByDate,  */
+import {filterRents,  getRents, logicalDraft,
   // updateStatusRents,
 } from "../../Redux/actions/index.js"
 import PaginationPayments from './PaginationPayments.jsx';
 import Swal from 'sweetalert2'
+
  
 
 function Payments() {
@@ -30,11 +31,13 @@ function Payments() {
 
   // PAGINADO --------------------->>
   const allPayments = useSelector((state) => state.rents)
+  let rentsCurrent = JSON.parse(localStorage.getItem("filters")) || allPayments
   const [currentPage, setCurrentPage] = useState(1)
   const [paymentsPerPage, setPaymentsPerPage] = useState(10)
   const indexOfLastPayment = currentPage * paymentsPerPage
   const indexOfFirstPayment = indexOfLastPayment - paymentsPerPage
-  const currentPayments = allPayments?.slice(indexOfFirstPayment, indexOfLastPayment)
+  const currentPayments = rentsCurrent?.slice(indexOfFirstPayment, indexOfLastPayment)
+  const totalPages = Math.ceil(allPayments.length / 10)
  
   const paginado = (pageNumbers) => {
     setCurrentPage(pageNumbers)
@@ -43,6 +46,12 @@ function Payments() {
 
  
   // FILTROS --------------------->>
+  const [data, setData] = useState(true)
+  useEffect(() => {
+    JSON.parse(localStorage.getItem("filters"))
+    setData(false)
+  }, [data])
+
   const months = allRents.map(e => e.dateIn.slice(0, 7))
   console.log(months)
 
@@ -56,16 +65,31 @@ function Payments() {
   console.log(months2)
 
 
-  const [date, setDate] = useState("")
-  const [month, setMonth] = useState("")
+  const [date, setDate] = useState(JSON.parse(localStorage.getItem("selectDate"))||"")
+  const [month, setMonth] = useState(JSON.parse(localStorage.getItem("selectMonth")) || "")
   const [orden, setOrden] = useState('')
+  
+
+  
+
+  const putRents = () => {
+    localStorage.removeItem("filters")
+    localStorage.setItem("selectDate", JSON.stringify(""))
+    localStorage.setItem("selectMonth", JSON.stringify(""))
+  }
+
+
   function rentsHandler(e) {
     e.preventDefault()
 
     if(e.target.name === "filterByMonth") {
+      localStorage.setItem("selectMonth", JSON.stringify(e.target.value))
+      JSON.parse(localStorage.getItem("selectMonth"))? setMonth(JSON.parse(localStorage.getItem("selectMonth"))):setMonth(e.target.value)
       return setMonth(e.target.value)
     } 
     if(e.target.name === "sortByDate") {
+      localStorage.setItem("selectDate", JSON.stringify(e.target.value))
+      JSON.parse(localStorage.getItem("selectDate"))? setDate(JSON.parse(localStorage.getItem("selectDate"))):setDate(e.target.value)
       return setDate(e.target.value)
     }
   }
@@ -80,6 +104,7 @@ function Payments() {
     } else {
       dispatch(filterRents(month, date))
       setOrden(`Ordenado ${e.target.value}`)
+      setData(true)
       setCurrentPage(1)
     }
   }
@@ -89,28 +114,19 @@ function Payments() {
 
     setDate("")
     setMonth("")
+    putRents()
+    setData(true)
     dispatch(getRents())
-  
-    if(e.target.name === "filterByMonth") {
-      return setMonth(e.target.value)
-    } 
-    if(e.target.name === "sortByDate") {
-      return setDate(e.target.value)
-    }
   }
-  function handleSubmitFilters(e) {
+  // ----------------------------->>
+
+
+  // BORRADOR LÓGICO ------------->>
+  function handleLogicalDraft(e, id) {
     e.preventDefault()
-    if(!date && !month) {
-      Swal.fire({
-        icon: 'error',
-        title: 'Oops...',
-        text: 'No hay filtros a aplicar',
-      })
-    } else {
-      dispatch(filterRents(month, date))
-      setOrden(`Ordenado ${e.target.value}`)
-      setCurrentPage(1)
-    }
+
+    dispatch(logicalDraft(id))
+    dispatch(getRents())
   }
   // ----------------------------->>
  
@@ -121,7 +137,11 @@ function Payments() {
       <div>
         <nav>
           <li>
-            <select name="filterByMonth" onChange={e => {rentsHandler(e)}}>
+            <select 
+              name="filterByMonth" 
+              defaultValue="all"
+              value={JSON.parse(localStorage.getItem("selectMonth"))}
+              onChange={e => {rentsHandler(e)}}>
               <option value="all" hidden>
                 Filtrar por mes
               </option>
@@ -131,7 +151,11 @@ function Payments() {
             </select>
           </li>
           <li>
-            <select name="sortByDate" onChange={e => {rentsHandler(e)}}>
+            <select 
+              name="sortByDate" 
+              defaultValue="all"
+              value={JSON.parse(localStorage.getItem("selectDate"))}
+              onChange={e => {rentsHandler(e)}}>
               <option value="all" hidden>
                 Ordenar por precio
               </option>
@@ -156,6 +180,7 @@ function Payments() {
       allPayments={allPayments}
       paginado={paginado}
       currentPage={currentPage}
+      totalPages={totalPages}
      />
 
     <Table striped bordered hover className="col-md-9">
@@ -165,6 +190,7 @@ function Payments() {
           <th>Check-In</th>
           <th>Check-Out</th>
           <th>Payment</th>
+          <th>Borrador</th>
         </tr>
       </thead>
       <tbody>
@@ -172,12 +198,14 @@ function Payments() {
           currentPayments && currentPayments.map(e => {
             let auxIn = e.dateIn.slice(0, 10)
             let auxOut = e.dateOut.slice(0, 10)
+            let id = e.id
             return (
               <tr>
-                <td>{e.id}</td>
+                <td>{id}</td>
                 <td>{auxIn}</td>
                 <td>{auxOut}</td>
                 <td>${e.price}</td>
+                <td><button onClick={(e) => handleLogicalDraft(e, id)}>Borrar</button></td>
               </tr>
             )  
           })

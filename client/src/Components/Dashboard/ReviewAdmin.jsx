@@ -101,8 +101,13 @@ export default function ReviewAdmin() {
     );
   }
   //----------------------------------------------------------------------------------------------
-  function filtros(){
+  //FECHA HORA REVIEW
+  function getFechaHora(createdAt) {
+    let data = createdAt.replace(/\./g, "").slice(0, -7).split("T");
+    let fecha = data[0];
+    let hora = data[1];
 
+    return <span>{fecha} a las {hora}</span>;
   }
 
   return (
@@ -114,6 +119,7 @@ export default function ReviewAdmin() {
           <thead>
             <tr>
               <th>ID</th>
+              <th>Fecha Creacion</th>
               <th>Usuario</th>
               <th>Rating</th>
               <th>Description</th>
@@ -123,16 +129,19 @@ export default function ReviewAdmin() {
             </tr>
           </thead>
           <tbody>
+            {/* //LOS DATOS A RENDERIZAR */}
             {currentReviews.map((r, index) => {
               return (
                 <>
                   <tr key={r.id}>
                     <th scope="row">{r.id}</th>
+                    <td>{getFechaHora(r.createdAt)}</td>
                     <td>
                       {r.client !== null && r.client
                         ? r.client.name
                         : "Usuario Anonimo"}
                     </td>
+                    
                     <td>{r.rating}</td>
                     <td>{r.description ? r.description : "Sin comentarios"}</td>
                     <td className="align-middle">
