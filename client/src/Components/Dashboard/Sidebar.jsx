@@ -7,10 +7,12 @@ import { IoIosCreate } from "react-icons/io";
 import logo from "../../images/logo.svg";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
+import { FiLogOut } from "react-icons/fi";
+import { useAuth0 } from "@auth0/auth0-react";
 
 export default function Sidebar() {
   const [currentLink, setCurrentLink] = useState(1);
-
+  const {logout} = useAuth0();
   return (
     <div>
       <div className="container">
@@ -86,6 +88,16 @@ export default function Sidebar() {
                 </li>
               </ul>
             </div>
+          </div>
+          <div style={{display: "flex", justifyContent: "center" }} >
+            <button className="btn btn-outline-danger"
+            onClick={() =>{
+              localStorage.clear();
+              logout()
+            }}
+            >
+              <FiLogOut/> Logout
+            </button>
           </div>
         </Section>
       </div>

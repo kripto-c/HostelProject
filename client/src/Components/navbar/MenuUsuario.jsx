@@ -104,31 +104,7 @@ async function statusUser() {
   }, [dispatch]);
   return (
     <>
-            {
-              (localStorage.getItem("Rol") === "menu-admin" )
-               &&  <button
-                 type="button"
-                 onClick={() => {
-                   setShow1(true);
-                 }}
-                 style={{position: "fixed", top: "8.5%", left: ".5%", width: "55px", height: "50px", padding: "5px" }}
-                className="btn btn-dark fas fa-cog"
-               >
-                <IconContext.Provider value={{ size: "30"}}>
-                <BiCog />
-                </IconContext.Provider>
-               </button>
-             }
-
-          {isAuthenticated ? (
-            <>
-            <Offcanvas show={show1} onHide={() =>{setShow1(false)}} style={{backgroundColor: "#212121"}}>
-              <Sidebar></Sidebar>
-            </Offcanvas>
-            <Button variant="outline-light" onClick={handleShow} className="ms-5 w-10">
-        Menu
-      </Button>
-            <Offcanvas show={show} placement="end" onHide={handleClose} {...props} style={{backgroundColor: "#212121", borderRadius: "5px"}} >
+      <Offcanvas show={show} placement="end" onHide={handleClose} {...props} style={{backgroundColor: "#212121", borderRadius: "5px"}} >
               <Offcanvas.Header closeButton>
                 <img
                   src={isAuthenticated ? user.picture : ""}
@@ -142,7 +118,7 @@ async function statusUser() {
                 <div className="row mx-auto">
                   <div className="">
                     <div className="list-group" id="list-tab" role="tablist">
-                      <button
+                      {/* <button
                         to="/"
                         className={`list-group-item list-group-item-action ${style.botones}`}
                         id="list-home-list"
@@ -151,7 +127,7 @@ async function statusUser() {
                         aria-controls="list-home"
                       >
                         Mi cuenta
-                      </button>
+                      </button> */}
                       <button
                         className={`list-group-item list-group-item-action ${style.botones}`}
                         onClick={() => {
@@ -193,6 +169,34 @@ async function statusUser() {
                   Cerrar Sesion
                 </button>
             </Offcanvas>
+            {
+              (localStorage.getItem("Rol") === "menu-admin" )
+               &&  <button
+                 type="button"
+                 onClick={() => {
+                   setShow1(true);
+                 }}
+                 style={{position: "fixed", top: "8.5%", left: ".5%", width: "55px", height: "50px", padding: "5px" }}
+                className="btn btn-dark fas fa-cog"
+               >
+                <IconContext.Provider value={{ size: "30"}}>
+                <BiCog />
+                </IconContext.Provider>
+               </button>
+             }
+
+          {isAuthenticated ? (
+            <>
+            <Offcanvas show={show1} onHide={() =>{setShow1(false)}} style={{backgroundColor: "#212121"}}>
+              <Sidebar></Sidebar>
+            </Offcanvas>
+            {
+              (isAuthenticated && localStorage.getItem("Rol") === "menu-client" ) &&
+            <Button variant="outline-light" onClick={handleShow} className="ms-5 w-10">
+              Menu
+            </Button>
+            }
+            
             </>
           ) : (
               <Button
