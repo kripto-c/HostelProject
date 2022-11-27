@@ -54,4 +54,5 @@ router.use("/rooms", rooms);
 router.use("/countries", getCountries)
 router.use("/allClients", checkPermissions(itemPermissos.getAllClients), getAllClients)
 router.use("/rents", rents);
+
 module.exports = router;

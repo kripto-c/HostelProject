@@ -65,13 +65,13 @@ export default function Rooms() {
                 </div>
               );
             })}
-          <div>
+          <div >
             <Paginate
               roomsPerPage={roomsPerPage}
               allRooms={allRooms?.length}
               paginate={paginate}
               page={page}
-            /> 
+            />
           </div>
         </div>
       </div>
