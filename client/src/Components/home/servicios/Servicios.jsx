@@ -9,7 +9,7 @@ import Col from 'react-bootstrap/Col';
 
 export default function Servicios() {
   return (
-    <div className="container-fluid">
+    <div className="divServicios container-fluid">
         <h1>Servicios</h1>
         <Container>
       <Row>
