@@ -64,8 +64,8 @@ const { Room, Rent, Type, Client, Review, Countrie, Owner, Faq } = sequelize.mod
 Type.hasMany(Room);
 Room.belongsTo(Type);
 
-Rent.hasMany(Room);
-Room.belongsTo(Rent);
+// Rent.hasMany(Room);
+// Room.belongsTo(Rent);
 
 /* Rent.hasMany(Client);
 Client.belongsTo(Rent); */
