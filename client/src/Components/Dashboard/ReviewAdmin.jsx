@@ -1,6 +1,7 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getReview, deleteReview } from "../../Redux/actions";
+import { MdNavigateBefore,MdNavigateNext } from "react-icons/md";
 import { useAuth0 } from "@auth0/auth0-react";
 import { useState } from "react";
 import Pagination from "react-bootstrap/Pagination";
@@ -68,9 +69,9 @@ export default function ReviewAdmin() {
                   currentPage !== 1 ? currentPage - 1 : currentPage
                 )
               }
-              className="page-link"
+              className="page-link align-items-center"
             >
-              Anterior
+              <h1><MdNavigateBefore size={30} style={{color: 'black'}}/></h1>
             </button>
           </li>
           {paginas.map((e) => (
@@ -86,14 +87,15 @@ export default function ReviewAdmin() {
           ))}
           <li className="page-item">
             <button
-              className="page-link"
+              className="page-link align-items-center"
               onClick={() =>
                 setCurrentPage(
                   currentPage !== paginas.length ? currentPage + 1 : currentPage
                 )
               }
             >
-              Siguiente
+             <h1><MdNavigateNext size={30}/></h1><MdNavigateNext size={30}/>
+            
             </button>
           </li>
         </ul>
