@@ -3,7 +3,7 @@ import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
 import NavDropdown from "react-bootstrap/NavDropdown";
 import { useAuth0 } from "@auth0/auth0-react";
-import { getCLient, getOwner } from "../../Redux/actions";
+import { getCLient, getOwnerSp } from "../../Redux/actions";
 import axios from "axios";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
@@ -38,17 +38,13 @@ function Navbars() {
     dispatch(getCLient(token));
   }
 
-  async function getOwnerF(){
-    const token = await  getAccessTokenSilently()
-    dispatch(getOwner(token))
-  }
   useEffect(() => {
     let idUser = localStorage.getItem("IDUser");
     if (idUser) {
       getInfoClient();
       setConfirmLog(true);
     }  
-    if (!info.length) getOwnerF()
+    if (!info.length) dispatch(getOwnerSp())
   }, [dispatch]);
 
   return (

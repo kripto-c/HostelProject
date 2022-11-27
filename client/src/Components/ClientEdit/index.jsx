@@ -196,7 +196,8 @@ export default function ClientEdit() {
                     <label htmlFor="validationCustom05" className="form-label">Telefono</label>
                     <div className="input-group">
                         <input type={phone ? "text" : "number"} className="form-control" id="validationCustom05" 
-                        name='phoneNumber' disabled={phone} 
+                        name='phoneNumber' 
+                        disabled={phone} 
                         defaultValue={info.phoneNumber } 
                         onChange={e => handleChange(e)} required />
                         <button key={'btnNamedsadac'} className="btn btn-outline-danger" type='button' 

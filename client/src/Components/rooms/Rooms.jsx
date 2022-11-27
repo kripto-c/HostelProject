@@ -66,12 +66,12 @@ export default function Rooms() {
               );
             })}
           <div >
-            <Paginate
+            {/* <Paginate
               roomsPerPage={roomsPerPage}
               allRooms={allRooms?.length}
               paginate={paginate}
               page={page}
-            />
+            /> */}
           </div>
         </div>
       </div>

@@ -17,7 +17,6 @@ const URL = "http://localhost:4000"; //descomentar para hacer pruebas
 export function getRooms() {
   return async function (dispatch) {
     let room = await axios.get(`${URL}/rooms`);
-    console.log("mirar acaaaGET ROOMS", typeof room);
     return dispatch({
       type: GET_ROOMS,
       payload: room.data,
