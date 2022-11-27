@@ -11,15 +11,15 @@ export default function Servicios() {
   return (
     <div className="container-fluid">
         <h1>Servicios</h1>
-        <Container>
+        <Container bg-red>
       <Row>
         <Col> <Wifi></Wifi></Col>
         <Col><Recepcion></Recepcion></Col>
       </Row>
       <Row>
         <Col><Lavanderia></Lavanderia></Col>
-        <Col>2 of 3</Col>
-        <Col>3 of 3</Col>
+        <Col>Servicio</Col>
+        <Col>Servicio</Col>
       </Row>
     </Container>
      
