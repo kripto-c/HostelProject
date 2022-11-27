@@ -122,7 +122,7 @@ module.exports = [
           "https://www.hostelclub.com/images/habitacion_compartidas_ppal.jpg",
         bathroom: false,
 
-        price: 3500.5,
+        price: 1500,
         observation: "",
         status: true,
         typeId: 1,
@@ -134,7 +134,7 @@ module.exports = [
         image:
           "https://milhousehostel.com/wp-content/uploads/2021/03/4476180-1394672_702_0_3538_2829_1000_800-605x605.jpg",
         bathroom: true,
-        price: 1995.5,
+        price: 1800,
         observation: "",
         status: false,
         typeId: 1,
@@ -147,7 +147,7 @@ module.exports = [
         image:
           "https://www.kayak.com.ar/rimg/himg/33/8a/40/expediav2-570549-15b4ae-819968.jpg?width=720&height=576&crop=true",
         bathroom: false,
-        price: 2450.5,
+        price: 1200,
         observation: "",
         status: false,
         typeId: 1,
@@ -159,7 +159,7 @@ module.exports = [
         image:
           "https://www.pensionjoakina.com/public/images/sites/2198-135177.jpg",
         bathroom: true,
-        price: 4550.5,
+        price: 1300,
         observation: "",
         status: false,
         typeId: 2,
@@ -171,7 +171,7 @@ module.exports = [
         image:
           "https://previews.123rf.com/images/rilueda/rilueda1604/rilueda160400155/55280236-cama-individual-y-doble-en-la-habitaci%C3%B3n-de-hotel.jpg",
         bathroom: false,
-        price: 6550.5,
+        price: 1900,
         observation: "",
         status: true,
         typeId: 2,
@@ -183,7 +183,7 @@ module.exports = [
         image:
           "https://firebasestorage.googleapis.com/v0/b/imgs-b915c.appspot.com/o/hostelEjemplo5.png?alt=media&token=2545fd82-f81b-4601-9b72-fbf02f12afdf",
         bathroom: false,
-        price: 3500,
+        price: 1500,
         observation: "",
         status: true,
         typeId: 2,
@@ -195,7 +195,7 @@ module.exports = [
         image:
           "https://firebasestorage.googleapis.com/v0/b/imgs-b915c.appspot.com/o/hostelejemplo6.png?alt=media&token=a06a610e-a24c-4947-9274-e89fd5b15cf8",
         bathroom: false,
-        price: 3700,
+        price: 1700,
         observation: "",
         status: true,
         typeId: 2,
@@ -207,7 +207,7 @@ module.exports = [
         image:
           "https://firebasestorage.googleapis.com/v0/b/imgs-b915c.appspot.com/o/hostelEjemplo11.png?alt=media&token=40bb1bee-0d7b-4b07-b1a7-7defc17cea3c",
         bathroom: false,
-        price: 2500,
+        price: 1100,
         observation: "",
         status: true,
         typeId: 2,
@@ -219,7 +219,7 @@ module.exports = [
         image:
           "https://firebasestorage.googleapis.com/v0/b/imgs-b915c.appspot.com/o/hostelEjemplo13.png?alt=media&token=3d77598d-538d-42d0-8003-a718d57cdaa7",
         bathroom: false,
-        price: 2100,
+        price: 1400,
         observation: "",
         status: true,
         typeId: 2,
@@ -231,7 +231,7 @@ module.exports = [
         image:
           "https://firebasestorage.googleapis.com/v0/b/imgs-b915c.appspot.com/o/hostelEjemplo12.png?alt=media&token=1ad420e7-761a-4939-aa74-1a1f551558aa",
         bathroom: false,
-        price: 3600,
+        price: 1600,
         observation: "",
         status: true,
         typeId: 2,
@@ -255,7 +255,7 @@ module.exports = [
         image:
           "https://firebasestorage.googleapis.com/v0/b/imgs-b915c.appspot.com/o/hostelEjemplo9.png?alt=media&token=fb2fa7ac-2d64-42b5-a359-62a7eaa72fbc",
         bathroom: false,
-        price: 7500,
+        price: 1500,
         observation: "",
         status: true,
         typeId: 2,
