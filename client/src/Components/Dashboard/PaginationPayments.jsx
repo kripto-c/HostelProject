@@ -19,21 +19,25 @@ export default function PaginationPayments({ paymentsPerPage, allPayments, pagin
     console.log(currentPage)
     
     return (
-        <nav>
-            <button>
+        <div className="container px-0 bg-black mt-2">
+        <nav className="nav nav-pills d-flex justify-content-center mt-3">
+            <li className="nav-item mx-1">
+            <button className="nav-item btn btn-dark ">
                 <a onClick={() => prevHandler()}>Prev</a>
             </button>
+            </li>
+            <li className="nav-item me-2 justify-content-center">
             <ul>
                 {pageNumbers &&
                     pageNumbers.map(number =>
                         currentPage === number ?
                         (
-                            <button key={number}>
+                            <button key={number} className="nav-item btn btn-dark mx-1">
                                 <a onClick={() => paginado(number)}>{number}</a>
                             </button>
                         ) :
                         (
-                            <button key={number}>
+                            <button key={number} className="nav-item btn btn-dark mx-1">
                                 <a onClick={() => paginado(number)}>{number}</a>
                             </button>
                         )
@@ -41,9 +45,15 @@ export default function PaginationPayments({ paymentsPerPage, allPayments, pagin
                 }
                
             </ul>
-            <button>
+            </li>
+
+            <li className="nav-item ms-4 col-1">
+            <button className="nav-item btn btn-dark">
                 <a onClick={() => nextHandler()}>Next</a>
             </button>
+            </li>
+           
         </nav>
+        </div>
     )
 }

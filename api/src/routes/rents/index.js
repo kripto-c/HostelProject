@@ -12,8 +12,8 @@ router.get("/", (req, res) => {
         return res.status(400).send(error)
     }
 })
- router.put("/:id", (req, res) => {
-    const {id} = req.params
+ router.get("/draft", (req, res) => { 
+    const {id} = req.query
     try {
         return controllers.updateRent(id)
             .then((result) => {
