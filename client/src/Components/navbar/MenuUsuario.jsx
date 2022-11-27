@@ -94,7 +94,6 @@ async function statusUser() {
         }
       
 }
-
   useEffect(() => {
     let idUser = localStorage.getItem("IDUser");
     if (idUser) {
@@ -118,16 +117,6 @@ async function statusUser() {
                 <div className="row mx-auto">
                   <div className="">
                     <div className="list-group" id="list-tab" role="tablist">
-                      {/* <button
-                        to="/"
-                        className={`list-group-item list-group-item-action ${style.botones}`}
-                        id="list-home-list"
-                        data-bs-toggle="list"
-                        role="tab"
-                        aria-controls="list-home"
-                      >
-                        Mi cuenta
-                      </button> */}
                       <button
                         className={`list-group-item list-group-item-action ${style.botones}`}
                         onClick={() => {
@@ -140,7 +129,6 @@ async function statusUser() {
                       >
                         Editar datos
                       </button>
-                        
                       <button
                         className={`list-group-item list-group-item-action ${style.botones}`}
                         id="list-messages-list"

@@ -446,7 +446,7 @@ export default function RoomDetail() {
             </Button>
         </Modal>
         <div className='container d-grid gap-2 col-6 mx-auto'>
-            <button  className="btn btn-secondary" onClick={() => {setCalendar(true)}} >Seleccione una fecha</button>
+            <button disabled={room.status} className="btn btn-secondary" onClick={() => {setCalendar(true)}} >Seleccione una fecha</button>
         </div>
       
       <div className="infoRoom">

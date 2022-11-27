@@ -109,7 +109,7 @@ const Section = styled.section`
   width: 100%;
   left: 0.5%;
   background-color: dark;
-  margin-top: 100px;
+  margin-top: 70px;
   height: 1vh;
   width: 28vw;
   display: flex;
