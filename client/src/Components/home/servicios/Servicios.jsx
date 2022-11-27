@@ -11,7 +11,7 @@ export default function Servicios() {
   return (
     <div className="container-fluid">
         <h1>Servicios</h1>
-        <Container bg-red>
+        <Container>
       <Row>
         <Col> <Wifi></Wifi></Col>
         <Col><Recepcion></Recepcion></Col>
