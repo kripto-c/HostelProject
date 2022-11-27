@@ -386,6 +386,6 @@ export function logicalDraft(id, token) {
       const json = await axios.get(`${URL}/rents/draft?id=${id}`, {headers:{authorization:`Bearer ${token}`}} )
     }
   } catch (error) {
-    
+    return error
   }
 }
