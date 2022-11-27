@@ -72,11 +72,14 @@ module.exports = {
     },
     getOwner: async function(){
         let dataOwner = await Owner.findAll()
+        
         return dataOwner[0]
     },
     getOwnerHome: async function(){
         let dataOwner = await Owner.findAll()
-        let{hostelName, instagram, facebook, twitter, mail, aboutUs, chooseUs, extra} = dataOwner[0]
+        
+        
+        let{hostelName, instagram, facebook, twitter, mail, aboutUs, chooseUs, extra} = dataOwner
         let dataHome = {hostelName, 
                         instagram, 
                         facebook, 

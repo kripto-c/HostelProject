@@ -125,9 +125,9 @@ export default function ReviewAdmin() {
               <th>Usuario</th>
               <th>Rating</th>
               <th>Description</th>
-              <th></th>
-              <th></th>
-              <th></th>
+              <th>Eliminar</th>
+              <th>Recuperar</th>
+              <th>Estado</th>
             </tr>
           </thead>
           <tbody>
@@ -180,14 +180,14 @@ export default function ReviewAdmin() {
                         Recuperar
                       </button>
                     </td>
-                    <td className="align-bottom">
+                    <td className="align-middle">
                       <h3 className="m-2">
                         <span
                           className={
                             !r?.status ? "badge bg-success" : "badge bg-danger"
                           }
                         >
-                          Estado
+                          {!r.status?"active":"disabled"}
                         </span>
                       </h3>
                     </td>
