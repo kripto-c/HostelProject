@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getReview, deleteReview } from "../../Redux/actions";
-import { MdNavigateBefore,MdNavigateNext } from "react-icons/md";
+import { MdNavigateBefore, MdNavigateNext } from "react-icons/md";
 import { useAuth0 } from "@auth0/auth0-react";
 import { useState } from "react";
 import Pagination from "react-bootstrap/Pagination";
@@ -71,7 +71,9 @@ export default function ReviewAdmin() {
               }
               className="page-link align-items-center me-0"
             >
-              <h1><MdNavigateBefore size={30} style={{color: 'black'}}/></h1>
+              <h1>
+                <MdNavigateBefore size={30} style={{ color: "black" }} />
+              </h1>
             </button>
           </li>
           {paginas.map((e) => (
@@ -94,8 +96,9 @@ export default function ReviewAdmin() {
                 )
               }
             >
-             <h1><MdNavigateNext size={30}/></h1>
-            
+              <h1>
+                <MdNavigateNext size={30} />
+              </h1>
             </button>
           </li>
         </ul>
@@ -105,9 +108,11 @@ export default function ReviewAdmin() {
   //----------------------------------------------------------------------------------------------
   //FECHA HORA REVIEW
   function getFechaHora(createdAt) {
-    let data = createdAt.replace(/\./g, "").slice(0, -7).split("T");
+    let data = createdAt
+      .replace(/\./g, "")
+      .slice(0, -7)
+      .split("T");
     let fecha = data[0];
-    
 
     return <span>{fecha}</span>;
   }
@@ -143,7 +148,7 @@ export default function ReviewAdmin() {
                         ? r.client.name
                         : "Usuario Anonimo"}
                     </td>
-                    
+
                     <td>{r.rating}</td>
                     <td>{r.description ? r.description : "Sin comentarios"}</td>
                     <td className="align-middle">
@@ -187,7 +192,7 @@ export default function ReviewAdmin() {
                             !r?.status ? "badge bg-success" : "badge bg-danger"
                           }
                         >
-                          {!r.status?"active":"disabled"}
+                          {!r.status ? "active" : "disabled"}
                         </span>
                       </h3>
                     </td>
@@ -196,9 +201,7 @@ export default function ReviewAdmin() {
               );
             })}
           </tbody>
-          
         </table>
-        
       </div>
     </div>
   );
