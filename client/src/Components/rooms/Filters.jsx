@@ -113,7 +113,7 @@ export default function Filters({ getRooms, setData }) {
         <li className="nav-item mx-1">
           <select
             id="type"
-            defaultValue={"Todo"}
+            // defaultValue={"Todo"}
             value={JSON.parse(localStorage.getItem("selectType"))}
             name="filterRoomType"
             onChange={(e) => roomTypeHandler(e)}
@@ -130,7 +130,7 @@ export default function Filters({ getRooms, setData }) {
         <li className="nav-item mx-1">
           <select
             id="type"
-            defaultValue="Todo"
+            // defaultValue="Todo"
             name="typeBatchroom"
             value={JSON.parse(localStorage.getItem("selectTypeBatchRoom"))}
             onChange={(e) => roomTypeHandler(e)}
@@ -148,7 +148,7 @@ export default function Filters({ getRooms, setData }) {
           {/* Precio */}
           <select
             id="price"
-            defaultValue="Todo"
+            // defaultValue="Todo"
             name="price"
             value={JSON.parse(localStorage.getItem("selectPrice"))}
             onChange={(e) => roomTypeHandler(e)}
