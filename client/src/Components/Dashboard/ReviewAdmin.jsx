@@ -61,7 +61,7 @@ export default function ReviewAdmin() {
     }
     return (
       <nav>
-        <ul className="pagination">
+        <ul className="gap-3 d-flex pagination">
           <li className="page-item">
             <button
               onClick={() =>
@@ -69,13 +69,13 @@ export default function ReviewAdmin() {
                   currentPage !== 1 ? currentPage - 1 : currentPage
                 )
               }
-              className="page-link align-items-center"
+              className="page-link align-items-center me-0"
             >
               <h1><MdNavigateBefore size={30} style={{color: 'black'}}/></h1>
             </button>
           </li>
           {paginas.map((e) => (
-            <li>
+            <li className="d-flex align-items-center">
               <Pagination onClick={() => setCurrentPage(e)}>
                 <Pagination.Item
                   className={currentPage === e ? "active" : "disabled"}
@@ -87,14 +87,14 @@ export default function ReviewAdmin() {
           ))}
           <li className="page-item">
             <button
-              className="page-link align-items-center"
+              className="page-link align-items-center ms-0"
               onClick={() =>
                 setCurrentPage(
                   currentPage !== paginas.length ? currentPage + 1 : currentPage
                 )
               }
             >
-             <h1><MdNavigateNext size={30}/></h1><MdNavigateNext size={30}/>
+             <h1><MdNavigateNext size={30}/></h1>
             
             </button>
           </li>
