@@ -46,8 +46,8 @@ const Home = () => {
               src="https://upload.wikimedia.org/wikipedia/commons/e/e8/Hostel_Dormitory.jpg"
               alt="first-item"
             />
-            {/* <h1 className="Bienvenido">Bienvenidos al {info.hostelName}</h1> */}
-            <h1 className="Bienvenido">Bienvenidos al Hostel Dinamita</h1>
+            <h1 className="Bienvenido">Bienvenidos al {info.hostelName}</h1>
+            {/* <h1 className="Bienvenido">Bienvenidos al Hostel Dinamita</h1> */}
           </div>
         </Carousel.Item>
         <Carousel.Item>
@@ -56,8 +56,8 @@ const Home = () => {
               src="https://media-cdn.tripadvisor.com/media/photo-s/15/bc/d3/19/ideal-social-hostel.jpg"
               alt="second-item"
             />
-            {/* <p className="infoHome">{info.aboutUs}</p> */}
-            <p className="infoHome">Lorem ipsum dolor sit amet consectetur adipisicing elit. Pariatur, quis dolorum. Possimus explicabo incidunt velit! Vitae qui repudiandae et. Pariatur obcaecati, non a rem fuga alias porro esse assumenda maxime.</p>
+            <p className="infoHome">{info.aboutUs}</p>
+            {/* <p className="infoHome">Lorem ipsum dolor sit amet consectetur adipisicing elit. Pariatur, quis dolorum. Possimus explicabo incidunt velit! Vitae qui repudiandae et. Pariatur obcaecati, non a rem fuga alias porro esse assumenda maxime.</p> */}
           </div>
         </Carousel.Item>
         <Carousel.Item>
@@ -103,8 +103,8 @@ const Home = () => {
               />
               <div className="data">
                 <p>SOBRE NOSOTROS</p>
-                {/* <p>{info.aboutUs}</p> */}
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Praesentium omnis at dolorum amet quaerat voluptatem laboriosam. Assumenda deleniti delectus non soluta sequi quis saepe in, facere dicta laudantium illum quisquam doloribus incidunt qui natus esse, earum unde, facilis deserunt voluptatibus voluptates dolores provident magni? Provident pariatur ab cum harum eius.</p>
+                <p>{info.aboutUs}</p>
+                {/* <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Praesentium omnis at dolorum amet quaerat voluptatem laboriosam. Assumenda deleniti delectus non soluta sequi quis saepe in, facere dicta laudantium illum quisquam doloribus incidunt qui natus esse, earum unde, facilis deserunt voluptatibus voluptates dolores provident magni? Provident pariatur ab cum harum eius.</p> */}
               </div>
             </div>
             <div className="demo2 demo11 " ref={ref2}>
@@ -114,8 +114,8 @@ const Home = () => {
               />
               <div className="data data2">
                 <p>POR QUE ELEGIRNOS</p>
-                {/* <p>{info.chooseUs}</p> */}
-                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Eum voluptate commodi eos excepturi! Odio, facilis quae consequuntur, inventore quos perspiciatis quia eius ea sequi veritatis, nemo quibusdam quam? Omnis maxime hic fugit, dolore ab quisquam ipsam saepe voluptate? Tempora, aut!</p>
+                <p>{info.chooseUs}</p>
+                {/* <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Eum voluptate commodi eos excepturi! Odio, facilis quae consequuntur, inventore quos perspiciatis quia eius ea sequi veritatis, nemo quibusdam quam? Omnis maxime hic fugit, dolore ab quisquam ipsam saepe voluptate? Tempora, aut!</p> */}
               </div>
             </div>
             <div className="demo1 demo11" ref={ref3}>
@@ -125,8 +125,8 @@ const Home = () => {
               />
               <div className="data">
                 <p>EXTRAS</p>
-                {/* <p>{info.extra}</p> */}
-                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Mollitia doloribus, at ipsa quaerat, saepe culpa perferendis quibusdam et magni aliquam eos dolor tenetur ducimus vitae? Voluptatem, tempore. Nam, eius non!</p>
+                <p>{info.extra}</p>
+                {/* <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Mollitia doloribus, at ipsa quaerat, saepe culpa perferendis quibusdam et magni aliquam eos dolor tenetur ducimus vitae? Voluptatem, tempore. Nam, eius non!</p> */}
               </div>
             </div>
           </div>
