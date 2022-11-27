@@ -5,14 +5,12 @@ import Review from '../Review/Reviews';
 import "./Home.css";
 import { Link } from "react-router-dom";
 import { addObserver } from "./observer";
-import { getOwner,getOwnerSp } from "../../Redux/actions";
+import { getOwnerSp } from "../../Redux/actions";
 import {useDispatch, useSelector} from "react-redux"
-import { useAuth0 } from "@auth0/auth0-react";
 import wave from './wave.svg';
 import Servicios from "./servicios/Servicios";
 
 const Home = () => {
-  const {isAuthenticated, getAccessTokenSilently} = useAuth0();
   const info = useSelector(state => state.owner);
   const dispatch = useDispatch()
 
@@ -25,14 +23,7 @@ const Home = () => {
     addObserver(ref2.current)
     addObserver(ref3.current)
   })
-
-  async function getOwnerF(){
-    const token = await  getAccessTokenSilently()
-    dispatch(getOwnerSp(token))
-  }
-
   React.useEffect(() => {
-    //if (!info.length) getOwnerF()    
     if (!info.length) dispatch(getOwnerSp())
   }, [dispatch]);
 
