@@ -24,7 +24,7 @@ export default function Tv() {
               <div className="card">
                 <img
                   src="https://media-cdn.tripadvisor.com/media/photo-s/02/b5/95/5e/pampa-hostel.jpg"
-                  class="card-img-top"
+                  className="card-img-top"
                   alt="recepcion"
                 />
                 <div className="card-body">
