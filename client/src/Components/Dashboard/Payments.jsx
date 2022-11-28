@@ -8,7 +8,9 @@ import Swal from 'sweetalert2'
 import style from './Payments.module.css'
 import { useAuth0 } from "@auth0/auth0-react";
 import { all } from 'axios';
-
+import {rentsData} from './DataRents.js'
+import { Bar } from "react-chartjs-2"
+import { Chart as ChartJS } from "chart.js/auto";
  
 
 function Payments() {
@@ -151,11 +153,14 @@ function Payments() {
   suma()
   // ----------------------------->>
 
-  // Hardcodeo datos para el gráfico ------->>
-  /* const graph = {
-    
-  } */
-
+  // Gráfico ------------------------------->>
+  const [rentData, setUserData] = useState({
+    labels: rentsData.map((e) => e.date),
+    datasets: [{
+      label: "Ganancias mensuales",
+      data: rentsData.map((e) => e.price)
+    }]
+  })
   // --------------------------------------->>
  
   return (
@@ -251,9 +256,13 @@ function Payments() {
         </tr>
       </tbody>
     </Table>
+      <div style={{width: 700}}>
+        <Bar data={rentData}/>
+      </div>
     </div>
     </div>
-
+      
+        
     </div>
   );
 }

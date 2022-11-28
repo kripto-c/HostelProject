@@ -8,6 +8,7 @@ import { useAuth0 } from '@auth0/auth0-react';
 import { useDispatch, useSelector } from "react-redux";
 import { getCLient, postClient,getAllCountries } from "../../Redux/actions";
 import { BsFillPencilFill } from "react-icons/bs";
+import Swal from 'sweetalert2'
 
 export default function ClientEdit() {
     const info = useSelector(state => state.client);
@@ -94,8 +95,16 @@ export default function ClientEdit() {
     async function handleSubmit(e) {
         e.preventDefault()
         if (!personalId){
-            if (!client.personalID) alert('Falta DNI')
-            if (!validateDni(client.personalID)) alert('Esta mal cargado el numero')
+            if (!client.personalID) Swal.fire({
+                icon: 'error',
+                title: 'Oops...',
+                text: 'Falta DNI',
+              }) 
+            if (!validateDni(client.personalID)) Swal.fire({
+                icon: 'error',
+                title: 'Oops...',
+                text: 'Está mal cargado el número',
+              })
         }        
         // alert('ok')
 
@@ -113,8 +122,11 @@ export default function ClientEdit() {
         setPersonalid(true);
         setPhone(true);
         setProvin(true);
-
-        alert('Tus datos han sido modificados.')
+        Swal.fire({
+            icon: 'success',
+            title: 'Success...',
+            text: 'Tus datos han sido modificados',
+          })
         //history.push('/home')
     }
 
