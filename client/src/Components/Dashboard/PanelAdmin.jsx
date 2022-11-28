@@ -12,11 +12,14 @@ import Faqs from "./Faqs";
 import { useAuth0 } from "@auth0/auth0-react";
 import axios from "axios";
 import "./backRoutesAdmin.css";
+import { useDispatch } from "react-redux";
+import { getRolUser } from "../../Redux/actions";
 
 export default function PanelAdmin() {
   // const navigate= useNavigate();
   /* useEffect(()=>navigate("/admin/dashboard"),[]) */
   /* useEffect(()=>navigate("/admin/"),[]) */
+  const dispatch = useDispatch();
   const [validando, setValidando] = useState(true)
   const [show, setShow] = useState(false);
   const handleShow = () => setShow(true);
@@ -32,15 +35,9 @@ export default function PanelAdmin() {
       console.log("Validando permiso")
       try {
         const token = await getAccessTokenSilently();
-        console.log(token)
-        const response = await axios('http://localhost:4000/rol', {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        });
+        const response = await dispatch(getRolUser(token))
         if(response.data.rol[0] !== "menu-admin") return navigate('/');
         setValidando(false)
-        console.log("ADMIN VALIDADO") 
       } catch (e) {
         console.error(e.message);
       }
