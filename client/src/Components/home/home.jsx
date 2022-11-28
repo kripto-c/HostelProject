@@ -48,7 +48,8 @@ const Home = () => {
         <Carousel.Item>
           <div className="xd">
             <img
-              src="https://upload.wikimedia.org/wikipedia/commons/e/e8/Hostel_Dormitory.jpg"
+              // src="https://upload.wikimedia.org/wikipedia/commons/e/e8/Hostel_Dormitory.jpg"
+              src ="https://img.besthqwallpapers.com/Uploads/6-11-2017/27286/interior-of-hotel-room-modern-design-brown-tone-hotel-room-room-for-three.jpg"
               alt="first-item"
             />
             <h1 className="Bienvenido">Bienvenidos al {info.hostelName}</h1>
@@ -83,7 +84,7 @@ const Home = () => {
                     src="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Flogovector.net%2Fwp-content%2Fuploads%2F2011%2F11%2Ffacebook-f-logo-195x195.png&f=1&nofb=1&ipt=28f161af0961a8646ffa8fed1ec3f3f5ed73a8e77d17060e17876dc360db8976&ipo=images" 
                     alt="logo Facebook" 
                     />
-                  <a href="#" target="_blank">Facebook</a>
+                  <a href={info.facebook} target="_blank">Facebook</a>
                 </li>
                 <li>
                   <img 
@@ -106,8 +107,8 @@ const Home = () => {
               />
               <div className="data">
                 <p>SOBRE NOSOTROS</p>
-                {/* <p>{info.aboutUs}</p> */}
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Praesentium omnis at dolorum amet quaerat voluptatem laboriosam. Assumenda deleniti delectus non soluta sequi quis saepe in, facere dicta laudantium illum quisquam doloribus incidunt qui natus esse, earum unde, facilis deserunt voluptatibus voluptates dolores provident magni? Provident pariatur ab cum harum eius.</p>
+                <p>{info.aboutUs}</p>
+                {/* <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Praesentium omnis at dolorum amet quaerat voluptatem laboriosam. Assumenda deleniti delectus non soluta sequi quis saepe in, facere dicta laudantium illum quisquam doloribus incidunt qui natus esse, earum unde, facilis deserunt voluptatibus voluptates dolores provident magni? Provident pariatur ab cum harum eius.</p> */}
               </div>
             </div>
             <div className="demo2 demo11 " ref={ref2}>
@@ -117,8 +118,8 @@ const Home = () => {
               />
               <div className="data data2">
                 <p>POR QUE ELEGIRNOS</p>
-                {/* <p>{info.chooseUs}</p> */}
-                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Eum voluptate commodi eos excepturi! Odio, facilis quae consequuntur, inventore quos perspiciatis quia eius ea sequi veritatis, nemo quibusdam quam? Omnis maxime hic fugit, dolore ab quisquam ipsam saepe voluptate? Tempora, aut!</p>
+                <p>{info.chooseUs}</p>
+                {/* <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Eum voluptate commodi eos excepturi! Odio, facilis quae consequuntur, inventore quos perspiciatis quia eius ea sequi veritatis, nemo quibusdam quam? Omnis maxime hic fugit, dolore ab quisquam ipsam saepe voluptate? Tempora, aut!</p> */}
               </div>
             </div>
             <div className="demo1 demo11" ref={ref3}>
@@ -128,8 +129,8 @@ const Home = () => {
               />
               <div className="data">
                 <p>EXTRAS</p>
-                {/* <p>{info.extra}</p> */}
-                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Mollitia doloribus, at ipsa quaerat, saepe culpa perferendis quibusdam et magni aliquam eos dolor tenetur ducimus vitae? Voluptatem, tempore. Nam, eius non!</p>
+                <p>{info.extra}</p>
+                {/* <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Mollitia doloribus, at ipsa quaerat, saepe culpa perferendis quibusdam et magni aliquam eos dolor tenetur ducimus vitae? Voluptatem, tempore. Nam, eius non!</p> */}
               </div>
             </div>
           </div>
@@ -142,7 +143,7 @@ const Home = () => {
                 src="https://firebasestorage.googleapis.com/v0/b/imgs-b915c.appspot.com/o/hostelEjemplo4.png?alt=media&token=264fd2d1-82ac-4e24-8675-7aeb9e791f0c" 
                 alt="collage-5" 
               />
-            <p>Ejemplo Imagen 1</p>
+            <p>Conoce gente y divertite...</p>
             </div>
           
           
@@ -151,7 +152,7 @@ const Home = () => {
                 src="https://firebasestorage.googleapis.com/v0/b/imgs-b915c.appspot.com/o/hostelEjemplo5.png?alt=media&token=2545fd82-f81b-4601-9b72-fbf02f12afdf" 
                 alt="collage-6" 
                 />
-            <p>ejemplo Imagen 2</p>
+            <p>Habitaciones economicas...</p>
             </div>
           
 
@@ -160,7 +161,7 @@ const Home = () => {
                 src="https://cf.bstatic.com/xdata/images/xphoto/max1440/48357258.jpg?k=035ac71dc8cf908f6b770ec79bf034f5891a734d172c80159a0ac713ff2a1a7c&o="
                 alt="collage-7"
                 />
-            <p>ejemplo Imagen 3</p>
+            <p>Camas comodas...</p>
             </div>
           
 
@@ -169,7 +170,7 @@ const Home = () => {
               src="https://i0.wp.com/www.disfrutarosario.com/wp-content/uploads/2020/10/Como-construir-una-pileta-en-casa-2.jpg?resize=640%2C480&ssl=1"
               alt="collage-8"
               />
-            <p>ejemplo Imagen 4</p>
+            <p>Pileta climatizada</p>
             </div>
           
             <div className="img">
@@ -177,7 +178,7 @@ const Home = () => {
                 src="https://hqbeds.com/wp-content/uploads/2019/11/hostel1-e1573156979842.jpg"
                 alt="collage-9"
                 />
-            <p>ejemplo Imagen 5</p>
+            <p>Ambientes de reunion</p>
             </div>
           
             <div className="img">
@@ -185,7 +186,7 @@ const Home = () => {
                 src="https://www.elcalafate.tur.ar/img/anunciantes/724/matices-hostel-2-.jpg"
                 alt="collage-10"
                 />
-            <p>ejemplo Imagen 6</p>
+            <p>Vista del frente</p>
             </div>
           
             <div className="img">
@@ -193,7 +194,7 @@ const Home = () => {
                 src="https://viajeros-17f81.kxcdn.com/wp-content/uploads/2020/10/DSC_0310-scaled.jpg"
                 alt="collage-11"
                 />
-            <p>ejemplo Imagen 7</p>
+            <p>Nuestra otra pileta...</p>
             </div>
           
             <div className="img">
@@ -201,7 +202,7 @@ const Home = () => {
                 src="https://firebasestorage.googleapis.com/v0/b/imgs-b915c.appspot.com/o/hostelejemplo6.png?alt=media&token=a06a610e-a24c-4947-9274-e89fd5b15cf8" 
                 alt="collage-12" 
                 />
-            <p>ejemplo Imagen 18</p>
+            <p>Cama matrimonial</p>
             </div>
           
             <div className="img">
@@ -209,7 +210,7 @@ const Home = () => {
                 src="https://firebasestorage.googleapis.com/v0/b/imgs-b915c.appspot.com/o/hostelEjemplo7.png?alt=media&token=1eb9d25f-e227-4372-974a-03936755e6a9" 
                 alt="collage-13" 
                 />
-            <p>ejemplo Imagen 8</p>
+            <p>Dormitorios compartidos</p>
             </div>
           
             <div className="img">
@@ -217,7 +218,7 @@ const Home = () => {
                 src="https://firebasestorage.googleapis.com/v0/b/imgs-b915c.appspot.com/o/hostelEjemplo8.png?alt=media&token=1a436ffc-6f10-41bb-a0a7-e22ab40daf87" 
                 alt="collage-14" 
                 />
-            <p>ejemplo Imagen 9</p>
+            <p>Wifi en las habitaciones</p>
             </div>
           
             <div className="img">
@@ -225,7 +226,7 @@ const Home = () => {
                 src="https://firebasestorage.googleapis.com/v0/b/imgs-b915c.appspot.com/o/hostelEjemplo9.png?alt=media&token=fb2fa7ac-2d64-42b5-a359-62a7eaa72fbc" 
                 alt="collage-15" 
                 />
-            <p>ejemplo Imagen 10</p>
+            <p>Habitaciones privadas</p>
             </div>
           
             <div className="img">
@@ -233,7 +234,7 @@ const Home = () => {
                 src="https://firebasestorage.googleapis.com/v0/b/imgs-b915c.appspot.com/o/hostelEjemplo10.png?alt=media&token=1b94150c-a13c-4d30-9634-227d2f803200" 
                 alt="collage-16" 
                 />
-            <p>ejemplo Imagen 11</p>
+            <p>Habitacion compartida</p>
             </div>
           
             <div className="img">
@@ -241,7 +242,7 @@ const Home = () => {
                 src="https://firebasestorage.googleapis.com/v0/b/imgs-b915c.appspot.com/o/hostelEjemplo11.png?alt=media&token=40bb1bee-0d7b-4b07-b1a7-7defc17cea3c" 
                 alt="collage-17" 
                 />
-            <p>ejemplo Imagen 12</p>
+            <p>Habitacion compartida con lockers</p>
             </div>
           
             <div className="img">
@@ -249,7 +250,7 @@ const Home = () => {
                 src="https://firebasestorage.googleapis.com/v0/b/imgs-b915c.appspot.com/o/hostelEjemplo12.png?alt=media&token=1ad420e7-761a-4939-aa74-1a1f551558aa" 
                 alt="collage-18" 
                 />
-            <p>ejemplo Imagen 13</p>
+            <p>Zona de estudio</p>
             </div>
           
             <div className="img">
@@ -257,7 +258,7 @@ const Home = () => {
                 src="https://firebasestorage.googleapis.com/v0/b/imgs-b915c.appspot.com/o/hostelEjemplo13.png?alt=media&token=3d77598d-538d-42d0-8003-a718d57cdaa7" 
                 alt="collage-19" 
                 />
-            <p>ejemplo Imagen 14</p>
+            <p>Habitacion compartida</p>
             </div>
           
             <div className="img">
@@ -265,7 +266,7 @@ const Home = () => {
                 src="https://firebasestorage.googleapis.com/v0/b/imgs-b915c.appspot.com/o/hostelEjemplo14.png?alt=media&token=635e0ca3-8bcd-44cc-a4ee-20e2c1dc8a64" 
                 alt="collage-20" 
                 />
-            <p>ejemplo Imagen 15</p>
+            <p>Habitacion compartida</p>
             </div>
           
             <div className="img">
@@ -273,7 +274,7 @@ const Home = () => {
                 src="https://firebasestorage.googleapis.com/v0/b/imgs-b915c.appspot.com/o/hostelEjemplo15.png?alt=media&token=5832c9a7-76e2-42f0-851d-252f45a2f665" 
                 alt="collage-21" 
                 />
-            <p>ejemplo Imagen 16</p>
+            <p>Habitacion compartida</p>
             </div>
           
             <div className="img">
@@ -281,7 +282,7 @@ const Home = () => {
                 src="https://firebasestorage.googleapis.com/v0/b/imgs-b915c.appspot.com/o/hostelEjemplo16.png?alt=media&token=0fc62769-41f6-4e40-a6dd-351cabe18b14" 
                 alt="collage-22" 
                 />
-            <p>ejemplo Imagen 17</p>
+            <p>Habitacion compartida</p>
             </div>
           
           </div>
