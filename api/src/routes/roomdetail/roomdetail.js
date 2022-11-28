@@ -11,7 +11,6 @@ route.get("/", async (req, res) =>{
             where: {
                 id: id
             }
-            
         });
 
         res.send(roomdetail);

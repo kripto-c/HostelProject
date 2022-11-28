@@ -25,7 +25,7 @@ const sendEmail = async ({
 }) => {
   let contHTML;
   console.log(status);
-  status == "approved"
+  status == "approved,approved"
     ? (contHTML = aprobado({
         name,
         lastname,

@@ -2,7 +2,7 @@
 body{
     overflow-y: auto;
 }
-body:after{
+body::before{
     overflow-y: auto;
 }
 .carrusel{
