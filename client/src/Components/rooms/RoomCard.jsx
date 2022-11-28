@@ -20,30 +20,31 @@ export default function RoomCard({
   }
 
   return (
-    <div className="container bg-dark my-3 rounded" >
+    <div className="container bg-dark my-3 rounded w-100" >
       <div className="row py-3">
         <img
           src={image[0]}
           alt="bedroom"
           className="col-md-3 ml-3 rounded"
           width="200px" /* height="180px" */
+          // style={{marginRight: "1vw" }}
          
         ></img>
-        <div className="col-md-9 ">
+        <div className="col-md-9 " style={{paddingLeft: "2vw"}} >
           <h2 className="tittle text-white ms-0">
             Habitación {type === "Privado" ? "privada" : "compartida"}
           </h2>
-          <h4 className="text-secondary">
+          <h4 className="text-white-50">
             {" "}
             {beds_avalaibles >= 1 && !status
               ? "Camas disponibles: " + beds_avalaibles
               : "Habitacion no disponible"}
           </h4>
-          <p className="text-secondary">{description}</p>
-          <p className="text-secondary">
+          <p className="text-white-50">{description}</p>
+          <p className="text-white-50">
             Baño {bathroom ? "privado" : "compartido"}
           </p>
-          <p className="text-primary">Precio: ${price}</p>
+          <p className="text-light bg-dark h5">Precio: ${price}</p><br></br>
           <Link style={{ textDecoration: "none" }} to={`/roomdetail/${id}`}>
             <button className="btn btn-primary">Reservar</button>
           </Link>
