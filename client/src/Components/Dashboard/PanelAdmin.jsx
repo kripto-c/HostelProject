@@ -32,7 +32,7 @@ export default function PanelAdmin() {
       console.log("Validando permiso")
       try {
         const token = await getAccessTokenSilently();
-        console.log(token)
+        // console.log(token)
         const response = await axios('http://localhost:4000/rol', {
           headers: {
             Authorization: `Bearer ${token}`,
