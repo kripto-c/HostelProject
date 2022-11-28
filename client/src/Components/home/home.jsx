@@ -46,15 +46,14 @@ const Home = () => {
   return (
     <div className='home-container'>      
     <div className="home-container row ">
-      <Carousel className="carousel mt-4 w-75 m-auto ">
+      <Carousel className="carousel w-100 m-auto ">
         <Carousel.Item>
           <div className="xd">
             <img
               src="https://upload.wikimedia.org/wikipedia/commons/e/e8/Hostel_Dormitory.jpg"
               alt="first-item"
             />
-            {/* <h1 className="Bienvenido">Bienvenidos al {info.hostelName}</h1> */}
-            <h1 className="Bienvenido">Bienvenidos al Hostel Dinamita</h1>
+            <h1 className="Bienvenido">Bienvenidos al {info.hostelName}</h1>
           </div>
         </Carousel.Item>
         <Carousel.Item>
@@ -63,8 +62,7 @@ const Home = () => {
               src="https://media-cdn.tripadvisor.com/media/photo-s/15/bc/d3/19/ideal-social-hostel.jpg"
               alt="second-item"
             />
-            {/* <p className="infoHome">{info.aboutUs}</p> */}
-            <p className="infoHome">Lorem ipsum dolor sit amet consectetur adipisicing elit. Pariatur, quis dolorum. Possimus explicabo incidunt velit! Vitae qui repudiandae et. Pariatur obcaecati, non a rem fuga alias porro esse assumenda maxime.</p>
+            <p className="infoHome">{info.aboutUs}</p>
           </div>
         </Carousel.Item>
         <Carousel.Item>
@@ -138,7 +136,7 @@ const Home = () => {
             </div>
           </div>
           <Servicios></Servicios>
-      <p className="ejemplosIMG">Algunas Imagenes de muesta:</p>
+      <p className="ejemplosIMG">Algunas Imagenes de muestras:</p>
       <img src={wave} alt="wave" />
         <div className="collage">
             <div className="img">

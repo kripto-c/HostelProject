@@ -1,31 +1,28 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
 
-.home-container {
-  background-color: rgba(228, 235, 245, );
-}
 
 .home-container h1{
   display: inline;
   padding-top: 10px;
   display: flex;
   justify-content: center;
-  font-size: 4vh;
+  font-size: 40px;
   align-items: center;
  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
 }
 
 .row{
   width: 100%;
+  --bs-gutter-x: 0 !important; 
 }
 
 
 .carousel img {
   width:100%;
-  height:68vh;
+  height: 700px;
   object-fit: fill;
   border-radius: 6px;
 }
-
 
 .collage {
   width: 100%;
@@ -36,9 +33,9 @@
 }
 
 .collage .img{
-  width: 35vh;
-  height: 23vh;
-  margin: 2vh;
+  width: 250px;
+  height: 200px;
+  margin: 7px;
   z-index: 200;
   position: relative;
   overflow: hidden;
@@ -59,7 +56,7 @@
   padding: 0 10% 13% 0;
   color: #fff;
   font-weight: 500;
-  font-size: 3vh;
+  font-size: 20px;
   justify-content: flex-end;
 }
 .collage .img::after{
@@ -142,8 +139,8 @@
 
 .infoHome{
   top: 30%;
-  font-size: 3vh;
-  width: 700px;
+  font-size: 20px;
+  width: 70%;
 }
 
 .infoHome2{
@@ -154,19 +151,19 @@
 }
 
 .infoHome2 p{
-  font-size: 4vh;
+  font-size: 30px;
   font-weight: 500;
 }
 
 .infoHome2 ul li{
-  font-size: 3vh;
+  font-size: 20px;
   list-style: none;
   margin: 3px 0;
 }
 
 .infoHome2 ul li img{
-  width: 3vh;
-  height: 3vh;
+  width: 20px;
+  height: 20px;
 }
 
 .infoHome2 a{
@@ -194,7 +191,7 @@
 
 .data{
   margin: 0 30px;
-  max-width: 90vh;
+  max-width: 60%;
   width: max-content;
   background-color: #cccccc71;
   min-width: 300px;
@@ -223,18 +220,18 @@
 }
 
 .demo1 img, .demo2 img, .demo3 img{
-  width: 38vh;
-  height: 30vh;
+  width: 300px;
+  height: 250px;
 }
 
 .data p{
-  font-size: 1.7vh;
+  font-size: 15px;
   padding: 10px 15px;
 }
 
 .data p:nth-child(1){
   font-weight: 700;
-  font-size: 3vh;
+  font-size: 30px;
 }
 
 
@@ -254,7 +251,7 @@
 /*Review css*/
 .review{
   display: flex;
-  padding: 5vh  0 5vh 10vh;
+  padding: 15px  0 30px 20px;
   background-color: #292b2c;
   align-items: center;
 }
@@ -264,9 +261,8 @@
   width: max-content;
   color: #fff;
   text-shadow: 0px 0px 3px #fff;
-  font-size: 5vh;
+  font-size: 38px;
   margin: auto;
-  /* width: 80%; */
   text-align: center;
   font-family: 'Roboto', sans-serif;
 }
@@ -274,7 +270,7 @@
 .miraReviews a{
   color: #232121;
   text-decoration: none;
-  font-size: 2vh;
+  font-size: 15px;
   text-shadow: none;
   background-color: #e7e7e7;
   padding: 1.5vh 2vh;
@@ -286,10 +282,10 @@
 }
 
 .ejemplosIMG{
-  font-size: 4vh;
+  font-size: 40px;
   font-weight: 700;
   text-decoration: underline;
-  padding: 3vh 0 0 2vh;
+  padding: 40px 0 0 15px;
   transition: all 1s;
 }
 
@@ -333,6 +329,6 @@
   .review .miraReviews .mira{
     padding: 30px 0;
     width: 100%;
-    font-size: 3vh;
+    font-size: 30px;
   }
 }
