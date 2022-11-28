@@ -1,9 +1,9 @@
 import React from "react"
  
-export default function PaginationPayments({ paymentsPerPage, allPayments, paginado, currentPage, totalPages }) {
+export default function PaginationPayments({ paymentsPerPage, allRents, paginado, currentPage, totalPages }) {
     const pageNumbers = []
     
-    for(let i=1; i<=Math.ceil(allPayments.length/paymentsPerPage); i++) {
+    for(let i=1; i<=Math.ceil(allRents.length/paymentsPerPage); i++) {
         pageNumbers.push(i)
     }
  
@@ -15,8 +15,6 @@ export default function PaginationPayments({ paymentsPerPage, allPayments, pagin
         if(currentPage > 1)
         return paginado(currentPage - 1)
     }
-    console.log(totalPages)
-    console.log(currentPage)
     
     return (
         <div className="container px-0 bg-black mt-2">

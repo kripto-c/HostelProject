@@ -2,9 +2,7 @@ import React from 'react'
 import { useEffect, useState } from 'react';
 import Table from 'react-bootstrap/Table';
 import { useDispatch, useSelector } from 'react-redux';
-import {filterRents,  getRents, logicalDraft,
-  // updateStatusRents,
-} from "../../Redux/actions/index.js"
+import {filterRents,  getRents, logicalDraft,} from "../../Redux/actions/index.js"
 import PaginationPayments from './PaginationPayments.jsx';
 import Swal from 'sweetalert2'
 import style from './Payments.module.css'
@@ -15,42 +13,39 @@ import { useAuth0 } from "@auth0/auth0-react";
 function Payments() {
   const dispatch = useDispatch();
   const allRents = useSelector((state) => state.rents);
-  
+ console.log(allRents)
 
+  //Protección de rutas
   const {
     getAccessTokenSilently
   } = useAuth0();
 
-const protectClients2 = async () => {
+  const protectClients2 = async () => {
     const token = await getAccessTokenSilently();
     dispatch(getRents(token))
   }
 
+
   useEffect(() => {
     protectClients2();
   }, []);
-
+  const [data, setData] = useState(true)
+  const rentsCurrent = JSON.parse(localStorage.getItem("filters")) || allRents
   
-  console.log(allRents);
 
-  var sum = 0;
-  function suma() {
-    const aux = allRents.map((e) => {
-      sum = sum + e.price;
-    });
-    return aux;
-  }
-  suma()
+  useEffect(() => {
+    JSON.parse(localStorage.getItem("filters"))
+    setData(false)
+  }, [data]) 
+  
 
   // PAGINADO --------------------->>
-  const allPayments = useSelector((state) => state.rents)
-  let rentsCurrent = JSON.parse(localStorage.getItem("filters")) || allPayments
   const [currentPage, setCurrentPage] = useState(1)
   const [paymentsPerPage, setPaymentsPerPage] = useState(10)
   const indexOfLastPayment = currentPage * paymentsPerPage
   const indexOfFirstPayment = indexOfLastPayment - paymentsPerPage
   const currentPayments = rentsCurrent?.slice(indexOfFirstPayment, indexOfLastPayment)
-  const totalPages = Math.ceil(allPayments.length / 10)
+  const totalPages = Math.ceil(rentsCurrent?.length / 10)
  
   const paginado = (pageNumbers) => {
     setCurrentPage(pageNumbers)
@@ -59,15 +54,10 @@ const protectClients2 = async () => {
 
  
   // FILTROS --------------------->>
-  const [data, setData] = useState(true)
-  useEffect(() => {
-    JSON.parse(localStorage.getItem("filters"))
-    setData(false)
-  }, [data])
+  
 
+  // Creo un array de meses para el filtro
   const months = allRents.map(e => e.dateIn.slice(0, 7))
-  console.log(months)
-
   const months2 = []
   months2.push(months[0])
   for(var i = 0; i < months.length; i++) {
@@ -75,18 +65,14 @@ const protectClients2 = async () => {
       months2.push(months[i])
     }
   }
-  console.log(months2)
 
 
   const [date, setDate] = useState(JSON.parse(localStorage.getItem("selectDate"))||"")
   const [month, setMonth] = useState(JSON.parse(localStorage.getItem("selectMonth")) || "")
   const [orden, setOrden] = useState('')
   
-
-  
-
   const putRents = () => {
-    localStorage.removeItem("filters")
+    localStorage.removeItem("filters") 
     localStorage.setItem("selectDate", JSON.stringify(""))
     localStorage.setItem("selectMonth", JSON.stringify(""))
   }
@@ -149,7 +135,18 @@ const protectClients2 = async () => {
     protectClients2()
   }
   // ----------------------------->>
- 
+
+  
+  // Suma del total de pagos ----->>
+  var sum = 0;
+  function suma() {
+    const aux = allRents.map((e) => {
+      sum = sum + e.price;
+    });
+    return aux;
+  }
+  suma()
+  // ----------------------------->>
  
   return (
     <div >
@@ -183,8 +180,8 @@ const protectClients2 = async () => {
               <option value="all" hidden>
                 Ordenar por fecha
               </option>
-              <option value="asc">Más reciente</option>
-              <option value="desc">Menos reciente</option>
+              <option value="asc">Menos reciente</option>
+              <option value="desc">Más reciente</option>
             </select>
           </li>
           <li className="nav-item mx-1">
@@ -204,7 +201,7 @@ const protectClients2 = async () => {
     <div className='row'>
     <PaginationPayments
       paymentsPerPage={paymentsPerPage}
-      allPayments={allPayments}
+      allRents={allRents}
       paginado={paginado}
       currentPage={currentPage}
       totalPages={totalPages}
@@ -227,11 +224,11 @@ const protectClients2 = async () => {
             let auxOut = e.dateOut.slice(0, 10)
             let id = e.id
             return (
-              <tr text-center>
+              <tr className='text-center'>
                 <td>{id}</td>
                 <td>{auxIn}</td>
                 <td>{auxOut}</td>
-                <td>${e.price}</td>
+                <td><b>${e.price}</b></td>
                 <td><button onClick={(e) => handleLogicalDraft(e, id)} className="btn btn-light">Borrar</button></td>
               </tr>
             )  
