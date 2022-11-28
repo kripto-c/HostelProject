@@ -3,7 +3,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 import Modal from "react-bootstrap/Modal";
-import { getCLient, postClient } from "../../Redux/actions";
+import { getAllCountries, getCLient, postClient } from "../../Redux/actions";
 import { getRent } from '../../Redux/actions';
 
 import { BsFillPencilFill } from "react-icons/bs";
@@ -30,6 +30,7 @@ export default function RoomDetail() {
   const client = useSelector((state) => state.client);
   const room = useSelector((state) => state.roomdetail);
   const image = useSelector((state) => state.roomdetail.image);
+  const countries = useSelector((state) => state.countries);
   const { getAccessTokenSilently } = useAuth0();
   const [camas, setCamas] = useState(0);
   const [total, setTotal] = useState(0);
@@ -64,14 +65,15 @@ export default function RoomDetail() {
  
   
   useEffect(() =>{
+    dispatch(getAllCountries());
     dispatch(getRoomDetail(id));
     dispatch(getRent(id));
     socket.emit('roomView', id)
-    socket.on('payRoom',(data)=> setPayAvalible(data.status))
+    socket.on('payRoom',(data)=> setPayAvalible(data.status));
     socket.on('userPay',(data)=>{
       if(data.user != userLogin.user.email) setPayAvalible(data.status)
     })
-    socket.on('userPayC',(data)=> setPayAvalible(data.status))
+    socket.on('userPayC',(data)=> setPayAvalible(data.status));
   },[dispatch]);
 
   
@@ -307,10 +309,17 @@ export default function RoomDetail() {
                   name="nationality"
                   onChange={(e) => handleChange(e)}
                 >
-                  <option>Selecciona tu Pais</option>
-                  <option value="venezuela">Venezuela</option>
+                  <option selected >Selecciona tu Pais</option>
+                  {
+                    countries.map((c, index) =>{
+                      return(
+                        <option key={index} value={c.country}>{c.country}</option>
+                      )
+                    })
+                  }
+                  {/* <option value="venezuela">Venezuela</option>
                   <option value="argentina">Argentina</option>
-                  <option value="Canada">Canada</option>
+                  <option value="Canada">Canada</option> */}
                 </Form.Select>
                 <Form.Label>DNI o Pasaporte</Form.Label>
                 <Form.Control
