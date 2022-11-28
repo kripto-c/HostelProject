@@ -185,8 +185,8 @@ export default function RoomDetail() {
             setCargando(!cargando);
             const token = await getAccessTokenSilently();
             
-            const result = await axios.post("http://localhost:4000/payment", body,
-            // const result = await axios.post("https://dinamitahostel.herokuapp.com/payment", body,
+            // const result = await axios.post("http://localhost:4000/payment", body,
+            const result = await axios.post("https://hostelproject-production.up.railway.app", body,
                 {headers:{
                     authorization:`Bearer ${token}`
                  }
