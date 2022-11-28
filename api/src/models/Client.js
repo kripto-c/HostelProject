@@ -11,36 +11,40 @@ module.exports = (sequelize) => {
       primaryKey: true
     },
     personalID: { //documento/pasaporte
-        type: DataTypes.CHAR
+      type: DataTypes.CHAR
     },
     name: {
-        type: DataTypes.STRING,
-    },
-     lastname:{
       type: DataTypes.STRING,
-     },
+    },
+    lastname: {
+      type: DataTypes.STRING,
+    },
     nationality: {
-        type: DataTypes.STRING
+      type: DataTypes.STRING
     },
     phoneNumber: {
-        type: DataTypes.CHAR,
+      type: DataTypes.CHAR,
     },
     email: {
-        type: DataTypes.STRING,
+      type: DataTypes.STRING,
     },
-    idAuth:{
-       type: DataTypes.TEXT
+    idAuth: {
+      type: DataTypes.TEXT
     },
     observation: {
-        type: DataTypes.STRING,
-        allowNull: true,
+      type: DataTypes.STRING,
+      allowNull: true,
     },
-    status:{
-       type:DataTypes.STRING,
-       defaultValue: "active",
+    status: {
+      type: DataTypes.STRING,
+      defaultValue: "active",
+    },
+    con: {
+      type: DataTypes.STRING,
+      defaultValue: 'Connected'
     }
   },
-  {
-    timestamps: false
-  }) 
+    {
+      timestamps: false
+    })
 }

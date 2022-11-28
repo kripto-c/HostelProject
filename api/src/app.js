@@ -10,6 +10,7 @@ const { createServer } = require('http')
 
 const server = express();
 const cors = require('cors');
+const { Client } = require('./db.js');
 server.name = 'API';
 
 server.use(cors());
@@ -43,8 +44,36 @@ const io = new Server(serverHttp, {
 })
 
 let roomArr = [];
+let adm = [];
+let userConnect = [];
+
+
 
 io.on('connection', (socket) => {
+  socket.on('userConected', (obj) => {
+    Client.update({ con: "Connected" }, { where: { email: obj.user } })
+    if (obj.rol == 'menu-admin') {
+      adm[0] = { id: socket.id, user: obj.user, rol: obj.rol }
+    } else if (obj.rol == 'menu-client') userConnect.push({ id: socket.id, user: obj.user })
+    if (adm.length) io.to(adm[0].id).emit('newUserLogin', 'xd')
+    console.log(userConnect)
+  })
+
+  socket.on('userDisconect', (data) => {
+    Client.update({ con: 'Disconnected' }, { where: { email: data } })
+    if (adm.length) io.to(adm[0].id).emit('newUserLogin', 'xd')
+  })
+
+  socket.on('userBanned', (obj) => {
+    Client.update({ status: obj.state }, { where: { email: obj.user } })
+    socket.emit("newUserLogin", 'xd')
+    const filtro = userConnect.filter((e) => e.user == obj.user)
+    filtro.map((e) => {
+      io.to(e.id).emit('userBanned', obj.state)
+    })
+    userConnect = userConnect.filter((e) => e.user != obj.user)
+  })
+
   socket.on('roomView', (roomID) => {
     socket.join(roomID)
     const filter = roomArr.filter((e) => e.id == roomID);
@@ -67,5 +96,6 @@ io.on('connection', (socket) => {
 
   })
 })
+
 
 module.exports = serverHttp;
