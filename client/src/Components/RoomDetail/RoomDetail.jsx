@@ -186,7 +186,7 @@ export default function RoomDetail() {
             const token = await getAccessTokenSilently();
             
             // const result = await axios.post("http://localhost:4000/payment", body,
-            const result = await axios.post("https://hostelproject-production.up.railway.app", body,
+            const result = await axios.post("https://hostelproject-production.up.railway.app/payment", body,
                 {headers:{
                     authorization:`Bearer ${token}`
                  }
