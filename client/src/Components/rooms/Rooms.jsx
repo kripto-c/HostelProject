@@ -66,7 +66,7 @@ export default function Rooms() {
                 </div>
               );
             })}
-          <div >
+          <div className="row mx-auto" >
             <Paginate
               roomsPerPage={roomsPerPage}
               allRooms={allRooms?.length}

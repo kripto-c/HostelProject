@@ -11,8 +11,8 @@ export const GET_ALL_CLIENTS = "GET_ALL_CLIENTS";
 export const GET_FAQ = "GET_FAQ";
 
 // const URL = "https://dinamitahostel.herokuapp.com"; //heroku
- const URL = "https://hostelproject-production.up.railway.app" //railway
-// const URL = "http://localhost:4000"; //descomentar para hacer pruebas
+//  const URL = "https://hostelproject-production.up.railway.app" //railway
+const URL = "http://localhost:4000"; //descomentar para hacer pruebas
 
 //ACTION ROOMS ----------------------------------------------------------->>
 export function getRooms() {
