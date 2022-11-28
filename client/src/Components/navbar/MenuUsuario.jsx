@@ -166,18 +166,21 @@ async function statusUser() {
             </Offcanvas>
             {
               (localStorage.getItem("Rol") === "menu-admin" )
-               &&  <button
+               &&  <div className={style.divButtonAdmin}>
+                <button
                  type="button"
+                 
                  onClick={() => {
                    setShow1(true);
                  }}
-                 style={{position: "fixed", top: "8.5%", left: ".5%", width: "55px", height: "50px", padding: "5px" }}
+                 style={{position: "fixed", top: "8.5%", left: ".5%", width: "55px", height: "50px", padding: "5px", }}
                 className="btn btn-dark fas fa-cog"
                >
                 <IconContext.Provider value={{ size: "30"}}>
                 <BiCog />
                 </IconContext.Provider>
                </button>
+               </div>
              }
 
           {isAuthenticated ? (
