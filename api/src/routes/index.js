@@ -18,6 +18,7 @@ const activeRoom = require("./deletesAdmin/deletesAdmin.js");
 const rents = require("../routes/rents/index.js");
 const changeStatusRoom = require("./deletesAdmin/deletesAdmin.js");
 const faq = require("./faqs/route");
+const rent = require("./rent/rent");
 /////////////permissos
 const checkPermissions = require("../permisos/permisosCheck");
 const itemPermissos = require("../permisos/permisos");
@@ -25,7 +26,7 @@ const itemPermissos = require("../permisos/permisos");
 // auth0 backend
 const jwtCheck = require("../jwtCheck/jwtCheck");
 
-router.use(jwtCheck); 
+router.use(jwtCheck);
 
 router.use(express.json());
 //RUTAS--------------------------------------------------------------->>
@@ -54,5 +55,6 @@ router.use("/rooms", rooms);
 router.use("/countries", getCountries)
 router.use("/allClients", checkPermissions(itemPermissos.getAllClients), getAllClients)
 router.use("/rents", rents);
+router.use("/rent", rent)
 
 module.exports = router;
