@@ -15,14 +15,15 @@ import Dropzone from "react-dropzone";
 import { IoIosFolderOpen } from "react-icons/io";
 import axios from "axios";
 import Carousel from "react-bootstrap/Carousel";
+import { RiDeleteBin5Line } from "react-icons/ri";
 
 const Create = (props) => {
   // SETTEAR INFO//
   const [image, setImage] = useState({ array: [] });
-  const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState("");
   const [room, setRoom] = useState({
     description: "",
-    image: "",
+    image: [],
     bathroom: "",
     observation: "",
     price: "",
@@ -59,8 +60,10 @@ const Create = (props) => {
           imagenUpload.push(fileURL);
           const nuevoObjeto = { ...image, imagenUpload };
           setImage(nuevoObjeto);
+          console.log(data);
           setRoom({
-            image: nuevoObjeto,
+            ...room,
+            image: imagenUpload,
           });
         });
     });
@@ -69,50 +72,8 @@ const Create = (props) => {
     });
   };
 
-  // PREVIEW-IMAGE //
-
-  const imagePreview = () => {
-    if (loading) {
-      <h3>Cargando...</h3>;
-    }
-    if (!loading) {
-      return (
-        <h3>
-          {image.array.length === 1 ? (
-            <div>
-              <img
-                style={{
-                  width: "125px",
-                  height: "70px",
-                  backgroundSize: "cover",
-                }}
-                src={image}
-              />
-            </div>
-          ) : (
-            image.array.map((imagen) => (
-              <div>
-                <Carousel>
-                  <Carousel.Item>
-                    <img
-                      src={imagen}
-                      style={{
-                        width: "125px",
-                        height: "70px",
-                        backgroundSize: "cover",
-                      }}
-                    />
-                  </Carousel.Item>
-                </Carousel>
-              </div>
-            ))
-          )}
-        </h3>
-      );
-    }
-  };
-
-  // HANDLES //
+  console.log(room.image);
+  console.log(image);
 
   const handleChange = (e) => {
     setRoom({
@@ -131,7 +92,7 @@ const Create = (props) => {
   const handlebañoSelect = (e) => {
     setRoom({
       ...room,
-      bathroom: parseInt(e.target.value),
+      bathroom: e.target.value,
     });
   };
 
@@ -200,6 +161,7 @@ const Create = (props) => {
           onSubmit={(e) => handleSubmit(e)}
           style={{ width: "80%", display: "flex", flexDirection: "column" }}
         >
+          <h2>Formulario de creacion de Habitaciones: </h2>
           <Row className="d-flex justify-content-between">
             <Form.Group as={Col} md="5">
               <Form.Label>Baño(OBLIGATORIO): </Form.Label>
@@ -293,18 +255,17 @@ const Create = (props) => {
               </Form.Group>
             </Row>
           </Row>
-          <Row className="d-flex justify-content-between padding-left-2">
+          <Row className="d-flex justify-content-center">
             <Form.Group as={Col} md="5">
               <Dropzone
                 className="dropzone"
                 onDrop={handleImages}
                 onChange={(e) => setImage(e.target.value)}
-                value={image}
               >
-                {({ getRootProps, getInputProps }) => (
+                {({ getRootProps }) => (
                   <section>
                     <div {...getRootProps({ className: "dropzone" })}>
-                      <input {...getInputProps()} />
+                      {/* <input {...getInputProps()} /> */}
                       <span>
                         <IoIosFolderOpen />
                       </span>
@@ -313,8 +274,33 @@ const Create = (props) => {
                   </section>
                 )}
               </Dropzone>
-              {imagePreview()}
             </Form.Group>
+          </Row>
+          <Row>
+            <div>
+              <Carousel>
+                {image.array?.map((foto, index) => {
+                  return (
+                    <Carousel.Item key={index}>
+                      <button className="rounded mx-auto d-block">
+                        X
+                        
+                      </button>
+                      <img
+                        className="rounded mx-auto d-block"
+                        src={`${foto}`}
+                        alt=""
+                        style={{
+                          width: "200px",
+                          height: "180px",
+                          objectFit: "cover",
+                        }}
+                      />
+                    </Carousel.Item>
+                  );
+                })}
+              </Carousel>
+            </div>
           </Row>
 
           <Button

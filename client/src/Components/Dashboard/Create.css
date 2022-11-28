@@ -26,6 +26,10 @@
   border: 3px dashed #eeeeee;
   background-color: #fafafa;
   color: #bdbdbd;
-  margin-bottom: 20px;
-  
+  margin: 20px;
+}
+
+.carroza{
+justify-content: center;
+align-items: center;
 }

@@ -6,6 +6,7 @@ import { RiDeleteBin5Line } from "react-icons/ri";
 import { useAuth0 } from "@auth0/auth0-react";
 import { deleteRoom, changeStatusRoom } from "../../Redux/actions";
 import { useState } from "react";
+import Table from 'react-bootstrap/Table'
 
 const Edit = () => {
   const dispatch = useDispatch();
@@ -56,7 +57,7 @@ const Edit = () => {
 
   return (
     <div className="table-container">
-      <table className="rooms-tbl">
+      <Table striped bordered hover variant="dark" className="col-md-7 bg-dark">
         <thead>
           <tr>
             <th>ID: </th>
@@ -114,7 +115,7 @@ const Edit = () => {
             </>
           ))}
         </tbody>
-      </table>
+      </Table>
     </div>
   );
 };
