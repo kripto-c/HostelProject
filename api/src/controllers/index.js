@@ -77,18 +77,18 @@ module.exports = {
     },
     getOwnerHome: async function(){
         let dataOwner = await Owner.findAll()
-        
-        
-        let{hostelName, instagram, facebook, twitter, mail, aboutUs, chooseUs, extra} = dataOwner
-        let dataHome = {hostelName, 
-                        instagram, 
-                        facebook, 
-                        twitter, 
-                        mail, 
-                        aboutUs, 
-                        chooseUs, 
-                        extra}
-        //return dataOwner[0]
+        let dataHome = {}
+        if (dataOwner.length){
+            let{hostelName, instagram, facebook, twitter, mail, aboutUs, chooseUs, extra} = dataOwner[0]
+            dataHome = {hostelName, 
+                            instagram, 
+                            facebook, 
+                            twitter, 
+                            mail, 
+                            aboutUs, 
+                            chooseUs, 
+                            extra}            
+        }
         return dataHome
     },
     getRentsInfo: async function() {

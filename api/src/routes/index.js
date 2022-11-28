@@ -53,6 +53,6 @@ router.use(
 router.use("/rooms", rooms);
 router.use("/countries", getCountries)
 router.use("/allClients", checkPermissions(itemPermissos.getAllClients), getAllClients)
-router.use("/rents", rents);
+router.use("/rents", checkPermissions(itemPermissos.getPaymentAdmin), rents);
 
 module.exports = router;

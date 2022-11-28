@@ -27,7 +27,7 @@ export default function Wifi() {
               <div className="card">
                 <img
                   src="https://d500.epimg.net/cincodias/imagenes/2020/08/12/smartphones/1597235856_381527_1597236258_noticia_normal.jpg"
-                  class="card-img-top"
+                  className="card-img-top"
                   alt="wifi"
                 />
                 <div className="card-body">
