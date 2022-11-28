@@ -36,7 +36,7 @@ export default function PanelAdmin() {
       try {
         const token = await getAccessTokenSilently();
         const response = await dispatch(getRolUser(token))
-        if(response.data.rol[0] !== "menu-admin") return navigate('/');
+        if(localStorage.getItem('Rol') !== "menu-admin") return navigate('/');
         setValidando(false)
       } catch (e) {
         console.error(e.message);
