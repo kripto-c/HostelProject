@@ -27,15 +27,15 @@ const sendEmail = async ({
   console.log(status);
   status == "approved"
     ? (contHTML = aprobado({
-        name,
-        lastname,
-        status,
-        dni,
-        camas,
-        payment_id,
-        check_in,
-        check_out,
-      }))
+      name,
+      lastname,
+      status,
+      dni,
+      camas,
+      payment_id,
+      check_in,
+      check_out,
+    }))
     : (contHTML = rechazado({ name, status }));
   await transporter.sendMail({
     from: '"Confirmacion de Pago" <Projecto_finalXDXD@gmail.com>',

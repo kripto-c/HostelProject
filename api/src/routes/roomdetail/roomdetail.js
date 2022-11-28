@@ -10,9 +10,6 @@ route.get("/", async (req, res) =>{
         let roomdetail = await Room.findOne({
             where: {
                 id: id
-            },
-            include: {
-                model: Rent
             }
         });
 

@@ -24,6 +24,11 @@ export default function Analytics() {
   const token = await getAccessTokenSilently();
   dispatch(getAllClients(token))
   } 
+
+  const getRentsInfo = async ()=>{
+    const token = await getAccessTokenSilently();
+    dispatch(getRents(token))
+    } 
   
   useEffect(()=>{
   protectClients()  
@@ -31,7 +36,7 @@ export default function Analytics() {
 
   // Esto es para mostrar las ganancias
   useEffect(() => {
-    dispatch(getRents())
+    getRentsInfo()
     dispatch(getRooms());
   }, [])  
  

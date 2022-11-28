@@ -1,6 +1,7 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getReview, deleteReview } from "../../Redux/actions";
+import { MdNavigateBefore, MdNavigateNext } from "react-icons/md";
 import { useAuth0 } from "@auth0/auth0-react";
 import { useState } from "react";
 import Pagination from "react-bootstrap/Pagination";
@@ -60,7 +61,7 @@ export default function ReviewAdmin() {
     }
     return (
       <nav>
-        <ul className="pagination">
+        <ul className="gap-3 d-flex pagination">
           <li className="page-item">
             <button
               onClick={() =>
@@ -68,13 +69,15 @@ export default function ReviewAdmin() {
                   currentPage !== 1 ? currentPage - 1 : currentPage
                 )
               }
-              className="page-link"
+              className="page-link align-items-center me-0"
             >
-              Anterior
+              <h1>
+                <MdNavigateBefore size={30} style={{ color: "black" }} />
+              </h1>
             </button>
           </li>
           {paginas.map((e) => (
-            <li>
+            <li className="d-flex align-items-center">
               <Pagination onClick={() => setCurrentPage(e)}>
                 <Pagination.Item
                   className={currentPage === e ? "active" : "disabled"}
@@ -86,14 +89,16 @@ export default function ReviewAdmin() {
           ))}
           <li className="page-item">
             <button
-              className="page-link"
+              className="page-link align-items-center ms-0"
               onClick={() =>
                 setCurrentPage(
                   currentPage !== paginas.length ? currentPage + 1 : currentPage
                 )
               }
             >
-              Siguiente
+              <h1>
+                <MdNavigateNext size={30} />
+              </h1>
             </button>
           </li>
         </ul>
@@ -103,11 +108,13 @@ export default function ReviewAdmin() {
   //----------------------------------------------------------------------------------------------
   //FECHA HORA REVIEW
   function getFechaHora(createdAt) {
-    let data = createdAt.replace(/\./g, "").slice(0, -7).split("T");
+    let data = createdAt
+      .replace(/\./g, "")
+      .slice(0, -7)
+      .split("T");
     let fecha = data[0];
-    let hora = data[1];
 
-    return <span>{fecha} a las {hora}</span>;
+    return <span>{fecha}</span>;
   }
 
   return (
@@ -123,9 +130,9 @@ export default function ReviewAdmin() {
               <th>Usuario</th>
               <th>Rating</th>
               <th>Description</th>
-              <th></th>
-              <th></th>
-              <th></th>
+              <th>Eliminar</th>
+              <th>Recuperar</th>
+              <th>Estado</th>
             </tr>
           </thead>
           <tbody>
@@ -141,7 +148,7 @@ export default function ReviewAdmin() {
                         ? r.client.name
                         : "Usuario Anonimo"}
                     </td>
-                    
+
                     <td>{r.rating}</td>
                     <td>{r.description ? r.description : "Sin comentarios"}</td>
                     <td className="align-middle">
@@ -178,14 +185,14 @@ export default function ReviewAdmin() {
                         Recuperar
                       </button>
                     </td>
-                    <td className="align-bottom">
+                    <td className="align-middle">
                       <h3 className="m-2">
                         <span
                           className={
                             !r?.status ? "badge bg-success" : "badge bg-danger"
                           }
                         >
-                          Estado
+                          {!r.status ? "active" : "disabled"}
                         </span>
                       </h3>
                     </td>
@@ -194,9 +201,7 @@ export default function ReviewAdmin() {
               );
             })}
           </tbody>
-          
         </table>
-        
       </div>
     </div>
   );

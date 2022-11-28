@@ -61,6 +61,7 @@ export default function Rooms() {
                     type={e.type?.type}
                     price={e.price}
                     beds_avalaibles={e.beds_avalaibles}
+                    status={e.status}
                   />
                 </div>
               );

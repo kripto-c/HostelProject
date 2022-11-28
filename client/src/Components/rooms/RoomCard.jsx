@@ -9,6 +9,7 @@ export default function RoomCard({
   id,
   price,
   beds_avalaibles,
+  status,
 }) {
   let typeRoom = "";
 
@@ -17,6 +18,7 @@ export default function RoomCard({
   } else if (type === "Privado") {
     typeRoom = "privada";
   }
+
   return (
     <div className="container bg-dark my-3">
       <div className="row py-3">
@@ -32,7 +34,7 @@ export default function RoomCard({
           </h2>
           <h4 className="text-secondary">
             {" "}
-            {beds_avalaibles >= 1
+            {beds_avalaibles >= 1 && !status
               ? "Camas disponibles: " + beds_avalaibles
               : "Habitacion no disponible"}
           </h4>

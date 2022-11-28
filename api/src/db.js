@@ -2,32 +2,33 @@ require("dotenv").config();
 const { Sequelize } = require("sequelize");
 const fs = require("fs");
 const path = require("path");
-const { DB_USER, DB_PASSWORD, DB_HOST, DB_NAME } = process.env;
+const { DB_USER, DB_PASSWORD, DB_HOST, DB_NAME, PORT } = process.env;
 
-const sequelize = new Sequelize(
-  `postgres://${DB_USER}:${DB_PASSWORD}@${DB_HOST}/hostelproject`,
-  {
-    logging: false, // set to console.log to see the raw SQL queries
-    native: false, // lets Sequelize know we can use pg-native for ~30% more speed
-  }
-);
-// const sequelize = new Sequelize({
-//   database: "d43c4dk289i1g1",
-//   username: DB_USER,
-//   password: DB_PASSWORD,
-//   host: DB_HOST,
-//   port: 5432,
-//   dialect: "postgres",
-//   //================================//
-//   dialectOptions: {
-//     ssl: {
-//       require: true, // comentar si da error al conectar, config necesaria para deploy
-//       rejectUnauthorized: false, //
-//     },
-//   },
-//   //================================//
-//   logging: false,
-// });
+// const sequelize = new Sequelize(
+//   `postgres://${DB_USER}:${DB_PASSWORD}@${DB_HOST}/hostelproject`,
+//   {
+//     logging: false, // set to console.log to see the raw SQL queries
+//     native: false, // lets Sequelize know we can use pg-native for ~30% more speed
+//   }
+// );
+// 5432
+const sequelize = new Sequelize({
+  database: DB_NAME,
+  username: DB_USER,
+  password: DB_PASSWORD,
+  host: DB_HOST,
+  port: PORT,
+  dialect: "postgres",
+  //================================//
+  dialectOptions: {
+    ssl: {
+      require: true, // comentar si da error al conectar, config necesaria para deploy
+      rejectUnauthorized: false, //
+    },
+  },
+  //================================//
+  logging: false,
+});
 
 const basename = path.basename(__filename);
 
@@ -64,8 +65,8 @@ const { Room, Rent, Type, Client, Review, Countrie, Owner, Faq } = sequelize.mod
 Type.hasMany(Room);
 Room.belongsTo(Type);
 
-Rent.hasMany(Room);
-Room.belongsTo(Rent);
+// Rent.hasMany(Room);
+// Room.belongsTo(Rent);
 
 /* Rent.hasMany(Client);
 Client.belongsTo(Rent); */

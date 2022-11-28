@@ -28,7 +28,7 @@ router.get("/get",checkPermissions(itemPermissos.addDataAdmin), (req, res) => {
 })
 router.get("/gethome", (req, res) => {
     try {
-        return controllers.getOwner()
+        return controllers.getOwnerHome()
             .then((result) => {
                 return res.status(201).json(result)
             })

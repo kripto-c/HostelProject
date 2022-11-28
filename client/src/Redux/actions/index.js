@@ -10,14 +10,14 @@ export const GET_OWNER = "GET_OWNER";
 export const GET_ALL_CLIENTS = "GET_ALL_CLIENTS";
 export const GET_FAQ = "GET_FAQ";
 
-// const URL = "https://dinamitahostel.herokuapp.com";
-const URL = "http://localhost:4000"; //descomentar para hacer pruebas
+// const URL = "https://dinamitahostel.herokuapp.com"; //heroku
+ const URL = "https://hostelproject-production.up.railway.app" //railway
+// const URL = "http://localhost:4000"; //descomentar para hacer pruebas
 
 //ACTION ROOMS ----------------------------------------------------------->>
 export function getRooms() {
   return async function (dispatch) {
     let room = await axios.get(`${URL}/rooms`);
-    console.log("mirar acaaaGET ROOMS", typeof room);
     return dispatch({
       type: GET_ROOMS,
       payload: room.data,
@@ -89,7 +89,6 @@ export function sendFeedback(data) {
 }
 
 export function filterTypeRoom(payloadOne, payloadTwo, payloadThree) {
-  console.log("TYPE ROOM FILTRO ACCIONADO", payloadOne);
   return {
     type: FILTER_TYPE_ROOM,
     payloadOne,
@@ -132,7 +131,6 @@ export function getAllClients(token) {
       const allClients = await axios.get(`${URL}/allClients`, {
         headers: { authorization: `Bearer ${token}` },
       });
-      console.log(allClients);
       return dispatch({
         type: GET_ALL_CLIENTS,
         payload: allClients.data,

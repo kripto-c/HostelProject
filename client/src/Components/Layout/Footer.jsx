@@ -1,7 +1,7 @@
 import './Footer.css';
 import { Link } from "react-router-dom";
 import React, {useState, useEffect} from "react";
-import { getOwner } from "../../Redux/actions";
+import { getOwnerSp } from "../../Redux/actions";
 import {useDispatch, useSelector} from "react-redux"
 import { useAuth0 } from "@auth0/auth0-react";
 
@@ -13,13 +13,8 @@ const Footer = () => {
   const info = useSelector(state => state.owner);
   const dispatch = useDispatch()
 
-  async function getOwnerF(){
-    const token = await  getAccessTokenSilently()
-    dispatch(getOwner(token))
-  }
-
   useEffect(() => {
-    if (!info.length) getOwnerF()
+    if (!info.length) dispatch(getOwnerSp())
   }, [dispatch]);
 
   return (

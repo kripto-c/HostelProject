@@ -26,7 +26,7 @@ export default function Recepcion() {
               <div className="card">
                 <img
                   src="https://www.hosteleriabenidorm.com/wp-content/uploads/Disen%CC%83o-sin-ti%CC%81tulo-2021-11-09T135926.546.jpg"
-                  class="card-img-top"
+                  className="card-img-top"
                   alt="recepcion"
                 />
                 <div className="card-body">

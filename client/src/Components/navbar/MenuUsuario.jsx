@@ -14,6 +14,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { useState, useEffect } from "react";
 import style from "./MenuUsuario.module.css";
 import Sidebar from "../Dashboard/Sidebar";
+import { socket } from "../../App";
 
 const options = [
   {
@@ -80,26 +81,31 @@ export default function MenuUsuario({ name, ...props }) {
   }
 
 async function statusUser() {
- if(localStorage.getItem("status") == "disabled"){
-   Swal.fire({
-           position: 'center',
-           icon: 'error',
-           title: 'Su cuenta ha sido bloqueada. Consulte con el administrador en la seccion Contactanos',
-           showConfirmButton: false,
-           timer: 6000
-         })
-         setTimeout(() => {
-           logout()
-          }, 2000);
-        }
-      
-}
+ setTimeout(()=>{
+  if(localStorage.getItem("status") == "disabled"){
+    Swal.fire({
+            position: 'center',
+            icon: 'error',
+            title: 'Su cuenta ha sido bloqueada. Consulte con el administrador en la seccion Contactanos',
+            showConfirmButton: false,
+            timer: 6000
+          })
+          setTimeout(() => {
+           localStorage.clear();
+            logout()
+           }, 2000);
+         }
+   }, 4000)}
   useEffect(() => {
     let idUser = localStorage.getItem("IDUser");
     if (idUser) {
       getInfo();
       setConfirmLog(true);
     }
+    socket.on('userBanned',(data)=>{
+      localStorage.setItem('status', data)
+      statusUser()
+    })
   }, [dispatch]);
   return (
     <>
@@ -148,6 +154,7 @@ async function statusUser() {
                   type="button"
                   onClick={() => {
                     localStorage.clear();
+                    socket.emit('userDisconect', user.email)
                     logout();
                     setConfirmLog(false);
                     setSort("deslogueado");
