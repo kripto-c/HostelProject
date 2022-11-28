@@ -71,10 +71,6 @@ const Create = (props) => {
       setLoading("false");
     });
   };
-
-  console.log(room.image);
-  console.log(image);
-
   const handleChange = (e) => {
     setRoom({
       ...room,
@@ -265,7 +261,6 @@ const Create = (props) => {
                 {({ getRootProps }) => (
                   <section>
                     <div {...getRootProps({ className: "dropzone" })}>
-                      {/* <input {...getInputProps()} /> */}
                       <span>
                         <IoIosFolderOpen />
                       </span>
@@ -282,10 +277,7 @@ const Create = (props) => {
                 {image.array?.map((foto, index) => {
                   return (
                     <Carousel.Item key={index}>
-                      <button className="rounded mx-auto d-block">
-                        X
-                        
-                      </button>
+                      <button className="rounded mx-auto d-block">X</button>
                       <img
                         className="rounded mx-auto d-block"
                         src={`${foto}`}

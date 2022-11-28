@@ -1,25 +1,19 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getRooms } from "../../Redux/actions";
-import "./EditRoom.css";
 import { RiDeleteBin5Line } from "react-icons/ri";
 import { useAuth0 } from "@auth0/auth0-react";
 import { deleteRoom, changeStatusRoom } from "../../Redux/actions";
-import { useState } from "react";
-import Table from 'react-bootstrap/Table'
+import Table from "react-bootstrap/Table";
+import "./EditRoom.css";
 
 const Edit = () => {
   const dispatch = useDispatch();
   const { getAccessTokenSilently } = useAuth0();
-  const [estado, setEstado] = useState(false);
 
   useEffect(() => {
     dispatch(getRooms());
-  }, [dispatch, estado]);
-
-  useEffect(() => {
-    setEstado(true);
-  }, [estado]);
+  }, [dispatch]);
 
   const handleDelete = async (room) => {
     const token = await getAccessTokenSilently();
@@ -39,20 +33,20 @@ const Edit = () => {
         authorization: `Bearer ${token}`,
       },
     };
-    console.log(statusRoom);
 
     await dispatch(changeStatusRoom(authorization, room, statusRoom));
     await dispatch(getRooms());
   };
 
   const rooms = useSelector((state) => state.allRooms);
+  console.log(rooms);
   const ordernar = () => {
-    let ordenado = rooms.sort((a, b) => {
+    let ordenado = rooms?.sort((a, b) => {
       if (a.id > b.id) return +1;
       if (a.id < b.id) return -1;
       return 0;
     });
-    return ordenado
+    return ordenado;
   };
 
   return (
@@ -75,7 +69,7 @@ const Edit = () => {
                 <td>{room.id}</td>
                 <td>
                   <img
-                    src={room.image}
+                    src={room.image.map((el) => el)}
                     style={{
                       width: "40px",
                       height: "40px",
