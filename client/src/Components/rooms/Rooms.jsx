@@ -45,7 +45,6 @@ export default function Rooms() {
   return (
     <div>
       <Filters getRooms={getRooms} setData={setData} />
-
       <div className="container">
         <div className="row">
           {roomsCurrent &&
