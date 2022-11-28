@@ -11,8 +11,8 @@ body::before{
     justify-content: center;
 }
 .carrusel img {
-    width:100vh;
-    height:68vh;
+    width:60vh;
+    height:48vh;
     object-fit: fill;
     border-radius: 6px;
   }
