@@ -1,20 +1,29 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useAuth0 } from "@auth0/auth0-react";
-import { setStatus, getAllClients } from '../../Redux/actions/index'
+import { setStatus, getAllClients } from '../../Redux/actions/index';
+import {socket} from '../../App';
 
 export default function Clientlist() {
     const {getAccessTokenSilently} = useAuth0();
     const clientes = useSelector((state)=>state.allClients)
-     const dispatch = useDispatch();
+    const dispatch = useDispatch();
+
+    useEffect(()=>{
+      getAccessTokenSilently().then(token => {
+
+        socket.on('newUserLogin', async (data)=>
+        await dispatch(getAllClients(token)))
+      })
+    },[])
+
     
-    
- async function handleStatus (e, state){
-         e.preventDefault();
-        const token = await getAccessTokenSilently()
-        await dispatch(setStatus(token, {status:state, id:e.target.id}))
-        dispatch(getAllClients(token))
-    } 
+   async function handleStatus (e, state){
+      socket.emit('userBanned',({user: e, state: state}))
+        // const token = await getAccessTokenSilently()
+        // await dispatch(setStatus(token, {status:state, id:e.target.id}))
+        // dispatch(getAllClients(token))
+    }
 
     return(
         <div className="container-fluid mt-3">
@@ -29,6 +38,7 @@ export default function Clientlist() {
                 <th>Desactivar</th>
                 <th>Activar</th>
                 <th>Estado</th>
+                <th>Conectado</th>
               </tr>
             </thead>
             <tbody>
@@ -48,7 +58,7 @@ export default function Clientlist() {
                           type="button"
                           className="btn btn-danger"
                           id={r.id}
-                          onClick={e=>  handleStatus(e, "disabled")}
+                          onClick={e=>  handleStatus(r.email, 'disabled')}
 
                         >
                           <svg
@@ -69,7 +79,7 @@ export default function Clientlist() {
                           type="button"
                           className="btn btn-success"
                           id={r.id}
-                          onClick={e=> handleStatus(e, "active",)}
+                          onClick={e=> handleStatus(r.email, "active",)}
                         >
                           Recuperar
                         </button>
@@ -84,6 +94,7 @@ export default function Clientlist() {
                           </span>
                         </h3>
                       </td>
+                      <td>{r.con}</td>
                     </tr>
                   </>
                 );

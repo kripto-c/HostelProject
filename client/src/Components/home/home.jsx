@@ -5,12 +5,16 @@ import Review from '../Review/Reviews';
 import "./Home.css";
 import { Link } from "react-router-dom";
 import { addObserver } from "./observer";
-import { getOwnerSp } from "../../Redux/actions";
+import { getOwner,getOwnerSp } from "../../Redux/actions";
 import {useDispatch, useSelector} from "react-redux"
+import { useAuth0 } from "@auth0/auth0-react";
 import wave from './wave.svg';
 import Servicios from "./servicios/Servicios";
+import {socket} from '../../App';
+import { getRolUser } from "../../Redux/actions";
 
 const Home = () => {
+  const {isAuthenticated, getAccessTokenSilently, user} = useAuth0();
   const info = useSelector(state => state.owner);
   const dispatch = useDispatch()
 
@@ -22,9 +26,21 @@ const Home = () => {
     addObserver(ref1.current)
     addObserver(ref2.current)
     addObserver(ref3.current)
+    if(isAuthenticated) {
+        socket.emit('userConected', {user: user.email, rol: user.rol[0]})
+    }
   })
+
+
+  async function getOwnerF(){
+    const token = await  getAccessTokenSilently()
+    dispatch(getOwnerSp(token))
+  }
+
   React.useEffect(() => {
+    //if (!info.length) getOwnerF()    
     if (!info.length) dispatch(getOwnerSp())
+    console.log("entre",info)
   }, [dispatch]);
 
   return (
@@ -37,8 +53,8 @@ const Home = () => {
               src="https://upload.wikimedia.org/wikipedia/commons/e/e8/Hostel_Dormitory.jpg"
               alt="first-item"
             />
-            <h1 className="Bienvenido">Bienvenidos al {info.hostelName}</h1>
-            {/* <h1 className="Bienvenido">Bienvenidos al Hostel Dinamita</h1> */}
+            {/* <h1 className="Bienvenido">Bienvenidos al {info.hostelName}</h1> */}
+            <h1 className="Bienvenido">Bienvenidos al Hostel Dinamita</h1>
           </div>
         </Carousel.Item>
         <Carousel.Item>
@@ -47,8 +63,8 @@ const Home = () => {
               src="https://media-cdn.tripadvisor.com/media/photo-s/15/bc/d3/19/ideal-social-hostel.jpg"
               alt="second-item"
             />
-            <p className="infoHome">{info.aboutUs}</p>
-            {/* <p className="infoHome">Lorem ipsum dolor sit amet consectetur adipisicing elit. Pariatur, quis dolorum. Possimus explicabo incidunt velit! Vitae qui repudiandae et. Pariatur obcaecati, non a rem fuga alias porro esse assumenda maxime.</p> */}
+            {/* <p className="infoHome">{info.aboutUs}</p> */}
+            <p className="infoHome">Lorem ipsum dolor sit amet consectetur adipisicing elit. Pariatur, quis dolorum. Possimus explicabo incidunt velit! Vitae qui repudiandae et. Pariatur obcaecati, non a rem fuga alias porro esse assumenda maxime.</p>
           </div>
         </Carousel.Item>
         <Carousel.Item>
@@ -60,24 +76,24 @@ const Home = () => {
             <div className="infoHome2">
               <ul>
                 <p className="contactHome">Contactanos</p>
-                {/* <li>
+                <li>
                   <img 
                     src="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fcdn-icons-png.flaticon.com%2F128%2F281%2F281769.png&f=1&nofb=1&ipt=ec0a92aa547629d49b3e6694c5503cdc80d9375a816b1831e08b774ed24df9e2&ipo=images" 
                     alt="logoGmail" 
                   />
-                  <a href="#" target="_blank">Correo</a></li> */}
+                  <a href="#" target="_blank">Correo</a></li>
                 <li>
                   <img 
                     src="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Flogovector.net%2Fwp-content%2Fuploads%2F2011%2F11%2Ffacebook-f-logo-195x195.png&f=1&nofb=1&ipt=28f161af0961a8646ffa8fed1ec3f3f5ed73a8e77d17060e17876dc360db8976&ipo=images" 
                     alt="logo Facebook" 
                     />
-                  <a href={info.facebook} target="_blank">Facebook</a>
+                  <a href="#" target="_blank">Facebook</a>
                 </li>
-                {/* <li>
+                <li>
                   <img 
                     src="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fstore-images.s-microsoft.com%2Fimage%2Fapps.31617.13655054093851568.f2bf9430-60d7-4569-a50d-0f21c9ade6b3.c563d383-997d-4da1-9def-d7200e3547f8%3Fw%3D180%26h%3D180%26q%3D60&f=1&nofb=1&ipt=b660687cd18505323f7a681a174c54032a42fd21e34a5acade050c113f9244f7&ipo=images" 
                     alt="LogoWhatsapp" 
-                  /><a href="#" target="_blank">WhatsApp</a></li> */}
+                  /><a href="#" target="_blank">WhatsApp</a></li>
                 <li><Link to='contact'>Preguntas Frecuentes</Link></li>
               </ul>
             </div>
@@ -94,8 +110,8 @@ const Home = () => {
               />
               <div className="data">
                 <p>SOBRE NOSOTROS</p>
-                <p>{info.aboutUs}</p>
-                {/* <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Praesentium omnis at dolorum amet quaerat voluptatem laboriosam. Assumenda deleniti delectus non soluta sequi quis saepe in, facere dicta laudantium illum quisquam doloribus incidunt qui natus esse, earum unde, facilis deserunt voluptatibus voluptates dolores provident magni? Provident pariatur ab cum harum eius.</p> */}
+                {/* <p>{info.aboutUs}</p> */}
+                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Praesentium omnis at dolorum amet quaerat voluptatem laboriosam. Assumenda deleniti delectus non soluta sequi quis saepe in, facere dicta laudantium illum quisquam doloribus incidunt qui natus esse, earum unde, facilis deserunt voluptatibus voluptates dolores provident magni? Provident pariatur ab cum harum eius.</p>
               </div>
             </div>
             <div className="demo2 demo11 " ref={ref2}>
@@ -105,8 +121,8 @@ const Home = () => {
               />
               <div className="data data2">
                 <p>POR QUE ELEGIRNOS</p>
-                <p>{info.chooseUs}</p>
-                {/* <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Eum voluptate commodi eos excepturi! Odio, facilis quae consequuntur, inventore quos perspiciatis quia eius ea sequi veritatis, nemo quibusdam quam? Omnis maxime hic fugit, dolore ab quisquam ipsam saepe voluptate? Tempora, aut!</p> */}
+                {/* <p>{info.chooseUs}</p> */}
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Eum voluptate commodi eos excepturi! Odio, facilis quae consequuntur, inventore quos perspiciatis quia eius ea sequi veritatis, nemo quibusdam quam? Omnis maxime hic fugit, dolore ab quisquam ipsam saepe voluptate? Tempora, aut!</p>
               </div>
             </div>
             <div className="demo1 demo11" ref={ref3}>
@@ -116,8 +132,8 @@ const Home = () => {
               />
               <div className="data">
                 <p>EXTRAS</p>
-                <p>{info.extra}</p>
-                {/* <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Mollitia doloribus, at ipsa quaerat, saepe culpa perferendis quibusdam et magni aliquam eos dolor tenetur ducimus vitae? Voluptatem, tempore. Nam, eius non!</p> */}
+                {/* <p>{info.extra}</p> */}
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Mollitia doloribus, at ipsa quaerat, saepe culpa perferendis quibusdam et magni aliquam eos dolor tenetur ducimus vitae? Voluptatem, tempore. Nam, eius non!</p>
               </div>
             </div>
           </div>
