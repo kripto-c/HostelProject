@@ -15,7 +15,6 @@ const paginate = ({roomsPerPage, allRooms, paginate, page}) => {
     if (page >= pages.length) return;
     paginate(page + 1);
   };
-  console.log(pages)
 
   return (
     <div className="pagination">
