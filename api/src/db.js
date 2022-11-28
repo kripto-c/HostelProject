@@ -12,6 +12,7 @@ const sequelize = new Sequelize(
   }
 );
 // 5432
+
 // const sequelize = new Sequelize({
 //   database: DB_NAME,
 //   username: DB_USER,
