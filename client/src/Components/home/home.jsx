@@ -38,9 +38,7 @@ const Home = () => {
   }
 
   React.useEffect(() => {
-    //if (!info.length) getOwnerF()    
     if (!info.length) dispatch(getOwnerSp())
-    console.log("entre",info)
   }, [dispatch]);
 
   return (
