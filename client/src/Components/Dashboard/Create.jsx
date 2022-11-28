@@ -152,7 +152,7 @@ const Create = (props) => {
   }, [room.simples, room.cuchetas]);
   return (
     <div>
-      <div className="box-create">
+      <div className="box-create bg-dark text-white">
         <Form
           onSubmit={(e) => handleSubmit(e)}
           style={{ width: "80%", display: "flex", flexDirection: "column" }}
