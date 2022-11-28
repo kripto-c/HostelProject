@@ -30,6 +30,11 @@ export default function rootReducer(state = initialState, action) {
         ...state,
         countries: action.payload,
       };
+    case "GET_ALL_ROOMS":
+      return{
+        ...state,
+        allRooms: action.payload
+      }
     case "GET_ROOMS": {
       if (!localStorage.getItem("filtros")) {
         return {

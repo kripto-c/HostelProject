@@ -108,3 +108,21 @@ input:checked + .deslizadora:before {
 input:checked + .deslizadora:before {
   transform: translateX(1.6rem) rotate(90deg);
 }
+
+.borrar{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 56px;
+}
+
+.borrar button{
+  border-radius: 3px;
+  width: 36px;
+  height: 27px;
+}
+
+.borrar button:hover{
+  background-color: red;
+  color: black;
+}
