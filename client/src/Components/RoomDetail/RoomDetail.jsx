@@ -94,8 +94,8 @@ export default function RoomDetail() {
 
     //*******************VALIDACION CALENDARIO */
     let dateArray = [];
-    const [arrivalDate, setArrivalDate] = useState(new Date("11-11-2022"));
-    const [departureDate, setdepartureDate] = useState(new Date("11-11-2022"));
+    const [arrivalDate, setArrivalDate] = useState(new Date());
+    const [departureDate, setdepartureDate] = useState(new Date());
     function getDates(startDate, stopDate) {
         var currentDate = moment(startDate);
         var stopDatee = moment(stopDate);
@@ -317,9 +317,6 @@ export default function RoomDetail() {
                       )
                     })
                   }
-                  {/* <option value="venezuela">Venezuela</option>
-                  <option value="argentina">Argentina</option>
-                  <option value="Canada">Canada</option> */}
                 </Form.Select>
                 <Form.Label>DNI o Pasaporte</Form.Label>
                 <Form.Control

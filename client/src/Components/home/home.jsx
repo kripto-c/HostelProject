@@ -138,7 +138,7 @@ const Home = () => {
             </div>
           </div>
           <Servicios></Servicios>
-      <p className="ejemplosIMG">Algunas Imagenes de muesta:</p>
+      <p className="ejemplosIMG">Algunas Imagenes de muestra:</p>
       <img src={wave} alt="wave" />
         <div className="collage">
             <div className="img">
