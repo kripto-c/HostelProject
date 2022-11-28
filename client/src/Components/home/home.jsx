@@ -31,12 +31,6 @@ const Home = () => {
     }
   })
 
-
-  async function getOwnerF(){
-    const token = await  getAccessTokenSilently()
-    dispatch(getOwnerSp(token))
-  }
-
   React.useEffect(() => {
     if (!info.length) dispatch(getOwnerSp())
   }, [dispatch]);
