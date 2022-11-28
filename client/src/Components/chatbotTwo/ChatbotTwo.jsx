@@ -29,7 +29,7 @@ export default function BotChat() {
       id: "preguntaNombre",
       user: true,
       validator: (value) => {
-        if (/^[a-zA-Z ]{5,30}$/.test(value) ) {
+        if (/^[ a-zA-Z ]{5,30}$/.test(value) ) {
           return true;
         } else {
           return "Solo letras y almenos 5 caracteres";
