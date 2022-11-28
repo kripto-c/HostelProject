@@ -1,11 +1,12 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { getRooms } from "../../Redux/actions";
+import { getAllRooms } from "../../Redux/actions";
 import "./EditRoom.css";
 import { RiDeleteBin5Line } from "react-icons/ri";
 import { useAuth0 } from "@auth0/auth0-react";
 import { deleteRoom, changeStatusRoom } from "../../Redux/actions";
 import { useState } from "react";
+import Table from "react-bootstrap/Table";
 
 const Edit = () => {
   const dispatch = useDispatch();
@@ -13,7 +14,7 @@ const Edit = () => {
   const [estado, setEstado] = useState(false);
 
   useEffect(() => {
-    dispatch(getRooms());
+    dispatch(getAllRooms());
   }, [dispatch, estado]);
 
   useEffect(() => {
@@ -28,7 +29,7 @@ const Edit = () => {
       },
     };
     await dispatch(deleteRoom(authorization, room));
-    dispatch(getRooms());
+    dispatch(getAllRooms());
   };
 
   const handleChangeStatus = async (room, statusRoom) => {
@@ -41,7 +42,7 @@ const Edit = () => {
     console.log(statusRoom);
 
     await dispatch(changeStatusRoom(authorization, room, statusRoom));
-    await dispatch(getRooms());
+    await dispatch(getAllRooms());
   };
 
   const rooms = useSelector((state) => state.allRooms);
@@ -51,12 +52,12 @@ const Edit = () => {
       if (a.id < b.id) return -1;
       return 0;
     });
-    return ordenado
+    return ordenado;
   };
 
   return (
     <div className="table-container">
-      <table className="rooms-tbl">
+      <Table striped bordered hover variant="dark" className="col-md-7 bg-dark">
         <thead>
           <tr>
             <th>ID: </th>
@@ -68,13 +69,13 @@ const Edit = () => {
           </tr>
         </thead>
         <tbody>
-          {ordernar().map((room,index) => (
-              <tr key={index}>
-                <td key={'a'+ room.id}>{room.id}</td>
-                <td key={'b'+ room.id}>
+          {ordernar().map((room) => (
+            <>
+              <tr key={room.id}>
+                <td>{room.id}</td>
+                <td>
                   <img
-                    key = {'c'+ room.id }
-                    src={room.image}
+                    src={room.image.map((el) => el)}
                     style={{
                       width: "40px",
                       height: "40px",
@@ -83,12 +84,11 @@ const Edit = () => {
                     alt=""
                   ></img>
                 </td>
-                <td key={'d'+ room.id}>{room.description}</td>
-                <td key={'e'+ room.id}>{room?.status ? "inactivo" : "activo"}</td>
-                <td key={'f'+ room.id}>
+                <td>{room.description}</td>
+                <td>{room?.status ? "inactivo" : "activo"}</td>
+                <td>
                   <label className="botoncito">
                     <input
-                    key = {'g'+room.id}
                       type="checkbox"
                       defaultChecked={room.status}
                       onClick={async () =>
@@ -98,11 +98,11 @@ const Edit = () => {
                         )
                       }
                     ></input>
-                    <span key={room.id} className="deslizadora"></span>
+                    <span className="deslizadora"></span>
                   </label>
                 </td>
-                <td key={'h'+room.id}>
-                  <button key={index}
+                <td className="borrar">
+                  <button
                     type="button"
                     onClick={() => {
                       handleDelete(room.id);
@@ -112,9 +112,10 @@ const Edit = () => {
                   </button>
                 </td>
               </tr>
+            </>
           ))}
         </tbody>
-      </table>
+      </Table>
     </div>
   );
 };
