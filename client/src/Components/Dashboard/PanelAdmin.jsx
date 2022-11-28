@@ -29,7 +29,7 @@ export default function PanelAdmin() {
     if(!isAuthenticated) return navigate('/');
     else if (localStorage.getItem('Rol') !== "menu-admin") return navigate('/');
     (async () => {
-      console.log("VAlidando permiso")
+      console.log("Validando permiso")
       try {
         const token = await getAccessTokenSilently();
         console.log(token)
