@@ -15,7 +15,7 @@ import Dropzone from "react-dropzone";
 import { IoIosFolderOpen } from "react-icons/io";
 import axios from "axios";
 import Carousel from "react-bootstrap/Carousel";
-import { RiDeleteBin5Line } from "react-icons/ri";
+
 
 const Create = (props) => {
   // SETTEAR INFO//
