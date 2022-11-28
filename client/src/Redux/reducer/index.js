@@ -182,10 +182,21 @@ export default function rootReducer(state = initialState, action) {
       console.log(activeRents)
       let b = activeRents.filter(e => e.status === false)
       console.log(b) 
-      return {
-        ...state,
-        rents: b
-      };
+      if(!localStorage.getItem("filters")) {
+        return{
+          ...state,
+          rents: b
+        }
+      }
+      if(localStorage.getItem("filtros")) {
+        return{
+          ...state,
+          rents: JSON.parse(localStorage.getItem("filters")),
+        }
+      }
+        
+      
+      
     }
     case GET_FAQ: {
       return {
@@ -249,12 +260,14 @@ export default function rootReducer(state = initialState, action) {
       
       if(action.payloadOne && !action.payloadTwo) {
         let cosa = filter()
+        localStorage.setItem("filters", JSON.stringify(cosa))
         return {
           ...state,
           rents: cosa
         }
       } else if(!action.payloadOne && action.payloadTwo) {
         let cosa2 = sort(allRents)
+        localStorage.setItem("filters", JSON.stringify(cosa2))
         return {
           ...state,
           rents: cosa2
