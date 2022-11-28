@@ -22,7 +22,7 @@ const paginate = ({roomsPerPage, allRooms, paginate, page}) => {
       <button className="prev" onClick={prevHandler}>
         Anterior
       </button>
-      <div>
+      <div className="d-flex">
         {pages?.map((num) => (
           <button
             key={num}
