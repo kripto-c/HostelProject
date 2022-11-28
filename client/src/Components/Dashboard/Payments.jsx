@@ -7,13 +7,14 @@ import PaginationPayments from './PaginationPayments.jsx';
 import Swal from 'sweetalert2'
 import style from './Payments.module.css'
 import { useAuth0 } from "@auth0/auth0-react";
+import { all } from 'axios';
 
  
 
 function Payments() {
   const dispatch = useDispatch();
   const allRents = useSelector((state) => state.rents);
- console.log(allRents)
+ 
 
   //Protección de rutas
   const {
@@ -65,7 +66,9 @@ function Payments() {
       months2.push(months[i])
     }
   }
-
+ 
+  
+  
 
   const [date, setDate] = useState(JSON.parse(localStorage.getItem("selectDate"))||"")
   const [month, setMonth] = useState(JSON.parse(localStorage.getItem("selectMonth")) || "")
@@ -147,6 +150,13 @@ function Payments() {
   }
   suma()
   // ----------------------------->>
+
+  // Hardcodeo datos para el gráfico ------->>
+  /* const graph = {
+    
+  } */
+
+  // --------------------------------------->>
  
   return (
     <div >
