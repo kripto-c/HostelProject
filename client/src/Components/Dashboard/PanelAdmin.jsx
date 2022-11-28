@@ -35,13 +35,8 @@ export default function PanelAdmin() {
       console.log("Validando permiso")
       try {
         const token = await getAccessTokenSilently();
-        // console.log(token)
-        const response = await axios('http://localhost:4000/rol', {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        });
-        if(response.data.rol[0] !== "menu-admin") return navigate('/');
+        const response = await dispatch(getRolUser(token))
+        if(localStorage.getItem('Rol') !== "menu-admin") return navigate('/');
         setValidando(false)
       } catch (e) {
         console.error(e.message);
