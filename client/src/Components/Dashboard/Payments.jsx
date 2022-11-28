@@ -7,13 +7,16 @@ import PaginationPayments from './PaginationPayments.jsx';
 import Swal from 'sweetalert2'
 import style from './Payments.module.css'
 import { useAuth0 } from "@auth0/auth0-react";
-
+import { all } from 'axios';
+import {rentsData} from './DataRents.js'
+import { Bar } from "react-chartjs-2"
+import { Chart as ChartJS } from "chart.js/auto";
  
 
 function Payments() {
   const dispatch = useDispatch();
   const allRents = useSelector((state) => state.rents);
- console.log(allRents)
+ 
 
   //Protección de rutas
   const {
@@ -65,7 +68,9 @@ function Payments() {
       months2.push(months[i])
     }
   }
-
+ 
+  
+  
 
   const [date, setDate] = useState(JSON.parse(localStorage.getItem("selectDate"))||"")
   const [month, setMonth] = useState(JSON.parse(localStorage.getItem("selectMonth")) || "")
@@ -147,6 +152,16 @@ function Payments() {
   }
   suma()
   // ----------------------------->>
+
+  // Gráfico ------------------------------->>
+  const [rentData, setUserData] = useState({
+    labels: rentsData.map((e) => e.date),
+    datasets: [{
+      label: "Ganancias mensuales",
+      data: rentsData.map((e) => e.price)
+    }]
+  })
+  // --------------------------------------->>
  
   return (
     <div >
@@ -241,9 +256,13 @@ function Payments() {
         </tr>
       </tbody>
     </Table>
+      <div style={{width: 700}}>
+        <Bar data={rentData}/>
+      </div>
     </div>
     </div>
-
+      
+        
     </div>
   );
 }
