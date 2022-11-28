@@ -416,7 +416,6 @@ export default function RoomDetail() {
         Debe estar registrado para reservar.
         </SweetAlert>
       }
-
       {!userLogin.isAuthenticated ? (
         <div hidden={login} >
         <SweetAlert
