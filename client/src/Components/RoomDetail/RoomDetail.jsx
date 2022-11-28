@@ -29,6 +29,7 @@ export default function RoomDetail() {
   
   const client = useSelector((state) => state.client);
   const room = useSelector((state) => state.roomdetail);
+  const image = useSelector((state) => state.roomdetail.image);
   const { getAccessTokenSilently } = useAuth0();
   const [camas, setCamas] = useState(0);
   const [total, setTotal] = useState(0);
@@ -55,7 +56,7 @@ export default function RoomDetail() {
     nationality: "",
   });
   ///////
-  const [imagenes, setImagenes] = useState([]);
+  let imagenes = image;
   //========DATOS DE EJEMPLOS======//
   const userLogin = useAuth0();
 
@@ -71,7 +72,6 @@ export default function RoomDetail() {
       if(data.user != userLogin.user.email) setPayAvalible(data.status)
     })
     socket.on('userPayC',(data)=> setPayAvalible(data.status))
-    setImagenes(room.image)
   },[dispatch]);
 
   
@@ -232,11 +232,10 @@ export default function RoomDetail() {
     setName(true);
     setLastname(true);
   }
-    useEffect(() =>{
-      console.log(room)
-    },[])
+ 
 
     return (
+
     <div className='detailRoom mx-auto'>
              {
                 // CONTROL DE DATOS DE USUARIO 
@@ -422,7 +421,6 @@ export default function RoomDetail() {
         </SweetAlert>
         </div>
       ) : null}
-      <h1>Detalle de la habitacion</h1>
       
       <Modal show={calendar} onHide={() => {setCalendar(false)}} >
             <DateRangePicker
@@ -440,50 +438,46 @@ export default function RoomDetail() {
                 // inline
                 // onClick={() => disableBoton(fechaBotonArray, fechaBotonMoment)}
                 // monthsShown={3}
-            />
+                />
             <Button onClick={() =>{setCalendar(false)}} >
             Confirmar
             </Button>
         </Modal>
-        <div className='container d-grid gap-2 col-6 mx-auto'>
-            <button disabled={room.status} className="btn btn-secondary" onClick={() => {setCalendar(true)}} >Seleccione una fecha</button>
-        </div>
-      
-      <div className="infoRoom">
-        {/* <div>
+                <h1>Detalle de la habitacion</h1>
+        <div className="titul">
           <h3>{room.name}</h3>
-          <p>{room.description}</p>
-          <br />
-          <h4>${room.price} por cama</h4>
-        </div> */}
-        <img
-          className="image"
-          width="600"
-          height="400"
-          src={room.image}
-          alt="habitacion de Hostel"
-        />
-        {console.log(imagenes)}
-        {/* <Carousel>
-          {
-            room.image.map((img) =>{
-              return(
-                <Carousel.Item>
-                  <img
-                  className="d-block w-100"
-                  src={img}
-                  alt="habitacion de Hostel"
-                  />
-                </Carousel.Item>
-              )
-            })
-          }
-        </Carousel> */}
-
+          <h2>{room.description}</h2>
+        </div>
+      <div className="carrusel mt-4 w-75 m-auto" >
+        {
+          imagenes &&
+          <Carousel >
+            {
+              imagenes.map((img) =>{
+                return(
+                  <Carousel.Item>
+                    <img
+                    
+                    src={img}
+                    alt="habitacion de Hostel"
+                    />
+                  </Carousel.Item>
+                )
+              })
+            }
+          </Carousel>
+        }
       </div>
-      <p className="Ac">
-        <b>Camas a reservar: {camas}</b>
-      </p>
+      <div>
+        <br/>
+        <div className='container d-grid gap-2 col-6 mx-auto'>
+              <button disabled={room.status} className="btn btn-secondary" onClick={() => {setCalendar(true)}} >Seleccione una fecha</button>
+          </div>
+        <p className="Ac">
+        <h2 style={{marginTop: "2vh"}}>${room.price} por cama</h2>
+          <b>Camas a reservar: {camas}</b>
+        </p>
+      </div>
       <div className="rangebeds">
         <input
         id="customRange3"
@@ -507,7 +501,7 @@ export default function RoomDetail() {
         <input
           onClick={pay}
           type="submit"
-          disabled={!payAvalible}
+          disabled={room.status}
           value={cargando ? "Cargando..." : "Pagar"}
         />
       </div>
