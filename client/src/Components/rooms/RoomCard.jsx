@@ -20,13 +20,14 @@ export default function RoomCard({
   }
 
   return (
-    <div className="container bg-dark my-3">
+    <div className="container bg-dark my-3 rounded" >
       <div className="row py-3">
         <img
           src={image[0]}
           alt="bedroom"
-          className="col-md-3 ml-3"
+          className="col-md-3 ml-3 rounded"
           width="200px" /* height="180px" */
+         
         ></img>
         <div className="col-md-9 ">
           <h2 className="tittle text-white ms-0">
