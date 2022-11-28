@@ -20,13 +20,14 @@ export default function RoomCard({
   }
 
   return (
-    <div className="container bg-dark my-3 rounded" >
+    <div className="container bg-dark my-3 rounded w-100" >
       <div className="row py-3">
         <img
           src={image[0]}
           alt="bedroom"
           className="col-md-3 ml-3 rounded"
           width="200px" /* height="180px" */
+          // style={{marginRight: "1vw" }}
          
         ></img>
         <div className="col-md-9 ">
@@ -43,7 +44,7 @@ export default function RoomCard({
           <p className="text-secondary">
             Baño {bathroom ? "privado" : "compartido"}
           </p>
-          <p className="text-primary">Precio: ${price}</p>
+          <p className="text-light">Precio: ${price}</p>
           <Link style={{ textDecoration: "none" }} to={`/roomdetail/${id}`}>
             <button className="btn btn-primary">Reservar</button>
           </Link>
