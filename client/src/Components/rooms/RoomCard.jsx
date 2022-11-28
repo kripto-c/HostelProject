@@ -44,7 +44,7 @@ export default function RoomCard({
           <p className="text-white-50">
             Baño {bathroom ? "privado" : "compartido"}
           </p>
-          <p className="text-light bg-dark h5">Precio: ${price}</p>
+          <p className="text-light bg-dark h5">Precio: ${price}</p><br></br>
           <Link style={{ textDecoration: "none" }} to={`/roomdetail/${id}`}>
             <button className="btn btn-primary">Reservar</button>
           </Link>
