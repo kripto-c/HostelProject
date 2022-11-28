@@ -10,46 +10,106 @@ import Col from "react-bootstrap/Col";
 import { useNavigate } from "react-router-dom";
 import "./Create.css";
 import Edit from "./EditRoom";
+import { useEffect } from "react";
+import Dropzone from "react-dropzone";
+import { IoIosFolderOpen } from "react-icons/io";
+import axios from "axios";
+import Carousel from "react-bootstrap/Carousel";
 
-const Create = () => {
+const Create = (props) => {
   // SETTEAR INFO//
-  const [image, setImage] = useState("");
+  const [image, setImage] = useState({ array: [] });
   const [loading, setLoading] = useState(false);
   const [room, setRoom] = useState({
-    beds: "5",
     description: "",
     image: "",
     bathroom: "",
     observation: "",
     price: "",
     typeId: "",
-    cuchetas: "",
-    simples: "",
+    cuchetas: 0,
+    simples: 0,
+    beds: 0,
   });
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
   // SUBIR IMAGENES CON CLOUDINARY //
-  const uploadImage = async (e) => {
-    const files = e.target.files;
-    const data = new FormData();
-    data.append("file", files[0]);
-    data.append("upload_preset", "hostelImage");
-    setLoading(true);
-    const res = await fetch(
-      "https://api.cloudinary.com/v1_1/drw5h95um/upload",
-      {
-        method: "POST",
-        body: data,
-      }
-    );
-    const file = await res.json();
-    setImage(file.secure_url.toString());
-    setLoading(false);
-    setRoom({
-      ...room,
-      image: file.secure_url,
+  const handleImages = (files) => {
+    const uploaders = files.map((file) => {
+      const formData = new FormData();
+      formData.append("file", file);
+      formData.append("tags", `codeinfuse, medium,gist`);
+      formData.append("upload_preset", "hostelImage");
+      formData.append("api_key", "397644523311779");
+      formData.append("timestamp", (Date.now() / 1000) | 0);
+      setLoading("true");
+      return axios
+        .post(
+          "https://api.cloudinary.com/v1_1/drw5h95um/image/upload",
+          formData,
+          {
+            headers: { "X-Requested-With": "XMLHttpRequest" },
+          }
+        )
+        .then((res) => {
+          const data = res.data;
+          const fileURL = data.secure_url;
+          let imagenUpload = image.array;
+          imagenUpload.push(fileURL);
+          const nuevoObjeto = { ...image, imagenUpload };
+          setImage(nuevoObjeto);
+          setRoom({
+            image: nuevoObjeto,
+          });
+        });
     });
+    axios.all(uploaders).then(() => {
+      setLoading("false");
+    });
+  };
+
+  // PREVIEW-IMAGE //
+
+  const imagePreview = () => {
+    if (loading) {
+      <h3>Cargando...</h3>;
+    }
+    if (!loading) {
+      return (
+        <h3>
+          {image.array.length === 1 ? (
+            <div>
+              <img
+                style={{
+                  width: "125px",
+                  height: "70px",
+                  backgroundSize: "cover",
+                }}
+                src={image}
+              />
+            </div>
+          ) : (
+            image.array.map((imagen) => (
+              <div>
+                <Carousel>
+                  <Carousel.Item>
+                    <img
+                      src={imagen}
+                      style={{
+                        width: "125px",
+                        height: "70px",
+                        backgroundSize: "cover",
+                      }}
+                    />
+                  </Carousel.Item>
+                </Carousel>
+              </div>
+            ))
+          )}
+        </h3>
+      );
+    }
   };
 
   // HANDLES //
@@ -71,14 +131,29 @@ const Create = () => {
   const handlebañoSelect = (e) => {
     setRoom({
       ...room,
-      bathroom: e.target.value,
+      bathroom: parseInt(e.target.value),
+    });
+  };
+
+  const handleSimples = (e) => {
+    setRoom({
+      ...room,
+      simples: parseInt(e.target.value),
     });
   };
 
   const handleCuchetas = (e) => {
     setRoom({
       ...room,
-      cuchetas: e.target.value * 2,
+      cuchetas: parseInt(e.target.value),
+    });
+  };
+
+  const sumarCamas = () => {
+    let totales = room.simples + room.cuchetas * 2;
+    setRoom({
+      ...room,
+      beds: totales,
     });
   };
 
@@ -115,7 +190,9 @@ const Create = () => {
       navigate("/");
     }
   };
-
+  useEffect(() => {
+    sumarCamas();
+  }, [room.simples, room.cuchetas]);
   return (
     <div>
       <div className="box-create">
@@ -172,16 +249,21 @@ const Create = () => {
                 min="1"
                 max="10"
                 value={room.simples}
-                onChange={handleCuchetas}
+                onChange={async (e) => {
+                  await handleSimples(e);
+                }}
               />
             </Form.Group>
             <Form.Group as={Col} md="3">
               <Form.Label>Camas Totales:</Form.Label>
               <Form.Control
-              disabled
-              tpye="number"
-              name="beds"
-              value={room.beds}
+                disabled
+                type="number"
+                name="beds"
+                value={room.beds}
+                onChange={() => {
+                  console.log(e.target.value);
+                }}
               />
             </Form.Group>
             <Form.Group as={Col} md="3">
@@ -192,7 +274,9 @@ const Create = () => {
                 min="0"
                 max="10"
                 value={room.cuchetas}
-                onChange={handleChange}
+                onChange={async (e) => {
+                  await handleCuchetas(e);
+                }}
               />
             </Form.Group>
             <Row className="justify-content-center">
@@ -211,28 +295,25 @@ const Create = () => {
           </Row>
           <Row className="d-flex justify-content-between padding-left-2">
             <Form.Group as={Col} md="5">
-              <Form.Label>Instertar imagen(OBLIGATORIO): </Form.Label>
-              <Form.Control
-                name="file"
-                type="file"
-                onChange={(e) => {
-                  uploadImage(e);
-                }}
-              />
-            </Form.Group>
-            <Form.Group as={Col} md="7">
-              <img
-                style={{
-                  width: "450px",
-                  height: "300px",
-                  backgroundSize: "cover",
-                  marginTop: "30px",
-                  objectFit: "cover",
-                  display: image ? "block" : "none",
-                }}
-                alt=""
-                src={image}
-              />
+              <Dropzone
+                className="dropzone"
+                onDrop={handleImages}
+                onChange={(e) => setImage(e.target.value)}
+                value={image}
+              >
+                {({ getRootProps, getInputProps }) => (
+                  <section>
+                    <div {...getRootProps({ className: "dropzone" })}>
+                      <input {...getInputProps()} />
+                      <span>
+                        <IoIosFolderOpen />
+                      </span>
+                      <p>Insertar imagenes aqui o cliquea para seleccionar</p>
+                    </div>
+                  </section>
+                )}
+              </Dropzone>
+              {imagePreview()}
             </Form.Group>
           </Row>
 

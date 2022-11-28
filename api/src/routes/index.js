@@ -52,9 +52,13 @@ router.use(
   changeStatusRoom
 );
 router.use("/rooms", rooms);
-router.use("/countries", getCountries)
-router.use("/allClients", checkPermissions(itemPermissos.getAllClients), getAllClients)
+router.use("/countries", getCountries);
+router.use(
+  "/allClients",
+  checkPermissions(itemPermissos.getAllClients),
+  getAllClients
+);
 router.use("/rents", rents);
-router.use("/rent", rent)
+router.use("/rent", rent);
 
 module.exports = router;

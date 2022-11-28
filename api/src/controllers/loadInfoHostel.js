@@ -10,9 +10,15 @@ const loadInfoHostel = async (req, res) => {
     let infoDbType = await Type.findAll();
     let infoDbCountrie = await Countrie.findAll();
     let infoFaq = await Faq.findAll();
-    
-    
-    if (!infoDB.length || !infoDbRent.length || !infoDbRoom.length ||!infoDbType.length || !infoDbCountrie || !infoFaq) {
+
+    if (
+      !infoDB.length ||
+      !infoDbRent.length ||
+      !infoDbRoom.length ||
+      !infoDbType.length ||
+      !infoDbCountrie ||
+      !infoFaq
+    ) {
       let type = data.map((e) => e.type).flat();
       let dataType = await Type.bulkCreate(type);
 
@@ -24,13 +30,12 @@ const loadInfoHostel = async (req, res) => {
 
       let room = data.map((e) => e.room).flat();
       let dataRoom = await Room.bulkCreate(room);
-     
+
       let countries = data.map((e) => e.country).flat();
       let dataCountrie = await Countrie.bulkCreate(countries);
 
-      let faqs = data.map((e)=>  e.faq).flat();
-      console.log(faqs);
-      let dataFaq = await Faq.bulkCreate(faqs)
+      let faqs = data.map((e) => e.faq).flat();
+      let dataFaq = await Faq.bulkCreate(faqs);
     }
     // let idRoom = await Room.findByPk(Math.round(Math.random()*5))
     // let idType = await Type.findByPk(Math.round(Math.random()))
@@ -38,17 +43,18 @@ const loadInfoHostel = async (req, res) => {
     //idType.addRoom(idRoom)
 
     // let idRoom
-    // let idType 
+    // let idType
     // async function repit(){
     //   for(let i =1;i<6;i++){
     //   idRoom = await Room.findByPk(Math.round(Math.random()*(5-1)+1))
     //   idType = await Type.findByPk(Math.round(Math.random()*(2-1)+1))
-    //   await idType.addRoom(idRoom) 
+    //   await idType.addRoom(idRoom)
     // }}
-    // repit() 
+    // repit()
 
     return res.status(200).json("Base de datos completa");
   } catch (e) {
+    console.log(e);
     res.status(400).json(e);
   }
 };
