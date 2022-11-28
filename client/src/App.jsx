@@ -31,8 +31,10 @@ function App() {
   return (
     <>
       <Navbars></Navbars>
+      
        {/* BOT CHAT */}
       <ButtonChat></ButtonChat>
+
       <Routes>
         <Route exact path="/" element={<Home />} />
         <Route path="/reviewHostel" element={<ReviewHostel />} />

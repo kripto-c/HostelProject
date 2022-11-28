@@ -31,3 +31,6 @@
     background-color: white;
     color: #212121;
 } */
+.divButtonAdmin{
+    z-index:100;
+}
