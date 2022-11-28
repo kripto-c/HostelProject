@@ -129,8 +129,9 @@ const Home = () => {
             </div>
           </div>
           <Servicios></Servicios>
-      <p className="ejemplosIMG">Algunas Imagenes de muestras:</p>
-      <img src={wave} alt="wave" />
+         
+      
+      <img src={wave} alt="wave"/>
         <div className="collage">
             <div className="img">
               <img 
