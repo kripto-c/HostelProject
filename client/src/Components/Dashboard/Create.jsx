@@ -14,7 +14,7 @@ import { useEffect } from "react";
 import Dropzone from "react-dropzone";
 import { IoIosFolderOpen } from "react-icons/io";
 import axios from "axios";
-import Carousel from 'react-bootstrap/Carousel'
+import Carousel from "react-bootstrap/Carousel";
 
 const Create = (props) => {
   // SETTEAR INFO//
@@ -43,46 +43,74 @@ const Create = (props) => {
       formData.append("upload_preset", "hostelImage");
       formData.append("api_key", "397644523311779");
       formData.append("timestamp", (Date.now() / 1000) | 0);
-      setLoading("true")
-      return axios.post("https://api.cloudinary.com/v1_1/drw5h95um/image/upload", formData{
-        headers:{"X-Requested-With": "XMLHttpRequest"},
-      })
-      .then((res) =>{
-        const data = res.data
-        const fileURL = data.secure_url
-        let imagenUpload = image.array;
-        imagenUpload.push(fileURL);
-        const nuevoObjeto = {...image, imagenUpload}
-        setImage(nuevoObjeto)
-      })
+      setLoading("true");
+      return axios
+        .post(
+          "https://api.cloudinary.com/v1_1/drw5h95um/image/upload",
+          formData,
+          {
+            headers: { "X-Requested-With": "XMLHttpRequest" },
+          }
+        )
+        .then((res) => {
+          const data = res.data;
+          const fileURL = data.secure_url;
+          let imagenUpload = image.array;
+          imagenUpload.push(fileURL);
+          const nuevoObjeto = { ...image, imagenUpload };
+          setImage(nuevoObjeto);
+          setRoom({
+            image: nuevoObjeto,
+          });
+        });
     });
-    axios.all(uploaders).then(() =>{setLoading("false")})
+    axios.all(uploaders).then(() => {
+      setLoading("false");
+    });
   };
 
   // PREVIEW-IMAGE //
 
-  const imagePreview = () =>{
-    if(loading){
-      <h3>Cargando...</h3>
+  const imagePreview = () => {
+    if (loading) {
+      <h3>Cargando...</h3>;
     }
-    if(!loading){
-      return(
+    if (!loading) {
+      return (
         <h3>
-          {image.array.length === 1 ? <div><img style={{width:"125px", height: "70px", backgroundSize:"cover"}} src={image}/></div>:
-          image.array.map((imagen) => (
+          {image.array.length === 1 ? (
             <div>
-              <Carousel>
-                <Carousel.Item>
-                  <img src={imagen} style={{width:"125px", height: "70px", backgroundSize:"cover"}}/>
-                </Carousel.Item>
-              </Carousel>
+              <img
+                style={{
+                  width: "125px",
+                  height: "70px",
+                  backgroundSize: "cover",
+                }}
+                src={image}
+              />
             </div>
-          ))
-          }
+          ) : (
+            image.array.map((imagen) => (
+              <div>
+                <Carousel>
+                  <Carousel.Item>
+                    <img
+                      src={imagen}
+                      style={{
+                        width: "125px",
+                        height: "70px",
+                        backgroundSize: "cover",
+                      }}
+                    />
+                  </Carousel.Item>
+                </Carousel>
+              </div>
+            ))
+          )}
         </h3>
-      )
+      );
     }
-  }
+  };
 
   // HANDLES //
 
@@ -276,16 +304,16 @@ const Create = (props) => {
                 {({ getRootProps, getInputProps }) => (
                   <section>
                     <div {...getRootProps({ className: "dropzone" })}>
-                      <input {...getInputProps()}>
-                        <span>
-                          <IoIosFolderOpen />
-                        </span>
-                        <p>Insertar imagenes aqui o cliquea para seleccionar</p>
-                      </input>
+                      <input {...getInputProps()} />
+                      <span>
+                        <IoIosFolderOpen />
+                      </span>
+                      <p>Insertar imagenes aqui o cliquea para seleccionar</p>
                     </div>
                   </section>
                 )}
               </Dropzone>
+              {imagePreview()}
             </Form.Group>
           </Row>
 
