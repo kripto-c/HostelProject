@@ -3,14 +3,14 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 import Modal from "react-bootstrap/Modal";
-import { getAllCountries, getCLient, postClient } from "../../Redux/actions";
+import { getAllCountries, getCLient, postClient, forgetstate } from "../../Redux/actions";
 import { getRent } from '../../Redux/actions';
 
 import { BsFillPencilFill } from "react-icons/bs";
 /////////////////
 import "./RoomDetail.css";
 import axios from "axios";
-import { useParams, useNavigate } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import { useDispatch, useSelector } from "react-redux";
 import { useAuth0 } from "@auth0/auth0-react";
 import { getRoomDetail } from "../../Redux/actions";
@@ -74,6 +74,9 @@ export default function RoomDetail() {
       if(data.user != userLogin.user.email) setPayAvalible(data.status)
     })
     socket.on('userPayC',(data)=> setPayAvalible(data.status));
+    return () =>{
+      dispatch(forgetstate());
+    }
   },[dispatch]);
 
   
@@ -158,9 +161,10 @@ export default function RoomDetail() {
     if (
       !client.name ||
       !client.lastname ||
-      !client.nationality ||
+      !client.country ||
       !client.phoneNumber ||
-      !client.email
+      !client.email ||
+      !client.personalID 
     )
       return setShow(true);
 
@@ -187,8 +191,8 @@ export default function RoomDetail() {
             setCargando(!cargando);
             const token = await getAccessTokenSilently();
             
-            // const result = await axios.post("http://localhost:4000/payment", body,
-            const result = await axios.post("https://hostelproject-production.up.railway.app/payment", body,
+            const result = await axios.post("http://localhost:4000/payment", body,
+            // const result = await axios.post("https://hostelproject-production.up.railway.app/payment", body,
                 {headers:{
                     authorization:`Bearer ${token}`
                  }
@@ -280,7 +284,8 @@ export default function RoomDetail() {
                         id="validationCustom02"
                         name="lastname"
                         disabled={lastname}
-                        value={lastname ? client.lastname : clientInf.lastname}
+                        defaultValue={client.lastname}
+                        // value={lastname ? client.lastname : clientInf.lastname}
                         onChange={(e) => handleChange(e)}
                         required
                       />
@@ -309,14 +314,16 @@ export default function RoomDetail() {
                   name="nationality"
                   onChange={(e) => handleChange(e)}
                 >
-                  <option selected >Selecciona tu Pais</option>
-                  {
-                    countries.map((c, index) =>{
-                      return(
-                        <option key={index} value={c.country}>{c.country}</option>
-                      )
-                    })
-                  }
+                  <option  >Selecciona tu Pais</option>
+                  
+                  {                                                     
+                        countries?.map(coun => (
+                            coun.country === client.country ?
+                            <option key ={coun.id} value = {coun.id} selected> {coun.country} </option>
+                            :
+                            <option key ={coun.id} value = {coun.id}> {coun.country} </option>)
+                        )
+                    }
                 </Form.Select>
                 <Form.Label>DNI o Pasaporte</Form.Label>
                 <Form.Control
@@ -326,6 +333,7 @@ export default function RoomDetail() {
                   placeholder="DNI o Passport"
                   autoFocus
                   name="personalID"
+                  defaultValue={client?.personalID}
                 />
                 <Form.Label>Telefono</Form.Label>
                 <Form.Control
@@ -335,6 +343,7 @@ export default function RoomDetail() {
                   placeholder="Telefono"
                   autoFocus
                   name="phoneNumber"
+                  defaultValue={client?.phoneNumber}
                 />
               </Form.Group>
             </Form>

@@ -17,8 +17,7 @@
 }
 
 .profileIMG{
-    width: 30px;
-    height: 30px;
+    width:25%;
 }
 
 .Login{
@@ -65,7 +64,6 @@
     height: max-content;
     visibility: visible;
 }
-
 
 
 
