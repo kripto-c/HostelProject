@@ -160,9 +160,8 @@ function Payments() {
       label: "Ganancias mensuales",
       data: rentsData.map((e) => e.price),
       backgroundColor: [
-        "rgba(255, 255, 255)"
-      ],
-      color:"black"
+        "rgba(30, 30, 30)"
+      ]
     }]
   })
   // --------------------------------------->>
@@ -171,13 +170,13 @@ function Payments() {
     <div >
    
       <div className={style.ContainerFilters}>
-        <nav className="nav nav-pills d-flex justify-content-center d-md-flex d-sm-table-cell" >
-          <li className="nav-item mx-1" key="1">
+        <nav className="nav nav-pills d-flex justify-content-center d-md-flex d-sm-table-cell   " >
+          <li className="nav-item mx-1 sm-wd-100" key="1">
             <select 
               name="filterByMonth" 
               value={JSON.parse(localStorage.getItem("selectMonth"))}
               onChange={e => {rentsHandler(e)}}
-              className="form-select"
+              className="form-select text-center"
             >
               <option value="all" hidden>
                 Filtrar por mes
@@ -260,7 +259,7 @@ function Payments() {
         </tr>
       </tbody>
     </Table>
-      <div style={{width: 700}} className="bg-trasparent--bs-bg-opacity: 75;" >
+      <div style={{width: 700}} className="bg-light " >
         <Bar data={rentData}/>
       </div>
     </div>
