@@ -15,6 +15,8 @@ import { useState, useEffect } from "react";
 import style from "./MenuUsuario.module.css";
 import Sidebar from "../Dashboard/Sidebar";
 import { socket } from "../../App";
+import profile from "../../images/profile.png"
+
 
 const options = [
   {
@@ -109,22 +111,24 @@ async function statusUser() {
   }, [dispatch]);
   return (
     <>
-      <Offcanvas show={show} placement="end" onHide={handleClose} {...props} style={{backgroundColor: "#212121", borderRadius: "5px"}} >
+      <Offcanvas show={show} placement="end" onHide={handleClose} {...props} style={{backgroundColor: "#212121", borderRadius: "5px", gap:"2rem"}} >
               <Offcanvas.Header closeButton>
-                <img
-                  src={isAuthenticated ? user.picture : ""}
-                  alt="foto perfil"
-                  className="rounded-circle profileIMG"
-                />
-                <Offcanvas.Title className={style.tittle} >Menu</Offcanvas.Title>
+                <Offcanvas.Title className={`justify-content-center text-info w-100 mx-0 ms-4 text-center`} >Menu</Offcanvas.Title>
               </Offcanvas.Header>
+              <div className="d-flex justify-content-center">
+              <img
+                  src={isAuthenticated && user.picture ? user.picture : profile }
+                  alt="foto perfil"
+                  className="rounded-circle border-2 profileIMG"
+                />
+              </div>
             <div className="container hx-auto">
-              <Offcanvas.Body className="d-grid offcanvas-body gap-1 mx-auto">
+              <Offcanvas.Body className={`offcanvas-body ${style.bodyCanvas}`}>
                 <div className="row mx-auto">
                   <div className="">
-                    <div className="list-group" id="list-tab" role="tablist">
+                    <div className="list-group bg-dark d-flex" id="list-tab" role="tablist">
                       <button
-                        className={`list-group-item list-group-item-action ${style.botones}`}
+                        className={`list-group-item list-group-item-action mt-1 list-group-item-dark `}
                         onClick={() => {
                           navigate("/clientEdit");
                         }}
@@ -136,7 +140,7 @@ async function statusUser() {
                         Editar datos
                       </button>
                       <button
-                        className={`list-group-item list-group-item-action ${style.botones}`}
+                        className={`list-group-item list-group-item-action mt-1 list-group-item-dark `}
                         id="list-messages-list"
                         data-bs-toggle="list"
                         onClick={() => navigate("/reviewHostel")}
