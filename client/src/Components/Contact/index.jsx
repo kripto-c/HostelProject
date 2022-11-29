@@ -24,7 +24,6 @@ export default function Contact() {
           title: "Success...",
           text: "Se ha enviado correctamente",
         });
-        console.log(res);
       }); //serviceId,TemplateId,objeto,key
   }
 
