@@ -9,6 +9,7 @@ export const POST_OWNER = "POST_OWNER";
 export const GET_OWNER = "GET_OWNER";
 export const GET_ALL_CLIENTS = "GET_ALL_CLIENTS";
 export const GET_FAQ = "GET_FAQ";
+export const FORGET = "FORGET"
 
 // const URL = "https://dinamitahostel.herokuapp.com"; //heroku
 // const URL = "https://hostelproject-production.up.railway.app" //railway
@@ -173,16 +174,14 @@ export function setClient(token) {
   }
 }
 
-export function getRolUser(token) {
-  try {
-    return async function() {
-      let res = await axios.get(`${URL}/rol`, {
-        headers: { authorization: `Bearer ${token}` },
-      });
-      localStorage.setItem("Rol", res.data.rol[0]);
-    };
-  } catch (e) {
-    console.log(e);
+export function getRolUser(token){
+  try{
+   return async function(){
+    let res = await axios.get(`${URL}/rol`, {headers:{authorization:`Bearer ${token}`}})
+    localStorage.setItem("Rol", res.data.rol[0]? res.data.rol[0]: "menu-client");
+   }
+  } catch(e){
+    console.log(e)
   }
 }
 
@@ -413,5 +412,10 @@ export function logicalDraft(id, token) {
     };
   } catch (error) {
     return error;
+  }
+}
+export function forgetstate(){
+  return {
+      type: FORGET
   }
 }
