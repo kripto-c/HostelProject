@@ -216,7 +216,7 @@ export default function rootReducer(state = initialState, action) {
       function filter () {
         const boolean = []
 
-        const dateInReduced = allRents.map(e => e.dateIn.slice(0, 7))
+        const dateInReduced = allRents.map(e => e.dateReserva.slice(0, 7))
 
         dateInReduced.forEach(e => {
           if(e === action.payloadOne) {
@@ -238,8 +238,8 @@ export default function rootReducer(state = initialState, action) {
       function sort(algo) {
         let sortedArr = action.payloadTwo === "asc" ?
         algo.sort(function(a, b) {
-          var c = new Date(a.dateIn).getTime();
-          var d = new Date(b.dateIn).getTime()
+          var c = new Date(a.dateReserva).getTime();
+          var d = new Date(b.dateReserva).getTime()
           if(c > d) {
             return 1
           }
@@ -249,8 +249,8 @@ export default function rootReducer(state = initialState, action) {
           return 0
         }) :
         algo.sort(function(a, b) {
-          var c = new Date(a.dateIn).getTime();
-          var d = new Date(b.dateIn).getTime()
+          var c = new Date(a.dateReserva).getTime();
+          var d = new Date(b.dateReserva).getTime()
           if(c > d) {
             return -1
           }

@@ -41,6 +41,7 @@ function Payments() {
     setData(false)
   }, [data]) 
   
+  console.log(rentsCurrent)
 
   // PAGINADO --------------------->>
   const [currentPage, setCurrentPage] = useState(1)
@@ -60,7 +61,7 @@ function Payments() {
   
 
   // Creo un array de meses para el filtro
-  const months = allRents.map(e => e.dateIn.slice(0, 7))
+  const months = allRents.map(e => e.dateReserva.slice(0, 7))
   const months2 = []
   months2.push(months[0])
   for(var i = 0; i < months.length; i++) {
@@ -196,8 +197,8 @@ function Payments() {
               <option value="all" hidden>
                 Ordenar por fecha
               </option>
-              <option value="asc">Menos reciente</option>
-              <option value="desc">Más reciente</option>
+              <option value="asc">Más reciente</option>
+              <option value="desc">Menos reciente</option>
             </select>
           </li>
           <li className="nav-item mx-1" key="buttonFilter">
@@ -229,9 +230,10 @@ function Payments() {
       <thead>
         <tr className='text-center'>
           <th>id</th>
+          <th>Fecha de pago</th>
           <th>Check-In</th>
           <th>Check-Out</th>
-          <th>Payment</th>
+          <th>Pago</th>
           <th>Borrador</th>
         </tr>
       </thead>
@@ -240,10 +242,12 @@ function Payments() {
           currentPayments && currentPayments.map(e => {
             let auxIn = e.dateIn.slice(0, 10)
             let auxOut = e.dateOut.slice(0, 10)
+            let auxPay = e.dateReserva.slice(0, 10)
             let id = e.id
             return (
               <tr className='text-center'>
                 <td>{id}</td>
+                <td>{auxPay}</td>
                 <td>{auxIn}</td>
                 <td>{auxOut}</td>
                 <td>${e.price}</td>
