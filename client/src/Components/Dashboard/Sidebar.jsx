@@ -27,7 +27,7 @@ export default function Sidebar() {
               />
             </div>
             <div className="brand">
-              <span className="text-info">Project Hostel</span>
+              <span className="text-info"><b>Project Hostel</b></span>
             </div>
 
             <div className="links">
@@ -136,7 +136,7 @@ const Section = styled.section`
       span {
         font-size: 2rem;
         color: #fff9;
-        font-family: "Permanent Marker", cursive;
+        
       }
     }
     .links {
