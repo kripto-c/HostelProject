@@ -173,16 +173,14 @@ export function setClient(token) {
   }
 }
 
-export function getRolUser(token) {
-  try {
-    return async function() {
-      let res = await axios.get(`${URL}/rol`, {
-        headers: { authorization: `Bearer ${token}` },
-      });
-      localStorage.setItem("Rol", res.data.rol[0]);
-    };
-  } catch (e) {
-    console.log(e);
+export function getRolUser(token){
+  try{
+   return async function(){
+    let res = await axios.get(`${URL}/rol`, {headers:{authorization:`Bearer ${token}`}})
+    localStorage.setItem("Rol", res.data.rol[0]? res.data.rol[0]: "menu-client");
+   }
+  } catch(e){
+    console.log(e)
   }
 }
 

@@ -45,7 +45,6 @@ route.get("/", async (req, res) => {
         room.status = true;
       }
       client.addRent(pagado);
-      pagado.addRoom(room);
       await room.save();
 
       res.send("bien");
