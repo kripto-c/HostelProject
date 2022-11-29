@@ -25,7 +25,7 @@ export default function RoomCard({
         <img
           src={image[0]}
           alt="bedroom"
-          className="md-3 ml-3 rounded"
+          className="col-md-3 ml-3 rounded"
           width="200px" /* height="180px" */
           style={{objectFit: "cover"}}
          
