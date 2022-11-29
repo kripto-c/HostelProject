@@ -15,7 +15,7 @@ import Dropzone from "react-dropzone";
 import { IoIosFolderOpen } from "react-icons/io";
 import axios from "axios";
 import Carousel from "react-bootstrap/Carousel";
-
+import { RiDeleteBin5Line } from "react-icons/ri";
 
 const Create = (props) => {
   // SETTEAR INFO//
@@ -23,7 +23,7 @@ const Create = (props) => {
   const [loading, setLoading] = useState("");
   const [room, setRoom] = useState({
     description: "",
-    image: [],
+    image: { array: [] },
     bathroom: "",
     observation: "",
     price: "",
@@ -57,10 +57,9 @@ const Create = (props) => {
           const data = res.data;
           const fileURL = data.secure_url;
           let imagenUpload = image.array;
-          imagenUpload.push(fileURL);
+          imagenUpload?.push(fileURL);
           const nuevoObjeto = { ...image, imagenUpload };
           setImage(nuevoObjeto);
-          console.log(data);
           setRoom({
             ...room,
             image: imagenUpload,
@@ -71,6 +70,8 @@ const Create = (props) => {
       setLoading("false");
     });
   };
+
+  // HANDLES //
   const handleChange = (e) => {
     setRoom({
       ...room,
@@ -114,6 +115,15 @@ const Create = (props) => {
     });
   };
 
+  console.log(image);
+  const handleDeleteImage = () => (foto) => {
+    setImage({
+      ...image.array,
+      image: image.array.filter((fotoBorrada) => fotoBorrada !== foto),
+    });
+  };
+
+  // SUBMIT //
   const handleSubmit = (e) => {
     e.preventDefault();
     if (
@@ -147,9 +157,13 @@ const Create = (props) => {
       navigate("/");
     }
   };
+
+  // SUMAR CUCHETAS //
   useEffect(() => {
     sumarCamas();
   }, [room.simples, room.cuchetas]);
+
+  // RENDER //
   return (
     <div>
       <div className="box-create">
@@ -160,7 +174,7 @@ const Create = (props) => {
           <h2>Formulario de creacion de Habitaciones: </h2>
           <Row className="d-flex justify-content-between">
             <Form.Group as={Col} md="5">
-              <Form.Label>Baño(OBLIGATORIO): </Form.Label>
+              <Form.Label>Baño(*): </Form.Label>
               <Form.Select onChange={(e) => handlebañoSelect(e)}>
                 <option>Elegir tipo de baño</option>
                 <option value="True">Privado</option>
@@ -168,7 +182,7 @@ const Create = (props) => {
               </Form.Select>
             </Form.Group>
             <Form.Group as={Col} md="5">
-              <Form.Label>Tipo(OBLIGATORIO): </Form.Label>
+              <Form.Label>Tipo(*): </Form.Label>
               <Form.Select onChange={(e) => handleTipoSelect(e)}>
                 <option>Elegir tipo de Habitacion</option>
                 <option value="1">Compartida</option>
@@ -178,7 +192,7 @@ const Create = (props) => {
           </Row>
           <Row className="d-flex justify-content-between">
             <Form.Group as={Col} md="5">
-              <Form.Label>Descripcion(OBLIGATORIO): </Form.Label>
+              <Form.Label>Descripcion(*): </Form.Label>
               <Form.Control
                 as="textarea"
                 name="description"
@@ -200,7 +214,7 @@ const Create = (props) => {
           </Row>
           <Row className="d-flex justify-content-between">
             <Form.Group as={Col} md="3">
-              <Form.Label>Camas(OBLIGATORIO): </Form.Label>
+              <Form.Label>Camas simples(*) </Form.Label>
               <Form.Control
                 type="number"
                 name="simples"
@@ -209,18 +223,6 @@ const Create = (props) => {
                 value={room.simples}
                 onChange={async (e) => {
                   await handleSimples(e);
-                }}
-              />
-            </Form.Group>
-            <Form.Group as={Col} md="3">
-              <Form.Label>Camas Totales:</Form.Label>
-              <Form.Control
-                disabled
-                type="number"
-                name="beds"
-                value={room.beds}
-                onChange={() => {
-                  console.log(e.target.value);
                 }}
               />
             </Form.Group>
@@ -277,17 +279,23 @@ const Create = (props) => {
                 {image.array?.map((foto, index) => {
                   return (
                     <Carousel.Item key={index}>
-                      <button className="rounded mx-auto d-block">X</button>
                       <img
                         className="rounded mx-auto d-block"
                         src={`${foto}`}
                         alt=""
                         style={{
-                          width: "200px",
-                          height: "180px",
+                          width: "250px",
+                          height: "220px",
                           objectFit: "cover",
                         }}
                       />
+                      <button
+                        type="button"
+                        onClick={handleDeleteImage(index)}
+                        className="rounded mx-auto d-block"
+                      >
+                        <RiDeleteBin5Line />
+                      </button>
                     </Carousel.Item>
                   );
                 })}
