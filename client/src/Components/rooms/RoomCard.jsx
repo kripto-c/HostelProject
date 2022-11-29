@@ -25,12 +25,12 @@ export default function RoomCard({
         <img
           src={image[0]}
           alt="bedroom"
-          className="col-md-3 ml-3 rounded"
+          className="col-4 rounded"
           width="200px" /* height="180px" */
           style={{objectFit: "cover"}}
          
         ></img>
-        <div className="col-md-9 " style={{paddingLeft: "2vw"}} >
+        <div className="col-8 " style={{paddingLeft: "2vw"}} >
           <h2 className="tittle text-white ms-0">
             Habitación {type === "Privado" ? "privada" : "compartida"}
           </h2>
