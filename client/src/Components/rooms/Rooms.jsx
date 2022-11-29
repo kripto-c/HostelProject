@@ -45,12 +45,12 @@ export default function Rooms() {
   return (
     <div>
       <Filters getRooms={getRooms} setData={setData} />
-      <div className="container-fluid">
+      <div className="container">
         <div className="row">
           {roomsCurrent &&
             roomsCurrent.map((e) => {
               return (
-                <div key={e.id} className="view overlay col-lg-6 col-xl-6 col-xxl-6 col-md-12 col-sm-12 p-1">
+                <div key={e.id} className="view overlay w-100">
                   <RoomCard
                     beds={e.beds}
                     description={e.description}
