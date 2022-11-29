@@ -158,7 +158,11 @@ function Payments() {
     labels: rentsData.map((e) => e.date),
     datasets: [{
       label: "Ganancias mensuales",
-      data: rentsData.map((e) => e.price)
+      data: rentsData.map((e) => e.price),
+      backgroundColor: [
+        "rgba(255, 255, 255)"
+      ],
+      color:"black"
     }]
   })
   // --------------------------------------->>
@@ -167,11 +171,10 @@ function Payments() {
     <div >
    
       <div className={style.ContainerFilters}>
-        <nav className="nav nav-pills d-flex justify-content-center">
-          <li className="nav-item mx-1">
+        <nav className="nav nav-pills d-flex justify-content-center d-md-flex d-sm-table-cell" >
+          <li className="nav-item mx-1" key="1">
             <select 
               name="filterByMonth" 
-              defaultValue="all"
               value={JSON.parse(localStorage.getItem("selectMonth"))}
               onChange={e => {rentsHandler(e)}}
               className="form-select"
@@ -184,10 +187,9 @@ function Payments() {
               })}
             </select>
           </li>
-          <li className="nav-item mx-1">
+          <li className="nav-item mx-1" key="dateSelect">
             <select 
               name="sortByDate" 
-              defaultValue="all"
               value={JSON.parse(localStorage.getItem("selectDate"))}
               onChange={e => {rentsHandler(e)}}
               className="form-select"
@@ -199,12 +201,12 @@ function Payments() {
               <option value="desc">Más reciente</option>
             </select>
           </li>
-          <li className="nav-item mx-1">
+          <li className="nav-item mx-1" key="buttonFilter">
             <button type="button" onClick={e => handleSubmitFilter(e)} className="nav-item  btn btn-primary">
               Filtrar
             </button>
           </li>
-          <li className="nav-item mx-1">
+          <li className="nav-item mx-1" key="buttonDraft">
             <button type="button" onClick={e => handleResetFilters(e)} className="nav-item  btn btn-primary">
               Borrar filtros
             </button>
@@ -220,7 +222,9 @@ function Payments() {
       paginado={paginado}
       currentPage={currentPage}
       totalPages={totalPages}
+      className="d-md-flex d-sm-table-cell"
      />
+
     
     <Table striped bordered hover variant="dark" className="col-md-9 bg-dark">
       <thead>
@@ -243,7 +247,7 @@ function Payments() {
                 <td>{id}</td>
                 <td>{auxIn}</td>
                 <td>{auxOut}</td>
-                <td><b>${e.price}</b></td>
+                <td>${e.price}</td>
                 <td><button onClick={(e) => handleLogicalDraft(e, id)} className="btn btn-light">Borrar</button></td>
               </tr>
             )  
@@ -252,11 +256,11 @@ function Payments() {
         <tr>
           <td></td>
           <td colSpan={2}><b>Total:</b></td>
-          <td>${Math.floor(sum)}</td>
+          <td  className='text-center'><b>${Math.floor(sum)}</b></td>
         </tr>
       </tbody>
     </Table>
-      <div style={{width: 700}}>
+      <div style={{width: 700}} className="bg-trasparent--bs-bg-opacity: 75;" >
         <Bar data={rentData}/>
       </div>
     </div>
