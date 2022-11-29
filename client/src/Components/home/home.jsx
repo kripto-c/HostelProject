@@ -37,7 +37,7 @@ const Home = () => {
 
   return (
     <div className='home-container'>      
-    <div className="home-container row ">
+    <div className="home-container row home">
       <Carousel className="carousel w-100 m-auto ">
         <Carousel.Item>
           <div className="xd">
@@ -46,7 +46,8 @@ const Home = () => {
               src ="https://img.besthqwallpapers.com/Uploads/6-11-2017/27286/interior-of-hotel-room-modern-design-brown-tone-hotel-room-room-for-three.jpg"
               alt="first-item"
             />
-            <h1 className="Bienvenido">Bienvenidos al {info.hostelName}</h1>
+            {/* <h1 className="Bienvenido">Bienvenidos al {info.hostelName}</h1> */}
+            <h1 className="Bienvenido">Bienvenidos al Hostel Dinamita</h1>
           </div>
         </Carousel.Item>
         <Carousel.Item>
@@ -55,7 +56,8 @@ const Home = () => {
               src="https://media-cdn.tripadvisor.com/media/photo-s/15/bc/d3/19/ideal-social-hostel.jpg"
               alt="second-item"
             />
-            <p className="infoHome">{info.aboutUs}</p>
+            {/* <p className="infoHome">{info.aboutUs}</p> */}
+            <p className="infoHome">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Iusto in impedit doloribus quod nemo recusandae quaerat perferendis sequi sint delectus voluptatibus repellendus, ullam odit obcaecati. At voluptate repellendus odio eos veritatis esse, totam nemo fugit ipsum ratione cum nisi iste.</p>
           </div>
         </Carousel.Item>
         <Carousel.Item>
