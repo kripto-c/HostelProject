@@ -12,16 +12,17 @@ function PopoverPositionedExample() {
         className="button-chatbot"
         key="left"
         placement="top-start"
+        
 
         
         overlay={
-          <Popover id={`popover-positioned-left`}>
+          <Popover id={`popover-positioned-left`} >
             
             <ChatbotTwo />
           </Popover>
         }
       >
-        <Button className="button-chatbot" variant="secondary"><MdChat color="white" size={30}/></Button>
+        <Button className="button-chatbot" variant="secondary" ><MdChat color="white" size={30}/></Button>
       </OverlayTrigger>
     </>
   );
