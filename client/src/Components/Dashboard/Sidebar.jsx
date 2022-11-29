@@ -19,13 +19,15 @@ export default function Sidebar() {
         <Section>
           {/* //TOP-------------------------------------------->> */}
           <div className="top">
-            <div className="brand">
-              <img
+            <div className="d-flex  justify-content-center">
+            <img
                 className="logo"
                 src={logo}
                 style={{ backgroundColor: "white", borderRadius: "10px" }}
               />
-              <span>Project Hostel</span>
+            </div>
+            <div className="brand">
+              <span className="text-info">Project Hostel</span>
             </div>
 
             <div className="links">
@@ -96,7 +98,7 @@ export default function Sidebar() {
               logout()
             }}
             >
-              <FiLogOut/> Logout
+              <FiLogOut/> Cerrar Seccion
             </button>
           </div>
         </Section>
@@ -105,21 +107,14 @@ export default function Sidebar() {
   );
 }
 const Section = styled.section`
-  position: fixed;
-  width: 100%;
-  left: 0.5%;
   background-color: dark;
-  margin-top: 70px;
-  height: 1vh;
-  width: 28vw;
+  margin-top: 3.5%;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: space-between;
-  padding: 2rem 0;
-  gap: 3rem;
   .logo {
-    width: 60px;
+    width: 17%;
   }
   .top {
     display: flex;
@@ -130,10 +125,9 @@ const Section = styled.section`
       display: none;
     }
     .brand {
-      margin-left: 1%;
       width: 100%;
       display: flex;
-      justify-content: flex-start;
+      justify-content: space-evenly;
       gap: 1.3rem;
       svg {
         color: #ffc107;
@@ -146,22 +140,19 @@ const Section = styled.section`
       }
     }
     .links {
-      width: 70%;
       ul {
-        width: 83%;
         list-style-type: none;
         display: flex;
         flex-direction: column;
         gap: 1rem;
         li {
-          width: 95%;
           padding: 0.6rem 1rem;
           margin: 1%;
-          border-radius: 0.6rem;
+          border-radius:0 0.7rem 0.7rem 0.3rem;
           &:hover {
-            background-color: white;
+            background-color: black;
             a {
-              color: black;
+              color: #0dcaf0;
             }
           }
           a {
@@ -172,9 +163,9 @@ const Section = styled.section`
           }
         }
         .active {
-          background-color: white;
+          background-color: black;
           a {
-            color: black;
+            color: #0dcaf0;
           }
         }
       }
@@ -195,32 +186,5 @@ const Section = styled.section`
       color: white;
     }
   }
-  @media screen and (min-width: 280px) and (max-width: 1080px) {
-    position: initial;
-    width: 100%;
-    height: max-content;
-    padding: 1rem;
-    .top {
-      flex-direction: row;
-      align-items: center;
-      justify-content: space-between;
-      padding: 0 1rem;
-      .toggle {
-        display: block;
-        color: white;
-        z-index: 99;
-        svg {
-          font-size: 1.4rem;
-        }
-      }
-      .brand {
-        gap: 1rem;
-        justify-content: flex-start;
-      }
-    }
-    .top > .links,
-    .logout {
-      display: none;
-    }
-  }
+ 
 `;

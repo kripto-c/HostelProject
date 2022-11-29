@@ -9,6 +9,7 @@ import { useAuth0 } from "@auth0/auth0-react";
 import { getCLient,getOwner, setClient, getRolUser, getStatus } from "../../Redux/actions";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
+import { FiLogOut } from "react-icons/fi";
 
 
 import { useState, useEffect } from "react";
@@ -111,7 +112,7 @@ async function statusUser() {
   }, [dispatch]);
   return (
     <>
-      <Offcanvas show={show} placement="end" onHide={handleClose} {...props} style={{backgroundColor: "#212121", borderRadius: "5px", gap:"2rem"}} >
+      <Offcanvas show={show} placement="end" onHide={handleClose} style={{backgroundColor: "#212121", gap:"3rem"}}>
               <Offcanvas.Header closeButton>
                 <Offcanvas.Title className={`justify-content-center text-info w-100 mx-0 ms-4 text-center`} >Menu</Offcanvas.Title>
               </Offcanvas.Header>
@@ -165,7 +166,7 @@ async function statusUser() {
                   }}
                   className={`${style.cerrarSesion} btn btn-outline-danger `}
                 >
-                  Cerrar Sesion
+                 <FiLogOut/>  Cerrar Sesion
                 </button>
             </Offcanvas>
             {
