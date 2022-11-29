@@ -10,7 +10,8 @@ export default function Reservas() {
         encontrara las habitaciones y podra elegir la que mas se adapte a su
         necesidad. Una vez tomada su decision haga click en el boton RESERVAR,
         donde podra elegir su fecha de reserva, elegir su cama y proceder al
-        pago: {<NavLink className={styles.navLink} style={{height:"1000px"}} to={"/rooms"}>Nuestras habitaciones</NavLink>}
+        pago: <br/>
+        {<NavLink className={styles.navLink} style={{height:"1000px"}} to={"/rooms"}>Nuestras habitaciones</NavLink>}
       </p>
     </div>
   );
