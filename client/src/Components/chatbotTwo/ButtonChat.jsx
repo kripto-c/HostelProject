@@ -3,7 +3,7 @@ import OverlayTrigger from "react-bootstrap/OverlayTrigger";
 import Popover from "react-bootstrap/Popover";
 import ChatbotTwo from "./ChatbotTwo";
 import { MdChat } from "react-icons/md";
-import "./buttonChat.css"
+import "./buttonChat.css";
 function PopoverPositionedExample() {
   return (
     <>
@@ -12,17 +12,15 @@ function PopoverPositionedExample() {
         className="button-chatbot"
         key="left"
         placement="top-start"
-        
-
-        
         overlay={
-          <Popover id={`popover-positioned-left`} >
-            
+          <Popover id={`popover-positioned-left`}>
             <ChatbotTwo />
           </Popover>
         }
       >
-        <Button className="button-chatbot" variant="secondary" ><MdChat color="white" size={30}/></Button>
+        <Button className="button-chatbot" variant="secondary">
+          <MdChat color="white" size={30} />
+        </Button>
       </OverlayTrigger>
     </>
   );
