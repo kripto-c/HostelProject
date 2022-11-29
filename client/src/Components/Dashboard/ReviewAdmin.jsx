@@ -119,7 +119,7 @@ export default function ReviewAdmin() {
 
   return (
     <div className="container-fluid">
-      <div className="mx-auto m-3 w-25 table-responsive-lg ">
+      <div className="mx-auto m-3 table-responsive-lg ">
         {paginado()}
 
         <table className="table table-dark table-striped table align-middle table table-hover text-center">
