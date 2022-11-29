@@ -55,14 +55,16 @@ const Create = (props) => {
         )
         .then((res) => {
           const data = res.data;
+          const id = data.asset_id;
           const fileURL = data.secure_url;
           let imagenUpload = image.array;
-          imagenUpload?.push(fileURL);
+          imagenUpload.push({ url: fileURL, id });
           const nuevoObjeto = { ...image, imagenUpload };
+          console.log(nuevoObjeto);
           setImage(nuevoObjeto);
           setRoom({
             ...room,
-            image: imagenUpload,
+            image: image,
           });
         });
     });
@@ -115,14 +117,6 @@ const Create = (props) => {
     });
   };
 
-  console.log(image);
-  const handleDeleteImage = () => (foto) => {
-    setImage({
-      ...image.array,
-      image: image.array.filter((fotoBorrada) => fotoBorrada !== foto),
-    });
-  };
-
   // SUBMIT //
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -158,6 +152,36 @@ const Create = (props) => {
     }
   };
 
+  //
+  const handleDeleteImage = (foto) => {
+    console.log(image.array);
+    let filterURL = [
+      image.array.filter((borrada) => {
+        if (borrada.id !== foto ) {
+          console.log(borrada);
+          console.log("si");
+          return borrada;
+        }
+      }),
+    ];
+    console.log(filterURL)
+    console.log(foto)
+    // console.log(room.image.array);
+    // let filter2 = [room.image.array.filter((borrada) => borrada !== foto)];
+    // // console.log(filter2);
+    // // console.log(foto);
+    // console.log(filter2)
+
+    // setRoom({
+    //   ...room,
+    //   image: room.image.array.filter((id, ) => id !== foto),
+    // });
+    // setImage({
+    //   ...image,
+    //   image: image.array.filter((borrada, index) => index !== foto),
+    // });
+  };
+
   // SUMAR CUCHETAS //
   useEffect(() => {
     sumarCamas();
@@ -170,10 +194,11 @@ const Create = (props) => {
         <Form
           onSubmit={(e) => handleSubmit(e)}
           style={{ width: "80%", display: "flex", flexDirection: "column" }}
+          variant="dark"
         >
           <h2>Creacion de habitaciones: </h2>
           <Row className="d-flex justify-content-between">
-          <Form.Group as={Col} md="3">
+            <Form.Group as={Col} md="3">
               <Form.Label>Tipo (*): </Form.Label>
               <Form.Select onChange={(e) => handleTipoSelect(e)}>
                 <option>Elegir tipo de Habitacion</option>
@@ -250,7 +275,7 @@ const Create = (props) => {
                 onChange={async (e) => {
                   await handleCuchetas(e);
                 }}
-              />              
+              />
             </Form.Group>
             <Form.Group as={Col} md="3">
               <Form.Label>Camas Totales:</Form.Label>
@@ -293,7 +318,7 @@ const Create = (props) => {
                     <Carousel.Item key={index}>
                       <img
                         className="rounded mx-auto d-block"
-                        src={`${foto}`}
+                        src={`${foto.url}`}
                         alt=""
                         style={{
                           width: "250px",
@@ -303,7 +328,7 @@ const Create = (props) => {
                       />
                       <button
                         type="button"
-                        onClick={handleDeleteImage(index)}
+                        onClick={() => handleDeleteImage(foto.id)}
                         className="rounded mx-auto d-block"
                       >
                         <RiDeleteBin5Line />
