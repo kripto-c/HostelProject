@@ -17,6 +17,7 @@ function Navbars() {
   const {getAccessTokenSilently} = useAuth0();
   const dispatch = useDispatch();
   const [view, setView] = useState(true);
+  const [opt, setOPT ] = useState(false);
   const [confirmLog, setConfirmLog] = useState(false);
   const [Sort, setSort] = useState("");
   const info = useSelector(state => state.owner);
@@ -51,7 +52,7 @@ function Navbars() {
     <>
       <Navbar variant="dark" bg="dark">
         <Container fluid>
-          <Link style={{ textDecoration: "none" }} to="/" className="d-block">
+          <Link style={{ textDecoration: "none" }} to="/" className="d-block icon-hostel">
             <div className="navbar-brand d-flex">
               <img
                 src={logo}
@@ -64,15 +65,16 @@ function Navbars() {
             </div>
             {/* </div> */}
           </Link>
-          <div className="w-75 mx-auto justify-content-center nav navbar-nav navbar-nav">
+          <div className={` nav navbar-nav navbar-nav ${opt ? 'yes' : 'no'}`}>
+          {/* <div className={`w-75 mx-auto justify-content-center nav navbar-nav navbar-nav ${opt ? 'yes' : 'no'}`}> */}
             <div className="but">
-              <div className="act" onClick={verOptiones}>
+              <div className="act" onClick={()=>setOPT(!opt)}>
                 <span></span>
                 <span></span>
                 <span></span>
               </div>
             </div>
-            <Nav className="w-75 m-auto nav justify-content-center navbar-nav">
+            <Nav className=" nav justify-content-center navbar-nav">
               <Link className="linkComponent fs-5" to="/rooms">
                 Habitaciones
               </Link>
