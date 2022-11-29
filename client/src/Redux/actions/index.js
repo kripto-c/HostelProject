@@ -9,6 +9,7 @@ export const POST_OWNER = "POST_OWNER";
 export const GET_OWNER = "GET_OWNER";
 export const GET_ALL_CLIENTS = "GET_ALL_CLIENTS";
 export const GET_FAQ = "GET_FAQ";
+export const FORGET = "FORGET"
 
 // const URL = "https://dinamitahostel.herokuapp.com"; //heroku
 // const URL = "https://hostelproject-production.up.railway.app" //railway
@@ -411,5 +412,10 @@ export function logicalDraft(id, token) {
     };
   } catch (error) {
     return error;
+  }
+}
+export function forgetstate(){
+  return {
+      type: FORGET
   }
 }

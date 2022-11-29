@@ -7,7 +7,8 @@ import {
   POST_OWNER,
   GET_OWNER,
   GET_ALL_CLIENTS,
-  GET_FAQ
+  GET_FAQ,
+  FORGET
 } from "../actions/index.js";
 
 const initialState = {
@@ -285,6 +286,11 @@ export default function rootReducer(state = initialState, action) {
         }
       }
   }
+  case FORGET:
+    return{
+      ...state,
+      roomdetail: []
+    }
     default:
       return state;
   }
