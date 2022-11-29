@@ -69,26 +69,26 @@ const Edit = () => {
           </tr>
         </thead>
         <tbody>
-          {ordernar().map((room) => (
-            <>
-              <tr key={room.id}>
+          {ordernar().map((room, index) => (
+              <tr key={index}>
                 <td>{room.id}</td>
                 <td>
                   <img
-                    src={room.image.map((el) => el)}
+                    src={room.image.map((el,index) => el)}
                     style={{
                       width: "40px",
                       height: "40px",
                       objectFit: "cover",
                     }}
                     alt=""
-                  ></img>
+                  />
                 </td>
                 <td>{room.description}</td>
                 <td>{room?.status ? "inactivo" : "activo"}</td>
                 <td>
                   <label className="botoncito">
                     <input
+                      key={'f'+ room.id}
                       type="checkbox"
                       defaultChecked={room.status}
                       onClick={async () =>
@@ -104,15 +104,12 @@ const Edit = () => {
                 <td className="borrar">
                   <button
                     type="button"
-                    onClick={() => {
-                      handleDelete(room.id);
-                    }}
+                    onClick={() => {handleDelete(room.id);}}
                   >
-                    <RiDeleteBin5Line></RiDeleteBin5Line>
+                  <RiDeleteBin5Line></RiDeleteBin5Line>
                   </button>
                 </td>
               </tr>
-            </>
           ))}
         </tbody>
       </Table>

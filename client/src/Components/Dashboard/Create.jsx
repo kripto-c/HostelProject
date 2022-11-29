@@ -157,28 +157,40 @@ const Create = (props) => {
           onSubmit={(e) => handleSubmit(e)}
           style={{ width: "80%", display: "flex", flexDirection: "column" }}
         >
-          <h2>Formulario de creacion de Habitaciones: </h2>
+          <h2>Creacion de habitaciones: </h2>
           <Row className="d-flex justify-content-between">
-            <Form.Group as={Col} md="5">
-              <Form.Label>Baño(OBLIGATORIO): </Form.Label>
-              <Form.Select onChange={(e) => handlebañoSelect(e)}>
-                <option>Elegir tipo de baño</option>
-                <option value="True">Privado</option>
-                <option value="False">Compartido</option>
-              </Form.Select>
-            </Form.Group>
-            <Form.Group as={Col} md="5">
-              <Form.Label>Tipo(OBLIGATORIO): </Form.Label>
+          <Form.Group as={Col} md="3">
+              <Form.Label>Tipo (*): </Form.Label>
               <Form.Select onChange={(e) => handleTipoSelect(e)}>
                 <option>Elegir tipo de Habitacion</option>
                 <option value="1">Compartida</option>
                 <option value="2">Privada</option>
               </Form.Select>
             </Form.Group>
+            <Form.Group as={Col} md="3">
+              <Form.Label>Baño (*): </Form.Label>
+              <Form.Select onChange={(e) => handlebañoSelect(e)}>
+                <option>Elegir tipo de baño</option>
+                <option value="True">Privado</option>
+                <option value="False">Compartido</option>
+              </Form.Select>
+            </Form.Group>
+            <Form.Group as={Col} md="3">
+              <Form.Label>Precio (*): </Form.Label>
+              <Form.Control
+                type="number"
+                min="1000"
+                max="1000000"
+                name="price"
+                value={room.price}
+                onChange={handleChange}
+              />
+            </Form.Group>
           </Row>
+          <br />
           <Row className="d-flex justify-content-between">
-            <Form.Group as={Col} md="5">
-              <Form.Label>Descripcion(OBLIGATORIO): </Form.Label>
+            <Form.Group as={Col} md="6">
+              <Form.Label>Descripcion (*): </Form.Label>
               <Form.Control
                 as="textarea"
                 name="description"
@@ -198,9 +210,10 @@ const Create = (props) => {
               />
             </Form.Group>
           </Row>
+          <br />
           <Row className="d-flex justify-content-between">
             <Form.Group as={Col} md="3">
-              <Form.Label>Camas(OBLIGATORIO): </Form.Label>
+              <Form.Label>Cama simple (*): </Form.Label>
               <Form.Control
                 type="number"
                 name="simples"
@@ -211,6 +224,19 @@ const Create = (props) => {
                   await handleSimples(e);
                 }}
               />
+            </Form.Group>
+            <Form.Group as={Col} md="3">
+              <Form.Label>Camas cuchetas (*): </Form.Label>
+              <Form.Control
+                type="number"
+                name="cuchetas"
+                min="0"
+                max="10"
+                value={room.cuchetas}
+                onChange={async (e) => {
+                  await handleCuchetas(e);
+                }}
+              />              
             </Form.Group>
             <Form.Group as={Col} md="3">
               <Form.Label>Camas Totales:</Form.Label>
@@ -224,32 +250,6 @@ const Create = (props) => {
                 }}
               />
             </Form.Group>
-            <Form.Group as={Col} md="3">
-              <Form.Label>Cuchetas: </Form.Label>
-              <Form.Control
-                type="number"
-                name="cuchetas"
-                min="0"
-                max="10"
-                value={room.cuchetas}
-                onChange={async (e) => {
-                  await handleCuchetas(e);
-                }}
-              />
-            </Form.Group>
-            <Row className="justify-content-center">
-              <Form.Group as={Col} md="5" style={{ marginLeft: "8px" }}>
-                <Form.Label>Precio(OBLIGATORIO): </Form.Label>
-                <Form.Control
-                  type="number"
-                  min="1000"
-                  max="1000000"
-                  name="price"
-                  value={room.price}
-                  onChange={handleChange}
-                />
-              </Form.Group>
-            </Row>
           </Row>
           <Row className="d-flex justify-content-center">
             <Form.Group as={Col} md="5">
