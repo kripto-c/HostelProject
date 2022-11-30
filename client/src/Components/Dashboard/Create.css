@@ -50,3 +50,19 @@ align-items: center;
   border: 3px solid black;
   border-radius:50%;
 }
+
+.box-create label{
+  color:white;
+  display: flex;
+  justify-content: center;
+}
+
+.borrarFoto{
+  border: 1px solid black;
+  border-radius: 10px;
+}
+
+.borrarFoto:hover{
+  background-color: red;
+  color: black;
+}
