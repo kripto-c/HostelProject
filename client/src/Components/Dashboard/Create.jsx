@@ -204,7 +204,7 @@ const Create = (props) => {
   // RENDER //
   return (
     <div>
-      <div className="box-create" style={{ backgroundColor: "#eeeeee" }}>
+      <div className="box-create" style={{ backgroundColor: "#bdbdbd" }}>
         <Form
           onSubmit={(e) => handleSubmit(e)}
           style={{ width: "80%", display: "flex", flexDirection: "column" }}
@@ -338,8 +338,8 @@ const Create = (props) => {
                           src={`${foto.url}`}
                           alt=""
                           style={{
-                            width: "250px",
-                            height: "220px",
+                            width: "400px",
+                            height: "300px",
                             objectFit: "cover",
                           }}
                         />
@@ -351,7 +351,6 @@ const Create = (props) => {
                           <RiDeleteBin5Line />
                         </button>
                       </>
-                      //{" "}
                     </Carousel.Item>
                   );
                 })}
