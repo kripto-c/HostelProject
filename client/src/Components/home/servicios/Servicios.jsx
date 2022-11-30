@@ -17,8 +17,11 @@ export default function Servicios() {
       <Container className="divServicios">
         <Row>
           <Col>
-            
+            <div>
             <Wifi></Wifi>
+            <span>WI-FI <strong>Gratis</strong></span>
+            </div>
+            
           </Col>
           <Col>
             <Recepcion></Recepcion>
