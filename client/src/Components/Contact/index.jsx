@@ -31,6 +31,8 @@ export default function Contact() {
           title: "Success...",
           text: "Se ha enviado correctamente",
         });
+        
+
       }); //serviceId,TemplateId,objeto,key
     setMsj({name:'',
             email:'',
@@ -107,6 +109,7 @@ export default function Contact() {
             </div>
           </div>
           <div className="d-grid gap-2 my-4">
+            {/* BOTON ENVIAR */}
             <button className="btn btn-primary" type="submit">
               Enviar
             </button>
