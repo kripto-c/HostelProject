@@ -15,7 +15,7 @@ import Dropzone from "react-dropzone";
 import { IoIosFolderOpen } from "react-icons/io";
 import axios from "axios";
 import Carousel from "react-bootstrap/Carousel";
-
+import { RiDeleteBin5Line } from "react-icons/ri";
 
 const Create = (props) => {
   // SETTEAR INFO//
@@ -23,7 +23,7 @@ const Create = (props) => {
   const [loading, setLoading] = useState("");
   const [room, setRoom] = useState({
     description: "",
-    image: [],
+    image:[],
     bathroom: "",
     observation: "",
     price: "",
@@ -55,22 +55,24 @@ const Create = (props) => {
         )
         .then((res) => {
           const data = res.data;
+          const id = data.asset_id;
           const fileURL = data.secure_url;
           let imagenUpload = image.array;
-          imagenUpload.push(fileURL);
+          imagenUpload.push({ url: fileURL, id });
           const nuevoObjeto = { ...image, imagenUpload };
           setImage(nuevoObjeto);
-          console.log(data);
-          setRoom({
-            ...room,
-            image: imagenUpload,
-          });
+          // setRoom({
+          //   ...room,
+          //   image: image,
+          // });
         });
     });
     axios.all(uploaders).then(() => {
       setLoading("false");
     });
   };
+
+  // HANDLES //
   const handleChange = (e) => {
     setRoom({
       ...room,
@@ -114,6 +116,7 @@ const Create = (props) => {
     });
   };
 
+  // SUBMIT //
   const handleSubmit = (e) => {
     e.preventDefault();
     if (
@@ -147,19 +150,39 @@ const Create = (props) => {
       navigate("/");
     }
   };
+
+  //
+  function handleDeleteImage(foto){
+    let filterURL = [
+      image.array.filter((borrada) => {
+        if (borrada.id !== foto ) {
+          return borrada;
+        }
+      }),
+    ];
+   
+    const nuevoObjeto = { ...image, array:filterURL[0] };
+     setImage(nuevoObjeto)
+
+  };
+
+  // SUMAR CUCHETAS //
   useEffect(() => {
     sumarCamas();
   }, [room.simples, room.cuchetas]);
+
+  // RENDER //
   return (
     <div>
-      <div className="box-create bg-dark text-white">
+      <div className="box-create">
         <Form
           onSubmit={(e) => handleSubmit(e)}
           style={{ width: "80%", display: "flex", flexDirection: "column" }}
+          variant="dark"
         >
           <h2>Creacion de habitaciones: </h2>
           <Row className="d-flex justify-content-between">
-          <Form.Group as={Col} md="3">
+            <Form.Group as={Col} md="3">
               <Form.Label>Tipo (*): </Form.Label>
               <Form.Select onChange={(e) => handleTipoSelect(e)}>
                 <option>Elegir tipo de Habitacion</option>
@@ -236,7 +259,7 @@ const Create = (props) => {
                 onChange={async (e) => {
                   await handleCuchetas(e);
                 }}
-              />              
+              />
             </Form.Group>
             <Form.Group as={Col} md="3">
               <Form.Label>Camas Totales:</Form.Label>
@@ -276,19 +299,27 @@ const Create = (props) => {
               <Carousel>
                 {image.array?.map((foto, index) => {
                   return (
-                    <Carousel.Item key={index}>
-                      <button className="rounded mx-auto d-block">X</button>
+                    // <Carousel.Item key={index}>
+                    <>
                       <img
                         className="rounded mx-auto d-block"
-                        src={`${foto}`}
+                        src={`${foto.url}`}
                         alt=""
                         style={{
-                          width: "200px",
-                          height: "180px",
+                          width: "250px",
+                          height: "220px",
                           objectFit: "cover",
                         }}
                       />
-                    </Carousel.Item>
+                      <button
+                        type="button"
+                        onClick={() => handleDeleteImage(foto.id)}
+                        className="rounded mx-auto d-block"
+                      >
+                        <RiDeleteBin5Line />
+                      </button>
+                      </>
+                    // </Carousel.Item>
                   );
                 })}
               </Carousel>
