@@ -137,7 +137,7 @@ export default function ReviewAdmin() {
           </thead>
           <tbody>
             {/* //LOS DATOS A RENDERIZAR */}
-            {currentReviews.map((r, index) => {
+            {currentReviews.length ? currentReviews.map((r, index) => {
               return (
                 <>
                   <tr key={r.id}>
@@ -199,7 +199,18 @@ export default function ReviewAdmin() {
                   </tr>
                 </>
               );
-            })}
+            }):
+            <tr>
+               <td></td>
+               <td></td>
+               <td></td>
+               <td></td>
+               <td className="text-muted p-4">No hay Review</td>
+               <td></td>
+               <td></td>
+               <td></td>
+            </tr>
+          }
           </tbody>
         </table>
       </div>

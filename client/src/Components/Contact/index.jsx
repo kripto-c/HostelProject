@@ -103,7 +103,7 @@ export default function Contact() {
         id="accordionPanelsStayOpenExample"
       >
         <h2 className="text-dark">Preguntas frecuentes</h2>
-        {faqs?.map((info) => {
+        {faqs.length ? faqs?.map((info) => {
           return (
             <div className={`accordion-item ${style.bgWhites}`} key={info.id}>
               <h2 className={`accordion-header`} id="panelsStayOpen-headingOne">
@@ -129,7 +129,11 @@ export default function Contact() {
               </div>
             </div>
           );
-        })}
+        }):
+        <div className="container">
+        <h2 className="text-muted p-5">No hay Preguntas frecuentes para Mostrar</h2>
+      </div>
+      }
       </div>
     </div>
   );

@@ -239,7 +239,7 @@ function Payments() {
       </thead>
       <tbody>
         {
-          currentPayments && currentPayments.map(e => {
+         currentPayments.length ? currentPayments && currentPayments.map(e => {
             let auxIn = e.dateIn.slice(0, 10)
             let auxOut = e.dateOut.slice(0, 10)
             let auxPay = e.dateReserva.slice(0, 10)
@@ -254,7 +254,16 @@ function Payments() {
                 <td><button onClick={(e) => handleLogicalDraft(e, id)} className="btn btn-light">Borrar</button></td>
               </tr>
             )  
-          })
+          }):
+          <tr>
+               <td></td>
+               <td></td>
+               <td></td>
+              <td className="text-muted p-4">No hay pagos registrados</td>
+              <td></td>
+              <td></td>
+
+          </tr>
         }
         <tr>
           <td></td>
