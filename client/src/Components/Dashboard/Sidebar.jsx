@@ -146,7 +146,7 @@ const Section = styled.section`
         flex-direction: column;
         gap: 1rem;
         li {
-          padding: 0.6rem 1rem;
+          padding: 0em;
           margin: 1%;
           border-radius:0 0.7rem 0.7rem 0.3rem;
           &:hover {
@@ -160,6 +160,7 @@ const Section = styled.section`
             display: flex;
             gap: 1rem;
             color: white;
+            padding:1em;
           }
         }
         .active {
