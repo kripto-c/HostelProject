@@ -65,6 +65,7 @@ export default function Rooms() {
                 </div>
               );
             })}
+          
           <div className="row mx-auto" >
             <Paginate
               roomsPerPage={roomsPerPage}
@@ -72,6 +73,7 @@ export default function Rooms() {
               paginate={paginate}
               page={page}
             />
+              
           </div>
         </div>
       </div>
