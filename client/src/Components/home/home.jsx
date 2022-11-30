@@ -46,8 +46,7 @@ const Home = () => {
               src ="https://img.besthqwallpapers.com/Uploads/6-11-2017/27286/interior-of-hotel-room-modern-design-brown-tone-hotel-room-room-for-three.jpg"
               alt="first-item"
             />
-            {/* <h1 className="Bienvenido">Bienvenidos al {info.hostelName}</h1> */}
-            <h1 className="Bienvenido">Bienvenidos al Hostel Dinamita</h1>
+            <h1 className="Bienvenido">Bienvenidos al {info.hostelName}</h1>
           </div>
         </Carousel.Item>
         <Carousel.Item>
@@ -56,8 +55,7 @@ const Home = () => {
               src="https://media-cdn.tripadvisor.com/media/photo-s/15/bc/d3/19/ideal-social-hostel.jpg"
               alt="second-item"
             />
-            {/* <p className="infoHome">{info.aboutUs}</p> */}
-            <p className="infoHome">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Iusto in impedit doloribus quod nemo recusandae quaerat perferendis sequi sint delectus voluptatibus repellendus, ullam odit obcaecati. At voluptate repellendus odio eos veritatis esse, totam nemo fugit ipsum ratione cum nisi iste.</p>
+            <p className="infoHome">{info.aboutUs}</p>
           </div>
         </Carousel.Item>
         <Carousel.Item>
@@ -115,7 +113,6 @@ const Home = () => {
               <div className="data data2">
                 <p>POR QUE ELEGIRNOS</p>
                 <p>{info.chooseUs}</p>
-                {/* <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Eum voluptate commodi eos excepturi! Odio, facilis quae consequuntur, inventore quos perspiciatis quia eius ea sequi veritatis, nemo quibusdam quam? Omnis maxime hic fugit, dolore ab quisquam ipsam saepe voluptate? Tempora, aut!</p> */}
               </div>
             </div>
             <div className="demo1 demo11" ref={ref3}>
