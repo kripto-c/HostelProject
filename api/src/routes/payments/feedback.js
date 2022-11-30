@@ -38,7 +38,6 @@ route.get("/", async (req, res) => {
           id: pagado.client_id,
         },
       });
-      console.log("entramos aca");
       room.beds_avalaibles = room.beds_avalaibles - pagado.observation;
       if (room.beds_avalaibles <= 0) {
         room.beds_avalaibles = 0;
@@ -49,6 +48,12 @@ route.get("/", async (req, res) => {
 
       res.send("bien");
     } else {
+      let cancelado = await Rent.findOne({
+        where: {
+          pago_id: preference_id
+        }
+      })
+      await cancelado.destroy();
       res.send("nada");
     }
   } catch (error) {
@@ -59,5 +64,3 @@ route.get("/", async (req, res) => {
 
 module.exports = route;
 
-//1230124929-db7715de-2094-4c32-8653-1408ba6e9e9f
-//230124929-db7715de-2094-4c32-8653-1408ba6e9e9f
