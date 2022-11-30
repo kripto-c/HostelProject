@@ -119,7 +119,7 @@ const Section = styled.section`
   .top {
     display: flex;
     flex-direction: column;
-    gap: 2rem;
+    gap: 0.7rem;
     width: 100%;
     .toggle {
       display: none;
@@ -160,7 +160,7 @@ const Section = styled.section`
             display: flex;
             gap: 1rem;
             color: white;
-            padding:1em;
+            padding:0.65em;
           }
         }
         .active {
