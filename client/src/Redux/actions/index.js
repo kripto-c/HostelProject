@@ -108,14 +108,6 @@ export function filterTypeRoom(payloadOne, payloadTwo, payloadThree) {
   };
 }
 
-// export function filterPrice(payload){
-//   console.log("Filter PRICE",payload)
-//   return{
-//     type:FILTER_PRICE,
-//     payload
-
-//   }
-// }
 
 //ACTIONS FILTROS---------------------------------------------------------------->>
 

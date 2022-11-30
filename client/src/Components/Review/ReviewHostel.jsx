@@ -9,7 +9,7 @@ import { Button } from "react-bootstrap";
 import { IoIosStar } from "react-icons/io";
 import style from "../../Styles/ReviewHostel.module.css";
 import { postReview } from "../../Redux/actions/index.js";
-// const Swal = require("sweetalert2");
+
 import Swal from "sweetalert2";
 import { withAuthenticationRequired } from "@auth0/auth0-react";
 import {useAuth0} from '@auth0/auth0-react'
@@ -22,7 +22,7 @@ function RatingBootstrap() {
   const [current, setCurrent] = useState(0);
   const navigate = useNavigate();
   // const [description, setDescription] = useState("");
-  console.log(client)
+  
 
   const [input, setInput] = useState({
     usuario: client.name,
