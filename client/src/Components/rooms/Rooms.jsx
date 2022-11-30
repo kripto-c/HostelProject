@@ -54,7 +54,9 @@ export default function Rooms() {
                   <RoomCard
                     beds={e.beds}
                     description={e.description}
-                    image={e.image}
+                    image={e.image.map((room) =>
+                      room ? `${room}` : `${room[0]}`
+                    )}
                     bathroom={e.bathroom}
                     id={e.id}
                     type={e.type?.type}
@@ -62,18 +64,18 @@ export default function Rooms() {
                     beds_avalaibles={e.beds_avalaibles}
                     status={e.status}
                   />
+                  {console.log(e.image)}
                 </div>
               );
             })}
-          
-          <div className="row mx-auto" >
+
+          <div className="row mx-auto">
             <Paginate
               roomsPerPage={roomsPerPage}
               allRooms={allRooms?.length}
               paginate={paginate}
               page={page}
             />
-              
           </div>
         </div>
       </div>

@@ -62,10 +62,10 @@ const Create = (props) => {
           const nuevoObjeto = { ...image, imagenUpload };
           console.log(nuevoObjeto);
           setImage(nuevoObjeto);
-          // setRoom({
-          //   ...room,
-          //   image: image,
-          // });
+          setRoom({
+            ...room,
+            image: image,
+          });
         });
     });
     axios.all(uploaders).then(() => {
@@ -148,14 +148,19 @@ const Create = (props) => {
 
           const nuevoObjeto = { ...image, array: filterURL[0] };
           setImage(nuevoObjeto);
+          setRoom({ image: nuevoObjeto });
 
           alertaSeguro.fire(
             "Borrado!",
             "La imagen ha sido borrada correctamente",
             "success"
           );
-        } else if (result.dismiss === Swal.DismissReason.cancel){
-          alertaSeguro.fire("Se cancelo el borrado!", "La imagen esta a salvo", "error")
+        } else if (result.dismiss === Swal.DismissReason.cancel) {
+          alertaSeguro.fire(
+            "Se cancelo el borrado!",
+            "La imagen esta a salvo",
+            "error"
+          );
         }
       });
   }
@@ -169,7 +174,6 @@ const Create = (props) => {
       !room.bathroom ||
       !room.description ||
       !room.image ||
-      !room.observation ||
       !room.price ||
       !room.typeId
     ) {
@@ -272,7 +276,7 @@ const Create = (props) => {
               <Form.Control
                 type="number"
                 name="simples"
-                min="1"
+                min="0"
                 max="10"
                 value={room.simples}
                 onChange={async (e) => {
