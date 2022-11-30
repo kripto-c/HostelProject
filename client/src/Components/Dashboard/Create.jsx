@@ -23,7 +23,7 @@ const Create = (props) => {
   const [loading, setLoading] = useState("");
   const [room, setRoom] = useState({
     description: "",
-    image:[],
+    image: [],
     bathroom: "",
     observation: "",
     price: "",
@@ -117,6 +117,50 @@ const Create = (props) => {
     });
   };
 
+  const alertaSeguro = Swal.mixin({
+    customClass: {
+      confirmButton: "btn btn-success",
+      cancelButton: "btn btn-danger",
+    },
+    buttonsStyling: false,
+  });
+
+  function handleDeleteImage(foto) {
+    alertaSeguro
+      .fire({
+        title: "Estas seguro que quieres eliminar la imagen?",
+        text: "Luego no es posible revertirlo",
+        icon: "warning",
+        showCancelButton: true,
+        confirmButtonText: "Si, eliminalo!",
+        cancelButtonText: "No, mejor no!",
+        reverseButtons: true,
+      })
+      .then((result) => {
+        if (result.isConfirmed) {
+          let filterURL = [
+            image.array.filter((borrada) => {
+              if (borrada.id !== foto) {
+                return borrada;
+              }
+            }),
+          ];
+
+          const nuevoObjeto = { ...image, array: filterURL[0] };
+          setImage(nuevoObjeto);
+
+          alertaSeguro.fire(
+            "Borrado!",
+            "La imagen ha sido borrada correctamente",
+            "success"
+          );
+        } else if (result.dismiss === Swal.DismissReason.cancel){
+          alertaSeguro.fire("Se cancelo el borrado!", "La imagen esta a salvo", "error")
+        }
+      });
+  }
+  // VALIDATIONS //
+
   // SUBMIT //
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -152,21 +196,6 @@ const Create = (props) => {
     }
   };
 
-  //
-  function handleDeleteImage(foto){
-    let filterURL = [
-      image.array.filter((borrada) => {
-        if (borrada.id !== foto ) {
-          return borrada;
-        }
-      }),
-    ];
-   
-    const nuevoObjeto = { ...image, array:filterURL[0] };
-     setImage(nuevoObjeto)
-
-  };
-
   // SUMAR CUCHETAS //
   useEffect(() => {
     sumarCamas();
@@ -175,11 +204,11 @@ const Create = (props) => {
   // RENDER //
   return (
     <div>
-      <div className="box-create">
+      <div className="box-create" style={{ backgroundColor: "#eeeeee" }}>
         <Form
           onSubmit={(e) => handleSubmit(e)}
           style={{ width: "80%", display: "flex", flexDirection: "column" }}
-          variant="dark"
+          className="create-form"
         >
           <h2>Creacion de habitaciones: </h2>
           <Row className="d-flex justify-content-between">
@@ -203,11 +232,13 @@ const Create = (props) => {
               <Form.Label>Precio (*): </Form.Label>
               <Form.Control
                 type="number"
-                min="1000"
-                max="1000000"
+                min="1"
+                max="100000"
                 name="price"
+                defaultValue=""
                 value={room.price}
                 onChange={handleChange}
+                isV
               />
             </Form.Group>
           </Row>
@@ -301,26 +332,27 @@ const Create = (props) => {
                 {image.array?.map((foto, index) => {
                   return (
                     <Carousel.Item key={index}>
-                    <>
-                      <img
-                        className="rounded mx-auto d-block"
-                        src={`${foto.url}`}
-                        alt=""
-                        style={{
-                          width: "250px",
-                          height: "220px",
-                          objectFit: "cover",
-                        }}
-                      />
-                      <button
-                        type="button"
-                        onClick={() => handleDeleteImage(foto.id)}
-                        className="rounded mx-auto d-block"
-                      >
-                        <RiDeleteBin5Line />
-                      </button>
+                      <>
+                        <img
+                          className="rounded mx-auto d-block"
+                          src={`${foto.url}`}
+                          alt=""
+                          style={{
+                            width: "250px",
+                            height: "220px",
+                            objectFit: "cover",
+                          }}
+                        />
+                        <button
+                          type="button"
+                          onClick={() => handleDeleteImage(foto.id)}
+                          className="rounded mx-auto d-block"
+                        >
+                          <RiDeleteBin5Line />
+                        </button>
                       </>
-                    // </Carousel.Item>
+                      //{" "}
+                    </Carousel.Item>
                   );
                 })}
               </Carousel>
