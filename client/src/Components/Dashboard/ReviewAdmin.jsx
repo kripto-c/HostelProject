@@ -76,16 +76,19 @@ export default function ReviewAdmin() {
               </h1>
             </button>
           </li>
-          {paginas.map((e) => (
-            <li className="d-flex align-items-center">
+          {paginas.map((e,index) => (
+            <React.Fragment key={index}>
+            <li key={index} className="d-flex align-items-center">
               <Pagination onClick={() => setCurrentPage(e)}>
                 <Pagination.Item
+                key={index}
                   className={currentPage === e ? "active" : "disabled"}
                 >
                   {e}
                 </Pagination.Item>
               </Pagination>
             </li>
+            </React.Fragment>
           ))}
           <li className="page-item">
             <button
