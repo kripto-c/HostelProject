@@ -31,14 +31,13 @@ function RatingBootstrap() {
   function handleClick(index) {
     setCurrent(index);
     setInput({ ...input, rating: index });
-    
   }
   function handleChange(e) {
     setInput({ ...input, [e.target.name]: e.target.value });
   }
   function handleSubmit(e) {
     e.preventDefault();
-  
+
     if (input.rating === 0) {
       return input.rating === 0
         ? Swal.fire({
@@ -76,7 +75,6 @@ function RatingBootstrap() {
             <IoIosStar
               className={r <= current ? style.yellow : style.grey}
               key={index}
-              
               name="rating" //No acepta name
               value={current}
               onClick={() => handleClick(r)}
@@ -95,7 +93,7 @@ function RatingBootstrap() {
         >
           <Form.Control
             as="textarea"
-            value={input.description}            
+            value={input.description}
             name="description"
             placeholder="Leave a comment here"
             style={{ height: "120px" }}
