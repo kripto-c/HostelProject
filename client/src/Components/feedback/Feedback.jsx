@@ -14,7 +14,6 @@ export default function FeedBack(){
         dispatch(sendFeedback(queryString))
     },[dispatch]);
 const params = new URLSearchParams(queryString);
-
 const dni = params.get("dni");
 const name = params.get("name");
 const check_in = params.get("check_in");
