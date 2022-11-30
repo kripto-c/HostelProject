@@ -147,9 +147,6 @@ export default function RoomDetail() {
         
     const pay = async ()=>{
         // VERIFICACION DE DATOS DE LA RESERVA
-        console.log("cama", camas)
-        console.log("entrada", checkIn)
-        console.log("salida",checkOut)
         if(!userLogin.isAuthenticated) return setVerLogin(true);
         if(!camas && !checkIn && !checkOut && !pagar) return setAll(true);
         if(!camas) return setVerRoom(true);
@@ -284,8 +281,7 @@ export default function RoomDetail() {
                         id="validationCustom02"
                         name="lastname"
                         disabled={lastname}
-                        defaultValue={client.lastname}
-                        // value={lastname ? client.lastname : clientInf.lastname}
+                        defaultValue={client?.lastname}
                         onChange={(e) => handleChange(e)}
                         required
                       />
@@ -430,6 +426,7 @@ export default function RoomDetail() {
         <SweetAlert
           warning
           onConfirm={() => {setLogin(true)}}
+          title="Oops...!"
         >
         <span>Para poder hacer reservas debes registrarte primero</span>
         </SweetAlert>
@@ -467,9 +464,9 @@ export default function RoomDetail() {
           imagenes &&
           <Carousel >
             {
-              imagenes.map((img) =>{
+              imagenes.map((img, index) =>{
                 return(
-                  <Carousel.Item>
+                  <Carousel.Item key={index} >
                     <img
                     
                     src={img}
@@ -487,10 +484,10 @@ export default function RoomDetail() {
         <div className='container d-grid gap-2 col-6 mx-auto'>
               <button disabled={room.status} className="btn btn-secondary" onClick={() => {setCalendar(true)}} >Seleccione una fecha</button>
           </div>
-        <p className="Ac">
+        <div className="Ac">
         <h2 style={{marginTop: "2vh"}}>${room.price} por cama</h2>
           <b>Camas a reservar: {camas}</b>
-        </p>
+        </div>
       </div>
       <div className="rangebeds">
         <input

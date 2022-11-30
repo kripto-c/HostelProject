@@ -98,7 +98,7 @@ export default function Sidebar() {
               logout()
             }}
             >
-              <FiLogOut/> Cerrar Seccion
+              <FiLogOut/> Cerrar Sesion
             </button>
           </div>
         </Section>
