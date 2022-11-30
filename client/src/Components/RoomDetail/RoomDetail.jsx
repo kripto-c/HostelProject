@@ -209,7 +209,6 @@ export default function RoomDetail() {
       ...clientInf,
       [e.target.name]: e.target.value,
     });
-    console.log(clientInf);
   }
   function handleName(e) {
     e.preventDefault();

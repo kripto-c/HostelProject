@@ -10,7 +10,6 @@ import s from "./feedback.module.css"
 export default function FeedBack(){
     const dispatch = useDispatch();
     const queryString = window.location.search;
-
     useEffect(() =>{
         dispatch(sendFeedback(queryString))
     },[dispatch]);
@@ -22,8 +21,6 @@ const check_in = params.get("check_in");
 const check_out = params.get("check_out");
 const camas = params.get("camas")
 const status = params.get("status");
-console.log(dni);
-
     return(
         <div  style={{margin: "2%"}}>
             { status === "approved" ?
