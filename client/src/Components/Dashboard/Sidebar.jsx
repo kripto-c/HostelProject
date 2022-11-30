@@ -12,7 +12,7 @@ import { useAuth0 } from "@auth0/auth0-react";
 
 export default function Sidebar() {
   const [currentLink, setCurrentLink] = useState(1);
-  const {logout} = useAuth0();
+  const { logout } = useAuth0();
   return (
     <div>
       <div className="container">
@@ -20,14 +20,16 @@ export default function Sidebar() {
           {/* //TOP-------------------------------------------->> */}
           <div className="top">
             <div className="d-flex  justify-content-center">
-            <img
+              <img
                 className="logo"
                 src={logo}
                 style={{ backgroundColor: "white", borderRadius: "10px" }}
               />
             </div>
             <div className="brand">
-              <span className="text-info"><b>Project Hostel</b></span>
+              <span className="text-info">
+                <b>Project Hostel</b>
+              </span>
             </div>
 
             <div className="links">
@@ -91,14 +93,15 @@ export default function Sidebar() {
               </ul>
             </div>
           </div>
-          <div style={{display: "flex", justifyContent: "center" }} >
-            <button className="btn btn-outline-danger"
-            onClick={() =>{
-              localStorage.clear();
-              logout()
-            }}
+          <div style={{ display: "flex", justifyContent: "center" }}>
+            <button
+              className="btn btn-outline-danger"
+              onClick={() => {
+                localStorage.clear();
+                logout();
+              }}
             >
-              <FiLogOut/> Cerrar Sesion
+              <FiLogOut /> Cerrar Sesion
             </button>
           </div>
         </Section>
@@ -119,7 +122,7 @@ const Section = styled.section`
   .top {
     display: flex;
     flex-direction: column;
-    gap: 2rem;
+    gap: 0.7rem;
     width: 100%;
     .toggle {
       display: none;
@@ -136,7 +139,6 @@ const Section = styled.section`
       span {
         font-size: 2rem;
         color: #fff9;
-        
       }
     }
     .links {
@@ -148,7 +150,7 @@ const Section = styled.section`
         li {
           padding: 0em;
           margin: 1%;
-          border-radius:0 0.7rem 0.7rem 0.3rem;
+          border-radius: 0 0.7rem 0.7rem 0.3rem;
           &:hover {
             background-color: black;
             a {
@@ -160,7 +162,7 @@ const Section = styled.section`
             display: flex;
             gap: 1rem;
             color: white;
-            padding:1em;
+            padding: 0.75em;
           }
         }
         .active {
@@ -187,5 +189,4 @@ const Section = styled.section`
       color: white;
     }
   }
- 
 `;
