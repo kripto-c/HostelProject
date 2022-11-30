@@ -54,9 +54,7 @@ export default function Rooms() {
                   <RoomCard
                     beds={e.beds}
                     description={e.description}
-                    image={e.image.map((room) =>
-                      room ? `${room}` : `${room[0]}`
-                    )}
+                    image={e.image}
                     bathroom={e.bathroom}
                     id={e.id}
                     type={e.type?.type}
@@ -64,7 +62,7 @@ export default function Rooms() {
                     beds_avalaibles={e.beds_avalaibles}
                     status={e.status}
                   />
-                  {console.log(e.image)}
+                  {console.log}
                 </div>
               );
             })}
