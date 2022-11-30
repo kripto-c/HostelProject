@@ -39,7 +39,6 @@ const Edit = () => {
         authorization: `Bearer ${token}`,
       },
     };
-    console.log(statusRoom);
 
     await dispatch(changeStatusRoom(authorization, room, statusRoom));
     await dispatch(getAllRooms());
@@ -70,46 +69,48 @@ const Edit = () => {
         </thead>
         <tbody>
           {ordernar().map((room, index) => (
-              <tr key={index}>
-                <td>{room.id}</td>
-                <td>
-                  <img
-                    src={room.image.map((el,index) => el)}
-                    style={{
-                      width: "40px",
-                      height: "40px",
-                      objectFit: "cover",
-                    }}
-                    alt=""
-                  />
-                </td>
-                <td>{room.description}</td>
-                <td>{room?.status ? "inactivo" : "activo"}</td>
-                <td>
-                  <label className="botoncito">
-                    <input
-                      key={'f'+ room.id}
-                      type="checkbox"
-                      defaultChecked={room.status}
-                      onClick={async () =>
-                        await handleChangeStatus(
-                          room.id,
-                          room.status ? "activo" : "inactivo"
-                        )
-                      }
-                    ></input>
-                    <span className="deslizadora"></span>
-                  </label>
-                </td>
-                <td className="borrar">
-                  <button
-                    type="button"
-                    onClick={() => {handleDelete(room.id);}}
-                  >
+            <tr key={index}>
+              <td>{room.id}</td>
+              <td>
+                <img
+                  src={room.image[0]}
+                  style={{
+                    width: "40px",
+                    height: "40px",
+                    objectFit: "cover",
+                  }}
+                  alt=""
+                ></img>
+              </td>
+              <td>{room.description}</td>
+              <td>{room?.status ? "inactivo" : "activo"}</td>
+              <td>
+                <label className="botoncito">
+                  <input
+                    key={index}
+                    type="checkbox"
+                    defaultChecked={room.status}
+                    onClick={async () =>
+                      await handleChangeStatus(
+                        room.id,
+                        room.status ? "activo" : "inactivo"
+                      )
+                    }
+                  ></input>
+                  <span className="deslizadora"></span>
+                </label>
+              </td>
+              <td className="borrar">
+                <button
+                  type="button"
+                  onClick={() => {
+                    handleDelete(room.id);
+                  }}
+                >
                   <RiDeleteBin5Line></RiDeleteBin5Line>
-                  </button>
-                </td>
-              </tr>
+                </button>
+              </td>
+            </tr>
           ))}
         </tbody>
       </Table>
