@@ -23,7 +23,7 @@
 .dropzone{
   text-align: center;
   padding: 20px;
-  border: 3px dashed rgb(112, 112, 112);
+  border: 3px dashed rgb(126, 126, 126);
   background-color: #fafafa;
   border-radius: 3px;
   color: #bdbdbd;
@@ -43,7 +43,7 @@ align-items: center;
 
 .borrarImagen:hover{
   background-color: red;
-  color: black;
+  color: rgb(80, 79, 79);
 }
 
 .totales{
