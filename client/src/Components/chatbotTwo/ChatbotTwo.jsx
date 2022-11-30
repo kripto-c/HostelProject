@@ -11,6 +11,7 @@ import MensajeInicial from "./MensajeInicial";
 export default function BotChat() {
   const theme = {
     background: "#292B2C",
+    fontFamily: 'Comic Sans MS',
     headerBgColor: "#0275D8",
     headerFontColor: "#FFFFFF",
     headerFontSize: "20px",
@@ -22,17 +23,17 @@ export default function BotChat() {
   const steps = [
     {
       id: "0",
-      message: "Bienvenido a Project Hostel. Por favor indiquenos su nombre",
+      message: "Bienvenido a Project Hostel. Por favor indiquenos su nombre.",
       trigger: "preguntaNombre",
     },
     {
       id: "preguntaNombre",
       user: true,
       validator: (value) => {
-        if (/^[ a-zA-Z ]{5,30}$/.test(value) ) {
+        if (/^[ a-zA-Z ]{3,30}$/.test(value) ) {
           return true;
         } else {
-          return "Solo letras y almenos 5 caracteres";
+          return "Solo letras y al menos 5 caracteres";
         }
       },
       trigger: "respuesta-nombre",

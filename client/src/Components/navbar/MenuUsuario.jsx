@@ -195,7 +195,7 @@ async function statusUser() {
             </Offcanvas>
             {
               (isAuthenticated && localStorage.getItem("Rol") === "menu-client" ) &&
-            <Button variant="outline-light" onClick={handleShow} className="ms-5 w-10">
+            <Button variant="outline-light" onClick={handleShow} className="opt ms-5 w-10">
               Menu
             </Button>
             }
@@ -205,7 +205,7 @@ async function statusUser() {
               <Button
                 variant="outline-light"
                 to="/#login"
-                className="ms-5 w-10"
+                className="ms-5 w-10 opt"
                 onClick={async (e) => {
                   e.preventDefault();
                   await loginWithPopup();

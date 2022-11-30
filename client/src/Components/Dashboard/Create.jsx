@@ -23,7 +23,7 @@ const Create = (props) => {
   const [loading, setLoading] = useState("");
   const [room, setRoom] = useState({
     description: "",
-    image: { array: [] },
+    image:[],
     bathroom: "",
     observation: "",
     price: "",
@@ -62,10 +62,10 @@ const Create = (props) => {
           const nuevoObjeto = { ...image, imagenUpload };
           console.log(nuevoObjeto);
           setImage(nuevoObjeto);
-          setRoom({
-            ...room,
-            image: image,
-          });
+          // setRoom({
+          //   ...room,
+          //   image: image,
+          // });
         });
     });
     axios.all(uploaders).then(() => {
@@ -153,33 +153,18 @@ const Create = (props) => {
   };
 
   //
-  const handleDeleteImage = (foto) => {
-    console.log(image.array);
+  function handleDeleteImage(foto){
     let filterURL = [
       image.array.filter((borrada) => {
         if (borrada.id !== foto ) {
-          console.log(borrada);
-          console.log("si");
           return borrada;
         }
       }),
     ];
-    console.log(filterURL)
-    console.log(foto)
-    // console.log(room.image.array);
-    // let filter2 = [room.image.array.filter((borrada) => borrada !== foto)];
-    // // console.log(filter2);
-    // // console.log(foto);
-    // console.log(filter2)
+   
+    const nuevoObjeto = { ...image, array:filterURL[0] };
+     setImage(nuevoObjeto)
 
-    // setRoom({
-    //   ...room,
-    //   image: room.image.array.filter((id, ) => id !== foto),
-    // });
-    // setImage({
-    //   ...image,
-    //   image: image.array.filter((borrada, index) => index !== foto),
-    // });
   };
 
   // SUMAR CUCHETAS //
@@ -316,6 +301,7 @@ const Create = (props) => {
                 {image.array?.map((foto, index) => {
                   return (
                     <Carousel.Item key={index}>
+                    <>
                       <img
                         className="rounded mx-auto d-block"
                         src={`${foto.url}`}
@@ -333,7 +319,8 @@ const Create = (props) => {
                       >
                         <RiDeleteBin5Line />
                       </button>
-                    </Carousel.Item>
+                      </>
+                    // </Carousel.Item>
                   );
                 })}
               </Carousel>
