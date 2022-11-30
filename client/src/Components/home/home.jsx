@@ -46,8 +46,7 @@ const Home = () => {
               src ="https://img.besthqwallpapers.com/Uploads/6-11-2017/27286/interior-of-hotel-room-modern-design-brown-tone-hotel-room-room-for-three.jpg"
               alt="first-item"
             />
-            {/* <h1 className="Bienvenido">Bienvenidos al {info.hostelName}</h1> */}
-            <h1 className="Bienvenido">Bienvenidos al Hostel Dinamita</h1>
+            <h1 className="Bienvenido">Bienvenidos al {info.hostelName}</h1>
           </div>
         </Carousel.Item>
         <Carousel.Item>
@@ -56,8 +55,7 @@ const Home = () => {
               src="https://media-cdn.tripadvisor.com/media/photo-s/15/bc/d3/19/ideal-social-hostel.jpg"
               alt="second-item"
             />
-            {/* <p className="infoHome">{info.aboutUs}</p> */}
-            <p className="infoHome">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Iusto in impedit doloribus quod nemo recusandae quaerat perferendis sequi sint delectus voluptatibus repellendus, ullam odit obcaecati. At voluptate repellendus odio eos veritatis esse, totam nemo fugit ipsum ratione cum nisi iste.</p>
+            <p className="infoHome">{info.aboutUs}</p>
           </div>
         </Carousel.Item>
         <Carousel.Item>
@@ -74,7 +72,7 @@ const Home = () => {
                     src="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fcdn-icons-png.flaticon.com%2F128%2F281%2F281769.png&f=1&nofb=1&ipt=ec0a92aa547629d49b3e6694c5503cdc80d9375a816b1831e08b774ed24df9e2&ipo=images" 
                     alt="logoGmail" 
                   />
-                  <a href="#" target="_blank">Correo</a></li>
+                  <a href="/contact" target="_blank">Correo</a></li>
                 <li>
                   <img 
                     src="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Flogovector.net%2Fwp-content%2Fuploads%2F2011%2F11%2Ffacebook-f-logo-195x195.png&f=1&nofb=1&ipt=28f161af0961a8646ffa8fed1ec3f3f5ed73a8e77d17060e17876dc360db8976&ipo=images" 
@@ -82,12 +80,12 @@ const Home = () => {
                     />
                   <a href={info.facebook} target="_blank">Facebook</a>
                 </li>
-                <li>
+                {/* <li>
                   <img 
                     src="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fstore-images.s-microsoft.com%2Fimage%2Fapps.31617.13655054093851568.f2bf9430-60d7-4569-a50d-0f21c9ade6b3.c563d383-997d-4da1-9def-d7200e3547f8%3Fw%3D180%26h%3D180%26q%3D60&f=1&nofb=1&ipt=b660687cd18505323f7a681a174c54032a42fd21e34a5acade050c113f9244f7&ipo=images" 
                     alt="LogoWhatsapp" 
                   /><a href="#" target="_blank">WhatsApp</a></li>
-                <li><Link to='contact'>Preguntas Frecuentes</Link></li>
+                <li><Link to='contact'>Preguntas Frecuentes</Link></li> */}
               </ul>
             </div>
           </div>
@@ -115,7 +113,6 @@ const Home = () => {
               <div className="data data2">
                 <p>POR QUE ELEGIRNOS</p>
                 <p>{info.chooseUs}</p>
-                {/* <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Eum voluptate commodi eos excepturi! Odio, facilis quae consequuntur, inventore quos perspiciatis quia eius ea sequi veritatis, nemo quibusdam quam? Omnis maxime hic fugit, dolore ab quisquam ipsam saepe voluptate? Tempora, aut!</p> */}
               </div>
             </div>
             <div className="demo1 demo11" ref={ref3}>
