@@ -178,6 +178,7 @@ function Payments() {
               value={JSON.parse(localStorage.getItem("selectMonth"))}
               onChange={e => {rentsHandler(e)}}
               className="form-select text-center"
+              key="1"
             >
               <option value="all" hidden>
                 Filtrar por mes
@@ -187,12 +188,13 @@ function Payments() {
               })}
             </select>
           </li>
-          <li className="nav-item mx-1" key="dateSelect">
+          <li className="nav-item mx-1" >
             <select 
               name="sortByDate" 
               value={JSON.parse(localStorage.getItem("selectDate"))}
               onChange={e => {rentsHandler(e)}}
               className="form-select"
+              key="1"
             >
               <option value="all" hidden>
                 Ordenar por fecha
@@ -201,13 +203,13 @@ function Payments() {
               <option value="desc">Menos reciente</option>
             </select>
           </li>
-          <li className="nav-item mx-1" key="buttonFilter">
-            <button type="button" onClick={e => handleSubmitFilter(e)} className="nav-item  btn btn-primary">
+          <li className="nav-item mx-1">
+            <button type="button" onClick={e => handleSubmitFilter(e)} className="nav-item  btn btn-primary" key="1">
               Filtrar
             </button>
           </li>
           <li className="nav-item mx-1" key="buttonDraft">
-            <button type="button" onClick={e => handleResetFilters(e)} className="nav-item  btn btn-primary">
+            <button type="button" onClick={e => handleResetFilters(e)} className="nav-item  btn btn-primary" key="1">
               Borrar filtros
             </button>
           </li>
@@ -267,7 +269,7 @@ function Payments() {
         }
         <tr>
           <td></td>
-          <td colSpan={2}><b>Total:</b></td>
+          <td colSpan={3}><b>Total:</b></td>
           <td  className='text-center'><b>${Math.floor(sum)}</b></td>
         </tr>
       </tbody>
