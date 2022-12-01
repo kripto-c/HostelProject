@@ -72,6 +72,8 @@ align-items: center;
 }
 
 .imgup{
+  background-color: #151515;
+  border-radius: 4px;
   display: flex;
   width: 100%;
   justify-content: center;
