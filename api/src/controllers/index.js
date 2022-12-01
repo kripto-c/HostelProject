@@ -38,6 +38,7 @@ module.exports = {
         price,
         observation,
         typeId,
+        beds_avalaibles: beds
       });
       return newBed;
     }
