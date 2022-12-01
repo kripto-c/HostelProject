@@ -87,6 +87,7 @@ export default function Filters({ getRooms, setData }) {
       }) }
       else{
         dispatch(filterTypeRoom(type, typeBatchroom, price));
+        
         setData(true);
       }
   }
