@@ -71,7 +71,7 @@ export default function RoomDetail() {
     socket.emit('roomView', id)
     socket.on('payRoom',(data)=> setPayAvalible(data.status));
     socket.on('userPay',(data)=>{
-      if(data.user != userLogin.user.email) setPayAvalible(data.status)
+      if(data.user != userLogin.user?.email) setPayAvalible(data.status)
     })
     socket.on('userPayC',(data)=> setPayAvalible(data.status));
     return () =>{
