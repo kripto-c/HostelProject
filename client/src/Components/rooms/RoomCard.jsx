@@ -32,7 +32,7 @@ export default function RoomCard({
         ></img>
         <div className="col-md-9 " style={{paddingLeft: "2vw"}} >
           <h2 className="tittle text-white ms-0">
-            Habitación {type === "Privado" ? "privada" : "compartida"}
+            Habitación {type === 2 ? "privada" : "compartida"}
           </h2>
           <h4 className="text-white-50">
             
