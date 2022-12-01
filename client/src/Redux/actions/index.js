@@ -13,7 +13,7 @@ export const FORGET = "FORGET";
 
 // const URL = "https://dinamitahostel.herokuapp.com"; //heroku
   const URL = "https://hostelproject-production.up.railway.app"; //railway
-// const URL = "http://localhost:4000"; //descomentar para hacer pruebas
+ //const URL = "http://localhost:4000"; //descomentar para hacer pruebas
 
 //ACTION ROOMS ----------------------------------------------------------->>
 export function getRooms() {
