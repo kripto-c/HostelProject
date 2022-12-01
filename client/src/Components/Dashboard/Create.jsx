@@ -64,9 +64,9 @@ const Create = (props) => {
           setRoom({
             ...room,
             image: [nuevoObjeto],
-          }); 
+          });
         });
-      });
+    });
     axios.all(uploaders).then(() => {
       setLoading("false");
     });
@@ -134,23 +134,23 @@ const Create = (props) => {
         confirmButtonText: "Si, eliminalo!",
         cancelButtonText: "No, mejor no!",
         reverseButtons: true,
-      }) 
+      })
       .then((result) => {
         if (result.isConfirmed) {
           let filterURL = [
             image.array.filter((borrada) => {
               if (borrada.id !== foto) {
                 return borrada;
-              } 
+              }
             }),
           ];
-          
+
           const nuevoObjeto = { ...image, array: filterURL[0] };
           setImage(nuevoObjeto);
           setRoom({
             ...room,
-            image: [nuevoObjeto]
-          }) 
+            image: [nuevoObjeto],
+          });
           alertaSeguro.fire(
             "Borrado!",
             "La imagen ha sido borrada correctamente",
@@ -164,8 +164,8 @@ const Create = (props) => {
           );
         }
       });
-     
-      console.log(foto)
+
+    console.log(foto);
   }
   // VALIDATIONS //
 
@@ -179,17 +179,17 @@ const Create = (props) => {
       !room.price ||
       !room.typeId
     ) {
-      Swal.fire({ 
+      Swal.fire({
         icon: "error",
         title: "Debes completar todos los datos!",
       });
     } else {
       // setRoom({
       //   ...room,
-      //   image: [image.array] 
+      //   image: [image.array]
       // })
       console.log(room);
-      dispatch(createRoom(room)); 
+      dispatch(createRoom(room));
       Swal.fire({
         icon: "success",
         title: "Habitacion Creada Correctamente",
@@ -340,27 +340,27 @@ const Create = (props) => {
             </Form.Group>
             <div className="imgup">
               {/* <Carousel> */}
-                {image.array?.map((foto, index) => {
-                  return (
-                      <div key={index}>
-                        <div className="xdawod">
-                          <button 
-                            type="button"
-                            className="borrarFoto"
-                            onClick={() => handleDeleteImage(foto.id)}
-                          >
-                            X
-                          </button>
-                        </div>
-                        <img
-                          className="imgCreate rounded mx-auto d-block"
-                          src={`${foto.url}`}
-                          alt="Img"
-                        />
-                      </div>
-                    // </Carousel.Item>
-                  );
-                })}
+              {image.array?.map((foto, index) => {
+                return (
+                  <div className="" key={index}>
+                    <img
+                      className="imgCreate rounded mx-auto d-block"
+                      src={`${foto.url}`}
+                      alt="Img"
+                    />
+                    <Button
+                      type="button"
+                      className="btn-danger"
+                      style={{ display: "flex", width: "95%", margin: "auto" }}
+                      onClick={() => handleDeleteImage(foto.id)}
+                    >
+                      <RiDeleteBin5Line />
+                    </Button>
+                  </div>
+
+                  // </Carousel.Item>
+                );
+              })}
               {/* </Carousel> */}
             </div>
           </Row>
