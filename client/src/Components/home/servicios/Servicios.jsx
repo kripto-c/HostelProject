@@ -18,9 +18,7 @@ export default function Servicios() {
           <div><h1>Servicios</h1></div>
           
         <Row>
-          <Col className="m-auto mt-4">
-          <h1>Servicios</h1>
-          </Col>
+          
           
           
           <Col className="">
