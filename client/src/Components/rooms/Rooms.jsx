@@ -11,15 +11,15 @@ export default function Rooms() {
   //Almacenamos estado rooms de redux en variable allRooms ---------------------------------------->>
   let allRooms = useSelector((state) => state.allRooms);
 
-  const [page, setPage] = useState(1);
-  const [roomsPerPage, setRoomsPerPage] = useState(7);
-  const lastPage = page * roomsPerPage;
-  const firstPage = lastPage - roomsPerPage;
-  const currentPage = allRooms?.slice(firstPage, lastPage);
+  // const [page, setPage] = useState(1);
+  // const [roomsPerPage, setRoomsPerPage] = useState(7);
+  // const lastPage = page * roomsPerPage;
+  // const firstPage = lastPage - roomsPerPage;
+  // const currentPage = allRooms?.slice(firstPage, lastPage);
 
-  const paginate = (pages) => {
-    setPage(pages);
-  };
+  // const paginate = (pages) => {
+  //   setPage(pages);
+  // };
 
   //Se carga base de datos al entrar a ROOMS!!---------------------------------------------->> Carga BASE DE DATOS
   useEffect(() => {
@@ -30,7 +30,7 @@ export default function Rooms() {
   const [data, setData] = useState(true);
 
   //VARIABLE CON LAS ROOMS ACTUALES QUE SE VAN A RENDERIZAR !!! ------------->>
-  let roomsCurrent = JSON.parse(localStorage.getItem("filtros")) || currentPage;
+  let roomsCurrent = JSON.parse(localStorage.getItem("filtros")) || allRooms;
 
   //-------------------------------------------------------------------------
   //Renderizo componente cada vez que obtengo informacion de localStorage!!.Se ejecuita ante cada cambio en data, que se cambia a true al hacer un SUBMIT de los filtros
@@ -67,14 +67,14 @@ export default function Rooms() {
               );
             })}
 
-          <div className="row mx-auto">
+          {/* <div className="row mx-auto">
             <Paginate
               roomsPerPage={roomsPerPage}
               allRooms={allRooms?.length}
               paginate={paginate}
               page={page}
             />
-          </div>
+          </div> */}
         </div>
       </div>
       <Footer />
