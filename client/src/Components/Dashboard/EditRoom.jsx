@@ -111,7 +111,7 @@ const Edit = () => {
               <td>{room.id}</td>
               <td>
                 <img
-                  src={room.image[0]}
+                  src={room.image ? room.image[0] : room.image.map(el => el.url)}
                   style={{
                     width: "40px",
                     height: "40px",
