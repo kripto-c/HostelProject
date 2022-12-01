@@ -190,7 +190,9 @@ async function statusUser() {
 
           {isAuthenticated ? (
             <>
-            <Offcanvas show={show1} onHide={() =>{setShow1(false)}} style={{backgroundColor: "#212121"}}>
+            <Offcanvas show={show1} onHide={() =>{setShow1(false)}} placement="end" style={{backgroundColor: "#212121", gap:"3rem"}}>
+              <Offcanvas.Header closeButton>
+              </Offcanvas.Header>
               <Sidebar></Sidebar>
             </Offcanvas>
             {
