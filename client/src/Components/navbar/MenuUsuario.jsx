@@ -178,8 +178,8 @@ async function statusUser() {
                  onClick={() => {
                    setShow1(true);
                  }}
-                 style={{position: "fixed", top: "2%", right: "1%", width: "100px", height: "50px", padding: "5px", }}
-                className="btn btn-dark fas fa-cog"
+                //  style={}
+                className={`${style.adminBTN} btn btn-dark fas fa-cog`}
                >
                 <IconContext.Provider value={{ size: "30"}}>
                 <BiCog />
