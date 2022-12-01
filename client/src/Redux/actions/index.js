@@ -9,15 +9,15 @@ export const POST_OWNER = "POST_OWNER";
 export const GET_OWNER = "GET_OWNER";
 export const GET_ALL_CLIENTS = "GET_ALL_CLIENTS";
 export const GET_FAQ = "GET_FAQ";
-export const FORGET = "FORGET"
+export const FORGET = "FORGET";
 
 // const URL = "https://dinamitahostel.herokuapp.com"; //heroku
-const URL = "https://hostelproject-production.up.railway.app" //railway
-// const URL = "http://localhost:4000"; //descomentar para hacer pruebas
+const URL = "https://hostelproject-production.up.railway.app"; //railway
+//const URL = "http://localhost:4000"; //descomentar para hacer pruebas
 
 //ACTION ROOMS ----------------------------------------------------------->>
 export function getRooms() {
-  return async function (dispatch) {
+  return async function(dispatch) {
     let room = await axios.get(`${URL}/rooms`);
     return dispatch({
       type: GET_ROOMS,
@@ -27,7 +27,7 @@ export function getRooms() {
 }
 
 export function getAllRooms() {
-  return async function (dispatch) {
+  return async function(dispatch) {
     let room = await axios(`${URL}/rooms`);
     return dispatch({
       type: "GET_ALL_ROOMS",
@@ -38,7 +38,7 @@ export function getAllRooms() {
 //ACTIONS REVIEWS ----------------------------------------------------------->>
 export function getReview() {
   try {
-    return async function (dispatch) {
+    return async function(dispatch) {
       const dataDb = await axios.get(`${URL}/reviews`);
       dispatch({
         type: GET_REVIEW,
@@ -53,7 +53,7 @@ export function getReview() {
 
 export function deleteReview(headers, id, recOrDelete) {
   try {
-    return async function (dispatch) {
+    return async function(dispatch) {
       await axios.get(
         `${URL}/deletesAdmin/deleteReview/?id=${id}&recOrDelete=${recOrDelete}`,
         headers
@@ -76,7 +76,7 @@ export function deleteReview(headers, id, recOrDelete) {
 
 export function postReview(payload) {
   try {
-    return async function (dispatch) {
+    return async function(dispatch) {
       axios.post(`${URL}/reviews`, payload);
       return dispatch({ type: POST_REVIEW });
     };
@@ -90,7 +90,7 @@ export function postReview(payload) {
 
 export function sendFeedback(data) {
   try {
-    return async function (dispatch) {
+    return async function(dispatch) {
       let response = await axios.get(`${URL}/feedback${data}`);
       return response.data;
     };
@@ -108,13 +108,12 @@ export function filterTypeRoom(payloadOne, payloadTwo, payloadThree) {
   };
 }
 
-
 //ACTIONS FILTROS---------------------------------------------------------------->>
 
 //ACTION GET INFO CLIENT
 export function getCLient(token) {
   try {
-    return async function (dispatch) {
+    return async function(dispatch) {
       const info = await axios.get(`${URL}/login/client`, {
         headers: { authorization: `Bearer ${token}` },
       });
@@ -155,7 +154,7 @@ export function postClient(body, headers) {
 
 export function setClient(token) {
   try {
-    return async function () {
+    return async function() {
       let res = await axios.get(`${URL}/login/setClient`, {
         headers: { authorization: `Bearer ${token}` },
       });
@@ -168,18 +167,23 @@ export function setClient(token) {
 
 export function getRolUser(token) {
   try {
-    return async function () {
-      let res = await axios.get(`${URL}/rol`, { headers: { authorization: `Bearer ${token}` } })
-      localStorage.setItem("Rol", res.data.rol[0] ? res.data.rol[0] : "menu-client");
-    }
+    return async function() {
+      let res = await axios.get(`${URL}/rol`, {
+        headers: { authorization: `Bearer ${token}` },
+      });
+      localStorage.setItem(
+        "Rol",
+        res.data.rol[0] ? res.data.rol[0] : "menu-client"
+      );
+    };
   } catch (e) {
-    console.log(e)
+    console.log(e);
   }
 }
 
 export function getStatus(token) {
   try {
-    return async function () {
+    return async function() {
       let res = await axios.get(`${URL}/login/status`, {
         headers: { authorization: `Bearer ${token}` },
       });
@@ -192,7 +196,7 @@ export function getStatus(token) {
 
 export function setStatus(token, body) {
   try {
-    return async function () {
+    return async function() {
       let res = await axios.post(`${URL}/login/banner`, body, {
         headers: { authorization: `Bearer ${token}` },
       });
@@ -204,13 +208,13 @@ export function setStatus(token, body) {
 
 // ---------------------------------------------------------
 export function postOwner(payload, headers) {
-  return async function () {
+  return async function() {
     const { data } = await axios.post(`${URL}/owner/post`, payload, headers);
     return data;
   };
 }
 export function getOwner(token) {
-  return async function (dispatch) {
+  return async function(dispatch) {
     try {
       let { data } = await axios.get(`${URL}/owner/get`, {
         headers: { authorization: `Bearer ${token}` },
@@ -226,7 +230,7 @@ export function getOwner(token) {
 }
 
 export function getOwnerSp() {
-  return async function (dispatch) {
+  return async function(dispatch) {
     try {
       let { data } = await axios.get(`${URL}/owner/gethome`);
       return dispatch({
@@ -253,7 +257,7 @@ export function getRoomDetail(id) {
 }
 
 export function getAllCountries() {
-  return async function (dispatch) {
+  return async function(dispatch) {
     try {
       let { data } = await axios.get(`${URL}/countries`);
       return dispatch({
@@ -267,7 +271,7 @@ export function getAllCountries() {
 }
 
 export function getRent(id) {
-  return async function (dispatch) {
+  return async function(dispatch) {
     try {
       let res = await axios.get(`${URL}/rent?id=${id}`);
       return dispatch({
@@ -289,7 +293,7 @@ export const createRoom = (payload) => async () => {
 
 export function deleteRoom(headers, id) {
   try {
-    return async function (dispatch) {
+    return async function(dispatch) {
       await axios.get(`${URL}/deletesAdmin/deleteRoom/?id=${id}`, headers);
       dispatch({
         type: "DELETE_ROOM",
@@ -303,7 +307,7 @@ export function deleteRoom(headers, id) {
 
 export function changeStatusRoom(headers, id, statusRoom) {
   try {
-    return async function (dispatch) {
+    return async function(dispatch) {
       await axios.get(
         `${URL}/changeStatusRoom/?id=${id}&statusRoom=${statusRoom}`,
         headers
@@ -335,7 +339,7 @@ export function inactiveRooms(payload) {
 //ACTIONS RENTS ----------------------------------------------------------->>
 export function getRents(token) {
   try {
-    return async function (dispatch) {
+    return async function(dispatch) {
       const json = await axios.get(`${URL}/rents`, {
         headers: { authorization: `Bearer ${token}` },
       });
@@ -351,7 +355,7 @@ export function getRents(token) {
 // FAQs ADMIN------------------------------------------------
 export function getFaq() {
   try {
-    return async function (dispatch) {
+    return async function(dispatch) {
       const response = await axios.get(`${URL}/faq`);
       dispatch({
         type: GET_FAQ,
@@ -365,7 +369,7 @@ export function getFaq() {
 
 export function postFaq(token, payload) {
   try {
-    return async function (dispatch) {
+    return async function(dispatch) {
       const response = await axios.post(`${URL}/faq/new`, payload, {
         headers: { authorization: `Bearer ${token}` },
       });
@@ -377,7 +381,7 @@ export function postFaq(token, payload) {
 
 export function delteFaq(token, id) {
   try {
-    return async function (dispatch) {
+    return async function(dispatch) {
       const response = await axios.get(`${URL}/faq/deleteFaq?id=${id}`, {
         headers: { authorization: `Bearer ${token}` },
       });
@@ -397,7 +401,7 @@ export function filterRents(payloadOne, payloadTwo) {
 
 export function logicalDraft(id, token) {
   try {
-    return async function () {
+    return async function() {
       const json = await axios.get(`${URL}/rents/draft?id=${id}`, {
         headers: { authorization: `Bearer ${token}` },
       });
@@ -408,6 +412,6 @@ export function logicalDraft(id, token) {
 }
 export function forgetstate() {
   return {
-    type: FORGET
-  }
+    type: FORGET,
+  };
 }
