@@ -30,8 +30,6 @@ module.exports = {
       return "Faltan ingresar datos";
     } else {
      let URL = image[0].array.map((el) => el.url);
-     console.log(URL)
-     console.log(URL ,"HOLA")
       let newBed = await Room.create({
         beds,
         description,

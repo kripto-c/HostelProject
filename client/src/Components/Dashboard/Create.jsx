@@ -87,7 +87,7 @@ const Create = (props) => {
     });
   };
 
-  const handleba単oSelect = (e) => {
+  const handlebañoSelect = (e) => {
     setRoom({
       ...room,
       bathroom: e.target.value,
@@ -232,9 +232,9 @@ const Create = (props) => {
               </Form.Select>
             </Form.Group>
             <Form.Group as={Col} md="4">
-              <Form.Label>Ba単o (*): </Form.Label>
-              <Form.Select onChange={(e) => handleba単oSelect(e)}>
-                <option>Elegir tipo de ba単o</option>
+              <Form.Label>Baño (*): </Form.Label>
+              <Form.Select onChange={(e) => handlebañoSelect(e)}>
+                <option>Elegir tipo de baño</option>
                 <option value="True">Privado</option>
                 <option value="False">Compartido</option>
               </Form.Select>
