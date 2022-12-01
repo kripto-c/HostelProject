@@ -338,19 +338,12 @@ const Create = (props) => {
                 )}
               </Dropzone>
             </Form.Group>
-            <div>
+            <div className="imgup">
               {/* <Carousel> */}
                 {image.array?.map((foto, index) => {
                   return (
-                    // <Carousel.Item key={index}>
-                      <>
-                        <div
-                          style={{
-                            display: "flex",
-                            position: "relative",
-                            left:"395px",
-                          }}
-                        >
+                      <div key={index}>
+                        <div className="xdawod">
                           <button 
                             type="button"
                             className="borrarFoto"
@@ -360,16 +353,11 @@ const Create = (props) => {
                           </button>
                         </div>
                         <img
-                          className="rounded mx-auto d-block"
+                          className="imgCreate rounded mx-auto d-block"
                           src={`${foto.url}`}
-                          alt=""
-                          style={{
-                            width: "400px",
-                            height: "300px",
-                            objectFit: "cover",
-                          }}
+                          alt="Img"
                         />
-                      </>
+                      </div>
                     // </Carousel.Item>
                   );
                 })}
