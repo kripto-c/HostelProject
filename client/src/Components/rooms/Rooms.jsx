@@ -10,16 +10,16 @@ export default function Rooms() {
   const dispatch = useDispatch();
   //Almacenamos estado rooms de redux en variable allRooms ---------------------------------------->>
   let allRooms = useSelector((state) => state.allRooms);
+  let rooms = useSelector(state=>state.rooms)
+  const [page, setPage] = useState(1);
+  const [roomsPerPage, setRoomsPerPage] = useState(7);
+  const lastPage = page * roomsPerPage;
+  const firstPage = lastPage - roomsPerPage;
+  const currentPage = JSON.parse(localStorage.getItem("filtros"))?.slice(firstPage, lastPage)
 
-  // const [page, setPage] = useState(1);
-  // const [roomsPerPage, setRoomsPerPage] = useState(7);
-  // const lastPage = page * roomsPerPage;
-  // const firstPage = lastPage - roomsPerPage;
-  // const currentPage = allRooms?.slice(firstPage, lastPage);
-
-  // const paginate = (pages) => {
-  //   setPage(pages);
-  // };
+  const paginate = (pages) => {
+    setPage(pages);
+  };
 
   //Se carga base de datos al entrar a ROOMS!!---------------------------------------------->> Carga BASE DE DATOS
   useEffect(() => {
@@ -30,7 +30,7 @@ export default function Rooms() {
   const [data, setData] = useState(true);
 
   //VARIABLE CON LAS ROOMS ACTUALES QUE SE VAN A RENDERIZAR !!! ------------->>
-  let roomsCurrent = JSON.parse(localStorage.getItem("filtros")) || allRooms;
+  let roomsCurrent = currentPage|| allRooms.slice(firstPage, lastPage);
 
   //-------------------------------------------------------------------------
   //Renderizo componente cada vez que obtengo informacion de localStorage!!.Se ejecuita ante cada cambio en data, que se cambia a true al hacer un SUBMIT de los filtros
@@ -44,7 +44,7 @@ export default function Rooms() {
 
   return (
     <div>
-      <Filters getRooms={getRooms} setData={setData} />
+      <Filters getRooms={getRooms} setData={setData} paginate={paginate} />
       <div className="container">
         <div className="row">
           {roomsCurrent &&
@@ -67,14 +67,14 @@ export default function Rooms() {
               );
             })}
 
-          {/* <div className="row mx-auto">
+          <div className="row mx-auto">
             <Paginate
               roomsPerPage={roomsPerPage}
-              allRooms={allRooms?.length}
+              allRooms={rooms?.length}
               paginate={paginate}
               page={page}
             />
-          </div> */}
+          </div>
         </div>
       </div>
       <Footer />
