@@ -60,14 +60,12 @@ const Create = (props) => {
           let imagenUpload = image.array;
           imagenUpload.push({ url: fileURL, id });
           const nuevoObjeto = { ...image, imagenUpload };
-          console.log(nuevoObjeto);
           setImage(nuevoObjeto);
           setRoom({
             ...room,
-            image: [imagenUpload.url],
-          });
+            image: [nuevoObjeto],
+          }); 
         });
-        console.log(imagen.url)
       });
     axios.all(uploaders).then(() => {
       setLoading("false");
@@ -118,10 +116,6 @@ const Create = (props) => {
     });
   };
 
-  const objetoToArray = () =>{
-
-  }
-
   const alertaSeguro = Swal.mixin({
     customClass: {
       confirmButton: "btn btn-success",
@@ -140,20 +134,23 @@ const Create = (props) => {
         confirmButtonText: "Si, eliminalo!",
         cancelButtonText: "No, mejor no!",
         reverseButtons: true,
-      })
+      }) 
       .then((result) => {
         if (result.isConfirmed) {
           let filterURL = [
             image.array.filter((borrada) => {
               if (borrada.id !== foto) {
                 return borrada;
-              }
+              } 
             }),
           ];
-
+          
           const nuevoObjeto = { ...image, array: filterURL[0] };
           setImage(nuevoObjeto);
-
+          setRoom({
+            ...room,
+            image: [nuevoObjeto]
+          }) 
           alertaSeguro.fire(
             "Borrado!",
             "La imagen ha sido borrada correctamente",
@@ -167,6 +164,8 @@ const Create = (props) => {
           );
         }
       });
+     
+      console.log(foto)
   }
   // VALIDATIONS //
 
@@ -177,16 +176,20 @@ const Create = (props) => {
       !room.beds ||
       !room.bathroom ||
       !room.description ||
-      !room.image ||
       !room.price ||
       !room.typeId
     ) {
-      Swal.fire({
+      Swal.fire({ 
         icon: "error",
         title: "Debes completar todos los datos!",
       });
     } else {
-      dispatch(createRoom(room));
+      // setRoom({
+      //   ...room,
+      //   image: [image.array] 
+      // })
+      console.log(room);
+      dispatch(createRoom(room)); 
       Swal.fire({
         icon: "success",
         title: "Habitacion Creada Correctamente",
@@ -297,7 +300,6 @@ const Create = (props) => {
                 min="1"
                 max="100000"
                 name="price"
-                defaultValue=""
                 value={room.price}
                 onChange={handleChange}
               />
@@ -337,10 +339,10 @@ const Create = (props) => {
               </Dropzone>
             </Form.Group>
             <div>
-              <Carousel>
+              {/* <Carousel> */}
                 {image.array?.map((foto, index) => {
                   return (
-                    <Carousel.Item key={index}>
+                    // <Carousel.Item key={index}>
                       <>
                         <div
                           style={{
@@ -349,7 +351,7 @@ const Create = (props) => {
                             left:"395px",
                           }}
                         >
-                          <button
+                          <button 
                             type="button"
                             className="borrarFoto"
                             onClick={() => handleDeleteImage(foto.id)}
@@ -368,10 +370,10 @@ const Create = (props) => {
                           }}
                         />
                       </>
-                    </Carousel.Item>
+                    // </Carousel.Item>
                   );
                 })}
-              </Carousel>
+              {/* </Carousel> */}
             </div>
           </Row>
 
