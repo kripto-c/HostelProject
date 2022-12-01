@@ -61,7 +61,7 @@ function Payments() {
   
 
   // Creo un array de meses para el filtro
-  const months = allRents.map(e => e.dateReserva.slice(0, 7))
+  const months = allRents.map(e => e.dateReserva?.slice(0, 7))
   const months2 = []
   months2.push(months[0])
   for(var i = 0; i < months.length; i++) {
@@ -242,9 +242,9 @@ function Payments() {
       <tbody>
         {
          currentPayments.length ? currentPayments && currentPayments.map(e => {
-            let auxIn = e.dateIn.slice(0, 10)
-            let auxOut = e.dateOut.slice(0, 10)
-            let auxPay = e.dateReserva.slice(0, 10)
+            let auxIn = e.dateIn?.slice(0, 10)
+            let auxOut = e.dateOut?.slice(0, 10)
+            let auxPay = e.dateReserva?.slice(0, 10)
             let id = e.id
             return (
               <tr className='text-center'>
