@@ -41,9 +41,15 @@ export default function Faqs (){
         })
     }
 
+    async function deleteFaq(id) {
+       const token = await getAccessTokenSilently();
+       await  dispatch(delteFaq(token, id))
+         dispatch(getFaq())
+    }
+
+
 async function handleDelete(e){
       e.preventDefault()
-      const token = await getAccessTokenSilently();
        Swal.fire({
         title: 'Eliminar pregunta frecuente',
         text: "¡No podrás revertir esto!",
@@ -54,14 +60,13 @@ async function handleDelete(e){
         confirmButtonText: '¡Sí, bórralo!'
       }).then((result) => {
         if (result.isConfirmed) {
-          dispatch(delteFaq(token, e.target.id))
+          deleteFaq(e.target.id)
           Swal.fire(
             '¡Eliminado!',
             'tu pregunta frecuente han sido eliminadas de la lista',
             'success'
           )
         }
-        dispatch(getFaq());
       })
 
     } 
