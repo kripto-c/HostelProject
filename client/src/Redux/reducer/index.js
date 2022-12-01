@@ -48,6 +48,7 @@ export default function rootReducer(state = initialState, action) {
         return {
           ...state,
           rooms: JSON.parse(localStorage.getItem("filtros")),
+          allRooms:action.payload
         };
       }
     }
@@ -92,8 +93,7 @@ export default function rootReducer(state = initialState, action) {
     }
     case FILTER_TYPE_ROOM: {
       let filterRoom = state.allRooms;
-
-      let roomType;
+      let roomType
       //FILTRO POR TIPO DE HABITACION Y POR TIPO DE BAÑO
       if (action.payloadOne || action.payloadTwo) {
         if (action.payloadOne && action.payloadTwo) {
@@ -101,6 +101,7 @@ export default function rootReducer(state = initialState, action) {
             action.payloadOne === "roomPrivate"
               ? filterRoom.filter((e) => e.type.id === 2)
               : filterRoom.filter((e) => e.type.id === 1);
+              console.log(roomType)
 
           roomType =
             action.payloadTwo === "batchroomPrivate"
@@ -119,12 +120,13 @@ export default function rootReducer(state = initialState, action) {
                 : filterRoom.filter((e) => e.type.id === 1);
           }
         }
-      } else {
+      } 
+      else {
         if (!action.payloadOne && !action.payloadTwo && action.payloadThree) {
           roomType = state.rooms;
         }
       }
-      
+
       //SI ME LLEGA PAYLOAD y no me llegan type y typbatchroom PARA ORDENAR POR PRECIO. SE LO APLICO A LOS FILTROS ANTERIORES
       if (action.payloadThree) {
         if (action.payloadThree === "asc") {
@@ -149,9 +151,10 @@ export default function rootReducer(state = initialState, action) {
           });
         }
       }
+     
       //GUARDO ESTADO REDUX EN LOCALSTORAGE
 
-      localStorage.setItem("filtros", JSON.stringify(roomType));
+      localStorage.setItem("filtros", JSON.stringify(roomType))
       return {
         ...state,
         rooms: [...roomType],

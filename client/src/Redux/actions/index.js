@@ -12,8 +12,8 @@ export const GET_FAQ = "GET_FAQ";
 export const FORGET = "FORGET";
 
 // const URL = "https://dinamitahostel.herokuapp.com"; //heroku
-const URL = "https://hostelproject-production.up.railway.app"; //railway
-//const URL = "http://localhost:4000"; //descomentar para hacer pruebas
+  const URL = "https://hostelproject-production.up.railway.app"; //railway
+ //const URL = "http://localhost:4000"; //descomentar para hacer pruebas
 
 //ACTION ROOMS ----------------------------------------------------------->>
 export function getRooms() {
@@ -100,6 +100,7 @@ export function sendFeedback(data) {
 }
 
 export function filterTypeRoom(payloadOne, payloadTwo, payloadThree) {
+  console.log("action", payloadOne, payloadTwo)
   return {
     type: FILTER_TYPE_ROOM,
     payloadOne,

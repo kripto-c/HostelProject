@@ -62,7 +62,7 @@ export default function Rooms() {
                     beds_avalaibles={e.beds_avalaibles}
                     status={e.status}
                   />
-                  {console.log}
+                  
                 </div>
               );
             })}
