@@ -29,15 +29,16 @@ module.exports = {
     ) {
       return "Faltan ingresar datos";
     } else {
-     let URL = image[0].array.map((el) => el.url);
+      let URL = image[0].array.map((el) => el.url);
       let newBed = await Room.create({
         beds,
         description,
-        image:URL,
+        image: URL,
         bathroom,
         price,
         observation,
         typeId,
+        beds_avalaibles: beds,
       });
       return newBed;
     }

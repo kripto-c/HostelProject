@@ -100,6 +100,7 @@ const Edit = () => {
             <th>ID: </th>
             <th>Image: </th>
             <th>Description: </th>
+            <th>Camas disponibles: </th>
             <th>Status: </th>
             <th>Activo/Inactivo: </th>
             <th>Borrar: </th>
@@ -121,6 +122,7 @@ const Edit = () => {
                 ></img>
               </td>
               <td>{room.description}</td>
+              <td>{room.beds_avalaibles}/{room.beds}</td>
               <td>{room?.status ? "inactivo" : "activo"}</td>
               <td>
                 <label className="botoncito">
