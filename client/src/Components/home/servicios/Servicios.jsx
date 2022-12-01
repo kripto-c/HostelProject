@@ -8,7 +8,6 @@ import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import Tv from "./Tv";
 
-
 export default function Servicios() {
   return (
     <div className="container-fluid">
@@ -16,13 +15,7 @@ export default function Servicios() {
 
       <Container className="divServicios">
         <Row>
-          
-          
-          
           <Col className="">
-            <Wifi></Wifi>
-            <div className="container-fluid w-50 ms-2"><small className="text"> Wifi Gratis</small></div>
-            
             <Wifi></Wifi>
           </Col>
           <Col>
@@ -32,10 +25,9 @@ export default function Servicios() {
             <Lavanderia></Lavanderia>
           </Col>
           <Col>
-            <Tv/>
+            <Tv />
           </Col>
         </Row>
-        
       </Container>
     </div>
   );
