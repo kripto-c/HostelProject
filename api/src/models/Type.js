@@ -13,7 +13,10 @@ module.exports = (sequelize) => {
     typeId: {
         type: DataTypes.STRING,
         
-    }
+    },
+    type: {
+      type: DataTypes.STRING,
+  }
   },
   {
     timestamps: false

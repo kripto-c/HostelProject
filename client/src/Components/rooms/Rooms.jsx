@@ -57,12 +57,12 @@ export default function Rooms() {
                     image={e.image}
                     bathroom={e.bathroom}
                     id={e.id}
-                    type={e.typeId}
+                    type={e.type?.id}
                     price={e.price}
                     beds_avalaibles={e.beds_avalaibles}
                     status={e.status}
                   />
-                  {console.log}
+                  
                 </div>
               );
             })}

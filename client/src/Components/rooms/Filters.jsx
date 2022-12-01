@@ -95,13 +95,13 @@ export default function Filters({ getRooms, setData,paginate }) {
   //FUNCION PARA RECARGAR FILTROS!!! ------------------------------------------>>
   function recargarFiltros(e) {
     e.preventDefault();
-    
+    paginate(1)
     setType("");
     setTypeBatchroom("");
     setPrice("");
     putRooms()
     setData(true)
-    paginate(1)
+   
     dispatch(getRooms());
   }
 
@@ -123,8 +123,8 @@ export default function Filters({ getRooms, setData,paginate }) {
             <option value="Todo" hidden>
               Tipo de habitación
             </option>
-            <option value="roomPrivate">Publico</option>
-            <option value="roomPublic">Privado</option>
+            <option value="roomPublic">Publico</option>
+            <option value="roomPrivate">Privado</option>
           </select>
         </li>
 {/* SELECT TIPO DE BAÑO----------------------------------------------->> */}
