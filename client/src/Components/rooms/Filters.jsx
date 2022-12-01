@@ -5,7 +5,6 @@ import style from "./Filters.module.css";
 import Swal from 'sweetalert2'
 
 
-
 export default function Filters({ getRooms, setData }) {
   //Estados -------------------------------------------------->>
   const dispatch = useDispatch(); 
