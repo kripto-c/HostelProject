@@ -71,7 +71,7 @@ route.post("/", async (req, res, next) => {
         observation: items[0].quantity,
         bed_id: items[0].room_id,
         client_id: items[0].client_id,
-        dateReserva: new Date(yyy, mes+1, day)
+        dateReserva: new Date(yyy-1, mes+1, day)
       });
       console.log(comprobante)
       res.send(responds);
