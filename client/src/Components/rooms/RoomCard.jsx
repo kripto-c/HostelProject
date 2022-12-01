@@ -13,9 +13,9 @@ export default function RoomCard({
 }) {
   let typeRoom = "";
 
-  if (type === 1) {
+  if (type == 2) {
     typeRoom = "compartida";
-  } else if (type === 2) {
+  } else if (type == 1) {
     typeRoom = "Privado";
   }
 

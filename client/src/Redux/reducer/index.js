@@ -92,20 +92,21 @@ export default function rootReducer(state = initialState, action) {
     }
     case FILTER_TYPE_ROOM: {
       let filterRoom = state.allRooms;
-
+      console.log()
       let roomType;
       //FILTRO POR TIPO DE HABITACION Y POR TIPO DE BAÑO
       if (action.payloadOne || action.payloadTwo) {
         if (action.payloadOne && action.payloadTwo) {
           roomType =
             action.payloadOne === "roomPrivate"
-              ? filterRoom.filter((e) => e.type.id === 2)
-              : filterRoom.filter((e) => e.type.id === 1);
+              ? filterRoom.filter((e) => e.typeId == 2)
+              : filterRoom.filter((e) => e.typeId == 1);
 
           roomType =
             action.payloadTwo === "batchroomPrivate"
               ? roomType.filter((e) => e.bathroom === true)
               : roomType.filter((e) => e.bathroom === false);
+              console.log("acaa",roomType)
         } else {
           if (action.payloadTwo) {
             roomType =
@@ -115,8 +116,8 @@ export default function rootReducer(state = initialState, action) {
           } else {
             roomType =
               action.payloadOne === "roomPrivate"
-                ? filterRoom.filter((e) => e.type.id === 2)
-                : filterRoom.filter((e) => e.type.id === 1);
+                ? filterRoom.filter((e) => e.typeId == 2)
+                : filterRoom.filter((e) => e.typeId == 1);
           }
         }
       } else {
@@ -124,7 +125,7 @@ export default function rootReducer(state = initialState, action) {
           roomType = state.rooms;
         }
       }
-      
+     
       //SI ME LLEGA PAYLOAD y no me llegan type y typbatchroom PARA ORDENAR POR PRECIO. SE LO APLICO A LOS FILTROS ANTERIORES
       if (action.payloadThree) {
         if (action.payloadThree === "asc") {

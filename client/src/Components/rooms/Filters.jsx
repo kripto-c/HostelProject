@@ -123,8 +123,8 @@ export default function Filters({ getRooms, setData,paginate }) {
             <option value="Todo" hidden>
               Tipo de habitación
             </option>
-            <option value="roomPrivate">Privado</option>
-            <option value="roomPublic">Público</option>
+            <option value="roomPrivate">Publico</option>
+            <option value="roomPublic">Privado</option>
           </select>
         </li>
 {/* SELECT TIPO DE BAÑO----------------------------------------------->> */}
