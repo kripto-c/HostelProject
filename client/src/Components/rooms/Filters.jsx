@@ -5,7 +5,7 @@ import style from "./Filters.module.css";
 import Swal from 'sweetalert2'
 
 
-export default function Filters({ getRooms, setData }) {
+export default function Filters({ getRooms, setData,paginate }) {
   //Estados -------------------------------------------------->>
   const dispatch = useDispatch(); 
   //Estados locales donde se guardan los value de los select de los filtros!!  (Que despues se hace dispatch en el momento de filtrar) ------------->>
@@ -87,6 +87,7 @@ export default function Filters({ getRooms, setData }) {
       }) }
       else{
         dispatch(filterTypeRoom(type, typeBatchroom, price));
+        paginate(1)
         setData(true);
       }
   }
@@ -100,6 +101,7 @@ export default function Filters({ getRooms, setData }) {
     setPrice("");
     putRooms()
     setData(true)
+    paginate(1)
     dispatch(getRooms());
   }
 
