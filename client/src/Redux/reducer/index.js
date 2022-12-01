@@ -99,8 +99,9 @@ export default function rootReducer(state = initialState, action) {
         if (action.payloadOne && action.payloadTwo) {
           roomType =
             action.payloadOne === "roomPrivate"
-              ? filterRoom.filter((e) => e.type.id === 2)
-              : filterRoom.filter((e) => e.type.id === 1);
+              ? filterRoom.filter((e) => e.type.type === "Privado")
+              : filterRoom.filter((e) => e.type.type === "Publico");
+              console.log(roomType)
 
           roomType =
             action.payloadTwo === "batchroomPrivate"
@@ -115,8 +116,8 @@ export default function rootReducer(state = initialState, action) {
           } else {
             roomType =
               action.payloadOne === "roomPrivate"
-                ? filterRoom.filter((e) => e.type.id === 2)
-                : filterRoom.filter((e) => e.type.id === 1);
+                ? filterRoom.filter((e) => e.type.type === "Privado")
+                : filterRoom.filter((e) => e.type.type === "Publico");
           }
         }
       } 

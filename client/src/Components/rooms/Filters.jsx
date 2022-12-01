@@ -56,7 +56,7 @@ export default function Filters({ getRooms, setData,paginate }) {
     if (e.target.name === "typeBatchroom") {
      
       localStorage.setItem("selectTypeBatchRoom",JSON.stringify(e.target.value)) //asdasdasdasdasd - - -- - - - -- - - - - -- - (-)
-      JSON.parse(localStorage.getItem("selectTypeBatchRoom"))? setType(JSON.parse(localStorage.getItem("selectTypeBatchRoom"))):setType(e.target.value)
+      JSON.parse(localStorage.getItem("selectTypeBatchRoom"))? setTypeBatchroom(JSON.parse(localStorage.getItem("selectTypeBatchRoom"))):setTypeBatchroom(e.target.value)
       
       return setTypeBatchroom(e.target.value);
     }
@@ -86,6 +86,7 @@ export default function Filters({ getRooms, setData,paginate }) {
         text: 'No hay camas disponibles',
       }) }
       else{
+        console.log(type)
         dispatch(filterTypeRoom(type, typeBatchroom, price));
         paginate(1)
         setData(true);
