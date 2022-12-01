@@ -134,17 +134,17 @@ const Create = (props) => {
         confirmButtonText: "Si, eliminalo!",
         cancelButtonText: "No, mejor no!",
         reverseButtons: true,
-      })
+      }) 
       .then((result) => {
         if (result.isConfirmed) {
           let filterURL = [
             image.array.filter((borrada) => {
               if (borrada.id !== foto) {
                 return borrada;
-              }
+              } 
             }),
           ];
-
+          
           const nuevoObjeto = { ...image, array: filterURL[0] };
           setImage(nuevoObjeto);
           setRoom({
@@ -179,7 +179,7 @@ const Create = (props) => {
       !room.price ||
       !room.typeId
     ) {
-      Swal.fire({
+      Swal.fire({ 
         icon: "error",
         title: "Debes completar todos los datos!",
       });
