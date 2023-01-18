@@ -14,11 +14,11 @@ root.render(
   <Provider store={store}>
     <BrowserRouter>
       <Auth0Provider
-        domain="dev-o7k6sbvjre41wvzb.us.auth0.com"
-        clientId="66qlWattWEnEf9wvlEyxx3VC5P8S9sxK"
+        domain={import.meta.VITE_APP_AUTH0_DOMAIN}
+        clientId={import.meta.VITE_APP_CLIENTID}
         redirectUri={window.location.origin}
-        audience="route-protected"
-        scope="openid profile email"
+        audience={import.meta.VITE_APP_AUDIENCE}
+        scope={import.meta.VITE_APP_SCOPE}
       >
     <App />
     </Auth0Provider>
