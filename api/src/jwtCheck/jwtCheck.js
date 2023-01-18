@@ -1,16 +1,17 @@
+require("dotenv").config();
 const { expressjwt: jwt } = require("express-jwt");
 const jwks = require("jwks-rsa");
-
+const { JWK_URI, JWK_AUDIENCE, JWK_ISUER } = process.env;
 
 let jwtCheck = jwt({
   secret: jwks.expressJwtSecret({
     cache: true,
     rateLimit: true,
     jwksRequestsPerMinute: 5,
-    jwksUri: "https://dev-o7k6sbvjre41wvzb.us.auth0.com/.well-known/jwks.json",
+    jwksUri: JWK_URI,
   }),
-  audience: "route-protected",
-  issuer: "https://dev-o7k6sbvjre41wvzb.us.auth0.com/",
+  audience: JWK_AUDIENCE,
+  issuer: JWK_ISUER,
   algorithms: ["RS256"],
 }).unless({ path: ["/getroomdetail", "/rent", "/info", "/rooms", '/countries', "/feedback", "/reviews", "/faq", "/owner/gethome"] });
 
